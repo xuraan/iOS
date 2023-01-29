@@ -1,0 +1,42 @@
+/* 
+  Localizable.strings
+  AlQuran
+
+  Created by Samba Diawara on 2023-01-10.
+  
+*/
+"sura" = "سورة";
+"aya" = "آية";
+"sofha" = "صفحة";
+
+"Page" = "صفحة";
+"Verse" = "آية";
+"Close" = "أغلق";
+"Search" = "بحث";
+"Rank" = "رقم";
+"Translation and phonetic" = "ترجمة";
+"The first and the last verses" = "الآية الأولى والأخيرة";
+"juz" = "جزء";
+"hizb" = "حزب";
+"home" = "المنزل";
+"The noble quran" = "القرآن الكريم";
+"Quran display mode" = "وضع عرض القرآن";
+"Settings" = "إعدادات";
+"System" = "نظام";
+"Dark" = "سوداء";
+"Light" = "بيضاء ";
+"ColorScheme" = "نظام الألوان";
+"Phonetic" = "صوتي";
+"Translation" = "ترجمة";
+"Enable" = "يُمكَِن";
+"Font" = "الخط";
+"Bold text" = "نص عريض";
+"Favorites sura" = "السور المفضلة";
+"Favorites aya" = "آيات المفضلة";
+"Favorites sofha" = "الصفحات المفضلة";
+"More" = "الكل";
+
+"quran" = "القرآن";
+"Index" = "فهرس";
+"mk" = "مكية";
+"md" = "مدنية";
