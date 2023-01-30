@@ -36,8 +36,10 @@ struct AyaSettings: View {
                     }
             })
 
-            Picker("Font", selection: .constant("me_quran")){
-                Text("me_quran").tag("me_quran")
+            Picker("Font", selection: $ayaVM.ayaFontName){
+                ForEach(AyaViewModel.ayaFonts, id: \.self){ name in
+                    Text(name).tag(name)
+                }
             }
             .pickerStyle(.navigationLink)
         } header: {
@@ -52,6 +54,22 @@ struct AyaSettings: View {
                     Label("Default values", systemImage: "gearshape.arrow.triangle.2.circlepath")
                         .font(.caption2)
                 }
+            }
+        }
+        .onAppear{
+            withAnimation{
+                ayaFontSize = ayaVM.ayaFontSize
+                transFontSize = ayaVM.transFontSize
+                isTransEnable = ayaVM.isTransEnable
+                isTransBold = ayaVM.isTransBold
+            }
+        }
+        .onDisappear{
+            withAnimation{
+                ayaVM.ayaFontSize = ayaFontSize
+                ayaVM.transFontSize = transFontSize
+                ayaVM.isTransEnable = isTransEnable
+                ayaVM.isTransBold = isTransBold
             }
         }
         Section{}
@@ -93,32 +111,6 @@ struct AyaSettings: View {
             }
         }
         Section{}
-            .onReceive(quranVM.$isShow){ value in
-                if value {
-                    withAnimation{
-                        ayaVM.ayaFontSize = ayaFontSize
-                        ayaVM.transFontSize = transFontSize
-                        ayaVM.isTransEnable = isTransEnable
-                        ayaVM.isTransBold = isTransBold
-                    }
-                }
-            }
-            .onAppear{
-                withAnimation{
-                    ayaFontSize = ayaVM.ayaFontSize
-                    transFontSize = ayaVM.transFontSize
-                    isTransEnable = ayaVM.isTransEnable
-                    isTransBold = ayaVM.isTransBold
-                }
-            }
-            .onDisappear{
-                withAnimation{
-                    ayaVM.ayaFontSize = ayaFontSize
-                    ayaVM.transFontSize = transFontSize
-                    ayaVM.isTransEnable = isTransEnable
-                    ayaVM.isTransBold = isTransBold
-                }
-            }
     }
     
     func setDefaultAyaArabicSettings(){
@@ -136,10 +128,12 @@ struct AyaSettings: View {
 
 struct AyaSettings_Previews: PreviewProvider {
     static var previews: some View {
-        List{
-            AyaSettings()
+        NavigationStack{
+            List{
+                AyaSettings()
+            }
+            .environmentObject(AyaViewModel())
+            .environmentObject(QuranViewModel())
         }
-        .environmentObject(AyaViewModel())
-        .environmentObject(QuranViewModel())
     }
 }

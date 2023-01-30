@@ -8,6 +8,14 @@
 import SwiftUI
 
 class AyaViewModel: ObservableObject {
+    
+    static var ayaFonts = ["me_quran", "AmiriQuran-Regular"]
+    
+    @Published var ayaFontName: String {
+        didSet{
+            UserDefaults.standard.set(ayaFontName, forKey: "ayaFontName")
+        }
+    }
     @Published var ayaFontSize: Double {
         didSet{
             UserDefaults.standard.set(ayaFontSize, forKey: "ayaFontSize")
@@ -40,7 +48,16 @@ class AyaViewModel: ObservableObject {
     }    
     
     init(){
-        Self.onBoard()
+        if !UserDefaults.standard.bool(forKey: "AyaViewModelIsBoarded"){
+            UserDefaults.standard.set(true, forKey: "isUseSystemColorScheme")
+            UserDefaults.standard.set("me_quran", forKey: "ayaFontName")
+            UserDefaults.standard.set(30.0, forKey: "ayaFontSize")
+            UserDefaults.standard.set(17.0, forKey: "transFontSize")
+            UserDefaults.standard.set(false, forKey: "isTransBold")
+            UserDefaults.standard.set(true, forKey: "isTransEnable")
+            UserDefaults.standard.set(true, forKey: "AyaViewModelIsBoarded")
+        }
+        ayaFontName = UserDefaults.standard.string(forKey: "ayaFontName") ?? "me_quran"
         ayaFontSize = UserDefaults.standard.double(forKey: "ayaFontSize")
         transFontSize = UserDefaults.standard.double(forKey: "transFontSize")
         isTransEnable = UserDefaults.standard.bool(forKey: "isTransEnable")
@@ -48,29 +65,6 @@ class AyaViewModel: ObservableObject {
         isPhonticEnable = UserDefaults.standard.bool(forKey: "isPhonticEnable")
         isPhoneticBold = UserDefaults.standard.bool(forKey: "isPhoneticBold")
     }
-}
-
-extension AyaViewModel {
-    //MARK: Public Function
-    static func onBoard(){
-        if UserDefaults.standard.bool(forKey: "isBoarded") {
-            
-        } else {
-            UserDefaults.standard.set(true, forKey: "isUseSystemColorScheme")
-
-            //MARK: APP DEFAULT VALURES
-            UserDefaults.standard.set(30.0, forKey: "ayaFontSize")
-            UserDefaults.standard.set(17.0, forKey: "transFontSize")
-            UserDefaults.standard.set(false, forKey: "isTransBold")
-            UserDefaults.standard.set(true, forKey: "isTransEnable")
-
-            // all things we want to do onBoad
-            
-
-            
-
-            UserDefaults.standard.set(true, forKey: "isBoarded")
-        }
-    }
+    
 }
 

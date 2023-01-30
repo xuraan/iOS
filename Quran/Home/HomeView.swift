@@ -33,6 +33,7 @@ struct HomeView: View {
         List{
             if isSearching {
                 SearchView(text: $text)
+                    .environment(\.isDestructive, false)
             } else {
                 favoriteSuraSection()
                 favoriteSofhaSection()
@@ -47,8 +48,10 @@ struct HomeView: View {
     func favoriteSuraSection()-> some View {
         if !suras.isEmpty {
             Section{
-                SuraRow(for: suras.first!)
-                    .padding(-5)
+                ListRowButton(action: {}){
+                    SuraRow(for: suras.first!)
+                        .padding(-5)
+                }
             } header: {
                 HStack{
                     Text("Favorites sura")
@@ -70,8 +73,10 @@ struct HomeView: View {
     func favoriteSofhaSection()-> some View {
         if !sofhas.isEmpty {
             Section{
-                SofhaRow(for: sofhas.first!)
-                    .padding(-5)
+                ListRowButton(action: {}){
+                    SofhaRow(for: sofhas.first!)
+                        .padding(-5)
+                }
             } header: {
                 HStack{
                     Text("Favorites sofhas")
@@ -92,8 +97,10 @@ struct HomeView: View {
     func favoriteAyaSection()-> some View {
         if !ayas.isEmpty {
             Section{
-                AyaRow(for: ayas.first!)
-                    .padding(-5)
+                ListRowButton(action: {}){
+                    AyaRow(for: ayas.first!)
+                        .padding(-5)
+                }
             } header: {
                 HStack{
                     Text("Favorites aya")
@@ -115,5 +122,20 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    }
+}
+
+
+
+struct RowButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding(.horizontal)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color("bg1"))
+            .overlay{
+                Color.black.opacity( configuration.isPressed ? 0.3 : 0 )
+            }
+            .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
     }
 }

@@ -22,9 +22,20 @@ struct SearchView: View {
     var body: some View {
             Section{
                 if text.isEmpty && searchVM.tokens.isEmpty {
-                    Label("sura", systemImage: "link").searchCompletion(SearchModel.Token.sura)
-                    Label("sofha", systemImage: "link").searchCompletion(SearchModel.Token.sofha)
-                    Label("aya", systemImage: "link").searchCompletion(SearchModel.Token.aya)
+                    ListRowButton(action: {searchVM.tokens=[SearchModel.Token.sura]}){
+                        Label("sura", systemImage: "link")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    
+                    ListRowButton(action: {searchVM.tokens = [SearchModel.Token.sofha]}){
+                        Label("sofha", systemImage: "link")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    
+                    ListRowButton(action: {searchVM.tokens = [SearchModel.Token.aya]}){
+                        Label("aya", systemImage: "link")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
                 }
             } header: {
                 if text.isEmpty && searchVM.tokens.isEmpty {
@@ -54,9 +65,9 @@ extension SearchView {
 
                 }
             } else {
-                surasResult = await searchVM.search(text: text.lowercased(), in: suras)
-                ayasResult = await searchVM.search(text: text.lowercased(), in: ayas)
-                sofhasResult = await searchVM.search(text: text.lowercased(), in: sofhas)
+                surasResult = await searchVM.search(text: text.lowercased(), in: suras).shuffled()
+                ayasResult = await searchVM.search(text: text.lowercased(), in: ayas).shuffled()
+                sofhasResult = await searchVM.search(text: text.lowercased(), in: sofhas).shuffled()
             }
         }
     }
@@ -69,9 +80,11 @@ extension SearchView {
     func suraSection() -> some View {
         if !surasResult.isEmpty {
             Section{
-                ForEach(surasResult.shuffled().prefix(3)){ sura in
-                    SuraRow(for: sura)
-                        .padding(.vertical, -5)
+                ForEach(surasResult.prefix(3)){ sura in
+                    ListRowButton(action: {}, label: {
+                        SuraRow(for: sura)
+                            .padding(.vertical, -5)
+                    })
                 }
             } header: {
                 HStack{
@@ -100,9 +113,11 @@ extension SearchView {
     func ayaSection() -> some View {
         if !ayasResult.isEmpty {
             Section{
-                ForEach(ayasResult.shuffled().prefix(3)){ aya in
-                    AyaRow(for: aya)
-                        .padding(.vertical, -5)
+                ForEach(ayasResult.prefix(3)){ aya in
+                    ListRowButton(action: {}){
+                        AyaRow(for: aya)
+                            .padding(.vertical, -5)
+                    }
                 }
             } header: {
                 HStack{
@@ -135,9 +150,11 @@ extension SearchView {
     func sofhaSection() -> some View {
         if !sofhasResult.isEmpty {
             Section{
-                ForEach(sofhasResult.shuffled().prefix(3)){ sofha in
-                    SofhaRow(for: sofha)
-                        .padding(.vertical, -5)
+                ForEach(sofhasResult.prefix(3)){ sofha in
+                    ListRowButton(action: {}){
+                        SofhaRow(for: sofha)
+                            .padding(.vertical, -5)
+                    }
                 }
             } header: {
                 HStack{

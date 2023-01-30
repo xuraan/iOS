@@ -8,13 +8,15 @@
 import SwiftUI
 
 class QuranViewModel: ObservableObject {
+    
     @Published var selection: Int {
         didSet{
             UserDefaults.standard.set(selection, forKey: "quranSelection")
         }
     }
     @Published var isShow: Bool = false
-    @Published var isShowIndex: Bool = true
+    @Published var isShowIndex: Bool = false
+    @Published var selectedDetent: PresentationDetent = .float
     @Published var suraViewScrollTo: Int?
     @Published var cuurentAyaID: Aya.ID = 1
     @Published var mode: Mode {
@@ -76,13 +78,11 @@ extension QuranViewModel {
         }
     }
     func showIndex(){
-        withAnimation{
-            isShowIndex = true
-        }
+        selectedDetent = .large
     }
     func hideIndex(){
-        withAnimation{
-            isShowIndex = false
+        DispatchQueue.main.async { [self] in
+            selectedDetent = .hide
         }
     }
 }
@@ -92,20 +92,20 @@ extension QuranViewModel {
     func openActionModeSura(sura: Sura)->Void{
         withAnimation{
             selection = Int(sura.id-1)
-            isShowIndex = false
+//            isShowIndex = false
             isShow = true
         }
     }
     func openActionModeSofha(sura: Sura)->Void{
-        selection = Int(sura.sofhas.toSuras.first!.id-1)
-        isShowIndex = false
+        selection = Int((sura.sofhas.toSuras.first?.id ?? 1)-1)
+//        isShowIndex = false
         isShow = true
     }
     
     func openActionModeSura(sofha: Sofha)->Void{
         withAnimation{
             selection = Int(sofha.suras.toSuras.first!.id-1)
-            isShowIndex = false
+//            isShowIndex = false
             isShow = true
             DispatchQueue.main.asyncAfter(deadline: .now()+0.3){ [self] in
                 suraViewScrollTo = Int(sofha.ayas.toAyas.first!.id)
@@ -116,7 +116,7 @@ extension QuranViewModel {
     func openActionModeSofha(sofha: Sofha)->Void{
         withAnimation{
             selection = Int(sofha.id-1)
-            isShowIndex = false
+//            isShowIndex = false
             isShow = true
         }
    

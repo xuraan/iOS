@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SurasView: View {
     @EnvironmentObject var suraVM: SuraViewModel
+    @EnvironmentObject var quraVM: QuranViewModel
     @EnvironmentObject var ayaVM: AyaViewModel
     @FetchRequest(sortDescriptors: [SortDescriptor(\.id)]) var suras: FetchedResults<Sura>
 
@@ -31,8 +32,12 @@ struct SurasView: View {
                     .scaleEffect(x: selection != sura.id-1 ?  0.99 : 1 )
                     .environmentObject(suraVM)
                     .environmentObject(ayaVM)
+                    .environmentObject(quraVM)
             }
-        ).ignoresSafeArea()
+        )
+        
+
+        .ignoresSafeArea()
 //        .overlay(alignment: .topTrailing){
 //            CloseButton(action: closeAction)
 //                .padding(.horizontal)
@@ -40,11 +45,11 @@ struct SurasView: View {
     }
 }
 
-struct SurasView_Previews: PreviewProvider {
-    static var previews: some View {
-        SurasView(selection: .constant(1)){} titleAction: {}
-            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-            .environmentObject(SuraViewModel())
-
-    }
-}
+//struct SurasView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SurasView(selection: .constant(1)){} titleAction: {}
+//            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+//            .environmentObject(SuraViewModel())
+//
+//    }
+//}

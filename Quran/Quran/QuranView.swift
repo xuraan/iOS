@@ -9,24 +9,27 @@ import SwiftUI
 
 struct QuranView: View {
     @EnvironmentObject var quranVM: QuranViewModel
+    @Binding var isHideCloseButton: Bool
+    init(isHideCloseButton: Binding<Bool>) {
+        self._isHideCloseButton = isHideCloseButton
+    }
     var body: some View {
         Group{
             switch quranVM.mode {
             case .sura:
                 SurasView(selection: $quranVM.selection, closeAction: quranVM.hide, titleAction: quranVM.showIndex)
             case .sofha:
-                SofhasView(selection: $quranVM.selection, closeAction: quranVM.hide, SecondaryAction: quranVM.showIndex)
+                SofhasView(selection: $quranVM.selection, closeAction: quranVM.hide, SecondaryAction: quranVM.showIndex, isHideCloseButton: $isHideCloseButton)
             }
         }
-        .opacity(quranVM.isShow ? 1 : 0)
-        .animation(.easeInOut.delay(quranVM.isShow ? 0.2 : -1), value: quranVM.isShow)
+        .environment(\.layoutDirection, .leftToRight)
         
     }
 }
 
 struct QuranView_Previews: PreviewProvider {
     static var previews: some View {
-        QuranView()
+        QuranView(isHideCloseButton: .constant(false))
             .environmentObject(QuranViewModel())
             .environmentObject(SuraViewModel())
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)

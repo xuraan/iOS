@@ -10,54 +10,86 @@ import SwiftUI
 struct QuranIndexView: View {
     @State var selection = 1
     @EnvironmentObject var quranMV: QuranViewModel
-    @Binding var selectedDetent: PresentationDetent
     var suras: [Sura]
     var sofhas: [Sofha]
-    init(suras: [Sura], sofhas: [Sofha], selectedDetent: Binding<PresentationDetent>) {
+    init(suras: [Sura], sofhas: [Sofha]) {
         self.suras = suras
         self.sofhas = sofhas
-        self._selectedDetent = selectedDetent
     }
     var body: some View {
         GeometryReader{ proxy in
             TabView(selection: $selection){
                 NavigationStack{
-                    SuraList(suras: suras)
+                    SuraList(suras: suras, hidePinnedView: !quranMV.selectedDetent.isLarge)
                     .toolbar{
-                        ToolbarItem(placement: .destructiveAction){
+                        ToolbarItem(placement: .principal, content: {
+                            Text("Index")
+                                .frame(width: proxy.size.width, height: 25+proxy.safeAreaInsets.bottom, alignment: .center)
+                                .background(.red.opacity(0.0001))
+                                .font(quranMV.selectedDetent != .large ? .title3 : .headline)
+                                .fontWeight(.semibold)
+                                .contentTransition(.interpolate)
+                                .onTapGesture {
+                                    if !quranMV.selectedDetent.isLarge {
+                                        quranMV.selectedDetent = .large
+                                    }
+                                }
+                                .offset(x: 26)
+                                .animation(.easeInOut, value: quranMV.selectedDetent)
+                                
+                        })
+                        ToolbarItem(placement: .confirmationAction){
                             CloseButton(action: {
                                 withAnimation{
                                     if quranMV.isShow{
-                                        quranMV.isShowIndex = false
+                                        quranMV.selectedDetent = .hide
                                     } else {
-                                        selectedDetent = .height(12+proxy.safeAreaInsets.bottom)
+                                        quranMV.selectedDetent = .float
                                     }
+                                    
                                 }
-                            })
+                            }).opacity(quranMV.selectedDetent.isLarge ? 1 : 0)
                         }
                         
                     }
-                    .navigationTitle("Index")
+                    .toolbar(!quranMV.selectedDetent.isLarge ? .hidden : .visible, for: .tabBar)
                 }
                 .tag(1)
                 
                 NavigationStack{
                     SofhaList(sofhas: sofhas)
-                    .toolbar{
-                        ToolbarItem(placement: .destructiveAction){
-                            CloseButton(action: {
-                                withAnimation{
-                                    if quranMV.isShow{
-                                        quranMV.isShowIndex = false
-                                    } else {
-                                        selectedDetent = .height(12+proxy.safeAreaInsets.bottom)
+                        .toolbar{
+                            ToolbarItem(placement: .principal, content: {
+                                Text("Index")
+                                    .frame(width: proxy.size.width, alignment: .center)
+                                    .background(.red.opacity(0.00001))
+                                    .font(quranMV.selectedDetent != .large ? .title3 : .headline)
+                                    .fontWeight(.semibold)
+                                    .contentTransition(.interpolate)
+                                    .onTapGesture {
+                                        if !quranMV.selectedDetent.isLarge {
+                                            quranMV.selectedDetent = .large
+                                        }
                                     }
-                                }
+                                    .offset(x: 26)
+                                    .animation(.easeInOut, value: quranMV.selectedDetent)
+                                    
                             })
+                            ToolbarItem(placement: .confirmationAction){
+                                CloseButton(action: {
+                                    withAnimation{
+                                        if quranMV.isShow{
+                                            quranMV.selectedDetent = .hide
+                                        } else {
+                                            quranMV.selectedDetent = .float
+                                        }
+                                        
+                                    }
+                                }).opacity(quranMV.selectedDetent.isLarge ? 1 : 0)
+                            }
+                            
                         }
-                        
-                    }
-                    .navigationTitle("Index")
+                        .toolbar(!quranMV.selectedDetent.isLarge ? .hidden : .visible, for: .tabBar)
                 }
                 .tag(2)
 
@@ -70,8 +102,10 @@ struct QuranIndexView: View {
                }
                .pickerStyle(.segmented)
                .frame(width: 200)
+               .opacity(!quranMV.selectedDetent.isLarge ? 0 : 1)
             }
         }
         .ignoresSafeArea(.keyboard)
+
     }
 }

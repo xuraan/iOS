@@ -10,14 +10,21 @@ import SwiftUI
 struct SofhasView: View {
     @Binding var selection: Int
     @State var isExtended: Bool = false
+    @Binding var isHideCloseButton: Bool
     var closeAction: ()->Void
     var secondaryAction: ()->Void
     @FetchRequest(sortDescriptors: [SortDescriptor(\.id)]) var sofhas: FetchedResults<Sofha>
 
-    init(selection: Binding<Int>, closeAction: @escaping ()->Void = {}, SecondaryAction: @escaping ()->Void = {}){
+    init(
+        selection: Binding<Int>,
+        closeAction: @escaping ()->Void = {},
+        SecondaryAction: @escaping ()->Void = {},
+        isHideCloseButton: Binding<Bool>
+    ){
         self._selection = selection
         self.closeAction = closeAction
         self.secondaryAction = SecondaryAction
+        self._isHideCloseButton = isHideCloseButton
     }
     var body: some View {
         GeometryReader{ proxy in
@@ -35,6 +42,7 @@ struct SofhasView: View {
                             .offset(y: proxy.safeAreaInsets.top)
                         }
                        .ignoresSafeArea(.container, edges: isExtended ? [.horizontal, .bottom] : [.all])
+                       
                 }
             )
             .ignoresSafeArea()
@@ -50,17 +58,16 @@ struct SofhasView: View {
             .overlay(alignment: .top){
                 Picker("", selection: $selection, content: {
                     ForEach(sofhas){ sofha in
-                        Text("- \(sofha.id) -").tag(sofha.id-1)
+                        Text("- \(sofha.id) -").tag(Int(sofha.id-1))
                     }
                 })
-                
                 .menuIndicator(.hidden)
                 .opacity(isExtended ? 0 : 1)
             }
-            .overlay(alignment: .topTrailing){
-                CloseButton(action: closeAction)
-                    .padding(.horizontal)
-                    .opacity(isExtended ? 0 : 1)
+        }
+        .onChange(of: isExtended){ value in
+            withAnimation{
+                isHideCloseButton = value
             }
         }
     }
@@ -68,7 +75,7 @@ struct SofhasView: View {
 
 struct SofhasView_Previews: PreviewProvider {
     static var previews: some View {
-        SofhasView(selection: .constant(32))
+        SofhasView(selection: .constant(32), isHideCloseButton: .constant(false))
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
             .environmentObject(QuranViewModel())
             .environmentObject(SuraViewModel())

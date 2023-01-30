@@ -41,6 +41,7 @@ struct QuranApp: App {
                             newSura.phonetic = sura.phonetic
                             newSura.place = sura.place == "mk" ? newPlace : newPlace1
                             var surasSofha = Set<Sofha>()
+                            
                             for aya in sura.ayas{
                                 let newAya = Aya(context: viewContext)
                                 newAya.id = aya.id

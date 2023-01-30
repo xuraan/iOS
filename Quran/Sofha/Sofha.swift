@@ -7,12 +7,3 @@
 
 import SwiftUI
 
-//MARK: - Image
-extension Sofha {
-    var image: Image {
-        Image("test")
-            .resizable()
-    }
-    var iconColor: Color { self.isFavorite ? .yellow : Color("BGI")}
-
-}

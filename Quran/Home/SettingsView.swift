@@ -10,7 +10,9 @@ import SwiftUI
 struct SettingsView: View {
     var body: some View {
         List{
+            QuranSettings()
             AyaSettings()
+            ModelSettings()
         }
     }
 }
@@ -20,5 +22,6 @@ struct SettingsView_Previews: PreviewProvider {
         SettingsView()
             .environmentObject(AyaViewModel())
             .environmentObject(QuranViewModel())
+            .environmentObject(Model())
     }
 }

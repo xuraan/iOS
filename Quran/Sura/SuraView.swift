@@ -10,11 +10,11 @@ import SwiftUI
 struct SuraView: View {
     @ObservedObject var sura: Sura
     @EnvironmentObject var suraVM: SuraViewModel
+    @EnvironmentObject var quranVM: QuranViewModel
     @State var rect: CGRect = .zero
     @State var lastOffsetY: CGFloat = .zero
     @State var isExpanded: Bool = false
     var titleAction: ()->Void
-    @State var titleId = UUID()
     init(for sura: Sura, _ titleAction: @escaping ()->Void = {}) {
         self.sura = sura
         self.titleAction = titleAction
@@ -74,7 +74,9 @@ struct SuraView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .opacity(isExpanded ? 1 : 0)
                         
-                        Button(action: titleAction){
+                        Button(action: {
+                            quranVM.selectedDetent = .large
+                        }){
                             Text(sura.name)
                                 .waseem(35, weight: .regular)
                                 .padding(.vertical, -10)
@@ -82,7 +84,7 @@ struct SuraView: View {
                                 .lineLimit(1)
                                 .minimumScaleFactor(0.1)
                                 .contentTransition(.interpolate)
-                        }.id(titleId)
+                        }
                         VStack(alignment: .trailing){
                             Text(LocalizedStringKey(sura.place.id))
                                 .font(.caption)
@@ -133,11 +135,6 @@ struct SuraView: View {
 //                        }
 //                    }
 //                }
-            }
-            .onAppear{
-                DispatchQueue.main.asyncAfter(deadline: .now()+0.1, execute: {
-                    titleId = UUID()
-                })
             }
         }
     }

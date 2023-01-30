@@ -38,6 +38,8 @@ struct PersistenceController {
                 newAya.sura = newSura
                 
                 surasSofha.insert(newSofha)
+                
+                newSura.addToSofhas(newSofha)
                 if aya.sofha == sofhaId {
                     newAya.sofha = newSofha
                 } else {

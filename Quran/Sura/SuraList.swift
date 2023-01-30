@@ -12,13 +12,16 @@ struct SuraList: View {
     @State var searchResult: [Sura]
     @State var selection: Sura?
     @State var text: String = ""
+    var hidePinnedView: Bool
     @EnvironmentObject var searchVM: SearchModel
     @EnvironmentObject var quran: QuranViewModel
-    init(suras: [Sura]) {
+    init(suras: [Sura], hidePinnedView: Bool = false) {
         self.suras = suras
         self.searchResult = suras
+        self.hidePinnedView = hidePinnedView
     }
     var body: some View {
+        
         List(searchResult, id: \.self, selection: $selection){ sura in
             SuraRow(for: sura)
         }
@@ -26,7 +29,7 @@ struct SuraList: View {
         .padding(.top, -10)
         .toolbarBackground(.hidden, for: .navigationBar)
         .navigationBarTitleDisplayMode(.inline)
-        .searchable(text: $text, prompt: "Search a sura in this list" )
+        .searchable(text: $text, placement: .navigationBarDrawer(displayMode: hidePinnedView ? .always : .automatic), prompt: "Search a sura in this list")
         .onChange(of: text){ value in
             if value.isEmpty {
                 searchResult = suras
@@ -61,6 +64,7 @@ struct SuraList: View {
             .font(.footnote)
             .foregroundColor(.secondary)
             .padding(.horizontal)
+            .opacity(hidePinnedView ? 0 : 1)
             .background(.bar)
             .overlay(alignment: .bottom){
                 Divider()

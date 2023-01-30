@@ -22,8 +22,8 @@ struct SofhaView: View {
             if proxy.size.height > proxy.size.width {
                 VStack{
                     let size = UIImage(named: "test")?.size
-                    sofha.image
-                        .renderingMode(colorScheme == .dark ? .template : .original)
+                    sofha.image(colorScheme: colorScheme)
+                        .sofhaContextMenuWithPreview(sofha: sofha)
                         .aspectRatio( isExtended ? proxy.size :  size! , contentMode: .fit)
                         .scaleEffect(x: isExtended ? 1.07 : 1)
                         .onTapGesture {
@@ -37,8 +37,8 @@ struct SofhaView: View {
                 ScrollView{
                     VStack{
                         let size = UIImage(named: "test")?.size
-                        sofha.image
-                            .renderingMode(colorScheme == .dark ? .template : .original)
+                        sofha.image(colorScheme: colorScheme)
+                            .sofhaContextMenuWithPreview(sofha: sofha)
                             .aspectRatio( size! , contentMode: .fit)
                             .onTapGesture {
                                 withAnimation(.easeInOut){
@@ -50,6 +50,5 @@ struct SofhaView: View {
             }
             
         }
-
     }
 }
