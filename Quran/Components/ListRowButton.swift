@@ -23,3 +23,17 @@ struct ListRowButton<Label:View>: View {
     }
 }
 
+struct ListRow<Label:View>: View {
+    var label: ()->Label
+    init(label: @escaping () -> Label) {
+        self.label = label
+    }
+    var body: some View {
+        label()
+            .padding(.horizontal)
+            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color("bg1"))
+    }
+}
+

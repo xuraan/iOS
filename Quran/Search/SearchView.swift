@@ -83,7 +83,7 @@ extension SearchView {
                 ForEach(surasResult.prefix(3)){ sura in
                     ListRowButton(action: {}, label: {
                         SuraRow(for: sura)
-                            .padding(.vertical, -5)
+                            .padding(.vertical, 0)
                     })
                 }
             } header: {
@@ -116,7 +116,7 @@ extension SearchView {
                 ForEach(ayasResult.prefix(3)){ aya in
                     ListRowButton(action: {}){
                         AyaRow(for: aya)
-                            .padding(.vertical, -5)
+                            .padding(.vertical, 0)
                     }
                 }
             } header: {
@@ -153,7 +153,7 @@ extension SearchView {
                 ForEach(sofhasResult.prefix(3)){ sofha in
                     ListRowButton(action: {}){
                         SofhaRow(for: sofha)
-                            .padding(.vertical, -5)
+                            .padding(.vertical, 0)
                     }
                 }
             } header: {

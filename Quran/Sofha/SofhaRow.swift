@@ -21,12 +21,10 @@ struct SofhaRow: View {
                     
                     last.arabicTextView(lineLimit: 1)
                         .mequran(20)
-                        .foregroundColor(.secondary)
                         .frame(maxWidth: .infinity, alignment: .leading)
 
                     first.arabicTextView(lineLimit: 1)
                         .mequran(20)
-                        .foregroundColor(.secondary)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
                 }

@@ -8,10 +8,14 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @Binding var stack: NavigationPath
+    init(stack: Binding<NavigationPath>) {
+        self._stack = stack
+    }
     var body: some View {
         List{
             QuranSettings()
-            AyaSettings()
+            AyaSettings(stack: $stack)
             ModelSettings()
         }
     }
@@ -19,7 +23,7 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        SettingsView(stack: .constant(NavigationPath()))
             .environmentObject(AyaViewModel())
             .environmentObject(QuranViewModel())
             .environmentObject(Model())

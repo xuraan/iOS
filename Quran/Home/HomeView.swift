@@ -50,7 +50,7 @@ struct HomeView: View {
             Section{
                 ListRowButton(action: {}){
                     SuraRow(for: suras.first!)
-                        .padding(-5)
+                        .padding(0)
                 }
             } header: {
                 HStack{
@@ -75,7 +75,7 @@ struct HomeView: View {
             Section{
                 ListRowButton(action: {}){
                     SofhaRow(for: sofhas.first!)
-                        .padding(-5)
+                        .padding(0)
                 }
             } header: {
                 HStack{
@@ -99,7 +99,7 @@ struct HomeView: View {
             Section{
                 ListRowButton(action: {}){
                     AyaRow(for: ayas.first!)
-                        .padding(-5)
+                        .padding(0)
                 }
             } header: {
                 HStack{

@@ -72,6 +72,8 @@
 		F4A4B17D298466F8000ABB8D /* AyaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B17C298466F8000ABB8D /* AyaViewModel.swift */; };
 		F4F5DC5729885BA600FB1707 /* AmiriQuran-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4F5DC5629885BA600FB1707 /* AmiriQuran-Regular.ttf */; };
 		F4F5DC5B2988742000FB1707 /* ListRowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F5DC5A2988742000FB1707 /* ListRowButton.swift */; };
+		F4F5DC5D2988837500FB1707 /* RemoveBG.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F5DC5C2988837500FB1707 /* RemoveBG.swift */; };
+		F4F5DC5F2988976000FB1707 /* SelectNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F5DC5E2988976000FB1707 /* SelectNavigation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -146,6 +148,8 @@
 		F4A4B17C298466F8000ABB8D /* AyaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AyaViewModel.swift; sourceTree = "<group>"; };
 		F4F5DC5629885BA600FB1707 /* AmiriQuran-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AmiriQuran-Regular.ttf"; sourceTree = "<group>"; };
 		F4F5DC5A2988742000FB1707 /* ListRowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRowButton.swift; sourceTree = "<group>"; };
+		F4F5DC5C2988837500FB1707 /* RemoveBG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveBG.swift; sourceTree = "<group>"; };
+		F4F5DC5E2988976000FB1707 /* SelectNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectNavigation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +246,7 @@
 				F4A4B11B29844C0A000ABB8D /* PageView.swift */,
 				F4A4B16929845A37000ABB8D /* StarButton.swift */,
 				F4F5DC5A2988742000FB1707 /* ListRowButton.swift */,
+				F4F5DC5E2988976000FB1707 /* SelectNavigation.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -292,6 +297,7 @@
 				F4A4B13629844C31000ABB8D /* Extension.swift */,
 				F4A4B13729844C31000ABB8D /* Bundle.swift */,
 				F460982E2987554700EDEAF7 /* Ternary.swift */,
+				F4F5DC5C2988837500FB1707 /* RemoveBG.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -446,11 +452,13 @@
 				F4A4B14A29844C31000ABB8D /* QuranIndexView.swift in Sources */,
 				F4A4B16329845328000ABB8D /* Place+CoreDataClass.swift in Sources */,
 				F4A4B14C29844C31000ABB8D /* QuranViewModel.swift in Sources */,
+				F4F5DC5D2988837500FB1707 /* RemoveBG.swift in Sources */,
 				F4A4B1732984627B000ABB8D /* AyaList.swift in Sources */,
 				F4A4B16129845328000ABB8D /* Sura+CoreDataClass.swift in Sources */,
 				F4A4B11529844BE2000ABB8D /* LoadData.swift in Sources */,
 				F4A4B16229845328000ABB8D /* Sura+CoreDataProperties.swift in Sources */,
 				F4A4B16029845328000ABB8D /* Aya+CoreDataProperties.swift in Sources */,
+				F4F5DC5F2988976000FB1707 /* SelectNavigation.swift in Sources */,
 				F4A4B11E29844C0A000ABB8D /* MoreLink.swift in Sources */,
 				F460982D2987516F00EDEAF7 /* MainView.swift in Sources */,
 				F4A4B14729844C31000ABB8D /* SuraViewModel.swift in Sources */,

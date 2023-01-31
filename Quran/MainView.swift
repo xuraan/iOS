@@ -19,22 +19,24 @@ struct MainView: View {
     @EnvironmentObject var ayaVM: AyaViewModel
     @State var searchText = ""
     @State var isHideCloseButton = false
-    
+    @State var stack: NavigationPath = .init()
+
     var body: some View {
+        
         Container(
             selectedDetent: $quranVM.selectedDetent,
             isCover: $quranVM.isShow,
             isHideCloseButton: $isHideCloseButton,
             content: {
-            NavigationStack{
+                NavigationStack(path: $stack){
                 HomeView(text: $searchText)
-                .scrollContentBackground(.hidden)
-                .background(Color("bg"))
                 .toolbar{
                     ToolbarItem(placement: .navigationBarLeading){
                         NavigationLink("Settings"){
-                            SettingsView()
+                            SettingsView(stack: $stack)
                                 .navigationTitle("Settings")
+                                .scrollContentBackground(.hidden)
+                                .background(Color("bg"))
                         }
                     }
                     ToolbarItem(placement: .navigationBarTrailing){
@@ -46,6 +48,8 @@ struct MainView: View {
                     }
                     
                 }
+                .scrollContentBackground(.hidden)
+                .background(Color("bg"))
             }
             .searchable(text: $searchText, tokens: $searchVM.tokens, token: { token in
                 switch token {
