@@ -22,7 +22,8 @@ struct AyaList: View {
         List(searchResult, id: \.self, selection: $selection){ aya in
             AyaRow(for: aya)
         }
-        .listStyle(.plain)
+        .contentBG
+        .listStyle(.grouped)
         .padding(.top, -10)
         .toolbarBackground(.hidden, for: .navigationBar)
         .navigationBarTitleDisplayMode(.inline)

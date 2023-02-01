@@ -15,6 +15,8 @@ struct SofhasView: View {
     var secondaryAction: ()->Void
     @FetchRequest(sortDescriptors: [SortDescriptor(\.id)]) var sofhas: FetchedResults<Sofha>
 
+    // MARK: - INITIALE FINCTION.
+    
     init(
         selection: Binding<Int>,
         closeAction: @escaping ()->Void = {},
@@ -58,7 +60,7 @@ struct SofhasView: View {
             .overlay(alignment: .top){
                 Picker("", selection: $selection, content: {
                     ForEach(sofhas){ sofha in
-                        Text("- \(sofha.id) -").tag(Int(sofha.id-1))
+                        Text("\(sofha.id)").tag(Int(sofha.id-1))
                     }
                 })
                 .menuIndicator(.hidden)

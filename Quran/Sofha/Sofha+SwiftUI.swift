@@ -10,7 +10,7 @@ import SwiftUI
 //MARK: - Image
 extension Sofha {
     func image (colorScheme: ColorScheme?)->Image {
-         Image("test")
+        Image("\(self.id)")
             .resizable()
             .renderingMode(colorScheme == .dark ? .template : .original)
     }

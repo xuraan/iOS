@@ -28,28 +28,13 @@ struct SurasView: View {
             pages: suras.map{ sura in
                 SuraView(for: sura, titleAction)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(Color.primary.opacity(0.03).ignoresSafeArea())
-                    .scaleEffect(x: selection != sura.id-1 ?  0.99 : 1 )
+                    .background(Color.primary.opacity(0.1).ignoresSafeArea())
+                    .scaleEffect(x: 0.999)
                     .environmentObject(suraVM)
                     .environmentObject(ayaVM)
                     .environmentObject(quraVM)
             }
         )
-        
-
         .ignoresSafeArea()
-//        .overlay(alignment: .topTrailing){
-//            CloseButton(action: closeAction)
-//                .padding(.horizontal)
-//        }
     }
 }
-
-//struct SurasView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SurasView(selection: .constant(1)){} titleAction: {}
-//            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-//            .environmentObject(SuraViewModel())
-//
-//    }
-//}

@@ -41,38 +41,16 @@ struct AyaSettings: View {
                         }
                 })
             }
-            ListRow{
-                NavigationLink(destination: {
-                    List{
-                        Section{
-                            ForEach(AyaViewModel.ayaFonts, id: \.self){ name in
-                                Button{
-                                    withAnimation{
-                                        ayaVM.ayaFontName = name
-                                    }
-                                } label: {
-                                    Label(title: {
-                                        Text(name).foregroundColor(.primary)
-                                    }, icon: {
-                                        Image(systemName: "checkmark").opacity(ayaVM.ayaFontName == name ? 1 : 0)
-                                    })
-                                }
-                            }
-                        } footer: {
-                            if ayaVM.ayaFontName == "me_quran" {
-                                Text("Font detail me_quran")
-                            } else {
-                                Text("Font detail amiri")
-                            }
-                        }
-                    }
-                }, label: {
-                    HStack{
-                        Text("Font")
-                            .badge(ayaVM.ayaFontName)
-                    }
-                })
+            ListRowButton(action:{
+                stack.append("ayaFontNames")
+            }){
+                HStack{
+                    Text("Font")
+                        .badge(ayaVM.ayaFontName)
+                    Image(systemName: "chevron.forward").foregroundColor(.gray)
+                }
             }
+            
         } header: {
             HStack{
                 Text("aya")

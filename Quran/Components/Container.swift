@@ -81,7 +81,7 @@ struct Container<Content:View, Overlay:View, Sheet:View>: View {
                     sheet
                         .presentationDetents(isCover ? [.hide, .large] : [.float, .large], selection: $selectedDetent)
                     .interactiveDismissDisabled(!isCover)
-                    .presentationDragIndicator( selectedDetent != .large ? .hidden : .visible)
+                    .presentationDragIndicator( selectedDetent == .large ? .hidden : .visible)
                     .onAppear{
                         guard let windows = UIApplication.shared.connectedScenes.first as? UIWindowScene else{
                             return

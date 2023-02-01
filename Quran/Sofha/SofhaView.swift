@@ -21,7 +21,7 @@ struct SofhaView: View {
         GeometryReader{ proxy in
             if proxy.size.height > proxy.size.width {
                 VStack{
-                    let size = UIImage(named: "test")?.size
+                    let size = UIImage(named: "\(sofha.id)")?.size
                     sofha.image(colorScheme: colorScheme)
                         .sofhaContextMenuWithPreview(sofha: sofha)
                         .aspectRatio( isExtended ? proxy.size :  size! , contentMode: .fit)
@@ -36,7 +36,7 @@ struct SofhaView: View {
             } else {
                 ScrollView{
                     VStack{
-                        let size = UIImage(named: "test")?.size
+                        let size = UIImage(named: "\(sofha.id)")?.size
                         sofha.image(colorScheme: colorScheme)
                             .sofhaContextMenuWithPreview(sofha: sofha)
                             .aspectRatio( size! , contentMode: .fit)

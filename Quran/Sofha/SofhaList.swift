@@ -22,8 +22,8 @@ struct SofhaList: View {
         List(searchResult, id: \.self, selection: $selection){ sofha in
             SofhaRow(for: sofha)
         }
-        .listStyle(.plain)
-        .padding(.top, -10)
+        .listStyle(.grouped)
+        .background(Color("bg"))
         .toolbarBackground(.hidden, for: .navigationBar)
         .navigationBarTitleDisplayMode(.inline)
         .searchable(text: $text, prompt: "Search a sura in this list" )
@@ -70,5 +70,6 @@ struct SofhaList: View {
                 quran.sofhaOpenAction(value)
             }
         }
+        .contentBG
     }
 }

@@ -41,6 +41,10 @@ struct HomeView: View {
             }
             Section{}
         }
+        .environment(\.isDestructive, true)
+        .animation(.easeInOut, value: suras.count)
+        .animation(.easeInOut, value: sofhas.count)
+        .animation(.easeInOut, value: ayas.count)
         .navigationTitle(isSearching ? "Search" : "The noble quran")
     }
     
@@ -48,15 +52,17 @@ struct HomeView: View {
     func favoriteSuraSection()-> some View {
         if !suras.isEmpty {
             Section{
-                ListRowButton(action: {}){
-                    SuraRow(for: suras.first!)
-                        .padding(0)
+                ForEach(suras.prefix(2)){ sura in
+                    ListRowButton(action: {}){
+                        SuraRow(for: suras.first!)
+                            .padding(0)
+                    }
                 }
             } header: {
                 HStack{
                     Text("Favorites sura")
                     Spacer()
-                    if suras.count > 1 {
+                    if suras.count > 2 {
                         MoreLink{
                             SuraList(suras: suras.map{$0})
                             .navigationTitle("Favorites sura")
@@ -73,15 +79,17 @@ struct HomeView: View {
     func favoriteSofhaSection()-> some View {
         if !sofhas.isEmpty {
             Section{
-                ListRowButton(action: {}){
-                    SofhaRow(for: sofhas.first!)
-                        .padding(0)
+                ForEach(sofhas.prefix(2)){ sofha in
+                    ListRowButton(action: {}){
+                        SofhaRow(for: sofha)
+                            .padding(0)
+                    }
                 }
             } header: {
                 HStack{
                     Text("Favorites sofhas")
                     Spacer()
-                    if sofhas.count > 1 {
+                    if sofhas.count > 2 {
                         MoreLink{
                             SofhaList(sofhas: sofhas.map{$0})
                             .navigationTitle("Favorites sofhas")
@@ -97,15 +105,17 @@ struct HomeView: View {
     func favoriteAyaSection()-> some View {
         if !ayas.isEmpty {
             Section{
-                ListRowButton(action: {}){
-                    AyaRow(for: ayas.first!)
-                        .padding(0)
+                ForEach(ayas.prefix(2)){ aya in
+                    ListRowButton(action: {}){
+                        AyaRow(for: aya)
+                            .padding(0)
+                    }
                 }
             } header: {
                 HStack{
                     Text("Favorites aya")
                     Spacer()
-                    if sofhas.count > 1 {
+                    if sofhas.count > 2 {
                         MoreLink{
                             AyaList(ayas: ayas.map{$0})
                             .navigationTitle("Favorites ayas")

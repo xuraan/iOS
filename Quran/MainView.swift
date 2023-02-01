@@ -8,21 +8,27 @@
 import SwiftUI
 
 struct MainView: View {
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.id)]) var suras: FetchedResults<Sura>
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.id)]) var ayas: FetchedResults<Sura>
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.id)]) var sofhas: FetchedResults<Sofha>
+    @FetchRequest(
+        sortDescriptors: [SortDescriptor(\.id)]
+    ) var suras: FetchedResults<Sura>
+    @FetchRequest(
+        sortDescriptors: [SortDescriptor(\.id)]
+    ) var ayas: FetchedResults<Sura>
+    @FetchRequest(
+        sortDescriptors: [SortDescriptor(\.id)]
+    ) var sofhas: FetchedResults<Sofha>
 
     @EnvironmentObject var model: Model
     @EnvironmentObject var quranVM: QuranViewModel
     @EnvironmentObject var suraVM: SuraViewModel
     @EnvironmentObject var searchVM: SearchModel
     @EnvironmentObject var ayaVM: AyaViewModel
+    
     @State var searchText = ""
     @State var isHideCloseButton = false
     @State var stack: NavigationPath = .init()
 
     var body: some View {
-        
         Container(
             selectedDetent: $quranVM.selectedDetent,
             isCover: $quranVM.isShow,
@@ -31,25 +37,49 @@ struct MainView: View {
                 NavigationStack(path: $stack){
                 HomeView(text: $searchText)
                 .toolbar{
-                    ToolbarItem(placement: .navigationBarLeading){
-                        NavigationLink("Settings"){
-                            SettingsView(stack: $stack)
-                                .navigationTitle("Settings")
-                                .scrollContentBackground(.hidden)
-                                .background(Color("bg"))
-                        }
+                    ToolbarItem(placement: .confirmationAction){
+                        NavigationLink("Settings", value: "settings")
                     }
-                    ToolbarItem(placement: .navigationBarTrailing){
-                        Menu("Actions"){
-                            Button(action: {}, label: {
-                                Label("Collection", systemImage: "plus")
-                            })
-                        }
+                    ToolbarItem(placement: .navigationBarLeading){
+                        NavigationLink(value: "app_info", label: {
+                            Label("About", systemImage: "info.circle")
+                        })
                     }
                     
                 }
-                .scrollContentBackground(.hidden)
-                .background(Color("bg"))
+                .navigationDestination(for: String.self){ value in
+                    if value == "ayaFontNames" {
+                        List{
+                            Section{
+                                ForEach(AyaViewModel.ayaFonts, id: \.self){ name in
+                                    Button{
+                                        withAnimation{
+                                            ayaVM.ayaFontName = name
+                                            stack.removeLast(1)
+                                        }
+                                    } label: {
+                                        Label(title: {
+                                            Text(name).foregroundColor(.primary)
+                                        }, icon: {
+                                            Image(systemName: "checkmark").opacity(ayaVM.ayaFontName == name ? 1 : 0)
+                                        })
+                                    }
+                                }
+                            } footer: {
+                                if ayaVM.ayaFontName == "me_quran" {
+                                    Text("Font detail me_quran")
+                                } else {
+                                    Text("Font detail amiri")
+                                }
+                            }
+                        }
+                    } else if value == "settings" {
+                        SettingsView(stack: $stack)
+                            .navigationTitle("Settings")
+                            .contentBG
+                    }
+                }
+                .contentBG
             }
             .searchable(text: $searchText, tokens: $searchVM.tokens, token: { token in
                 switch token {
@@ -69,7 +99,6 @@ struct MainView: View {
         }, overlay: {
             QuranView(isHideCloseButton: $isHideCloseButton)
         })
-        
     }
 }
 

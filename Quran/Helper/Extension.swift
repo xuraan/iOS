@@ -33,7 +33,6 @@ extension Optional where Wrapped == NSOrderedSet {
         return self?.array as? [Sura] ?? []
     }
         
-    
     var toPages: [Sofha]{
         return self?.array as? [Sofha] ?? []
     }
@@ -129,5 +128,11 @@ extension View{
                         }
                 }
             }
+    }
+    
+    var contentBG: some View {
+        self
+        .scrollContentBackground(.hidden)
+        .background(Color("bg"))
     }
 }
