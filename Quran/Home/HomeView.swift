@@ -9,6 +9,7 @@ import SwiftUI
 import CoreData
 
 struct HomeView: View {
+    @EnvironmentObject var quranVM: QuranViewModel
     @Environment(\.isSearching) var isSearching
     @Binding var text: String
     
@@ -35,16 +36,17 @@ struct HomeView: View {
                 SearchView(text: $text)
                     .environment(\.isDestructive, false)
             } else {
+               
                 favoriteSuraSection()
                 favoriteSofhaSection()
                 favoriteAyaSection()
             }
-            Section{}
         }
+        .listStyle(.sidebar)
         .environment(\.isDestructive, true)
-        .animation(.easeInOut, value: suras.count)
-        .animation(.easeInOut, value: sofhas.count)
-        .animation(.easeInOut, value: ayas.count)
+        .animation(.easeInOut, value: suras.isEmpty)
+        .animation(.easeInOut, value: sofhas.isEmpty)
+        .animation(.easeInOut, value: ayas.isEmpty)
         .navigationTitle(isSearching ? "Search" : "The noble quran")
     }
     
@@ -52,9 +54,11 @@ struct HomeView: View {
     func favoriteSuraSection()-> some View {
         if !suras.isEmpty {
             Section{
-                ForEach(suras.prefix(2)){ sura in
-                    ListRowButton(action: {}){
-                        SuraRow(for: suras.first!)
+                ForEach(suras){ sura in
+                    ListRowButton(action: {
+                        quranVM.suraOpenAction(sura)
+                    }){
+                        SuraRow(for: sura)
                             .padding(0)
                     }
                 }
@@ -62,14 +66,7 @@ struct HomeView: View {
                 HStack{
                     Text("Favorites sura")
                     Spacer()
-                    if suras.count > 2 {
-                        MoreLink{
-                            SuraList(suras: suras.map{$0})
-                            .navigationTitle("Favorites sura")
-                            .environment(\.isDestructive, true)
-                        }
-
-                    }
+                    Text("\(suras.count)")
                 }
             }
         }
@@ -79,8 +76,10 @@ struct HomeView: View {
     func favoriteSofhaSection()-> some View {
         if !sofhas.isEmpty {
             Section{
-                ForEach(sofhas.prefix(2)){ sofha in
-                    ListRowButton(action: {}){
+                ForEach(sofhas){ sofha in
+                    ListRowButton(action: {
+                        quranVM.sofhaOpenAction(sofha)
+                    }){
                         SofhaRow(for: sofha)
                             .padding(0)
                     }
@@ -89,13 +88,7 @@ struct HomeView: View {
                 HStack{
                     Text("Favorites sofhas")
                     Spacer()
-                    if sofhas.count > 2 {
-                        MoreLink{
-                            SofhaList(sofhas: sofhas.map{$0})
-                            .navigationTitle("Favorites sofhas")
-                            .environment(\.isDestructive, true)
-                        }
-                    }
+                    Text("\(sofhas.count)")
                 }
             }
         }
@@ -105,8 +98,10 @@ struct HomeView: View {
     func favoriteAyaSection()-> some View {
         if !ayas.isEmpty {
             Section{
-                ForEach(ayas.prefix(2)){ aya in
-                    ListRowButton(action: {}){
+                ForEach(ayas){ aya in
+                    ListRowButton(action: {
+                        quranVM.ayaOpenAction(aya)
+                    }){
                         AyaRow(for: aya)
                             .padding(0)
                     }
@@ -115,13 +110,7 @@ struct HomeView: View {
                 HStack{
                     Text("Favorites aya")
                     Spacer()
-                    if sofhas.count > 2 {
-                        MoreLink{
-                            AyaList(ayas: ayas.map{$0})
-                            .navigationTitle("Favorites ayas")
-                            .environment(\.isDestructive, true)
-                        }
-                    }
+                    Text("\(ayas.count)")
                 }
             }
         }

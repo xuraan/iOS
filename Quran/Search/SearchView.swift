@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SearchView: View {
+    @EnvironmentObject var quranVM: QuranViewModel
     @EnvironmentObject var searchVM: SearchModel
     @Binding var text: String
     @State var surasResult: [Sura] = []
@@ -20,8 +21,8 @@ struct SearchView: View {
         self._text = text
     }
     var body: some View {
+        if text.isEmpty && searchVM.tokens.isEmpty {
             Section{
-                if text.isEmpty && searchVM.tokens.isEmpty {
                     ListRowButton(action: {searchVM.tokens=[SearchModel.Token.sura]}){
                         Label("sura", systemImage: "link")
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -36,19 +37,21 @@ struct SearchView: View {
                         Label("aya", systemImage: "link")
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
-                }
             } header: {
                 if text.isEmpty && searchVM.tokens.isEmpty {
                     Text("Search in")
                 }
             }
-            .onChange(of: text){ value in
-                search()
-            }
+        }
             suraSection()
             ayaSection()
             sofhaSection()
-        
+        Text("searchView")
+            .opacity(0)
+            .listRowBackground(Color.clear)
+            .onChange(of: text){ value in
+                search()
+            }
     }
 }
 
@@ -81,7 +84,9 @@ extension SearchView {
         if !surasResult.isEmpty {
             Section{
                 ForEach(surasResult.prefix(3)){ sura in
-                    ListRowButton(action: {}, label: {
+                    ListRowButton(action: {
+                        quranVM.suraOpenAction(sura)
+                    }, label: {
                         SuraRow(for: sura)
                             .padding(.vertical, 0)
                     })
@@ -114,7 +119,9 @@ extension SearchView {
         if !ayasResult.isEmpty {
             Section{
                 ForEach(ayasResult.prefix(3)){ aya in
-                    ListRowButton(action: {}){
+                    ListRowButton(action: {
+                        quranVM.ayaOpenAction(aya)
+                    }){
                         AyaRow(for: aya)
                             .padding(.vertical, 0)
                     }
@@ -151,7 +158,9 @@ extension SearchView {
         if !sofhasResult.isEmpty {
             Section{
                 ForEach(sofhasResult.prefix(3)){ sofha in
-                    ListRowButton(action: {}){
+                    ListRowButton(action: {
+                        quranVM.sofhaOpenAction(sofha)
+                    }){
                         SofhaRow(for: sofha)
                             .padding(.vertical, 0)
                     }

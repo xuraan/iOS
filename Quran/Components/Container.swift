@@ -11,14 +11,8 @@ extension PresentationDetent {
     static var float: PresentationDetent{
         return .height(23)
     }
-    
-    static var hide: PresentationDetent{
-        return .height(-40)
-    }
-    
     var isLarge: Bool { self == .large }
-    var isHide: Bool { self == .hide }
-    var isFloat: Bool { self == .float }    
+    var isFloat: Bool { self == .float }
 }
 
 
@@ -71,43 +65,36 @@ struct Container<Content:View, Overlay:View, Sheet:View>: View {
                             .offset(x: -5)
                     }
                 }
-
                 .frame(height: proxy.size.height+proxy.safeAreaInsets.top-24)
                 .cornerRadius(10)
                 .scaleEffect(isCover ? 1.2 : 1)
                 .ignoresSafeArea()
-
                 .sheet(isPresented: .constant(true)){
                     sheet
-                        .presentationDetents(isCover ? [.hide, .large] : [.float, .large], selection: $selectedDetent)
-                    .interactiveDismissDisabled(!isCover)
-                    .presentationDragIndicator( selectedDetent == .large ? .hidden : .visible)
-                    .onAppear{
-                        guard let windows = UIApplication.shared.connectedScenes.first as? UIWindowScene else{
-                            return
-                        }
+                        .presentationDetents(
+                            isCover ?
+                            [.large] :
+                                [.float, .large],
+                            selection: $selectedDetent
+                        )
+                        .interactiveDismissDisabled(!isCover)
+                        .presentationDragIndicator(.visible)
+                        .onAppear{
+                            guard let windows = UIApplication.shared.connectedScenes.first as? UIWindowScene else{
+                                return
+                            }
 
-                        if let controller =  windows.windows.first?.rootViewController?
-                            .presentedViewController, let sheet = controller.presentationController as? UISheetPresentationController{
-                        // MARK: As Usual Set Properties What Ever Your Wish Here With Sheet
-                        
-                            controller.presentingViewController?.view.tintAdjustmentMode = .normal
-                            sheet.largestUndimmedDetentIdentifier = .large
-                            sheet.preferredCornerRadius = 10
-                        }else{
-                            print ("NO CONTROLLER FOUND" )
+                            if let controller =  windows.windows.first?.rootViewController?
+                                .presentedViewController, let sheet = controller.presentationController as? UISheetPresentationController{
+                            // MARK: As Usual Set Properties What Ever Your Wish Here With Sheet
+                            
+                                controller.presentingViewController?.view.tintAdjustmentMode = .normal
+                                sheet.largestUndimmedDetentIdentifier = .large
+                                sheet.preferredCornerRadius = 10
+                            }else{
+                                print ("NO CONTROLLER FOUND" )
+                            }
                         }
-                    }
-                    
-                }
-                .onChange(of: isCover){ value in
-                    withAnimation{
-                        if !value {
-                            selectedDetent = .float
-                        } else {
-                            selectedDetent = .hide
-                        }
-                    }
                 }
         }
         .blur(radius: isCover ? 30 : 0)

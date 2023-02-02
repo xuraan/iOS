@@ -11,5 +11,5 @@ import CoreData
 
 @objc(Aya)
 public class Aya: NSManagedObject {
-
+    
 }

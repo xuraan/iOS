@@ -17,9 +17,9 @@ struct QuranView: View {
         Group{
             switch quranVM.mode {
             case .sura:
-                SurasView(selection: $quranVM.selection, closeAction: quranVM.hide, titleAction: quranVM.showIndex)
+                SurasView(selection: $quranVM.selection, closeAction: quranVM.hide, titleAction: {quranVM.isShowIndex=true})
             case .sofha:
-                SofhasView(selection: $quranVM.selection, closeAction: quranVM.hide, SecondaryAction: quranVM.showIndex, isHideCloseButton: $isHideCloseButton)
+                SofhasView(selection: $quranVM.selection, closeAction: quranVM.hide, SecondaryAction: {quranVM.isShowIndex=true}, isHideCloseButton: $isHideCloseButton)
             }
         }
         .environment(\.layoutDirection, .leftToRight)
