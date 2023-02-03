@@ -52,6 +52,7 @@ struct SuraView: View {
                     .offset(coordinateSpace: .named("sura\(sura.id)")){ value in
                         DispatchQueue.main.async {
                             withAnimation{
+                                
                                 if rect.minY >= -20 {
                                     if isExpanded {
                                         isExpanded = false
@@ -69,15 +70,7 @@ struct SuraView: View {
                 }
                 .coordinateSpace(name: "sura\(sura.id)")
                 .safeAreaInset(edge: .top){
-                    HStack{
-                        VStack(alignment: .leading){
-                            Text(sura.phonetic)
-                                .font(.footnote)
-                            Text(sura.translation).font(.caption)
-                        }.lineLimit(1).foregroundColor(.secondary)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .opacity(isExpanded ? 1 : 0)
-                        
+                    VStack{
                         Button(action: {
                             quranVM.isShowIndex = true
                         }){
@@ -105,17 +98,6 @@ struct SuraView: View {
                                 }
                             }
                         })
-                        VStack(alignment: .trailing){
-                            Text(LocalizedStringKey(sura.place.id))
-                                .font(.caption)
-                            Text("ayas: \(sura.ayas.toAyas.count)").font(.caption)
-                        }
-                        .lineLimit(1)
-                        .foregroundColor(.secondary)
-                        .padding(.trailing, 50+proxy.safeAreaInsets.trailing)
-                        .opacity(isExpanded ? 1 : 0)
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-
                     }
                     .frame(maxWidth: .infinity)
                     .padding(.horizontal, 7)
@@ -129,6 +111,25 @@ struct SuraView: View {
                             .opacity(isExpanded ? 1 : 0)
                             .animation(isExpanded ? .none : .easeInOut, value: isExpanded)
                     }
+                }
+                .overlay(alignment: .top){
+                    HStack{
+                        VStack(alignment: .leading){
+                            Text(sura.phonetic)
+                                .font(.footnote)
+                            Text(sura.translation).font(.caption)
+                        }
+                        .lineLimit(1)
+                        
+                        VStack(alignment: .trailing){
+                            Text(LocalizedStringKey(sura.place.id))
+                                .font(.caption)
+                            Text("ayas: \(sura.ayas.toAyas.count)").font(.caption)
+                        }
+                        .lineLimit(1)
+                    }
+                    .offset(y: 50)
+                    .opacity(rect.minY*0.001)
                 }
                 .onAppear{
                     scrollTo = scrollTo
