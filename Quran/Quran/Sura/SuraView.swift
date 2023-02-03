@@ -90,6 +90,21 @@ struct SuraView: View {
                                 .contentTransition(.interpolate)
                         }
                         .tint(Color.primary)
+                        .contextMenu(menuItems: {
+                            if sura.isFavorite {
+                                UnstarButton(action: {
+                                    withAnimation{
+                                        sura.isFavorite = false
+                                    }
+                                })
+                            } else {
+                                StarButton{
+                                    withAnimation{
+                                        sura.isFavorite = true
+                                    }
+                                }
+                            }
+                        })
                         VStack(alignment: .trailing){
                             Text(LocalizedStringKey(sura.place.id))
                                 .font(.caption)
