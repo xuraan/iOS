@@ -48,11 +48,11 @@ struct SuraView: View {
                             pageSeparator(aya: aya)
                         }
                     }
-                    .padding(.top, 30)
+                    .padding(.top, -20)
                     .offset(coordinateSpace: .named("sura\(sura.id)")){ value in
                         DispatchQueue.main.async {
                             withAnimation{
-                                if rect.minY >= -10 {
+                                if rect.minY >= -20 {
                                     if isExpanded {
                                         isExpanded = false
                                     }
@@ -67,6 +67,7 @@ struct SuraView: View {
                         }
                     }
                 }
+                .coordinateSpace(name: "sura\(sura.id)")
                 .safeAreaInset(edge: .top){
                     HStack{
                         VStack(alignment: .leading){
@@ -88,6 +89,7 @@ struct SuraView: View {
                                 .minimumScaleFactor(0.1)
                                 .contentTransition(.interpolate)
                         }
+                        .tint(Color.primary)
                         VStack(alignment: .trailing){
                             Text(LocalizedStringKey(sura.place.id))
                                 .font(.caption)
@@ -101,7 +103,7 @@ struct SuraView: View {
 
                     }
                     .frame(maxWidth: .infinity)
-                    .padding(.horizontal)
+                    .padding(.horizontal, 7)
                     .padding(.vertical, 5)
                     .background{
                         Rectangle().fill(.ultraThinMaterial)
@@ -113,7 +115,6 @@ struct SuraView: View {
                             .animation(isExpanded ? .none : .easeInOut, value: isExpanded)
                     }
                 }
-                .coordinateSpace(name: "sura\(sura.id)")
                 .onAppear{
                     scrollTo = scrollTo
                 }
@@ -132,6 +133,9 @@ struct SuraView: View {
                 }
             }
         }
+        .background(Color.primary.opacity(0.08).ignoresSafeArea())
+        .background(Color.yellow.opacity( sura.isFavorite ? 0.5 : 0 ).ignoresSafeArea())
+        .scaleEffect(x: 0.999)
     }
     
     @ViewBuilder

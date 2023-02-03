@@ -34,77 +34,77 @@ struct MainView: View {
         NavigationStack(path: $stack){
             HomeView(text: $searchText)
                 .contentBG
-        .toolbar{
-            ToolbarItem(placement: .navigationBarLeading){
-                NavigationLink(value: "app_info", label: {
-                    Label("About", systemImage: "info.circle")
-                        .labelStyle(.titleAndIcon)
-                })
-            }
-            ToolbarItemGroup(placement: .primaryAction){
-                Button{
-                    withAnimation{
-                        quranVM.isShowIndex = true
+                .overlay(alignment: .bottomTrailing){
+                    Button(action: quranVM.show){
+                        Image(systemName: "book.fill")
+                            .padding(15)
+                            .font(.title3)
+                            .foregroundColor(colorScheme != .dark ? .white : .black)
+                            .background{
+                                Circle()
+                                    .fill(colorScheme == .dark ? .white : .black)
+                            }
                     }
-                } label: {
-                    Image(systemName: "list.dash.header.rectangle")
+                    .offset(y: safeArea.bottom/2)
+                    .offset(x: -safeArea.bottom/3)
                 }
-                NavigationLink(value: "settings"){
-                    Label("settings", systemImage: "gear")
+                .toolbar{
+                    ToolbarItem(placement: .navigationBarLeading){
+                        NavigationLink(value: "app_info", label: {
+                            Label("About", systemImage: "info.circle")
+                                .labelStyle(.titleAndIcon)
+                        })
+                    }
+                    ToolbarItemGroup(placement: .primaryAction){
+                        Button{
+                            withAnimation{
+                                quranVM.isShowIndex = true
+                            }
+                        } label: {
+                            Image(systemName: "list.dash.header.rectangle")
+                        }
+                        NavigationLink(value: "settings"){
+                            Label("settings", systemImage: "gear")
+                        }
+                        
+                       
+                    }
                 }
-                
-               
-            }
-        }
-        .navigationDestination(for: String.self){ value in
-            if value == "ayaFontNames" {
-                List{
-                    Section{
-                        ForEach(AyaViewModel.ayaFonts, id: \.self){ name in
-                            Button{
-                                withAnimation{
-                                    ayaVM.ayaFontName = name
-                                    stack.removeLast(1)
+                .navigationDestination(for: String.self){ value in
+                if value == "ayaFontNames" {
+                    List{
+                        Section{
+                            ForEach(AyaViewModel.ayaFonts, id: \.self){ name in
+                                Button{
+                                    withAnimation{
+                                        ayaVM.ayaFontName = name
+                                        stack.removeLast(1)
+                                    }
+                                } label: {
+                                    Label(title: {
+                                        Text(name).foregroundColor(.primary)
+                                    }, icon: {
+                                        Image(systemName: "checkmark").opacity(ayaVM.ayaFontName == name ? 1 : 0)
+                                    })
                                 }
-                            } label: {
-                                Label(title: {
-                                    Text(name).foregroundColor(.primary)
-                                }, icon: {
-                                    Image(systemName: "checkmark").opacity(ayaVM.ayaFontName == name ? 1 : 0)
-                                })
+                            }
+                        } footer: {
+                            if ayaVM.ayaFontName == "me_quran" {
+                                Text("Font detail me_quran")
+                            } else {
+                                Text("Font detail amiri")
                             }
                         }
-                    } footer: {
-                        if ayaVM.ayaFontName == "me_quran" {
-                            Text("Font detail me_quran")
-                        } else {
-                            Text("Font detail amiri")
-                        }
                     }
-                }
-                .navigationTitle("Font")
-            } else if value == "settings" {
-                SettingsView(stack: $stack)
-                    .navigationTitle("Settings")
-                    .contentBG
+                    .navigationTitle("Font")
+                } else if value == "settings" {
+                    SettingsView(stack: $stack)
+                        .navigationTitle("Settings")
+                        .contentBG
 
+                }
             }
-        }
     }
-        .overlay(alignment: .bottomTrailing){
-            Button(action: quranVM.show){
-                Image(systemName: "book.fill")
-                    .padding(15)
-                    .font(.title3)
-                    .foregroundColor(colorScheme != .dark ? .white : .black)
-                    .background{
-                        Circle()
-                            .fill(colorScheme == .dark ? .white : .black)
-                    }
-            }
-//            .offset(y: safeArea.bottom/2)
-            .offset(x: -safeArea.bottom/2)
-        }
         .searchable(text: $searchText, tokens: $searchVM.tokens, token: { token in
             switch token {
             case .sura: Text("sura")
@@ -112,14 +112,13 @@ struct MainView: View {
             case .sofha: Text("sofha")
             }
         })
-        .scaleEffect(quranVM.isShow ? 1.5: 1)
+        .scaleEffect(quranVM.isShow ? 2 : 1)
         .blur(radius: quranVM.isShow ? 30 : 0)
-
         .overlay{
             QuranView(isHideCloseButton: $isHideCloseButton)
                 .overlay(alignment: .topTrailing, content: {
                     CloseButton(action: quranVM.hide)
-                    .padding(.horizontal)
+                    .padding(.horizontal, 7)
                     .opacity(isHideCloseButton ? 0 : 1)
                 })
                 .opacity(quranVM.isShow ? 1 : 0)
@@ -132,7 +131,6 @@ struct MainView: View {
             .environmentObject(suraVM)
             .environmentObject(ayaVM)
         }
-        
         .ignoresSafeArea(.keyboard)
     }
 }

@@ -21,10 +21,10 @@ struct SofhaView: View {
         GeometryReader{ proxy in
             if proxy.size.height > proxy.size.width {
                 VStack{
-                    let size = UIImage(named: "\(sofha.id)")?.size
+                    let size = UIImage(named: "\(sofha.id)")!.size
                     sofha.image(colorScheme: colorScheme)
                         .sofhaContextMenuWithPreview(sofha: sofha)
-                        .aspectRatio( isExtended ? proxy.size :  size! , contentMode: .fit)
+                        .aspectRatio( isExtended ? proxy.size :  size, contentMode: .fit)
                         .scaleEffect(x: isExtended ? 1.07 : 1)
                         .onTapGesture {
                             withAnimation(.easeInOut){
@@ -50,5 +50,8 @@ struct SofhaView: View {
             }
             
         }
+        .background(Color.primary.opacity(0.1).ignoresSafeArea())
+        .background(Color.yellow.opacity( sofha.isFavorite ? 0.5 : 0 ).ignoresSafeArea())
+        .scaleEffect(x: 0.999)
     }
 }

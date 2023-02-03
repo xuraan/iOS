@@ -9,7 +9,11 @@ import SwiftUI
 
 class AyaViewModel: ObservableObject {
     
-    static var ayaFonts = ["me_quran", "AmiriQuran-Regular"]
+    static var ayaFonts = [
+        "me_quran",
+        "AmiriQuran-Regular",
+        "Al-Majeed-Quranic-Font"
+    ]
     
     @Published var ayaFontName: String {
         didSet{

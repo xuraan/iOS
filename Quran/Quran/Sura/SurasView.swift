@@ -28,8 +28,6 @@ struct SurasView: View {
             pages: suras.map{ sura in
                 SuraView(for: sura, titleAction)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(Color.primary.opacity(0.05).ignoresSafeArea())
-                    .scaleEffect(x: 0.999)
                     .environmentObject(suraVM)
                     .environmentObject(ayaVM)
                     .environmentObject(quraVM)

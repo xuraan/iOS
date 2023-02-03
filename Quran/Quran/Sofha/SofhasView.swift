@@ -36,8 +36,8 @@ struct SofhasView: View {
                 pages: sofhas.map{ sofha in
                     SofhaView(isExtended: $isExtended,for: sofha)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .background(Color.primary.opacity(0.03).ignoresSafeArea())
-                        .scaleEffect(x: selection != sofha.id-1 ? 0.99 : 1 )
+//                        .background(sofha.iconColor.opacity(0.03).ignoresSafeArea())
+//                        .scaleEffect(x: 0.99)
                         .safeAreaInset(edge: .top){
                             HStack{}
                             .frame(height: isExtended ? 1 : 45)

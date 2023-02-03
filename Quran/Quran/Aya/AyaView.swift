@@ -25,7 +25,7 @@ struct AyaView: View {
                     .fontWeight(ayaVM.isTransBold ? .bold : .regular)
             }
         }
-        .padding(.horizontal)
+        .padding(.horizontal, 7)
         .background{
             Color.yellow
                 .blur(radius: 10)

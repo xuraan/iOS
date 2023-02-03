@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension Aya {
-    var number: Int  { (self.sura.ayas.toAyas.firstIndex(of: self) ?? 0) + 0 }
+    var number: Int  { (self.sura.ayas.toAyas.firstIndex(of: self) ?? 0) + 1 }
     var translation: String { NSLocalizedString( "a\(self.id)", tableName: "ayas", comment: "Ayas trans") }
 }
 
