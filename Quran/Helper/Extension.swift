@@ -17,11 +17,8 @@ extension NSOrderedSet {
     var toSuras: [Sura]{
         return self.array as? [Sura] ?? []
     }
-        
     
-    var toSofhas: [Sofha]{
-        return self.array as? [Sofha] ?? []
-    }
+    var toSofhas: [Sofha]{ self.array as? [Sofha] ?? [] }
 }
 
 extension Optional where Wrapped == NSOrderedSet {

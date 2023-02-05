@@ -83,9 +83,10 @@ extension QuranViewModel {
         }
     }
     func openActionModeSofha(sura: Sura)->Void{
-        selection = Int((sura.sofhas.toSuras.first?.id ?? 1)-1)
+        selection = Int((sura.sofhas.toSofhas.first?.id ?? 1)-1)
         isShow = true
         isShowIndex = false
+        print(sura.id, sura.sofhas.count, sura.sofhas.toSofhas.map{$0.id})
     }
     
     func openActionModeSura(sofha: Sofha)->Void{

@@ -9,6 +9,7 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
+    @Environment(\.managedObjectContext) var viewContext
     @StateObject var model: Model = .init()
     @StateObject var quranVM: QuranViewModel = .init()
     @StateObject var suraVM: SuraViewModel = .init()
@@ -35,7 +36,9 @@ struct ContentView: View {
                                 let names = UIFont.fontNames(forFamilyName: family)
                                 print("Family: \(family) Font names: \(names)")
                             }
+            
         }
+        
     }
 }
 

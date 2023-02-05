@@ -70,6 +70,7 @@
 		F4A4B1772984666F000ABB8D /* SuraSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B1762984666F000ABB8D /* SuraSettings.swift */; };
 		F4A4B17B298466E6000ABB8D /* AyaSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B17A298466E6000ABB8D /* AyaSettings.swift */; };
 		F4A4B17D298466F8000ABB8D /* AyaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B17C298466F8000ABB8D /* AyaViewModel.swift */; };
+		F4DBA2D9298DA1110090E917 /* WelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DBA2D8298DA1110090E917 /* WelcomeScreen.swift */; };
 		F4E38BC0298C3F8D0059C10C /* majeed.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4E38BBF298C3F8D0059C10C /* majeed.ttf */; };
 		F4F5DC5729885BA600FB1707 /* AmiriQuran-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4F5DC5629885BA600FB1707 /* AmiriQuran-Regular.ttf */; };
 		F4F5DC5B2988742000FB1707 /* ListRowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F5DC5A2988742000FB1707 /* ListRowButton.swift */; };
@@ -148,6 +149,7 @@
 		F4A4B1762984666F000ABB8D /* SuraSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuraSettings.swift; sourceTree = "<group>"; };
 		F4A4B17A298466E6000ABB8D /* AyaSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AyaSettings.swift; sourceTree = "<group>"; };
 		F4A4B17C298466F8000ABB8D /* AyaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AyaViewModel.swift; sourceTree = "<group>"; };
+		F4DBA2D8298DA1110090E917 /* WelcomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreen.swift; sourceTree = "<group>"; };
 		F4E38BBF298C3F8D0059C10C /* majeed.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = majeed.ttf; sourceTree = "<group>"; };
 		F4F5DC5629885BA600FB1707 /* AmiriQuran-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AmiriQuran-Regular.ttf"; sourceTree = "<group>"; };
 		F4F5DC5A2988742000FB1707 /* ListRowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRowButton.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 		F4A4B0EB298449FB000ABB8D /* Quran */ = {
 			isa = PBXGroup;
 			children = (
+				F4DBA2D7298DA0EA0090E917 /* OnBoarding */,
 				F4A4B1682984563A000ABB8D /* Info.plist */,
 				F4A4B16729845337000ABB8D /* CoreData */,
 				F4A4B13429844C31000ABB8D /* Helper */,
@@ -372,6 +375,14 @@
 			name = EnvironmentValues;
 			sourceTree = "<group>";
 		};
+		F4DBA2D7298DA0EA0090E917 /* OnBoarding */ = {
+			isa = PBXGroup;
+			children = (
+				F4DBA2D8298DA1110090E917 /* WelcomeScreen.swift */,
+			);
+			path = OnBoarding;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -494,6 +505,7 @@
 				F4A4B17529846661000ABB8D /* SettingsView.swift in Sources */,
 				F4A4B11C29844C0A000ABB8D /* RankView.swift in Sources */,
 				F4A4B15329844C31000ABB8D /* SofhaView.swift in Sources */,
+				F4DBA2D9298DA1110090E917 /* WelcomeScreen.swift in Sources */,
 				F4A4B14E29844C31000ABB8D /* Extension.swift in Sources */,
 				F4A4B17129845AC1000ABB8D /* IsDestructive.swift in Sources */,
 				F4A4B11F29844C0A000ABB8D /* Container.swift in Sources */,

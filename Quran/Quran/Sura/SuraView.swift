@@ -76,6 +76,21 @@ struct SuraView: View {
                         }){
                             Text(sura.name)
                                 .waseem(35, weight: .regular)
+                                .contextMenu(menuItems: {
+                                    if sura.isFavorite {
+                                        UnstarButton(action: {
+                                            withAnimation{
+                                                sura.isFavorite = false
+                                            }
+                                        })
+                                    } else {
+                                        StarButton{
+                                            withAnimation{
+                                                sura.isFavorite = true
+                                            }
+                                        }
+                                    }
+                                })
                                 .padding(.vertical, -10)
                                 .frame(maxWidth: .infinity, alignment: .center)
                                 .lineLimit(1)
@@ -83,21 +98,6 @@ struct SuraView: View {
                                 .contentTransition(.interpolate)
                         }
                         .tint(Color.primary)
-                        .contextMenu(menuItems: {
-                            if sura.isFavorite {
-                                UnstarButton(action: {
-                                    withAnimation{
-                                        sura.isFavorite = false
-                                    }
-                                })
-                            } else {
-                                StarButton{
-                                    withAnimation{
-                                        sura.isFavorite = true
-                                    }
-                                }
-                            }
-                        })
                     }
                     .frame(maxWidth: .infinity)
                     .padding(.horizontal, 7)

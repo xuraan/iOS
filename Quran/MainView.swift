@@ -29,6 +29,7 @@ struct MainView: View {
     @State var searchText = ""
     @State var isHideCloseButton = false
     @State var stack: NavigationPath = .init()
+    @AppStorage("isBoraded") var isNotBoraded: Bool = !UserDefaults.standard.bool(forKey: "isBoraded")
 
     var body: some View {
         NavigationStack(path: $stack){
@@ -105,33 +106,38 @@ struct MainView: View {
                 }
             }
     }
-        .searchable(text: $searchText, tokens: $searchVM.tokens, token: { token in
-            switch token {
-            case .sura: Text("sura")
-            case .aya: Text("aya")
-            case .sofha: Text("sofha")
-            }
-        })
-        .scaleEffect(quranVM.isShow ? 2 : 1)
-        .blur(radius: quranVM.isShow ? 30 : 0)
-        .overlay{
-            QuranView(isHideCloseButton: $isHideCloseButton)
-                .overlay(alignment: .topTrailing, content: {
-                    CloseButton(action: quranVM.hide)
-                    .padding(.horizontal, 7)
-                    .opacity(isHideCloseButton ? 0 : 1)
-                })
-                .opacity(quranVM.isShow ? 1 : 0)
-                .animation(.easeInOut.delay(quranVM.isShow ? 0.2 : -1), value: quranVM.isShow)
+    .searchable(text: $searchText, tokens: $searchVM.tokens, token: { token in
+        switch token {
+        case .sura: Text("sura")
+        case .aya: Text("aya")
+        case .sofha: Text("sofha")
         }
-        .sheet(isPresented: $quranVM.isShowIndex){
-            QuranIndexView()
-            .preferredColorScheme(model.preferredColorScheme)
-            .environmentObject(quranVM)
-            .environmentObject(suraVM)
-            .environmentObject(ayaVM)
-        }
-        .ignoresSafeArea(.keyboard)
+    })
+    .scaleEffect(quranVM.isShow ? 2 : 1)
+    .blur(radius: quranVM.isShow ? 30 : 0)
+    .overlay{
+        QuranView(isHideCloseButton: $isHideCloseButton)
+            .overlay(alignment: .topTrailing, content: {
+                CloseButton(action: quranVM.hide)
+                .padding(.horizontal, 7)
+                .opacity(isHideCloseButton ? 0 : 1)
+            })
+            .opacity(quranVM.isShow ? 1 : 0)
+            .animation(.easeInOut.delay(quranVM.isShow ? 0.2 : -1), value: quranVM.isShow)
+    }
+    .sheet(isPresented: $quranVM.isShowIndex){
+        QuranIndexView()
+        .preferredColorScheme(model.preferredColorScheme)
+        .environmentObject(quranVM)
+        .environmentObject(suraVM)
+        .environmentObject(ayaVM)
+    }
+    .sheet(isPresented: $isNotBoraded){
+        WelcomeScreen()
+            .presentationDetents([.medium])
+            .interactiveDismissDisabled()
+    }
+    .ignoresSafeArea(.keyboard)
     }
 }
 

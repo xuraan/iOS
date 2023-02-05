@@ -73,7 +73,6 @@ struct SuraList: View {
         .onChange(of: selection){ value in
             if let value = value {
                 quran.suraOpenAction(value)
-                selection = nil
             }
         }
     }
