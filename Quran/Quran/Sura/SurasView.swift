@@ -14,11 +14,9 @@ struct SurasView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\.id)]) var suras: FetchedResults<Sura>
 
     @Binding var selection: Int
-    var closeAction: ()->Void
     var titleAction: ()->Void
-    init(selection: Binding<Int>, closeAction: @escaping () -> Void, titleAction: @escaping () -> Void) {
+    init(selection: Binding<Int>, titleAction: @escaping () -> Void) {
         self._selection = selection
-        self.closeAction = closeAction
         self.titleAction = titleAction
     }
     var body: some View {

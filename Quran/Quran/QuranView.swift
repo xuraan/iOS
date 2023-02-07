@@ -9,6 +9,8 @@ import SwiftUI
 
 struct QuranView: View {
     @EnvironmentObject var quranVM: QuranViewModel
+    @Environment(\.hideSlideView) var hideSlideView
+    @Environment(\.showSlideView) var showSlideView
     @Binding var isHideCloseButton: Bool
     init(isHideCloseButton: Binding<Bool>) {
         self._isHideCloseButton = isHideCloseButton
@@ -17,12 +19,19 @@ struct QuranView: View {
         Group{
             switch quranVM.mode {
             case .sura:
-                SurasView(selection: $quranVM.selection, closeAction: quranVM.hide, titleAction: {quranVM.isShowIndex=true})
+                SurasView(selection: $quranVM.selection, titleAction: {quranVM.isShowIndex=true})
             case .sofha:
-                SofhasView(selection: $quranVM.selection, closeAction: quranVM.hide, SecondaryAction: {quranVM.isShowIndex=true}, isHideCloseButton: $isHideCloseButton)
+                SofhasView(selection: $quranVM.selection, SecondaryAction: {quranVM.isShowIndex=true}, isHideCloseButton: $isHideCloseButton)
             }
         }
+        .overlay(alignment: .topTrailing, content: {
+            CloseButton(action: hideSlideView)
+                .padding(.trailing)
+        })
         .environment(\.layoutDirection, .leftToRight)
+        .onAppear{
+            quranVM.show = showSlideView
+        }
         
     }
 }
@@ -30,9 +39,9 @@ struct QuranView: View {
 struct QuranView_Previews: PreviewProvider {
     static var previews: some View {
         QuranView(isHideCloseButton: .constant(false))
-            .environmentObject(QuranViewModel())
-            .environmentObject(SuraViewModel())
-            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        .environmentObject(QuranViewModel())
+        .environmentObject(SuraViewModel())
+        .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 
     }
 }

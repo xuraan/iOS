@@ -8,18 +8,16 @@
 import SwiftUI
 
 class QuranViewModel: ObservableObject {
+    var show: () -> Void = {}
     
     @Published var selection: Int {
         didSet{
             UserDefaults.standard.set(selection, forKey: "quranSelection")
         }
     }
-    @Published var isShow: Bool = false
     @Published var isShowIndex: Bool = false
     @Published var suraViewScrollTo: Int16 = 0
     @Published var cuurentAyaID: Aya.ID = 1
-    
-    
     @Published var mode: Mode {
         didSet{
             UserDefaults.standard.set(mode.rawValue, forKey: "quranMode")
@@ -61,30 +59,17 @@ class QuranViewModel: ObservableObject {
 }
 
 extension QuranViewModel {
-    func show(){
-        withAnimation{
-            isShow = true
-        }
-    }
-    func hide(){
-        withAnimation{
-            isShow = false
-        }
-    }
-}
-
-extension QuranViewModel {
     
     func openActionModeSura(sura: Sura)->Void{
         withAnimation{
             selection = Int(sura.id-1)
-            isShow = true
+            show()
             isShowIndex = false
         }
     }
     func openActionModeSofha(sura: Sura)->Void{
         selection = Int((sura.sofhas.toSofhas.first?.id ?? 1)-1)
-        isShow = true
+        show()
         isShowIndex = false
         print(sura.id, sura.sofhas.count, sura.sofhas.toSofhas.map{$0.id})
     }
@@ -92,7 +77,7 @@ extension QuranViewModel {
     func openActionModeSura(sofha: Sofha)->Void{
         withAnimation{
             selection = Int(sofha.suras.toSuras.first!.id-1)
-            isShow = true
+            show()
             suraViewScrollTo = sofha.ayas.toAyas.first!.id
             isShowIndex = false
         }
@@ -101,7 +86,7 @@ extension QuranViewModel {
     func openActionModeSofha(sofha: Sofha)->Void{
         withAnimation{
             selection = Int(sofha.id-1)
-            isShow = true
+            show()
             isShowIndex = false
         }
    
@@ -110,7 +95,7 @@ extension QuranViewModel {
     func openActionModeSura(aya: Aya)->Void{
         withAnimation{
             selection = Int(aya.sura.id-1)
-            isShow = true
+            show()
             self.suraViewScrollTo = aya.id
             isShowIndex = false
         }
@@ -119,7 +104,7 @@ extension QuranViewModel {
     func openActionModeSofha(aya: Aya)->Void{
         withAnimation{
             selection = Int(aya.sofha.id - 1)
-            isShow = true
+            show()
             isShowIndex = false
         }
 

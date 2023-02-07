@@ -50,8 +50,6 @@ struct SofhaView: View {
             }
             
         }
-        .background(Color.primary.opacity(0.1).ignoresSafeArea())
-        .background(Color.yellow.opacity( sofha.isFavorite ? 0.5 : 0 ).ignoresSafeArea())
-        .scaleEffect(x: 0.999)
+        .background(Color.yellow.opacity( sofha.isFavorite ? 0.05 : 0 ).ignoresSafeArea())
     }
 }

@@ -32,112 +32,90 @@ struct MainView: View {
     @AppStorage("isBoraded") var isNotBoraded: Bool = !UserDefaults.standard.bool(forKey: "isBoraded")
 
     var body: some View {
-        NavigationStack(path: $stack){
-            HomeView(text: $searchText)
-                .contentBG
-                .overlay(alignment: .bottomTrailing){
-                    Button(action: quranVM.show){
-                        Image(systemName: "book.fill")
-                            .padding(15)
-                            .font(.title3)
-                            .foregroundColor(colorScheme != .dark ? .white : .black)
-                            .background{
-                                Circle()
-                                    .fill(colorScheme == .dark ? .white : .black)
-                            }
-                    }
-                    .offset(y: safeArea.bottom/2)
-                    .offset(x: -safeArea.bottom/3)
-                }
-                .toolbar{
-                    ToolbarItem(placement: .navigationBarLeading){
-                        NavigationLink(value: "app_info", label: {
-                            Label("About", systemImage: "info.circle")
-                                .labelStyle(.titleAndIcon)
-                        })
-                    }
-                    ToolbarItemGroup(placement: .primaryAction){
-                        Button{
-                            withAnimation{
-                                quranVM.isShowIndex = true
-                            }
-                        } label: {
-                            Image(systemName: "list.dash.header.rectangle")
+        ContainerBeta{
+            NavigationStack(path: $stack){
+                HomeView(text: $searchText)
+                    .contentBG
+                    .toolbar{
+                        ToolbarItem(placement: .navigationBarLeading){
+                            NavigationLink(value: "app_info", label: {
+                                Label("About", systemImage: "info.circle")
+                                    .labelStyle(.titleAndIcon)
+                            })
                         }
-                        NavigationLink(value: "settings"){
-                            Label("settings", systemImage: "gear")
+                        ToolbarItemGroup(placement: .primaryAction){
+                            Button{
+                                withAnimation{
+                                    quranVM.isShowIndex = true
+                                }
+                            } label: {
+                                Image(systemName: "list.dash.header.rectangle")
+                            }
+                            NavigationLink(value: "settings"){
+                                Label("settings", systemImage: "gear")
+                            }
+                            
+                           
                         }
-                        
-                       
                     }
-                }
-                .navigationDestination(for: String.self){ value in
-                if value == "ayaFontNames" {
-                    List{
-                        Section{
-                            ForEach(AyaViewModel.ayaFonts, id: \.self){ name in
-                                Button{
-                                    withAnimation{
-                                        ayaVM.ayaFontName = name
-                                        stack.removeLast(1)
+                    .navigationDestination(for: String.self){ value in
+                    if value == "ayaFontNames" {
+                        List{
+                            Section{
+                                ForEach(AyaViewModel.ayaFonts, id: \.self){ name in
+                                    Button{
+                                        withAnimation{
+                                            ayaVM.ayaFontName = name
+                                            stack.removeLast(1)
+                                        }
+                                    } label: {
+                                        Label(title: {
+                                            Text(name).foregroundColor(.primary)
+                                        }, icon: {
+                                            Image(systemName: "checkmark").opacity(ayaVM.ayaFontName == name ? 1 : 0)
+                                        })
                                     }
-                                } label: {
-                                    Label(title: {
-                                        Text(name).foregroundColor(.primary)
-                                    }, icon: {
-                                        Image(systemName: "checkmark").opacity(ayaVM.ayaFontName == name ? 1 : 0)
-                                    })
+                                }
+                            } footer: {
+                                if ayaVM.ayaFontName == "me_quran" {
+                                    Text("Font detail me_quran")
+                                } else {
+                                    Text("Font detail amiri")
                                 }
                             }
-                        } footer: {
-                            if ayaVM.ayaFontName == "me_quran" {
-                                Text("Font detail me_quran")
-                            } else {
-                                Text("Font detail amiri")
-                            }
                         }
-                    }
-                    .navigationTitle("Font")
-                } else if value == "settings" {
-                    SettingsView(stack: $stack)
-                        .navigationTitle("Settings")
-                        .contentBG
+                        .navigationTitle("Font")
+                    } else if value == "settings" {
+                        SettingsView(stack: $stack)
+                            .navigationTitle("Settings")
+                            .contentBG
 
+                    }
                 }
-            }
-    }
-    .searchable(text: $searchText, tokens: $searchVM.tokens, token: { token in
-        switch token {
-        case .sura: Text("sura")
-        case .aya: Text("aya")
-        case .sofha: Text("sofha")
         }
-    })
-    .scaleEffect(quranVM.isShow ? 2 : 1)
-    .blur(radius: quranVM.isShow ? 30 : 0)
-    .overlay{
-        QuranView(isHideCloseButton: $isHideCloseButton)
-            .overlay(alignment: .topTrailing, content: {
-                CloseButton(action: quranVM.hide)
-                .padding(.horizontal, 7)
-                .opacity(isHideCloseButton ? 0 : 1)
+            .searchable(text: $searchText, tokens: $searchVM.tokens, token: { token in
+                switch token {
+                    case .sura: Text("sura")
+                    case .aya: Text("aya")
+                    case .sofha: Text("sofha")
+                }
             })
-            .opacity(quranVM.isShow ? 1 : 0)
-            .animation(.easeInOut.delay(quranVM.isShow ? 0.2 : -1), value: quranVM.isShow)
-    }
-    .sheet(isPresented: $quranVM.isShowIndex){
-        QuranIndexView()
-        .preferredColorScheme(model.preferredColorScheme)
-        .environmentObject(quranVM)
-        .environmentObject(suraVM)
-        .environmentObject(ayaVM)
-    }
-    .sheet(isPresented: $isNotBoraded){
-        WelcomeScreen()
-            .presentationDetents([.medium])
-            .interactiveDismissDisabled()
-    }
-    .ignoresSafeArea(.keyboard)
+            .sheet(isPresented: $quranVM.isShowIndex){
+                QuranIndexView()
+                .preferredColorScheme(model.preferredColorScheme)
+                .environmentObject(quranVM)
+                .environmentObject(suraVM)
+                .environmentObject(ayaVM)
+            }
+            .sheet(isPresented: $isNotBoraded){
+                WelcomeScreen()
+                    .presentationDetents([.medium])
+                    .interactiveDismissDisabled()
+            }
+            .ignoresSafeArea(.keyboard)
+        } slide: {
+            QuranView(isHideCloseButton: $isHideCloseButton)
+        }
     }
 }
 

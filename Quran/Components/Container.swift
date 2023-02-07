@@ -7,113 +7,117 @@
 
 import SwiftUI
 
-extension PresentationDetent {
-    static var float: PresentationDetent{
-        return .height(23)
-    }
-    var isLarge: Bool { self == .large }
-    var isFloat: Bool { self == .float }
-}
-
-
-struct Container<Content:View, Overlay:View, Sheet:View>: View {
-    @Binding var selectedDetent: PresentationDetent
-    @Environment(\.colorScheme) var colorScheme
-    @Environment(\.safeArea) var safeArea
-    @Binding var isCover: Bool
-    @Binding var hideCloseButton: Bool
+struct ContainerBeta<Content: View, Slide: View>: View {
     var content: Content
-    var sheet: Sheet
-    var overlay: Overlay
-    
+    var slide: Slide
+    @GestureState private var dragState = DragState.inactive
+    @State var offset: CGFloat = 0
+    @State var progess: Double = 0
     init(
-        selectedDetent: Binding<PresentationDetent>,
-        isCover: Binding<Bool>,
-        isHideCloseButton: Binding<Bool>,
         @ViewBuilder content: @escaping ()->Content,
-        @ViewBuilder sheet: @escaping ()->Sheet,
-        @ViewBuilder overlay: @escaping ()->Overlay
-    ) {
-        self._selectedDetent = selectedDetent
-        self._isCover = isCover
+        @ViewBuilder slide: @escaping ()->Slide
+    ){
         self.content = content()
-        self.sheet = sheet()
-        self.overlay = overlay()
-        self._hideCloseButton = isHideCloseButton
+        self.slide = slide()
     }
+    
     var body: some View {
-        GeometryReader{proxy in
-            Color.black
-                .ignoresSafeArea()
-        
-            content
-                .overlay(alignment: .bottomTrailing){
-                    Button{
-                        withAnimation{
-                            isCover = true
-                        }
-                    } label: {
-                        Image(systemName: "book.fill")
-                            .padding(15)
-                            .font(.title3)
-                            .foregroundColor(colorScheme != .dark ? .white : .black)
-                            .background{
-                                Circle()
-                                    .fill(colorScheme == .dark ? .white : .black)
-                            }
-                            .offset(y: -10)
-                            .offset(x: -5)
-                    }
-                }
-                .frame(height: proxy.size.height+proxy.safeAreaInsets.top-24)
-                .cornerRadius(10)
-                .scaleEffect(isCover ? 1.2 : 1)
-                .ignoresSafeArea()
-                .sheet(isPresented: .constant(true)){
-                    sheet
-                        .presentationDetents(
-                            isCover ?
-                            [.large] :
-                                [.float, .large],
-                            selection: $selectedDetent
-                        )
-                        .interactiveDismissDisabled(!isCover)
-                        .presentationDragIndicator(.visible)
-                        .onAppear{
-                            guard let windows = UIApplication.shared.connectedScenes.first as? UIWindowScene else{
-                                return
-                            }
-
-                            if let controller =  windows.windows.first?.rootViewController?
-                                .presentedViewController, let sheet = controller.presentationController as? UISheetPresentationController{
-                            // MARK: As Usual Set Properties What Ever Your Wish Here With Sheet
-                            
-                                controller.presentingViewController?.view.tintAdjustmentMode = .normal
-                                sheet.largestUndimmedDetentIdentifier = .large
-                                sheet.preferredCornerRadius = 10
-                            }else{
-                                print ("NO CONTROLLER FOUND" )
+        GeometryReader{ proxy in
+            ZStack{
+                content
+                    .scaleEffect( progess != 0 ? 1+progess*0.005 : 1  )
+                    .blur(radius: progess)
+                    .simultaneousGesture(DragGesture().updating($dragState, body: { (value, state, transaction) in
+                        state = .dragging(translation: value.translation)
+                    }).onEnded{ value in
+                        if -value.translation.width > proxy.size.width/2 || -value.predictedEndTranslation.width > proxy.size.width/2 {
+                            show()
+                        } else {
+                            withAnimation{
+                                offset = proxy.size.width
+                                progess = 0
                             }
                         }
-                }
-        }
-        .blur(radius: isCover ? 30 : 0)
-        .overlay{
-            overlay
-            .overlay(alignment: .topTrailing, content: {
-                CloseButton(action: {
-                    withAnimation{
-                        isCover = false
+                    })
+                    .onChange(of: dragState.translation){ value in
+                        if value.width <= 0 && offset != 0 {
+                            offset = proxy.size.width+value.width
+                            progess = progess < 30 ? -value.width*0.1 : 30
+                        }
                     }
-                })
-                .padding(.horizontal)
-                .opacity(hideCloseButton ? 0 : 1)
-            })
-            .opacity(isCover ? 1 : 0)
-            .animation(.easeInOut.delay(isCover ? 0.2 : -1), value: isCover)
+                slide
+                    .offset(x: offset)
+            }
+            .onAppear{
+                offset = proxy.size.width
+            }
+            .environment(\.hideSlideView, {hide(offset: proxy.size.width+proxy.safeAreaInsets.trailing)})
+            .environment(\.showSlideView, show)
         }
-        .ignoresSafeArea(.keyboard)
-
+    }
+    
+    func hide(offset: CGFloat){
+        withAnimation{
+            self.offset = offset
+            self.progess = 0
+        }
+    }
+    func show(){
+        withAnimation{
+            self.offset = 0
+            self.progess = 30
+        }
     }
 }
 
+
+enum DragState {
+    case inactive
+    case pressing
+    case dragging(translation: CGSize)
+    
+    var translation: CGSize {
+        switch self {
+        case .inactive, .pressing:
+            return .zero
+        case .dragging(let translation):
+            return translation
+        }
+    }
+}
+struct Custost_Previews: PreviewProvider {
+    static var previews: some View {
+        ContainerBeta(content: {
+            NavigationStack{
+                List{
+                    
+                }
+                .navigationTitle("Content")
+            }
+        }, slide: {
+            Rectangle()
+        })
+    }
+}
+
+
+
+struct HideSlideEnvKey: EnvironmentKey {
+    static let defaultValue: ()->Void = {}
+}
+extension EnvironmentValues {
+    var hideSlideView: ()->Void {
+        get { self[HideSlideEnvKey.self] }
+        set { self[HideSlideEnvKey.self] = newValue }
+    }
+}
+
+struct ShowSlideEnvKey: EnvironmentKey {
+    static let defaultValue: ()->Void = {}
+}
+extension EnvironmentValues {
+    var showSlideView: ()->Void {
+        get { self[ShowSlideEnvKey.self] }
+        set { self[ShowSlideEnvKey.self] = newValue }
+    }
+}

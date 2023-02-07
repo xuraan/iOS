@@ -11,7 +11,6 @@ struct SofhasView: View {
     @Binding var selection: Int
     @State var isExtended: Bool = false
     @Binding var isHideCloseButton: Bool
-    var closeAction: ()->Void
     var secondaryAction: ()->Void
     @FetchRequest(sortDescriptors: [SortDescriptor(\.id)]) var sofhas: FetchedResults<Sofha>
 
@@ -19,12 +18,10 @@ struct SofhasView: View {
     
     init(
         selection: Binding<Int>,
-        closeAction: @escaping ()->Void = {},
         SecondaryAction: @escaping ()->Void = {},
         isHideCloseButton: Binding<Bool>
     ){
         self._selection = selection
-        self.closeAction = closeAction
         self.secondaryAction = SecondaryAction
         self._isHideCloseButton = isHideCloseButton
     }

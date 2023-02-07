@@ -149,9 +149,7 @@ struct SuraView: View {
                 }
             }
         }
-        .background(Color.primary.opacity(0.08).ignoresSafeArea())
-        .background(Color.yellow.opacity( sura.isFavorite ? 0.5 : 0 ).ignoresSafeArea())
-        .scaleEffect(x: 0.999)
+        .background(Color.yellow.opacity( sura.isFavorite ? 0.05 : 0 ).ignoresSafeArea())
     }
     
     @ViewBuilder

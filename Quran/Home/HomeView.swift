@@ -26,6 +26,8 @@ struct HomeView: View {
         predicate: NSPredicate(format: ("isFavorite == true"))
     ) var sofhas: FetchedResults<Sofha>
     
+    
+    
     init(text: Binding<String> = .constant("")) {
         self._text = text
     }
@@ -42,7 +44,7 @@ struct HomeView: View {
                 favoriteAyaSection()
             }
         }
-        .listStyle(.sidebar)
+        .listStyle(.insetGrouped)
         .environment(\.isDestructive, true)
         .animation(.easeInOut, value: suras.isEmpty)
         .animation(.easeInOut, value: sofhas.isEmpty)
