@@ -9,6 +9,11 @@ import SwiftUI
 
 struct AyaRow: View {
     @ObservedObject var aya: Aya
+    @EnvironmentObject var model: Model
+    @EnvironmentObject var quranVM: QuranViewModel
+    @EnvironmentObject var suraVM: SuraViewModel
+    @EnvironmentObject var searchVM: SearchModel
+    @EnvironmentObject var ayaVM: AyaViewModel
     init(for aya: Aya) {
         self.aya = aya
     }
@@ -39,6 +44,29 @@ struct AyaRow: View {
                 bgColor: aya.iconColor
             )
             .offset(y: 4)
+        })
+        .contextMenu(menuItems: {
+            if aya.isFavorite {
+                UnstarButton(action: {
+                    withAnimation{
+                        aya.isFavorite = false
+                    }
+                })
+            } else {
+                StarButton{
+                    withAnimation{
+                        aya.isFavorite = true
+                    }
+                }
+            }
+        }, preview: {
+            AyaView(for: aya)
+                .environmentObject(model)
+                .environmentObject(quranVM)
+                .environmentObject(suraVM)
+                .environmentObject(searchVM)
+                .environmentObject(ayaVM)
+                .frame(width: 400, height: 400)
         })
         .swipeActions(edge: .trailing){
             if aya.isFavorite {

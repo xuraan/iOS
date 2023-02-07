@@ -34,6 +34,23 @@ struct SofhaRow: View {
             RankView(text: "\(sofha.id)", color: Color("bg"), bgColor: sofha.iconColor)
                 .offset(y: 4)
         })
+        .contextMenu(menuItems: {
+            if sofha.isFavorite {
+                UnstarButton(action: {
+                    withAnimation{
+                        sofha.isFavorite = false
+                    }
+                })
+            } else {
+                StarButton{
+                    withAnimation{
+                        sofha.isFavorite = true
+                    }
+                }
+            }
+        }, preview: {
+            sofha.image(colorScheme: .light)
+        })
         .swipeActions(edge: .trailing){
             if sofha.isFavorite {
                 UnstarButton(action: {
