@@ -55,12 +55,12 @@ struct SuraRow: View {
             }
         }, preview: {
             SuraView(for: sura)
+                .frame(width: 400, height: 500)
                 .environmentObject(model)
                 .environmentObject(quranVM)
                 .environmentObject(suraVM)
                 .environmentObject(searchVM)
                 .environmentObject(ayaVM)
-                .frame(width: 300, height: 500)
         })
         .swipeActions(edge: .trailing){
             if sura.isFavorite {
