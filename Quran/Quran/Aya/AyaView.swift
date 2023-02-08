@@ -29,7 +29,7 @@ struct AyaView: View {
         .background{
             Color.yellow
                 .blur(radius: 10)
-                .opacity(aya.isFavorite ? 0.5 : 0.00001)
+                .opacity(aya.isFavorite ? 0.3 : 0.00001)
                 .ignoresSafeArea()
         }
         .contextMenu(menuItems: {

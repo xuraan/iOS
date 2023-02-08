@@ -43,6 +43,7 @@ struct HomeView: View {
                 favoriteSofhaSection()
                 favoriteAyaSection()
             }
+            Section{}
         }
         .listStyle(.insetGrouped)
         .environment(\.isDestructive, true)

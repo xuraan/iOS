@@ -44,7 +44,7 @@ struct SuraView: View {
                                     AyaView(for: aya)
                                 }
                             }
-                            .background(Color.blue.opacity( aya.id == scrollTo ? 1 : 0).blur(radius: 20))
+                            .background(Color.blue.opacity( aya.id == scrollTo ? 0.3 : 0).blur(radius: 10))
                             pageSeparator(aya: aya)
                         }
                     }

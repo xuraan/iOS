@@ -62,7 +62,7 @@ struct SuraRow: View {
                 .environmentObject(searchVM)
                 .environmentObject(ayaVM)
         })
-        .swipeActions(edge: .trailing){
+        .swipeActions(edge: .leading){
             if sura.isFavorite {
                 UnstarButton(action: {
                     withAnimation{

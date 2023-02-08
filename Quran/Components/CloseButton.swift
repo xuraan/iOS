@@ -11,13 +11,16 @@ struct CloseButton: View{
     @Environment(\.dismiss) var dismiss
     var action: (()->Void)?
     
-    init(action: (()->Void)? = nil ) {
+    var image: Image
+    
+    init(action: (()->Void)? = nil, icon: Image = Image(systemName: "xmark")) {
         self.action = action
+        self.image = icon
     }
     
     var body: some View {
         Button(action: action ?? {dismiss()}, label: {
-            Image(systemName: "xmark")
+            image
                 .font(.headline)
                 .foregroundColor(.secondary)
                 .frame(width: 40, height: 40)

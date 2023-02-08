@@ -51,7 +51,7 @@ struct SofhaRow: View {
         }, preview: {
             sofha.image(colorScheme: .light)
         })
-        .swipeActions(edge: .trailing){
+        .swipeActions(edge: .leading){
             if sofha.isFavorite {
                 UnstarButton(action: {
                     withAnimation{

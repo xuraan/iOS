@@ -25,7 +25,7 @@ struct ContainerBeta<Content: View, Slide: View>: View {
         GeometryReader{ proxy in
             ZStack{
                 content
-                    .scaleEffect( progess != 0 ? 1+progess*0.005 : 1  )
+                    .scaleEffect( progess != 0 ? 1+progess*0.001 : 1  )
                     .blur(radius: progess)
                     .simultaneousGesture(DragGesture().updating($dragState, body: { (value, state, transaction) in
                         state = .dragging(translation: value.translation)
@@ -42,7 +42,7 @@ struct ContainerBeta<Content: View, Slide: View>: View {
                     .onChange(of: dragState.translation){ value in
                         if value.width <= 0 && offset != 0 {
                             offset = proxy.size.width+value.width
-                            progess = progess < 30 ? -value.width*0.1 : 30
+                            progess =  -value.width*0.05
                         }
                     }
                 slide

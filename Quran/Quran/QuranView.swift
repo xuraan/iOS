@@ -25,8 +25,9 @@ struct QuranView: View {
             }
         }
         .overlay(alignment: .topTrailing, content: {
-            CloseButton(action: hideSlideView)
+            CloseButton(action: hideSlideView, icon: Image(systemName: "chevron.forward"))
                 .padding(.trailing)
+                .opacity(isHideCloseButton ? 0 : 1)
         })
         .environment(\.layoutDirection, .leftToRight)
         .onAppear{

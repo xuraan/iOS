@@ -20,7 +20,7 @@ struct RankView: View {
         ZStack{
             Circle()
                 .frame(width: 40, height: 40)
-                .foregroundColor(bgColor.opacity(0.8))
+                .foregroundColor(bgColor.opacity(0.7))
             
             Text(text)
                 .font(.system(size: 17))

@@ -68,7 +68,7 @@ struct AyaRow: View {
                 .environmentObject(ayaVM)
                 .frame(width: 400, height: 400)
         })
-        .swipeActions(edge: .trailing){
+        .swipeActions(edge: .leading){
             if aya.isFavorite {
                 UnstarButton(action: {
                     withAnimation{
