@@ -7,98 +7,62 @@
 
 import SwiftUI
 
-struct ContainerBeta<Content: View, Slide: View>: View {
+struct MainContainer<Content: View, Cover: View>: View {
     var content: Content
-    var slide: Slide
-    @GestureState private var dragState = DragState.inactive
+    var cover: Cover
+    @State var isOverlayHide: Bool = true
     @State var offset: CGFloat = 0
     @State var progess: Double = 0
     init(
         @ViewBuilder content: @escaping ()->Content,
-        @ViewBuilder slide: @escaping ()->Slide
+        @ViewBuilder cover: @escaping ()->Cover
     ){
         self.content = content()
-        self.slide = slide()
+        self.cover = cover()
     }
     
     var body: some View {
-        GeometryReader{ proxy in
-            ZStack{
-                content
-                    .scaleEffect( progess != 0 ? 1+progess*0.001 : 1  )
-                    .blur(radius: progess)
-                    .simultaneousGesture(DragGesture().updating($dragState, body: { (value, state, transaction) in
-                        state = .dragging(translation: value.translation)
-                    }).onEnded{ value in
-                        if -value.translation.width > proxy.size.width/2 || -value.predictedEndTranslation.width > proxy.size.width/2 {
-                            show()
-                        } else {
-                            withAnimation{
-                                offset = proxy.size.width
-                                progess = 0
-                            }
-                        }
-                    })
-                    .onChange(of: dragState.translation){ value in
-                        if value.width <= 0 && offset != 0 {
-                            offset = proxy.size.width+value.width
-                            progess =  -value.width*0.05
-                        }
-                    }
-                slide
-                    .offset(x: offset)
-            }
-            .onAppear{
-                offset = proxy.size.width
-            }
-            .environment(\.hideSlideView, {hide(offset: proxy.size.width+proxy.safeAreaInsets.trailing)})
-            .environment(\.showSlideView, show)
+        ZStack{
+            content
+                .scaleEffect( isOverlayHide ? 1 : 1.2 )
+                .blur(radius: isOverlayHide ? 0 : 30)
+            cover
+                .opacity(isOverlayHide ? 0 : 1)
+                .animation(.easeInOut.delay(isOverlayHide ? 0 : 0.1), value: isOverlayHide)
         }
+        .environment(\.hideSlideView, hide)
+        .environment(\.showSlideView, show)
     }
     
-    func hide(offset: CGFloat){
+    func hide(){
         withAnimation{
-            self.offset = offset
-            self.progess = 0
+            isOverlayHide = true
         }
     }
     func show(){
         withAnimation{
-            self.offset = 0
-            self.progess = 30
+            isOverlayHide = false
         }
     }
 }
 
-
-enum DragState {
-    case inactive
-    case pressing
-    case dragging(translation: CGSize)
-    
-    var translation: CGSize {
-        switch self {
-        case .inactive, .pressing:
-            return .zero
-        case .dragging(let translation):
-            return translation
-        }
-    }
-}
 struct Custost_Previews: PreviewProvider {
     static var previews: some View {
-        ContainerBeta(content: {
+        MainContainer(content: {
             NavigationStack{
                 List{
                     
                 }
                 .navigationTitle("Content")
             }
-        }, slide: {
-            Rectangle()
+        }, cover: {
+            Rectangle().ignoresSafeArea()
         })
     }
 }
+
+
+
 
 
 

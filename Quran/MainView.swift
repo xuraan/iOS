@@ -33,10 +33,9 @@ struct MainView: View {
     @AppStorage("isBoraded") var isNotBoraded: Bool = !UserDefaults.standard.bool(forKey: "isBoraded")
 
     var body: some View {
-        ContainerBeta{
+        MainContainer{
             NavigationStack{
                 HomeView(text: $searchText)
-//                    .contentBG
                     .toolbar{
                         ToolbarItem(placement: .navigationBarLeading){
                             NavigationLink(value: "app_info", label: {
@@ -153,7 +152,7 @@ struct MainView: View {
                     .interactiveDismissDisabled()
             }
             .ignoresSafeArea(.keyboard)
-        } slide: {
+        } cover: {
             QuranView(isHideCloseButton: $isHideCloseButton)
         }
     }
