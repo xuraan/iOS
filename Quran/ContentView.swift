@@ -29,7 +29,7 @@ struct ContentView: View {
         .environmentObject(suraVM)
         .environmentObject(searchVM)
         .environmentObject(ayaVM)
-        
+//        .environment(\.locale, Locale(identifier: model.langage.rawValue))
         //MARK: -THEME
         .preferredColorScheme(model.preferredColorScheme)
     }

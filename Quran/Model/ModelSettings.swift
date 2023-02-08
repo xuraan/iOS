@@ -9,7 +9,24 @@ import SwiftUI
 
 struct ModelSettings: View {
     @EnvironmentObject var model: Model
+    @Environment(\.locale) var local
     var body: some View {
+        Section{
+            Button{
+                let appSettings = URL(string: UIApplication.openSettingsURLString)!
+                UIApplication.shared.open(appSettings)
+                //MARK: To open language section in iOS Settings App
+//                UIApplication.shared.open(URL(string: "App-Prefs:root=General&path=INTERNATIONAL")!)
+
+            } label: {
+                Label(title: {
+                    Text("Language").foregroundColor(.primary)
+                }, icon: {
+                    Image(systemName: "globe")
+                })
+                .badge(Model.Local.get(code: Locale.current.language.languageCode?.identifier ?? "")?.name)
+            }
+        }
         Section("colorscheme"){
             Picker("", selection: $model.preferredColorScheme, content: {
                 Text("Dark").tag(ColorScheme.dark as ColorScheme?)

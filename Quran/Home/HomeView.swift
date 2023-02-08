@@ -58,12 +58,12 @@ struct HomeView: View {
         if !suras.isEmpty {
             Section{
                 ForEach(suras){ sura in
-                    ListRowButton(action: {
+                    Button(action: {
                         quranVM.suraOpenAction(sura)
                     }){
                         SuraRow(for: sura)
-                            .padding(0)
                     }
+                    .padding(.vertical, -6)
                 }
             } header: {
                 HStack{
@@ -80,12 +80,12 @@ struct HomeView: View {
         if !sofhas.isEmpty {
             Section{
                 ForEach(sofhas){ sofha in
-                    ListRowButton(action: {
+                    Button(action: {
                         quranVM.sofhaOpenAction(sofha)
                     }){
                         SofhaRow(for: sofha)
-                            .padding(0)
                     }
+                    .padding(.vertical, -6)
                 }
             } header: {
                 HStack{
@@ -102,12 +102,13 @@ struct HomeView: View {
         if !ayas.isEmpty {
             Section{
                 ForEach(ayas){ aya in
-                    ListRowButton(action: {
+                    Button(action: {
                         quranVM.ayaOpenAction(aya)
                     }){
                         AyaRow(for: aya)
-                            .padding(0)
                     }
+                    .padding(.vertical, -6)
+
                 }
             } header: {
                 HStack{

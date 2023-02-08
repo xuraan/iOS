@@ -18,6 +18,7 @@ struct SettingsView: View {
             AyaSettings(stack: $stack)
             ModelSettings()
         }
+        .padding(.top, -30)
     }
 }
 

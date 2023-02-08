@@ -23,17 +23,17 @@ struct SearchView: View {
     var body: some View {
         if text.isEmpty && searchVM.tokens.isEmpty {
             Section{
-                    ListRowButton(action: {searchVM.tokens=[SearchModel.Token.sura]}){
+                    Button(action: {searchVM.tokens=[SearchModel.Token.sura]}){
                         Label("sura", systemImage: "link")
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
                     
-                    ListRowButton(action: {searchVM.tokens = [SearchModel.Token.sofha]}){
+                    Button(action: {searchVM.tokens = [SearchModel.Token.sofha]}){
                         Label("sofha", systemImage: "link")
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
                     
-                    ListRowButton(action: {searchVM.tokens = [SearchModel.Token.aya]}){
+                    Button(action: {searchVM.tokens = [SearchModel.Token.aya]}){
                         Label("aya", systemImage: "link")
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
@@ -84,7 +84,7 @@ extension SearchView {
         if !surasResult.isEmpty {
             Section{
                 ForEach(surasResult.prefix(3)){ sura in
-                    ListRowButton(action: {
+                    Button(action: {
                         quranVM.suraOpenAction(sura)
                     }, label: {
                         SuraRow(for: sura)
@@ -119,7 +119,7 @@ extension SearchView {
         if !ayasResult.isEmpty {
             Section{
                 ForEach(ayasResult.prefix(3)){ aya in
-                    ListRowButton(action: {
+                    Button(action: {
                         quranVM.ayaOpenAction(aya)
                     }){
                         AyaRow(for: aya)
@@ -158,7 +158,7 @@ extension SearchView {
         if !sofhasResult.isEmpty {
             Section{
                 ForEach(sofhasResult.prefix(3)){ sofha in
-                    ListRowButton(action: {
+                    Button(action: {
                         quranVM.sofhaOpenAction(sofha)
                     }){
                         SofhaRow(for: sofha)

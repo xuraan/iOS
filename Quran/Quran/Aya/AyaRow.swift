@@ -66,7 +66,7 @@ struct AyaRow: View {
                 .environmentObject(suraVM)
                 .environmentObject(searchVM)
                 .environmentObject(ayaVM)
-                .frame(width: 400, height: 400)
+                .frame(width: 400, height: 350)
         })
         .swipeActions(edge: .leading){
             if aya.isFavorite {

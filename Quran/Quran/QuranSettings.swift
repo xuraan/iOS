@@ -14,9 +14,6 @@ struct QuranSettings: View {
             Text("Quran dispaly mode")
                 .font(.subheadline.smallCaps())
                 .foregroundColor(.secondary)
-                
-            
-                
             Spacer()
             Picker(selection: $quranVM.mode, label: Text("Picker")) {
                 ForEach(QuranViewModel.Mode.allCases){ mode in

@@ -20,28 +20,26 @@ struct AyaSettings: View {
     }
     var body: some View {
         Section{
-            ListRow{
-                Slider(value: $ayaFontSize, in: 20...50, label: {
-                    
-                }, minimumValueLabel: {
-                    Image(systemName: "character.cursor.ibeam")
-                        .font(.caption)
-                        .onTapGesture {
-                            withAnimation{
-                                ayaFontSize = 20
-                            }
+            Slider(value: $ayaFontSize, in: 20...50, label: {
+                
+            }, minimumValueLabel: {
+                Image(systemName: "character.cursor.ibeam")
+                    .font(.caption)
+                    .onTapGesture {
+                        withAnimation{
+                            ayaFontSize = 20
                         }
-                }, maximumValueLabel: {
-                    Image(systemName: "character.cursor.ibeam")
-                        .font(.title3)
-                        .onTapGesture {
-                            withAnimation{
-                                ayaFontSize = 50
-                            }
+                    }
+            }, maximumValueLabel: {
+                Image(systemName: "character.cursor.ibeam")
+                    .font(.title3)
+                    .onTapGesture {
+                        withAnimation{
+                            ayaFontSize = 50
                         }
-                })
-            }
-            ListRowButton(action:{
+                    }
+            })
+            Button(action:{
                 stack.append("ayaFontNames")
             }){
                 HStack{
@@ -50,7 +48,6 @@ struct AyaSettings: View {
                     Image(systemName: "chevron.forward").foregroundColor(.gray)
                 }
             }
-            
         } header: {
             HStack{
                 Text("aya")
@@ -81,34 +78,28 @@ struct AyaSettings: View {
                 ayaVM.isTransBold = isTransBold
             }
         }
-        Section{}
         Section{
-            ListRow{
-                Toggle("Enable", isOn: $isTransEnable)
-            }
-            ListRow{
-                Slider(value: $transFontSize, in: 10...30, label: {
-                    
-                }, minimumValueLabel: {
-                    Image(systemName: "character.cursor.ibeam")
-                        .font(.caption)
-                        .onTapGesture {
-                            withAnimation{
-                                transFontSize = 10
-                            }
+            Toggle("Enable", isOn: $isTransEnable)
+            Slider(value: $transFontSize, in: 10...30, label: {
+                
+            }, minimumValueLabel: {
+                Image(systemName: "character.cursor.ibeam")
+                    .font(.caption)
+                    .onTapGesture {
+                        withAnimation{
+                            transFontSize = 10
                         }
-                }, maximumValueLabel: {
-                    Image(systemName: "character.cursor.ibeam")
-                        .font(.title3)
-                        .onTapGesture {
-                            withAnimation{
-                                transFontSize = 30
-                            }
+                    }
+            }, maximumValueLabel: {
+                Image(systemName: "character.cursor.ibeam")
+                    .font(.title3)
+                    .onTapGesture {
+                        withAnimation{
+                            transFontSize = 30
                         }
-                })            }
-            ListRow{
-                Toggle("Bold text", isOn: $isTransBold)
-            }
+                    }
+            })
+            Toggle("Bold text", isOn: $isTransBold)
         } header : {
             HStack{
                 Text("Translation")
@@ -123,7 +114,6 @@ struct AyaSettings: View {
                 }
             }
         }
-        Section{}
     }
     
     func setDefaultAyaArabicSettings(){

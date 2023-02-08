@@ -28,14 +28,15 @@ struct MainView: View {
     
     @State var searchText = ""
     @State var isHideCloseButton = false
+    @State var showSettings = false
     @State var stack: NavigationPath = .init()
     @AppStorage("isBoraded") var isNotBoraded: Bool = !UserDefaults.standard.bool(forKey: "isBoraded")
 
     var body: some View {
         ContainerBeta{
-            NavigationStack(path: $stack){
+            NavigationStack{
                 HomeView(text: $searchText)
-                    .contentBG
+//                    .contentBG
                     .toolbar{
                         ToolbarItem(placement: .navigationBarLeading){
                             NavigationLink(value: "app_info", label: {
@@ -51,48 +52,18 @@ struct MainView: View {
                             } label: {
                                 Image(systemName: "list.dash.header.rectangle")
                             }
-                            NavigationLink(value: "settings"){
-                                Label("settings", systemImage: "gear")
+                            Button{
+                                withAnimation{
+                                    showSettings.toggle()
+                                }
+                            } label: {
+                                Image(systemName: "gear")
                             }
                             
                            
                         }
                     }
-                    .navigationDestination(for: String.self){ value in
-                    if value == "ayaFontNames" {
-                        List{
-                            Section{
-                                ForEach(AyaViewModel.ayaFonts, id: \.self){ name in
-                                    Button{
-                                        withAnimation{
-                                            ayaVM.ayaFontName = name
-                                            stack.removeLast(1)
-                                        }
-                                    } label: {
-                                        Label(title: {
-                                            Text(name).foregroundColor(.primary)
-                                        }, icon: {
-                                            Image(systemName: "checkmark").opacity(ayaVM.ayaFontName == name ? 1 : 0)
-                                        })
-                                    }
-                                }
-                            } footer: {
-                                if ayaVM.ayaFontName == "me_quran" {
-                                    Text("Font detail me_quran")
-                                } else {
-                                    Text("Font detail amiri")
-                                }
-                            }
-                        }
-                        .navigationTitle("Font")
-                    } else if value == "settings" {
-                        SettingsView(stack: $stack)
-                            .navigationTitle("Settings")
-                            .contentBG
-
-                    }
-                }
-        }
+            }
             .searchable(text: $searchText, tokens: $searchVM.tokens, token: { token in
                 switch token {
                     case .sura: Text("sura")
@@ -106,6 +77,75 @@ struct MainView: View {
                 .environmentObject(quranVM)
                 .environmentObject(suraVM)
                 .environmentObject(ayaVM)
+                .onAppear{
+                    guard let windows = UIApplication.shared.connectedScenes.first as? UIWindowScene else{
+                        return
+                    }
+
+                    if let controller =  windows.windows.first?.rootViewController?
+                        .presentedViewController, let sheet = controller.presentationController as? UISheetPresentationController{
+                    // MARK: As Usual Set Properties What Ever Your Wish Here With Sheet
+                    
+                        controller.presentingViewController?.view.tintAdjustmentMode = .normal
+                        sheet.largestUndimmedDetentIdentifier = .large
+                        sheet.preferredCornerRadius = 30
+                    }else{
+                    print ("NO CONTROLLER FOUND" )
+                    }
+                }
+            }
+            .sheet(isPresented: $showSettings){
+                NavigationStack(path: $stack){
+                    SettingsView(stack: $stack)
+                        .toolbar{
+                            CloseButton()
+                        }
+                        .navigationTitle("Settings")
+//                        .contentBG
+                        .navigationDestination(for: String.self){ value in
+                            if value == "ayaFontNames" {
+                                List{
+                                    Section{
+                                        ForEach(CustomFont.allCases){ font in
+                                            Button{
+                                                withAnimation{
+                                                    model.ayaArabicFont = font
+                                                }
+                                            } label: {
+                                                Label(title: {
+                                                    Text(font.rawValue).foregroundColor(.primary)
+                                                }, icon: {
+                                                    Image(systemName: "checkmark").opacity(model.ayaArabicFont == font ? 1 : 0)
+                                                })
+                                            }
+                                        }
+                                    }
+                                    
+                                    model.ayaArabicFont.text
+                                }
+                                .navigationTitle("Font")
+                            }
+                        }
+                        .navigationBarTitleDisplayMode(.inline)
+                        .scrollIndicators(.hidden)
+                }
+                .presentationDetents([.height(625)])
+                .onAppear{
+                    guard let windows = UIApplication.shared.connectedScenes.first as? UIWindowScene else{
+                        return
+                    }
+
+                    if let controller =  windows.windows.first?.rootViewController?
+                        .presentedViewController, let sheet = controller.presentationController as? UISheetPresentationController{
+                    // MARK: As Usual Set Properties What Ever Your Wish Here With Sheet
+                    
+                        controller.presentingViewController?.view.tintAdjustmentMode = .normal
+                        sheet.largestUndimmedDetentIdentifier = .large
+                        sheet.preferredCornerRadius = 30
+                    }else{
+                    print ("NO CONTROLLER FOUND" )
+                    }
+                }
             }
             .sheet(isPresented: $isNotBoraded){
                 WelcomeScreen()
