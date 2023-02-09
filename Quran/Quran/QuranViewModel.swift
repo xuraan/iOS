@@ -68,16 +68,16 @@ extension QuranViewModel {
         }
     }
     func openActionModeSofha(sura: Sura)->Void{
-        selection = Int((sura.sofhas.toSofhas.first?.id ?? 1)-1)
+        selection = Int((sura.sofhas.sofhas.first?.id ?? 1)-1)
         show()
         isShowIndex = false
     }
     
     func openActionModeSura(sofha: Sofha)->Void{
         withAnimation{
-            selection = Int(sofha.suras.toSuras.first!.id-1)
+            selection = Int(sofha.suras.suras.first!.id-1)
             show()
-            suraViewScrollTo = sofha.ayas.toAyas.first!.id
+            suraViewScrollTo = sofha.ayas.ayas.first!.id
             isShowIndex = false
         }
 
@@ -111,9 +111,9 @@ extension QuranViewModel {
     
     func changeModeToSura(currentSofha: Sofha)->Void{
         withAnimation{
-            selection = Int((currentSofha.suras.toSuras.first?.id ?? 1)-1)
+            selection = Int((currentSofha.suras.suras.first?.id ?? 1)-1)
             DispatchQueue.main.asyncAfter(deadline: .now()+0.3){
-                self.suraViewScrollTo = currentSofha.ayas.toAyas.first?.id ?? 0
+                self.suraViewScrollTo = currentSofha.ayas.ayas.first?.id ?? 0
             }
         }
     }

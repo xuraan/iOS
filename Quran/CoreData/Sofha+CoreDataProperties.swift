@@ -2,7 +2,7 @@
 //  Sofha+CoreDataProperties.swift
 //  Quran
 //
-//  Created by Samba Diawara on 2023-01-27.
+//  Created by Samba Diawara on 2023-02-09.
 //
 //
 
@@ -20,6 +20,7 @@ extension Sofha {
     @NSManaged public var isFavorite: Bool
     @NSManaged public var ayas: NSOrderedSet
     @NSManaged public var suras: NSOrderedSet
+    @NSManaged public var kollections: NSSet
 
 }
 
@@ -90,6 +91,23 @@ extension Sofha {
 
     @objc(removeSuras:)
     @NSManaged public func removeFromSuras(_ values: NSOrderedSet)
+
+}
+
+// MARK: Generated accessors for kollections
+extension Sofha {
+
+    @objc(addKollectionsObject:)
+    @NSManaged public func addToKollections(_ value: Kollection)
+
+    @objc(removeKollectionsObject:)
+    @NSManaged public func removeFromKollections(_ value: Kollection)
+
+    @objc(addKollections:)
+    @NSManaged public func addToKollections(_ values: NSSet)
+
+    @objc(removeKollections:)
+    @NSManaged public func removeFromKollections(_ values: NSSet)
 
 }
 

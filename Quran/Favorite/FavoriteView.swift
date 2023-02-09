@@ -8,48 +8,31 @@
 import SwiftUI
 
 struct FavoriteView: View {
-    @FetchRequest(
-        sortDescriptors: [SortDescriptor(\.id)],
-        predicate: NSPredicate(format: ("isFavorite == true"))
-    ) var suras: FetchedResults<Sura>
-    @FetchRequest(
-        sortDescriptors: [SortDescriptor(\.id)],
-        predicate: NSPredicate(format: ("isFavorite == true"))
-    ) var ayas: FetchedResults<Aya>
-    @FetchRequest(
-        sortDescriptors: [SortDescriptor(\.id)],
-        predicate: NSPredicate(format: ("isFavorite == true"))
-    ) var sofhas: FetchedResults<Sofha>
+    @ObservedObject var favorite: Kollection
     var body: some View {
         List{
-            if !ayas.isEmpty {
+            if !favorite.ayas.ayas.isEmpty {
                 Section("ayas"){
-                    ForEach(ayas){aya in
+                    ForEach(favorite.ayas.ayas){aya in
                         AyaRow(for: aya)
                     }
                 }
             }
-            if !sofhas.isEmpty {
+            if !favorite.sofhas.sofhas.isEmpty {
                 Section("sofhas"){
-                    ForEach(sofhas){sofha in
+                    ForEach(favorite.sofhas.sofhas){sofha in
                         SofhaRow(for: sofha)
                     }
                 }
             }
-            if !suras.isEmpty {
+            if !favorite.suras.suras.isEmpty {
                 Section("suras"){
-                    ForEach(suras){sura in
+                    ForEach(favorite.suras.suras){sura in
                         SuraRow(for: sura)
                     }
                 }
             }
         }
         .environment(\.isDestructive, true)
-    }
-}
-
-struct FavoriteView_Previews: PreviewProvider {
-    static var previews: some View {
-        FavoriteView()
     }
 }

@@ -20,6 +20,9 @@ struct QuranApp: App {
                         try? persistenceController.container.viewContext.save()
                     }
                 }
+                .onDisappear{
+                    try? persistenceController.container.viewContext.save()
+                }
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

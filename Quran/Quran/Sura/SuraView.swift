@@ -31,9 +31,9 @@ struct SuraView: View {
                                 .mequran(40)
                                 .frame(maxWidth: .infinity)
                         }
-                        ForEach(sura.ayas.toAyas){ aya in
+                        ForEach(sura.ayas.ayas){ aya in
                             Group{
-                                if aya == aya.sofha.ayas.toAyas.first {
+                                if aya == aya.sofha.ayas.ayas.first {
                                     AyaView(for: aya)
 //                                        .offset(coordinateSpace: .global){ value in
 //                                            if (100...150).contains(value.minY){
@@ -116,15 +116,17 @@ struct SuraView: View {
                     HStack{
                         VStack(alignment: .leading){
                             Text(sura.phonetic)
-                                .font(.footnote)
-                            Text(sura.translation).font(.caption)
+                                .font(.headline)
+                            Text(sura.translation)
+                                .font(.subheadline)
                         }
                         .lineLimit(1)
                         
                         VStack(alignment: .trailing){
                             Text(LocalizedStringKey(sura.place.id))
-                                .font(.caption)
-                            Text("ayas: \(sura.ayas.toAyas.count)").font(.caption)
+                                .font(.headline)
+                            Text("ayas: \(sura.ayas.ayas.count)")
+                                .font(.subheadline)
                         }
                         .lineLimit(1)
                     }
@@ -154,7 +156,7 @@ struct SuraView: View {
     
     @ViewBuilder
     func pageSeparator(aya: Aya) -> some View {
-        if aya == aya.sofha.ayas.toAyas.last {
+        if aya == aya.sofha.ayas.ayas.last {
             HStack{
                 VStack{
                     Divider()

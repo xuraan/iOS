@@ -2,7 +2,7 @@
 //  Sura+CoreDataProperties.swift
 //  Quran
 //
-//  Created by Samba Diawara on 2023-01-27.
+//  Created by Samba Diawara on 2023-02-09.
 //
 //
 
@@ -23,6 +23,7 @@ extension Sura {
     @NSManaged public var ayas: NSOrderedSet
     @NSManaged public var place: Place
     @NSManaged public var sofhas: NSOrderedSet
+    @NSManaged public var kollections: NSSet
 
 }
 
@@ -93,6 +94,23 @@ extension Sura {
 
     @objc(removeSofhas:)
     @NSManaged public func removeFromSofhas(_ values: NSOrderedSet)
+
+}
+
+// MARK: Generated accessors for kollections
+extension Sura {
+
+    @objc(addKollectionsObject:)
+    @NSManaged public func addToKollections(_ value: Kollection)
+
+    @objc(removeKollectionsObject:)
+    @NSManaged public func removeFromKollections(_ value: Kollection)
+
+    @objc(addKollections:)
+    @NSManaged public func addToKollections(_ values: NSSet)
+
+    @objc(removeKollections:)
+    @NSManaged public func removeFromKollections(_ values: NSSet)
 
 }
 

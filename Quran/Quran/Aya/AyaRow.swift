@@ -9,6 +9,8 @@ import SwiftUI
 
 struct AyaRow: View {
     @ObservedObject var aya: Aya
+    @Environment(\.favorite) var favorite
+
     @EnvironmentObject var model: Model
     @EnvironmentObject var quranVM: QuranViewModel
     @EnvironmentObject var suraVM: SuraViewModel
@@ -18,6 +20,8 @@ struct AyaRow: View {
         self.aya = aya
     }
     var body: some View {
+        let isFavorite = aya.isElement(of: favorite)
+
         Label(title: {
             HStack(spacing:0){
                 if let sura = aya.sura {
@@ -41,21 +45,21 @@ struct AyaRow: View {
             RankView(
                 text: "\(aya.sura.id):\(aya.number)",
                 color: Color("bg"),
-                bgColor: aya.iconColor
+                bgColor: .favorite(isFavorite)
             )
             .offset(y: 4)
         })
         .contextMenu(menuItems: {
-            if aya.isFavorite {
+            if isFavorite {
                 UnstarButton(action: {
                     withAnimation{
-                        aya.isFavorite = false
+                        aya.removeFromKollections(favorite)
                     }
                 })
             } else {
                 StarButton{
                     withAnimation{
-                        aya.isFavorite = true
+                        aya.addToKollections(favorite)
                     }
                 }
             }
@@ -69,21 +73,20 @@ struct AyaRow: View {
                 .frame(width: 400, height: 350)
         })
         .swipeActions(edge: .leading){
-            if aya.isFavorite {
+            if isFavorite {
                 UnstarButton(action: {
                     withAnimation{
-                        aya.isFavorite = false
+                        aya.removeFromKollections(favorite)
                     }
                 })
             } else {
                 StarButton{
                     withAnimation{
-                        aya.isFavorite = true
+                        aya.addToKollections(favorite)
                     }
                 }
-            }
-        }
-
+            }        }
+        
         .environment(\.layoutDirection, .leftToRight)
     }
 }

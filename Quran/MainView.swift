@@ -17,6 +17,8 @@ struct MainView: View {
     @FetchRequest(
         sortDescriptors: [SortDescriptor(\.id)]
     ) var sofhas: FetchedResults<Sofha>
+    @Environment(\.favorite) var favorite
+
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.safeArea) var safeArea
 
@@ -87,7 +89,7 @@ struct MainView: View {
                 .environmentObject(ayaVM)
             }
             .customDismissibleSheet(isPresented: $showFavorites){
-                FavoriteView()
+                FavoriteView(favorite: favorite)
                     .navigationTitle("Favorites")
             }
             .customSheet(isPresented: $showSettings){

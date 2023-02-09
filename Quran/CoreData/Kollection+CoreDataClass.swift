@@ -1,5 +1,5 @@
 //
-//  Sofha+CoreDataClass.swift
+//  Kollection+CoreDataClass.swift
 //  Quran
 //
 //  Created by Samba Diawara on 2023-02-09.
@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-@objc(Sofha)
-public class Sofha: NSManagedObject {
+@objc(Kollection)
+public class Kollection: NSManagedObject {
 
 }

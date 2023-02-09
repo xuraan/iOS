@@ -9,15 +9,17 @@ import SwiftUI
 
 struct SofhaRow: View {
     @ObservedObject var sofha: Sofha
-    
+    @Environment(\.favorite) var favorite
+
     init(for sofha: Sofha) {
         self.sofha = sofha
     }
     
     var body: some View {
+        let isFavorite = sofha.isElement(of: favorite)
         Label(title: {
             HStack{
-                if let first = sofha.ayas.toAyas.first, let last = sofha.ayas.toAyas.last  {
+                if let first = sofha.ayas.ayas.first, let last = sofha.ayas.ayas.last  {
                     
                     last.arabicTextView(lineLimit: 1)
                         .mequran(20)
@@ -31,20 +33,20 @@ struct SofhaRow: View {
             }
             .offset(y: -4)
         }, icon: {
-            RankView(text: "\(sofha.id)", color: Color("bg"), bgColor: sofha.iconColor)
+            RankView(text: "\(sofha.id)", color: Color("bg"), bgColor: .favorite(isFavorite))
                 .offset(y: 4)
         })
         .contextMenu(menuItems: {
-            if sofha.isFavorite {
+            if isFavorite {
                 UnstarButton(action: {
                     withAnimation{
-                        sofha.isFavorite = false
+                        sofha.removeFromKollections(favorite)
                     }
                 })
             } else {
                 StarButton{
                     withAnimation{
-                        sofha.isFavorite = true
+                        sofha.addToKollections(favorite)
                     }
                 }
             }
@@ -52,16 +54,16 @@ struct SofhaRow: View {
             sofha.image(colorScheme: .light)
         })
         .swipeActions(edge: .leading){
-            if sofha.isFavorite {
+            if isFavorite {
                 UnstarButton(action: {
                     withAnimation{
-                        sofha.isFavorite = false
+                        sofha.removeFromKollections(favorite)
                     }
                 })
             } else {
                 StarButton{
                     withAnimation{
-                        sofha.isFavorite = true
+                        sofha.addToKollections(favorite)
                     }
                 }
             }

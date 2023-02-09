@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SuraRow: View {
     @ObservedObject var sura: Sura
+    @Environment(\.favorite) var favorite
     @EnvironmentObject var model: Model
     @EnvironmentObject var quranVM: QuranViewModel
     @EnvironmentObject var suraVM: SuraViewModel
@@ -18,6 +19,7 @@ struct SuraRow: View {
         self.sura = sura
     }
     var body: some View {
+        let isFavorite = sura.isElement(of: favorite)
         Label(title: {
             HStack{
                 Text(sura.phonetic)
@@ -36,11 +38,11 @@ struct SuraRow: View {
 
             }
         }, icon: {
-            RankView(text: "\(sura.id)", color: Color("bg"), bgColor: sura.iconColor)
+            RankView(text: "\(sura.id)", color: Color("bg"), bgColor: .favorite(isFavorite))
                 .offset(y: 4)
         })
         .contextMenu(menuItems: {
-            if sura.isFavorite {
+            if isFavorite {
                 UnstarButton(action: {
                     withAnimation{
                         sura.isFavorite = false
@@ -63,16 +65,16 @@ struct SuraRow: View {
                 .environmentObject(ayaVM)
         })
         .swipeActions(edge: .leading){
-            if sura.isFavorite {
+            if isFavorite {
                 UnstarButton(action: {
                     withAnimation{
-                        sura.isFavorite = false
+                        sura.removeFromKollections(favorite)
                     }
                 })
             } else {
                 StarButton{
                     withAnimation{
-                        sura.isFavorite = true
+                        sura.addToKollections(favorite)
                     }
                 }
             }

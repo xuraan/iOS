@@ -10,7 +10,9 @@ import SwiftUI
 class Model: ObservableObject {
     @Published var preferredColorScheme: ColorScheme?
     @Published var langage: Local = .fr
+
     
+
     enum Local: String, Identifiable, CaseIterable, Hashable {
         case fr = "fr_FR"
         case ar = "ar_AR"
@@ -114,4 +116,6 @@ enum CustomFont: String, Identifiable, CaseIterable, Hashable {
         .listRowBackground(Color.clear)
     }
 }
+
+
 

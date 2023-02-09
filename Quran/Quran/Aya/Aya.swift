@@ -7,9 +7,13 @@
 
 import SwiftUI
 
+
 extension Aya {
-    var number: Int  { (self.sura.ayas.toAyas.firstIndex(of: self) ?? 0) + 1 }
+    var number: Int  { (self.sura.ayas.ayas.firstIndex(of: self) ?? 0) + 1 }
     var translation: String { NSLocalizedString( "a\(self.id)", tableName: "ayas", comment: "Ayas trans") }
+    func isElement(of kollection: Kollection) -> Bool {
+        return self.kollections.contains(kollection)
+    }
 }
 
 //MARK: - SwiftUI

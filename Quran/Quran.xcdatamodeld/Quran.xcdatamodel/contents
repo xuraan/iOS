@@ -5,8 +5,15 @@
         <attribute name="isFavorite" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="plain" attributeType="String" defaultValueString="&quot;&quot;"/>
         <attribute name="text" attributeType="String" defaultValueString="&quot;&quot;"/>
+        <relationship name="kollections" toMany="YES" deletionRule="Nullify" destinationEntity="Kollection" inverseName="ayas" inverseEntity="Kollection"/>
         <relationship name="sofha" maxCount="1" deletionRule="Deny" destinationEntity="Sofha" inverseName="ayas" inverseEntity="Sofha"/>
         <relationship name="sura" maxCount="1" deletionRule="Deny" destinationEntity="Sura" inverseName="ayas" inverseEntity="Sura"/>
+    </entity>
+    <entity name="Kollection" representedClassName="Kollection" syncable="YES">
+        <attribute name="id" attributeType="String"/>
+        <relationship name="ayas" toMany="YES" deletionRule="Nullify" destinationEntity="Aya" inverseName="kollections" inverseEntity="Aya"/>
+        <relationship name="sofhas" toMany="YES" deletionRule="Nullify" destinationEntity="Sofha" inverseName="kollections" inverseEntity="Sofha"/>
+        <relationship name="suras" toMany="YES" deletionRule="Nullify" destinationEntity="Sura" inverseName="kollections" inverseEntity="Sura"/>
     </entity>
     <entity name="Place" representedClassName="Place" syncable="YES">
         <attribute name="id" attributeType="String" defaultValueString=""/>
@@ -16,6 +23,7 @@
         <attribute name="id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="isFavorite" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <relationship name="ayas" toMany="YES" deletionRule="Deny" ordered="YES" destinationEntity="Aya" inverseName="sofha" inverseEntity="Aya"/>
+        <relationship name="kollections" toMany="YES" deletionRule="Nullify" destinationEntity="Kollection" inverseName="sofhas" inverseEntity="Kollection"/>
         <relationship name="suras" toMany="YES" deletionRule="Deny" ordered="YES" destinationEntity="Sura" inverseName="sofhas" inverseEntity="Sura"/>
     </entity>
     <entity name="Sura" representedClassName="Sura" syncable="YES">
@@ -24,6 +32,7 @@
         <attribute name="name" attributeType="String" defaultValueString=""/>
         <attribute name="phonetic" attributeType="String" defaultValueString=""/>
         <relationship name="ayas" toMany="YES" deletionRule="Deny" ordered="YES" destinationEntity="Aya" inverseName="sura" inverseEntity="Aya"/>
+        <relationship name="kollections" toMany="YES" deletionRule="Nullify" destinationEntity="Kollection" inverseName="suras" inverseEntity="Kollection"/>
         <relationship name="place" maxCount="1" deletionRule="Deny" destinationEntity="Place" inverseName="suras" inverseEntity="Place"/>
         <relationship name="sofhas" toMany="YES" deletionRule="Deny" ordered="YES" destinationEntity="Sofha" inverseName="suras" inverseEntity="Sofha" spotlightIndexingEnabled="YES"/>
     </entity>

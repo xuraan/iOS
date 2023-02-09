@@ -2,7 +2,7 @@
 //  Aya+CoreDataProperties.swift
 //  Quran
 //
-//  Created by Samba Diawara on 2023-01-27.
+//  Created by Samba Diawara on 2023-02-09.
 //
 //
 
@@ -22,6 +22,24 @@ extension Aya {
     @NSManaged public var text: String
     @NSManaged public var sofha: Sofha
     @NSManaged public var sura: Sura
+    @NSManaged public var kollections: NSSet
+
+}
+
+// MARK: Generated accessors for kollections
+extension Aya {
+
+    @objc(addKollectionsObject:)
+    @NSManaged public func addToKollections(_ value: Kollection)
+
+    @objc(removeKollectionsObject:)
+    @NSManaged public func removeFromKollections(_ value: Kollection)
+
+    @objc(addKollections:)
+    @NSManaged public func addToKollections(_ values: NSSet)
+
+    @objc(removeKollections:)
+    @NSManaged public func removeFromKollections(_ values: NSSet)
 
 }
 

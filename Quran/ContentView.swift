@@ -10,12 +10,16 @@ import CoreData
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) var viewContext
+    @FetchRequest var favorite: FetchedResults<Kollection>
+
     @StateObject var model: Model = .init()
     @StateObject var quranVM: QuranViewModel = .init()
     @StateObject var suraVM: SuraViewModel = .init()
     @StateObject var searchVM: SearchModel = .init()
     @StateObject var ayaVM: AyaViewModel = .init()
-
+    init(){
+        _favorite = Kollection.favorite
+    }
     var body: some View {
         
         GeometryReader{ proxy in
@@ -29,7 +33,7 @@ struct ContentView: View {
         .environmentObject(suraVM)
         .environmentObject(searchVM)
         .environmentObject(ayaVM)
-//        .environment(\.locale, Locale(identifier: model.langage.rawValue))
+        .environment(\.favorite, favorite.first!)
         //MARK: -THEME
         .preferredColorScheme(model.preferredColorScheme)
     }

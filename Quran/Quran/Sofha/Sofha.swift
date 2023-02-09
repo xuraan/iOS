@@ -7,3 +7,8 @@
 
 import SwiftUI
 
+extension Sofha {
+    func isElement(of kollection: Kollection) -> Bool {
+        return self.kollections.contains(kollection)
+    }
+}

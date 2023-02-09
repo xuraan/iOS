@@ -13,4 +13,8 @@ import CoreData
 extension Sura {
     var translation : String { NSLocalizedString( "s\(self.id)", tableName: "suras", comment: "sura trans")}
     var iconColor: Color { self.isFavorite ? .yellow : Color("BGI")}
+    
+    func isElement(of kollection: Kollection) -> Bool {
+        return self.kollections.contains(kollection)
+    }
 }
