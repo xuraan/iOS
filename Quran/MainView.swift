@@ -28,6 +28,7 @@ struct MainView: View {
     
     @State var searchText = ""
     @State var isHideCloseButton = false
+    @State var showFavorites = false
     @State var showSettings = false
     @State var stack: NavigationPath = .init()
     @AppStorage("isBoraded") var isNotBoraded: Bool = !UserDefaults.standard.bool(forKey: "isBoraded")
@@ -37,6 +38,22 @@ struct MainView: View {
             NavigationStack{
                 HomeView(text: $searchText)
                     .toolbar{
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            Button("Settings"){
+                                withAnimation{
+                                    showSettings.toggle()
+                                }
+                            }
+                        }
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            Button{
+                                withAnimation{
+                                    showSettings.toggle()
+                                }
+                            }label: {
+                                Image(systemName: "info.circle")
+                            }
+                        }
                         ToolbarItemGroup(placement: .bottomBar){
                             Button{
                                 withAnimation{
@@ -47,10 +64,10 @@ struct MainView: View {
                             }
                             Button{
                                 withAnimation{
-                                    showSettings.toggle()
+                                    showFavorites.toggle()
                                 }
                             } label: {
-                                Image(systemName: "gear")
+                                Image(systemName: "bolt.heart.fill")
                             }
                         }
                     }
@@ -68,6 +85,10 @@ struct MainView: View {
                 .environmentObject(quranVM)
                 .environmentObject(suraVM)
                 .environmentObject(ayaVM)
+            }
+            .customDismissibleSheet(isPresented: $showFavorites){
+                FavoriteView()
+                    .navigationTitle("Favorites")
             }
             .customSheet(isPresented: $showSettings){
                 NavigationStack(path: $stack){

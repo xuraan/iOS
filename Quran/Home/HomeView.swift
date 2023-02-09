@@ -13,21 +13,7 @@ struct HomeView: View {
     @Environment(\.showSlideView) var showSlideView
     @Environment(\.isSearching) var isSearching
     @Binding var text: String
-    
-    @FetchRequest(
-        sortDescriptors: [SortDescriptor(\.id)],
-        predicate: NSPredicate(format: ("isFavorite == true"))
-    ) var suras: FetchedResults<Sura>
-    @FetchRequest(
-        sortDescriptors: [SortDescriptor(\.id)],
-        predicate: NSPredicate(format: ("isFavorite == true"))
-    ) var ayas: FetchedResults<Aya>
-    @FetchRequest(
-        sortDescriptors: [SortDescriptor(\.id)],
-        predicate: NSPredicate(format: ("isFavorite == true"))
-    ) var sofhas: FetchedResults<Sofha>
-    
-    
+
     
     init(text: Binding<String> = .constant("")) {
         self._text = text
@@ -39,90 +25,24 @@ struct HomeView: View {
                 SearchView(text: $text)
                     .environment(\.isDestructive, false)
             } else {
-                Button(action: showSlideView, label: {
-                    Label("Last page seen", systemImage: "eyes")
-                })
-                favoriteSuraSection()
-                favoriteSofhaSection()
-                favoriteAyaSection()
+                HStack{
+                    Spacer()
+                    Button(action: showSlideView, label: {
+                        Text("Open quran").font(.headline)
+                    })
+                    .buttonStyle(.borderless)
+                }
+                
+                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                .listRowBackground(Color.clear)
             }
             Section{}
         }
+        
         .listStyle(.insetGrouped)
         .environment(\.isDestructive, true)
-        .animation(.easeInOut, value: suras.isEmpty)
-        .animation(.easeInOut, value: sofhas.isEmpty)
-        .animation(.easeInOut, value: ayas.isEmpty)
         .navigationTitle(isSearching ? "Search" : "The noble quran")
     }
-    
-    @ViewBuilder
-    func favoriteSuraSection()-> some View {
-        if !suras.isEmpty {
-            Section{
-                ForEach(suras){ sura in
-                    Button(action: {
-                        quranVM.suraOpenAction(sura)
-                    }){
-                        SuraRow(for: sura)
-                    }
-                    .padding(.vertical, -6)
-                }
-            } header: {
-                HStack{
-                    Text("Favorites sura")
-                    Spacer()
-                    Text("\(suras.count)")
-                }
-            }
-        }
-
-    }
-    @ViewBuilder
-    func favoriteSofhaSection()-> some View {
-        if !sofhas.isEmpty {
-            Section{
-                ForEach(sofhas){ sofha in
-                    Button(action: {
-                        quranVM.sofhaOpenAction(sofha)
-                    }){
-                        SofhaRow(for: sofha)
-                    }
-                    .padding(.vertical, -6)
-                }
-            } header: {
-                HStack{
-                    Text("Favorites sofhas")
-                    Spacer()
-                    Text("\(sofhas.count)")
-                }
-            }
-        }
-
-    }
-    @ViewBuilder
-    func favoriteAyaSection()-> some View {
-        if !ayas.isEmpty {
-            Section{
-                ForEach(ayas){ aya in
-                    Button(action: {
-                        quranVM.ayaOpenAction(aya)
-                    }){
-                        AyaRow(for: aya)
-                    }
-                    .padding(.vertical, -6)
-
-                }
-            } header: {
-                HStack{
-                    Text("Favorites aya")
-                    Spacer()
-                    Text("\(ayas.count)")
-                }
-            }
-        }
-    }
-    
 }
 
 struct HomeView_Previews: PreviewProvider {

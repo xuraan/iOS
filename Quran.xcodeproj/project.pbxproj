@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F43AE4CA29948B70004CAE05 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43AE4C929948B70004CAE05 /* FavoriteView.swift */; };
 		F460982B2987507F00EDEAF7 /* SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = F460982A2987507F00EDEAF7 /* SafeArea.swift */; };
 		F460982D2987516F00EDEAF7 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F460982C2987516F00EDEAF7 /* MainView.swift */; };
 		F460982F2987554700EDEAF7 /* Ternary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F460982E2987554700EDEAF7 /* Ternary.swift */; };
@@ -80,6 +81,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F43AE4C929948B70004CAE05 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		F460982A2987507F00EDEAF7 /* SafeArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeArea.swift; sourceTree = "<group>"; };
 		F460982C2987516F00EDEAF7 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F460982E2987554700EDEAF7 /* Ternary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ternary.swift; sourceTree = "<group>"; };
@@ -169,6 +171,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F43AE4C829948B59004CAE05 /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				F43AE4C929948B70004CAE05 /* FavoriteView.swift */,
+			);
+			path = Favorite;
+			sourceTree = "<group>";
+		};
 		F4A4B0E0298449FB000ABB8D = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +198,7 @@
 		F4A4B0EB298449FB000ABB8D /* Quran */ = {
 			isa = PBXGroup;
 			children = (
+				F43AE4C829948B59004CAE05 /* Favorite */,
 				F4A4B1682984563A000ABB8D /* Info.plist */,
 				F4DBA2D7298DA0EA0090E917 /* OnBoarding */,
 				F4A4B16729845337000ABB8D /* CoreData */,
@@ -497,6 +508,7 @@
 				F460983529882ABA00EDEAF7 /* ModelSettings.swift in Sources */,
 				F4A4B14129844C31000ABB8D /* SuraRow.swift in Sources */,
 				F4A4B12029844C0A000ABB8D /* PageView.swift in Sources */,
+				F43AE4CA29948B70004CAE05 /* FavoriteView.swift in Sources */,
 				F4A4B16629845328000ABB8D /* Sofha+CoreDataProperties.swift in Sources */,
 				F4A4B16529845328000ABB8D /* Sofha+CoreDataClass.swift in Sources */,
 				F4A4B16A29845A37000ABB8D /* StarButton.swift in Sources */,
