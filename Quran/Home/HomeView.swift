@@ -10,6 +10,7 @@ import CoreData
 
 struct HomeView: View {
     @EnvironmentObject var quranVM: QuranViewModel
+    @Environment(\.showSlideView) var showSlideView
     @Environment(\.isSearching) var isSearching
     @Binding var text: String
     
@@ -38,7 +39,9 @@ struct HomeView: View {
                 SearchView(text: $text)
                     .environment(\.isDestructive, false)
             } else {
-               
+                Button(action: showSlideView, label: {
+                    Label("Last page seen", systemImage: "eyes")
+                })
                 favoriteSuraSection()
                 favoriteSofhaSection()
                 favoriteAyaSection()

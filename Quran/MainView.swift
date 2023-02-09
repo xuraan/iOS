@@ -37,13 +37,7 @@ struct MainView: View {
             NavigationStack{
                 HomeView(text: $searchText)
                     .toolbar{
-                        ToolbarItem(placement: .navigationBarLeading){
-                            NavigationLink(value: "app_info", label: {
-                                Label("About", systemImage: "info.circle")
-                                    .labelStyle(.titleAndIcon)
-                            })
-                        }
-                        ToolbarItemGroup(placement: .primaryAction){
+                        ToolbarItemGroup(placement: .bottomBar){
                             Button{
                                 withAnimation{
                                     quranVM.isShowIndex = true
@@ -58,8 +52,6 @@ struct MainView: View {
                             } label: {
                                 Image(systemName: "gear")
                             }
-                            
-                           
                         }
                     }
             }
@@ -70,37 +62,20 @@ struct MainView: View {
                     case .sofha: Text("sofha")
                 }
             })
-            .sheet(isPresented: $quranVM.isShowIndex){
+            .customSheet(isPresented: $quranVM.isShowIndex){
                 QuranIndexView()
                 .preferredColorScheme(model.preferredColorScheme)
                 .environmentObject(quranVM)
                 .environmentObject(suraVM)
                 .environmentObject(ayaVM)
-                .onAppear{
-                    guard let windows = UIApplication.shared.connectedScenes.first as? UIWindowScene else{
-                        return
-                    }
-
-                    if let controller =  windows.windows.first?.rootViewController?
-                        .presentedViewController, let sheet = controller.presentationController as? UISheetPresentationController{
-                    // MARK: As Usual Set Properties What Ever Your Wish Here With Sheet
-                    
-                        controller.presentingViewController?.view.tintAdjustmentMode = .normal
-                        sheet.largestUndimmedDetentIdentifier = .large
-                        sheet.preferredCornerRadius = 30
-                    }else{
-                    print ("NO CONTROLLER FOUND" )
-                    }
-                }
             }
-            .sheet(isPresented: $showSettings){
+            .customSheet(isPresented: $showSettings){
                 NavigationStack(path: $stack){
                     SettingsView(stack: $stack)
                         .toolbar{
                             CloseButton()
                         }
                         .navigationTitle("Settings")
-//                        .contentBG
                         .navigationDestination(for: String.self){ value in
                             if value == "ayaFontNames" {
                                 List{
@@ -129,31 +104,16 @@ struct MainView: View {
                         .scrollIndicators(.hidden)
                 }
                 .presentationDetents([.height(625)])
-                .onAppear{
-                    guard let windows = UIApplication.shared.connectedScenes.first as? UIWindowScene else{
-                        return
-                    }
-
-                    if let controller =  windows.windows.first?.rootViewController?
-                        .presentedViewController, let sheet = controller.presentationController as? UISheetPresentationController{
-                    // MARK: As Usual Set Properties What Ever Your Wish Here With Sheet
-                    
-                        controller.presentingViewController?.view.tintAdjustmentMode = .normal
-                        sheet.largestUndimmedDetentIdentifier = .large
-                        sheet.preferredCornerRadius = 30
-                    }else{
-                    print ("NO CONTROLLER FOUND" )
-                    }
-                }
             }
-            .sheet(isPresented: $isNotBoraded){
+            .customSheet(isPresented: $isNotBoraded){
                 WelcomeScreen()
-                    .presentationDetents([.medium])
+                    .presentationDetents([.height(150)])
                     .interactiveDismissDisabled()
             }
             .ignoresSafeArea(.keyboard)
         } cover: {
             QuranView(isHideCloseButton: $isHideCloseButton)
+                .id(isNotBoraded)//to update quran view after boading
         }
     }
 }
