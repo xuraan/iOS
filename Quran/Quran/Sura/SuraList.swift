@@ -8,15 +8,17 @@
 import SwiftUI
 
 struct SuraList: View {
+    @Environment(\.dismiss) var dismiss
     var suras: [Sura]
     @State var searchResult: [Sura]
     @State var selection: Sura?
     @State var text: String = ""
     @EnvironmentObject var searchVM: SearchModel
     @EnvironmentObject var quran: QuranViewModel
+    
     init(suras: [Sura]) {
         self.suras = suras
-        self.searchResult = suras
+        self._searchResult = State(initialValue: suras)
     }
     
     var body: some View {
@@ -72,7 +74,10 @@ struct SuraList: View {
         }
         .onChange(of: selection){ value in
             if let value = value {
-                quran.suraOpenAction(value)
+                dismiss()
+                DispatchQueue.main.asyncAfter(deadline: .now()+0.3){
+                    quran.suraOpenAction(value)
+                }
             }
         }
     }

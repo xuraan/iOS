@@ -14,9 +14,11 @@ struct AyaList: View {
     @State var text: String = ""
     @EnvironmentObject var searchVM: SearchModel
     @EnvironmentObject var quran: QuranViewModel
+    @Environment(\.dismiss) var dismiss
+
     init(ayas: [Aya]) {
         self.ayas = ayas
-        self.searchResult = ayas
+        self._searchResult = State(initialValue: ayas)
     }
     var body: some View {
         List(searchResult, id: \.self, selection: $selection){ aya in
@@ -68,7 +70,10 @@ struct AyaList: View {
         }
         .onChange(of: selection){ value in
             if let value = value {
-                quran.ayaOpenAction(value)
+                dismiss()
+                DispatchQueue.main.asyncAfter(deadline: .now()+0.3){
+                    quran.ayaOpenAction(value)
+                }
             }
         }
     }

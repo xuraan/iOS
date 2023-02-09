@@ -21,6 +21,12 @@ struct SearchView: View {
         self._text = text
     }
     var body: some View {
+        Section{}
+            .opacity(0)
+            .listRowBackground(Color.clear)
+            .onChange(of: text){ value in
+                search()
+            }
         if text.isEmpty && searchVM.tokens.isEmpty {
             Section{
                     Button(action: {searchVM.tokens=[SearchModel.Token.sura]}){
@@ -43,15 +49,9 @@ struct SearchView: View {
                 }
             }
         }
-            suraSection()
-            ayaSection()
-            sofhaSection()
-        Text("searchView")
-            .opacity(0)
-            .listRowBackground(Color.clear)
-            .onChange(of: text){ value in
-                search()
-            }
+        suraSection()
+        ayaSection()
+        sofhaSection()
     }
 }
 
@@ -96,7 +96,7 @@ extension SearchView {
                     Text("sura")
                     Spacer()
                     if surasResult.count > 3 {
-                        MoreLink{
+                        MoreLinkSheet {
                             SuraList(suras: surasResult)
                             .navigationTitle("Sura result")
                             .toolbar{
@@ -131,10 +131,8 @@ extension SearchView {
                     Text("aya")
                     Spacer()
                     if ayasResult.count > 3 {
-                        MoreLink{
-                            List(ayasResult){ aya in
-                                AyaRow(for: aya)
-                            }
+                        MoreLinkSheet{
+                            AyaList(ayas: ayasResult)
                             .navigationTitle("Aya results")
                             .listStyle(.plain)
                             .toolbar{
@@ -170,7 +168,7 @@ extension SearchView {
                     Text("sofha")
                     Spacer()
                     if sofhasResult.count > 3 {
-                        MoreLink{
+                        MoreLinkSheet{
                             SofhaList(sofhas: sofhasResult)
                             .toolbar{
                                 ToolbarItem(placement: .status, content: {

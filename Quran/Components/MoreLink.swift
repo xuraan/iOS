@@ -23,10 +23,35 @@ struct MoreLink<Destination: View>: View {
     }
 }
 
+struct MoreLinkSheet<Content: View>: View {
+    var content: Content
+    @State var show = false
+    init(@ViewBuilder content: @escaping ()-> Content) {
+        self.content = content()
+    }
+    var body: some View {
+        Button(action: {show = true}){
+            HStack{
+                Text("More")
+                Image(systemName: "arrow.up.right.circle.fill")
+            }
+            .font(.footnote)
+        }
+        .customDismissibleSheet(isPresented: $show) {
+            content
+        }
+    }
+}
+
 struct MoreLink_Previews: PreviewProvider {
     static var previews: some View {
         MoreLink{
             
+        }
+        MoreLinkSheet {
+            List{
+                
+            }
         }
     }
 }

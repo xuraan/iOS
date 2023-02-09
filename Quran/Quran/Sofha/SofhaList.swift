@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SofhaList: View {
+    @Environment(\.dismiss) var dismiss
     var sofhas: [Sofha]
     @State var searchResult: [Sofha]
     @State var selection: Sofha?
@@ -16,7 +17,7 @@ struct SofhaList: View {
     @EnvironmentObject var quran: QuranViewModel
     init(sofhas: [Sofha]) {
         self.sofhas = sofhas
-        self.searchResult = sofhas
+        self._searchResult = State(initialValue: sofhas)
     }
     var body: some View {
         List(searchResult, id: \.self, selection: $selection){ sofha in
@@ -67,10 +68,11 @@ struct SofhaList: View {
         }
         .onChange(of: selection){ value in
             if let value = value {
-                quran.sofhaOpenAction(value)
-                selection = nil
+                dismiss()
+                DispatchQueue.main.asyncAfter(deadline: .now()+0.3){
+                    quran.sofhaOpenAction(value)
+                }
             }
         }
-//        .contentBG
     }
 }
