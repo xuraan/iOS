@@ -32,17 +32,17 @@ struct SearchView: View {
                     Button(action: {searchVM.tokens=[SearchModel.Token.sura]}){
                         Label("sura", systemImage: "link")
                             .frame(maxWidth: .infinity, alignment: .leading)
-                    }
+                    }.fullSeparatore2
                     
                     Button(action: {searchVM.tokens = [SearchModel.Token.sofha]}){
                         Label("sofha", systemImage: "link")
                             .frame(maxWidth: .infinity, alignment: .leading)
-                    }
+                    }.fullSeparatore2
                     
                     Button(action: {searchVM.tokens = [SearchModel.Token.aya]}){
                         Label("aya", systemImage: "link")
                             .frame(maxWidth: .infinity, alignment: .leading)
-                    }
+                    }.fullSeparatore2
             } header: {
                 if text.isEmpty && searchVM.tokens.isEmpty {
                     Text("Search in")
@@ -85,7 +85,7 @@ extension SearchView {
             Section{
                 ForEach(surasResult.prefix(3)){ sura in
                     SuraRow(for: sura, action: {quranVM.suraOpenAction(sura)})
-                }
+                }.fullSeparatore2
             } header: {
                 HStack{
                     Text("sura")
@@ -115,7 +115,7 @@ extension SearchView {
             Section{
                 ForEach(ayasResult.prefix(3)){ aya in
                     AyaRow(for: aya, action: {quranVM.ayaOpenAction(aya)})
-                }
+                }.fullSeparatore2
             } header: {
                 HStack{
                     Text("aya")
@@ -147,7 +147,7 @@ extension SearchView {
             Section{
                 ForEach(sofhasResult.prefix(3)){ sofha in
                     SofhaRow(for: sofha, action: {quranVM.sofhaOpenAction(sofha)})
-                }
+                }.fullSeparatore2
             } header: {
                 HStack{
                     Text("sofha")

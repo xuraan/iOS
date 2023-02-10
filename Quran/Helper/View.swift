@@ -101,4 +101,10 @@ extension View{
             return -viewDimension[.listRowSeparatorLeading]
         }
     }
+    @ViewBuilder
+    var fullSeparatore2: some View {
+        self.alignmentGuide(.listRowSeparatorLeading){ viewDimension in
+            return -(viewDimension[.leading]+17)
+        }
+    }
 }
