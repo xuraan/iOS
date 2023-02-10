@@ -85,13 +85,16 @@ struct PersistenceController {
                  */
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
-            
         })
         container.viewContext.automaticallyMergesChangesFromParent = true
         let viewContext = container.viewContext
         if !UserDefaults.standard.bool(forKey: "dataWasAdded"){
+            //MARK: - App Kollection
             let favorite = Kollection(context: viewContext)
-            favorite.id = "Favorite"
+            favorite.id = "C6819E4A-9203-48CE-9EE4-AAF815B52D09"
+            let pinned = Kollection(context: viewContext)
+            pinned.id = "CF39FE0F-4FDE-494B-A628-7B842F87C3ED"
+            //MARK: - Quran
             let newPlace = Place(context: viewContext)
             newPlace.id = "mk"
             let newPlace1 = Place(context: viewContext)
@@ -106,6 +109,7 @@ struct PersistenceController {
                 newSura.name = sura.name
                 newSura.phonetic = sura.phonetic
                 newSura.place = sura.place == "mk" ? newPlace : newPlace1
+                newSofha.kollections = .init()
                 var surasSofha = Set<Sofha>()
                 for aya in sura.ayas{
                     let newAya = Aya(context: viewContext)
@@ -113,7 +117,7 @@ struct PersistenceController {
                     newAya.text = aya.text
                     newAya.plain = aya.plain
                     newAya.sura = newSura
-                                                    
+                    newAya.kollections = .init()
                     if aya.sofha == sofhaId {
                         newAya.sofha = newSofha
                         surasSofha.insert(newSofha)
@@ -128,8 +132,8 @@ struct PersistenceController {
                 }
                 for sofha in surasSofha.sorted(by: { $0.id < $1.id }) {
                     newSura.addToSofhas(sofha)
+                    newSofha.kollections = .init()
                 }
-            
             }
             try? viewContext.save()
             UserDefaults.standard.set(true, forKey: "dataWasAdded")

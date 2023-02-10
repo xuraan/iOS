@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SuraView: View {
     @ObservedObject var sura: Sura
+    @Environment(\.favorite) var favorite
+    @Environment(\.pinned) var pinned
     @EnvironmentObject var suraVM: SuraViewModel
     @EnvironmentObject var quranVM: QuranViewModel
     @State var rect: CGRect = .zero
@@ -77,19 +79,7 @@ struct SuraView: View {
                             Text(sura.name)
                                 .waseem(35, weight: .regular)
                                 .contextMenu(menuItems: {
-                                    if sura.isFavorite {
-                                        UnstarButton(action: {
-                                            withAnimation{
-                                                sura.isFavorite = false
-                                            }
-                                        })
-                                    } else {
-                                        StarButton{
-                                            withAnimation{
-                                                sura.isFavorite = true
-                                            }
-                                        }
-                                    }
+                                    sura.menu(favorite: favorite, pinned: pinned)
                                 })
                                 .padding(.vertical, -10)
                                 .frame(maxWidth: .infinity, alignment: .center)
@@ -151,7 +141,7 @@ struct SuraView: View {
                 }
             }
         }
-        .background(Color.yellow.opacity( sura.isFavorite ? 0.05 : 0 ).ignoresSafeArea())
+        .background(Color.yellow.opacity( sura.isElement(of: favorite) ? 0.05 : 0 ).ignoresSafeArea())
     }
     
     @ViewBuilder

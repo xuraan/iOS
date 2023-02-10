@@ -8,7 +8,6 @@
 
 import Foundation
 import CoreData
-import SwiftUI
 
 
 extension Kollection {
@@ -22,15 +21,6 @@ extension Kollection {
     @NSManaged public var suras: NSSet
     @NSManaged public var sofhas: NSSet
 
-    static var favorite: FetchRequest<Kollection> {
-        let request = fetchRequest()
-        request.sortDescriptors = [
-            NSSortDescriptor(keyPath: \Kollection.id, ascending: true)
-        ]
-        request.fetchLimit = 1
-        request.predicate = NSPredicate(format: "id = %@", "Favorite")
-        return FetchRequest(fetchRequest: request)
-    }
 }
 
 // MARK: Generated accessors for ayas

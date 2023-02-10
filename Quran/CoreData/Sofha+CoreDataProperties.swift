@@ -17,7 +17,6 @@ extension Sofha {
     }
 
     @NSManaged public var id: Int16
-    @NSManaged public var isFavorite: Bool
     @NSManaged public var ayas: NSOrderedSet
     @NSManaged public var suras: NSOrderedSet
     @NSManaged public var kollections: NSSet

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SofhasView: View {
+    @Environment(\.pinned) var pinned
+    @Environment(\.favorite) var favorite
     @Binding var selection: Int
     @State var isExtended: Bool = false
     @Binding var isHideCloseButton: Bool
@@ -33,15 +35,14 @@ struct SofhasView: View {
                 pages: sofhas.map{ sofha in
                     SofhaView(isExtended: $isExtended,for: sofha)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-//                        .background(sofha.iconColor.opacity(0.03).ignoresSafeArea())
-//                        .scaleEffect(x: 0.99)
                         .safeAreaInset(edge: .top){
                             HStack{}
                             .frame(height: isExtended ? 1 : 45)
                             .offset(y: proxy.safeAreaInsets.top)
                         }
                        .ignoresSafeArea(.container, edges: isExtended ? [.horizontal, .bottom] : [.all])
-                       
+                       .environment(\.favorite, favorite)
+                       .environment(\.pinned, pinned)
                 }
             )
             .ignoresSafeArea()
@@ -63,6 +64,7 @@ struct SofhasView: View {
                 .menuIndicator(.hidden)
                 .opacity(isExtended ? 0 : 1)
             }
+            
         }
         .onChange(of: isExtended){ value in
             withAnimation{

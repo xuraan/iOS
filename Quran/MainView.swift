@@ -8,19 +8,9 @@
 import SwiftUI
 
 struct MainView: View {
-    @FetchRequest(
-        sortDescriptors: [SortDescriptor(\.id)]
-    ) var suras: FetchedResults<Sura>
-    @FetchRequest(
-        sortDescriptors: [SortDescriptor(\.id)]
-    ) var ayas: FetchedResults<Sura>
-    @FetchRequest(
-        sortDescriptors: [SortDescriptor(\.id)]
-    ) var sofhas: FetchedResults<Sofha>
     @Environment(\.favorite) var favorite
-
+    @Environment(\.pinned) var pinned
     @Environment(\.colorScheme) var colorScheme
-    @Environment(\.safeArea) var safeArea
 
     @EnvironmentObject var model: Model
     @EnvironmentObject var quranVM: QuranViewModel
@@ -33,12 +23,10 @@ struct MainView: View {
     @State var showFavorites = false
     @State var showSettings = false
     @State var stack: NavigationPath = .init()
-    @AppStorage("isBoraded") var isNotBoraded: Bool = !UserDefaults.standard.bool(forKey: "isBoraded")
-
     var body: some View {
         MainContainer{
             NavigationStack{
-                HomeView(text: $searchText)
+                HomeView(text: $searchText, pinned: pinned)
                     .toolbar{
                         ToolbarItem(placement: .navigationBarTrailing) {
                             Button("Settings"){
@@ -90,7 +78,6 @@ struct MainView: View {
             }
             .customDismissibleSheet(isPresented: $showFavorites){
                 FavoriteView(favorite: favorite)
-                    .navigationTitle("Favorites")
             }
             .customSheet(isPresented: $showSettings){
                 NavigationStack(path: $stack){
@@ -128,15 +115,11 @@ struct MainView: View {
                 }
                 .presentationDetents([.height(625)])
             }
-            .customSheet(isPresented: $isNotBoraded){
-                WelcomeScreen()
-                    .presentationDetents([.height(150)])
-                    .interactiveDismissDisabled()
-            }
             .ignoresSafeArea(.keyboard)
         } cover: {
             QuranView(isHideCloseButton: $isHideCloseButton)
-                .id(isNotBoraded)//to update quran view after boading
+                .environment(\.favorite, favorite)
+                .environment(\.pinned, pinned)
         }
     }
 }

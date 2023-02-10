@@ -12,11 +12,12 @@ struct HomeView: View {
     @EnvironmentObject var quranVM: QuranViewModel
     @Environment(\.showSlideView) var showSlideView
     @Environment(\.isSearching) var isSearching
+    @ObservedObject var pinned: Kollection
     @Binding var text: String
-
     
-    init(text: Binding<String> = .constant("")) {
+    init(text: Binding<String> = .constant(""), pinned: Kollection) {
         self._text = text
+        self.pinned = pinned
     }
     
     var body: some View {
@@ -32,15 +33,21 @@ struct HomeView: View {
                     })
                     .buttonStyle(.borderless)
                 }
-                
                 .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 .listRowBackground(Color.clear)
+                KollectionItemsSection(
+                    for: pinned,
+                    suraSectionTitle: "pinned suras",
+                    ayaSectionTitle: "pinned ayas",
+                    sofhaSectionTitle: "pinned sofhas")
+                .environment(\.pinned, pinned)
+                .environment(\.isPennedDestructive, true)
             }
-            Section{}
         }
-        
+        .environment(\.isDestructive, false)
+
+        .animation(.easeInOut, value: pinned.ayas.count)
         .listStyle(.insetGrouped)
-        .environment(\.isDestructive, true)
         .navigationTitle(isSearching ? "Search" : "The noble quran")
     }
 }
@@ -48,20 +55,5 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-    }
-}
-
-
-
-struct RowButtonStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .padding(.horizontal)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color("bg1"))
-            .overlay{
-                Color.black.opacity( configuration.isPressed ? 0.3 : 0 )
-            }
-            .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
     }
 }

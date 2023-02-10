@@ -17,7 +17,6 @@ extension Aya {
     }
 
     @NSManaged public var id: Int16
-    @NSManaged public var isFavorite: Bool
     @NSManaged public var plain: String
     @NSManaged public var text: String
     @NSManaged public var sofha: Sofha

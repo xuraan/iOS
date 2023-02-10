@@ -16,7 +16,7 @@ struct QuranApp: App {
         WindowGroup {
             ContentView()
                 .onChange(of: scenePhase){ phase in
-                    if phase == .background {
+                    if phase != .active {
                         try? persistenceController.container.viewContext.save()
                     }
                 }

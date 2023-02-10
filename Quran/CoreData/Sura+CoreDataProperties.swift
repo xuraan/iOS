@@ -17,7 +17,6 @@ extension Sura {
     }
 
     @NSManaged public var id: Int16
-    @NSManaged public var isFavorite: Bool
     @NSManaged public var name: String
     @NSManaged public var phonetic: String
     @NSManaged public var ayas: NSOrderedSet

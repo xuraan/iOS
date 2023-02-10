@@ -10,6 +10,8 @@ import SwiftUI
 struct SuraRow: View {
     @ObservedObject var sura: Sura
     @Environment(\.favorite) var favorite
+    @Environment(\.pinned) var pinned
+
     @EnvironmentObject var model: Model
     @EnvironmentObject var quranVM: QuranViewModel
     @EnvironmentObject var suraVM: SuraViewModel
@@ -41,43 +43,8 @@ struct SuraRow: View {
             RankView(text: "\(sura.id)", color: Color("bg"), bgColor: .favorite(isFavorite))
                 .offset(y: 4)
         })
-        .contextMenu(menuItems: {
-            if isFavorite {
-                UnstarButton(action: {
-                    withAnimation{
-                        sura.isFavorite = false
-                    }
-                })
-            } else {
-                StarButton{
-                    withAnimation{
-                        sura.isFavorite = true
-                    }
-                }
-            }
-        }, preview: {
-            SuraView(for: sura)
-                .frame(width: 400, height: 500)
-                .environmentObject(model)
-                .environmentObject(quranVM)
-                .environmentObject(suraVM)
-                .environmentObject(searchVM)
-                .environmentObject(ayaVM)
-        })
-        .swipeActions(edge: .leading){
-            if isFavorite {
-                UnstarButton(action: {
-                    withAnimation{
-                        sura.removeFromKollections(favorite)
-                    }
-                })
-            } else {
-                StarButton{
-                    withAnimation{
-                        sura.addToKollections(favorite)
-                    }
-                }
-            }
+        .swipeActions(edge: .trailing){
+            sura.menu(favorite: favorite, pinned: pinned)
         }
         .environment(\.layoutDirection, .leftToRight)
     }

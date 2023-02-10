@@ -7,56 +7,22 @@
 
 import SwiftUI
 
-struct StarButton: View{
-    var action: ()-> Void
-    
-    init(action: @escaping () -> Void) {
-        self.action = action
-    }
-    
-    var body: some View {
-        Button(action: action, label: {
-            Label(title: {
-                Text("Star")
-            }, icon: {
-                Image(systemName: "star")
-                    .font(.title)
-            })
-        })
-        .tint(.yellow)
-    }
-}
-
-struct UnstarButton: View{
+struct StarButton: View {
     @Environment(\.isDestructive) var isDestructive
-    var action: ()-> Void
-    init(action: @escaping () -> Void) {
+    var isStared: Bool
+    var action: ()->Void
+    init(isStared: Bool, action: @escaping () -> Void) {
+        self.isStared = isStared
         self.action = action
     }
-    
     var body: some View {
-        Button(role: isDestructive ? .destructive : .cancel, action: action, label: {
-            Label(title: {
-                Text("Unstar")
-            }, icon: {
-                Image(systemName: "star.slash")
-                    .font(.title)
-            })
-        })
+        Button( role: isDestructive ? .destructive : .cancel , action: action){
+            if isStared {
+                Label("Unstar", systemImage: "star.slash")
+            } else {
+                Label("Star", systemImage: "star")
+            }
+        }
         .tint(.yellow)
     }
 }
-
-
-struct StarButton_Previews: PreviewProvider {
-    static var previews: some View {
-        StarButton{
-            
-        }
-        
-        UnstarButton{
-            
-        }
-    }
-}
-

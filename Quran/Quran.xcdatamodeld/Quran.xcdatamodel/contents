@@ -2,7 +2,6 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22C65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Aya" representedClassName="Aya" syncable="YES">
         <attribute name="id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="isFavorite" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="plain" attributeType="String" defaultValueString="&quot;&quot;"/>
         <attribute name="text" attributeType="String" defaultValueString="&quot;&quot;"/>
         <relationship name="kollections" toMany="YES" deletionRule="Nullify" destinationEntity="Kollection" inverseName="ayas" inverseEntity="Kollection"/>
@@ -21,14 +20,12 @@
     </entity>
     <entity name="Sofha" representedClassName="Sofha" syncable="YES">
         <attribute name="id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="isFavorite" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <relationship name="ayas" toMany="YES" deletionRule="Deny" ordered="YES" destinationEntity="Aya" inverseName="sofha" inverseEntity="Aya"/>
         <relationship name="kollections" toMany="YES" deletionRule="Nullify" destinationEntity="Kollection" inverseName="sofhas" inverseEntity="Kollection"/>
         <relationship name="suras" toMany="YES" deletionRule="Deny" ordered="YES" destinationEntity="Sura" inverseName="sofhas" inverseEntity="Sura"/>
     </entity>
     <entity name="Sura" representedClassName="Sura" syncable="YES">
         <attribute name="id" attributeType="Integer 16" usesScalarValueType="YES"/>
-        <attribute name="isFavorite" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String" defaultValueString=""/>
         <attribute name="phonetic" attributeType="String" defaultValueString=""/>
         <relationship name="ayas" toMany="YES" deletionRule="Deny" ordered="YES" destinationEntity="Aya" inverseName="sura" inverseEntity="Aya"/>

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SofhaView: View {
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.favorite) var favorite
+    @Environment(\.pinned) var pinned
     
     @ObservedObject var sofha: Sofha
     @Binding var isExtended: Bool
@@ -23,7 +25,9 @@ struct SofhaView: View {
                 VStack{
                     let size = UIImage(named: "\(sofha.id)")!.size
                     sofha.image(colorScheme: colorScheme)
-                        .sofhaContextMenuWithPreview(sofha: sofha)
+                        .previewMenu{
+                            sofha.menu(favorite: favorite, pinned: pinned)
+                        }
                         .aspectRatio( isExtended ? proxy.size :  size, contentMode: .fit)
                         .scaleEffect(x: isExtended ? 1.07 : 1)
                         .onTapGesture {
@@ -38,7 +42,9 @@ struct SofhaView: View {
                     VStack{
                         let size = UIImage(named: "\(sofha.id)")?.size
                         sofha.image(colorScheme: colorScheme)
-                            .sofhaContextMenuWithPreview(sofha: sofha)
+                            .previewMenu{
+                                sofha.menu(favorite: favorite, pinned: pinned)
+                            }
                             .aspectRatio( size! , contentMode: .fit)
                             .onTapGesture {
                                 withAnimation(.easeInOut){
@@ -50,6 +56,6 @@ struct SofhaView: View {
             }
             
         }
-        .background(Color.yellow.opacity( sofha.isFavorite ? 0.05 : 0 ).ignoresSafeArea())
+        .background(Color.yellow.opacity( sofha.isElement(of: favorite) ? 0.05 : 0 ).ignoresSafeArea())
     }
 }

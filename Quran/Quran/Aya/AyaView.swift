@@ -9,6 +9,8 @@ import SwiftUI
 
 struct AyaView: View {
     @ObservedObject var aya: Aya
+    @Environment(\.favorite) var favorite
+    @Environment(\.pinned) var pinned
     @EnvironmentObject var ayaVM: AyaViewModel
     init(for aya: Aya) {
         self.aya = aya
@@ -29,23 +31,11 @@ struct AyaView: View {
         .background{
             Color.yellow
                 .blur(radius: 10)
-                .opacity(aya.isFavorite ? 0.3 : 0.00001)
+                .opacity(aya.isElement(of: favorite) ? 0.3 : 0.00001)
                 .ignoresSafeArea()
         }
         .contextMenu(menuItems: {
-            if aya.isFavorite {
-                UnstarButton(action: {
-                    withAnimation{
-                        aya.isFavorite = false
-                    }
-                })
-            } else {
-                StarButton{
-                    withAnimation{
-                        aya.isFavorite = true
-                    }
-                }
-            }
+            aya.menu(favorite: favorite, pinned: pinned)
         })
         .id(aya.id)
     }

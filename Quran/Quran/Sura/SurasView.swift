@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SurasView: View {
+    @Environment(\.pinned) var pinned
+    @Environment(\.favorite) var favorite
     @EnvironmentObject var suraVM: SuraViewModel
     @EnvironmentObject var quraVM: QuranViewModel
     @EnvironmentObject var ayaVM: AyaViewModel
@@ -29,6 +31,9 @@ struct SurasView: View {
                     .environmentObject(suraVM)
                     .environmentObject(ayaVM)
                     .environmentObject(quraVM)
+                    .environment(\.favorite, favorite)
+                    .environment(\.pinned, pinned)
+                
             }
         )
         .ignoresSafeArea()

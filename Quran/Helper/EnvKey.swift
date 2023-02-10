@@ -28,3 +28,25 @@ extension EnvironmentValues {
         set{self[IsDestructiveKey.self] = newValue }
     }
 }
+
+//MARK: - IsDestructiveKey
+struct IsDestructivePinnedKey: EnvironmentKey {
+    static var defaultValue: Bool = false
+}
+extension EnvironmentValues {
+    var isPennedDestructive: Bool {
+        get{self[IsDestructivePinnedKey.self]}
+        set{self[IsDestructivePinnedKey.self] = newValue }
+    }
+}
+
+//MARK: - pinnedKey
+struct PinnedKey: EnvironmentKey {
+    static var defaultValue: Kollection = Kollection()
+}
+extension EnvironmentValues {
+    var pinned: Kollection {
+        get{self[PinnedKey.self]}
+        set{self[PinnedKey.self] = newValue}
+    }
+}

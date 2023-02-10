@@ -10,7 +10,7 @@ import SwiftUI
 struct SofhaRow: View {
     @ObservedObject var sofha: Sofha
     @Environment(\.favorite) var favorite
-
+    @Environment(\.pinned) var pinned
     init(for sofha: Sofha) {
         self.sofha = sofha
     }
@@ -36,37 +36,8 @@ struct SofhaRow: View {
             RankView(text: "\(sofha.id)", color: Color("bg"), bgColor: .favorite(isFavorite))
                 .offset(y: 4)
         })
-        .contextMenu(menuItems: {
-            if isFavorite {
-                UnstarButton(action: {
-                    withAnimation{
-                        sofha.removeFromKollections(favorite)
-                    }
-                })
-            } else {
-                StarButton{
-                    withAnimation{
-                        sofha.addToKollections(favorite)
-                    }
-                }
-            }
-        }, preview: {
-            sofha.image(colorScheme: .light)
-        })
-        .swipeActions(edge: .leading){
-            if isFavorite {
-                UnstarButton(action: {
-                    withAnimation{
-                        sofha.removeFromKollections(favorite)
-                    }
-                })
-            } else {
-                StarButton{
-                    withAnimation{
-                        sofha.addToKollections(favorite)
-                    }
-                }
-            }
+        .swipeActions(edge: .trailing){
+            sofha.menu(favorite: favorite, pinned: pinned)
         }
         .environment(\.layoutDirection, .leftToRight)
     }

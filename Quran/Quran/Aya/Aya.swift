@@ -18,14 +18,12 @@ extension Aya {
 
 //MARK: - SwiftUI
 extension Aya {
-    
     func arabicTextView(lineLimit: Int = Int.max) -> some View {
-        Text(self.text + "\u{FD3F}"+"\(self.number)".toArabicNumber+"\u{FD3E}")
+        Text(self.text + "\u{FD3F}"+"\(self.number)".toArabicNumeral+"\u{FD3E}")
             .lineLimit(lineLimit)
             .frame(maxWidth: .infinity, alignment: .leading)
             .environment(\.layoutDirection, .rightToLeft)
     }
-    
     func transTextView(lineLimit: Int = Int.max) -> some View {
         HStack{
             Text("\(self.number). ") +
@@ -37,7 +35,6 @@ extension Aya {
         .frame(maxWidth: .infinity, alignment: .leading)
         .environment(\.layoutDirection, .leftToRight)
     }
-    var iconColor: Color { self.isFavorite ? .yellow : Color("BGI")}
 }
 
 

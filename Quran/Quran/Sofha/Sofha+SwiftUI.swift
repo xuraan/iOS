@@ -14,28 +14,34 @@ extension Sofha {
             .resizable()
             .renderingMode(colorScheme == .dark ? .template : .original)
     }
-    var iconColor: Color { self.isFavorite ? .yellow : Color("BGI")}
+}
+
+extension Sofha {
+    
+    @ViewBuilder
+    func menu(favorite: Kollection, pinned: Kollection) -> some View {
+        StarButton(isStared: favorite.contains(object: self), action: { [self] in
+            withAnimation{
+                isElement(of: favorite) ? removeFromKollections(favorite) : addToKollections(favorite)
+            }
+        })
+        PinnedButton(isPinned: isElement(of: pinned), action: { [self] in
+            withAnimation{
+                isElement(of: pinned) ? removeFromKollections(pinned) : addToKollections(pinned)
+            }
+        })
+    }
+
 }
 
 extension View {
     @ViewBuilder
-    func sofhaContextMenuWithPreview(sofha: Sofha) -> some View {
+    func previewMenu<Menu: View>(
+        @ViewBuilder menu: @escaping () -> Menu
+    ) -> some View {
         self
         .contextMenu(menuItems: {
-            if sofha.isFavorite {
-                UnstarButton(action: {
-                    withAnimation{
-                        sofha.isFavorite = false
-                    }
-                })
-            } else {
-                StarButton{
-                    withAnimation{
-                        sofha.isFavorite = true
-                    }
-                }
-            }
-
+            menu()
         }, preview: {
             self
         })
