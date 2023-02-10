@@ -39,9 +39,6 @@ struct HomeView: View {
             }
         }
         .environment(\.pinned, pinned)
-        .animation(.easeInOut, value: pinned.ayas.ayas.isEmpty)
-        .animation(.easeInOut, value: pinned.suras.suras.isEmpty)
-        .animation(.easeInOut, value: pinned.sofhas.sofhas.isEmpty)
         .navigationTitle(isSearching ? "Search" : "The noble quran")
     }
     

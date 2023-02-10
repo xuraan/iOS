@@ -77,10 +77,11 @@ extension QuranViewModel {
         withAnimation{
             selection = Int(sofha.suras.suras.first!.id-1)
             show()
-            suraViewScrollTo = sofha.ayas.ayas.first!.id
             isShowIndex = false
+            DispatchQueue.main.asyncAfter(deadline:.now()+0.2, execute: { [self] in
+                suraViewScrollTo = sofha.ayas.ayas.first!.id
+            })
         }
-
     }
     func openActionModeSofha(sofha: Sofha)->Void{
         withAnimation{
@@ -95,10 +96,11 @@ extension QuranViewModel {
         withAnimation{
             selection = Int(aya.sura.id-1)
             show()
-            self.suraViewScrollTo = aya.id
             isShowIndex = false
+            DispatchQueue.main.asyncAfter(deadline:.now()+0.2, execute: { [self] in
+                suraViewScrollTo = aya.id
+            })
         }
-        
     }
     func openActionModeSofha(aya: Aya)->Void{
         withAnimation{

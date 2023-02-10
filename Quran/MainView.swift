@@ -23,7 +23,6 @@ struct MainView: View {
     @State var showFavorites = false
     @State var showSettings = false
     @State var stack: NavigationPath = .init()
-    @State var id = UUID()
     @FetchRequest(sortDescriptors: [SortDescriptor(\.id)]) var suras: FetchedResults<Sura>
     @FetchRequest(sortDescriptors: [SortDescriptor(\.id)]) var sofhas: FetchedResults<Sofha>
     var body: some View {
