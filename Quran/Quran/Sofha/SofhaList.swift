@@ -21,9 +21,10 @@ struct SofhaList: View {
     }
     var body: some View {
         List(searchResult, id: \.self, selection: $selection){ sofha in
-            SofhaRow(for: sofha)
+            SofhaRow(for: sofha).fullSeparatore
         }
         .listStyle(.plain)
+        .padding(.top, -10)
         .background(Color("bg"))
         .toolbarBackground(.hidden, for: .navigationBar)
         .navigationBarTitleDisplayMode(.inline)

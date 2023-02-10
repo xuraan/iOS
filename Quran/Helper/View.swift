@@ -95,5 +95,10 @@ extension View{
             }
     }
 
-    
+    @ViewBuilder
+    var fullSeparatore: some View {
+        self.alignmentGuide(.listRowSeparatorLeading){ viewDimension in
+            return -viewDimension[.listRowSeparatorLeading]
+        }
+    }
 }

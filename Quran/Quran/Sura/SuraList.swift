@@ -24,7 +24,7 @@ struct SuraList: View {
     var body: some View {
         
         List(searchResult, id: \.self, selection: $selection){ sura in
-            SuraRow(for: sura)
+            SuraRow(for: sura).fullSeparatore
         }
         .listStyle(.plain)
         .padding(.top, -10)

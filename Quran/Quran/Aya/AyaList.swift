@@ -22,7 +22,7 @@ struct AyaList: View {
     }
     var body: some View {
         List(searchResult, id: \.self, selection: $selection){ aya in
-            AyaRow(for: aya)
+            AyaRow(for: aya).fullSeparatore
         }
         .listStyle(.grouped)
         .padding(.top, -10)
