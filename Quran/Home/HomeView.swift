@@ -10,7 +10,7 @@ import CoreData
 
 struct HomeView: View {
     @EnvironmentObject var quranVM: QuranViewModel
-    @Environment(\.showSlideView) var showSlideView
+    @Environment(\.showCoverView) var showSlideView
     @Environment(\.isSearching) var isSearching
     @ObservedObject var pinned: Kollection
     @Binding var text: String

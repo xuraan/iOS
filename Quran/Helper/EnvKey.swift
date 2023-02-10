@@ -50,3 +50,24 @@ extension EnvironmentValues {
         set{self[PinnedKey.self] = newValue}
     }
 }
+
+//MARK: - For Container
+struct HideOverEnvKey: EnvironmentKey {
+    static let defaultValue: ()->Void = {}
+}
+extension EnvironmentValues {
+    var hideCoverView: ()->Void {
+        get { self[HideOverEnvKey.self] }
+        set { self[HideOverEnvKey.self] = newValue }
+    }
+}
+
+struct ShowCoverEnvKey: EnvironmentKey {
+    static let defaultValue: ()->Void = {}
+}
+extension EnvironmentValues {
+    var showCoverView: ()->Void {
+        get { self[ShowCoverEnvKey.self] }
+        set { self[ShowCoverEnvKey.self] = newValue }
+    }
+}

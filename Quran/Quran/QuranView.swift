@@ -9,8 +9,8 @@ import SwiftUI
 
 struct QuranView: View {
     @EnvironmentObject var quranVM: QuranViewModel
-    @Environment(\.hideSlideView) var hideSlideView
-    @Environment(\.showSlideView) var showSlideView
+    @Environment(\.hideCoverView) var hideSlideView
+    @Environment(\.showCoverView) var showSlideView
     @Binding var isHideCloseButton: Bool
     init(isHideCloseButton: Binding<Bool>) {
         self._isHideCloseButton = isHideCloseButton

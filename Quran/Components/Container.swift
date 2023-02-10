@@ -22,16 +22,16 @@ struct MainContainer<Content: View, Cover: View>: View {
     }
     
     var body: some View {
-        ZStack{
-            content
-                .scaleEffect( isOverlayHide ? 1 : 1.2 )
-                .blur(radius: isOverlayHide ? 0 : 30)
-            cover
-                .opacity(isOverlayHide ? 0 : 1)
-                .animation(.easeInOut.delay(isOverlayHide ? 0 : 0.1), value: isOverlayHide)
-        }
-        .environment(\.hideSlideView, hide)
-        .environment(\.showSlideView, show)
+        content
+            .scaleEffect( isOverlayHide ? 1 : 1.2 )
+            .blur(radius: isOverlayHide ? 0 : 30)
+            .overlay{
+                cover
+                    .opacity(isOverlayHide ? 0 : 1)
+                    .animation(.easeInOut.delay(isOverlayHide ? 0 : 0.1), value: isOverlayHide)
+            }
+            .environment(\.hideCoverView, hide)
+            .environment(\.showCoverView, show)
     }
     
     func hide(){
@@ -58,30 +58,5 @@ struct Custost_Previews: PreviewProvider {
         }, cover: {
             Rectangle().ignoresSafeArea()
         })
-    }
-}
-
-
-
-
-
-
-struct HideSlideEnvKey: EnvironmentKey {
-    static let defaultValue: ()->Void = {}
-}
-extension EnvironmentValues {
-    var hideSlideView: ()->Void {
-        get { self[HideSlideEnvKey.self] }
-        set { self[HideSlideEnvKey.self] = newValue }
-    }
-}
-
-struct ShowSlideEnvKey: EnvironmentKey {
-    static let defaultValue: ()->Void = {}
-}
-extension EnvironmentValues {
-    var showSlideView: ()->Void {
-        get { self[ShowSlideEnvKey.self] }
-        set { self[ShowSlideEnvKey.self] = newValue }
     }
 }
