@@ -26,15 +26,10 @@ struct HomeView: View {
                 SearchView(text: $text)
                     .environment(\.isDestructive, false)
             } else {
-                HStack{
-                    Spacer()
-                    Button(action: showSlideView, label: {
-                        Text("Open quran").font(.headline)
-                    })
-                    .buttonStyle(.borderless)
+                if let page = quranVM.lastPage {
+                    lastPage(page: page)
+                        .onTapGesture(perform:  showSlideView)
                 }
-                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                .listRowBackground(Color.clear)
                 KollectionItemsSection(
                     for: pinned,
                     suraSectionTitle: "pinned suras",
@@ -45,10 +40,21 @@ struct HomeView: View {
             }
         }
         .environment(\.isDestructive, false)
-
         .animation(.easeInOut, value: pinned.ayas.count)
         .listStyle(.insetGrouped)
         .navigationTitle(isSearching ? "Search" : "The noble quran")
+    }
+    
+    @ViewBuilder
+    func lastPage(page: Any) -> some View {
+        Group{
+            if let sura = page as? Sura {
+                SuraRow(for: sura, action: { quranVM.suraOpenAction(sura) })
+            } else if let sofha = page as? Sofha {
+                SofhaRow(for: sofha, action: { quranVM.sofhaOpenAction(sofha) })
+            }
+        }
+        .padding(.vertical, -7)
     }
 }
 

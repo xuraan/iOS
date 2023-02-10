@@ -17,7 +17,7 @@ struct SurasView: View {
 
     @Binding var selection: Int
     var titleAction: ()->Void
-    init(selection: Binding<Int>, titleAction: @escaping () -> Void) {
+    init(selection: Binding<Int>, titleAction: @escaping () -> Void = {}) {
         self._selection = selection
         self.titleAction = titleAction
     }

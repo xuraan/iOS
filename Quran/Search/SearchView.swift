@@ -84,12 +84,7 @@ extension SearchView {
         if !surasResult.isEmpty {
             Section{
                 ForEach(surasResult.prefix(3)){ sura in
-                    Button(action: {
-                        quranVM.suraOpenAction(sura)
-                    }, label: {
-                        SuraRow(for: sura)
-                            .padding(.vertical, 0)
-                    })
+                    SuraRow(for: sura, action: {quranVM.suraOpenAction(sura)})
                 }
             } header: {
                 HStack{
@@ -119,12 +114,7 @@ extension SearchView {
         if !ayasResult.isEmpty {
             Section{
                 ForEach(ayasResult.prefix(3)){ aya in
-                    Button(action: {
-                        quranVM.ayaOpenAction(aya)
-                    }){
-                        AyaRow(for: aya)
-                            .padding(.vertical, 0)
-                    }
+                    AyaRow(for: aya, action: {quranVM.ayaOpenAction(aya)})
                 }
             } header: {
                 HStack{
@@ -156,12 +146,7 @@ extension SearchView {
         if !sofhasResult.isEmpty {
             Section{
                 ForEach(sofhasResult.prefix(3)){ sofha in
-                    Button(action: {
-                        quranVM.sofhaOpenAction(sofha)
-                    }){
-                        SofhaRow(for: sofha)
-                            .padding(.vertical, 0)
-                    }
+                    SofhaRow(for: sofha, action: {quranVM.sofhaOpenAction(sofha)})
                 }
             } header: {
                 HStack{

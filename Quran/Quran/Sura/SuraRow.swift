@@ -17,8 +17,10 @@ struct SuraRow: View {
     @EnvironmentObject var suraVM: SuraViewModel
     @EnvironmentObject var searchVM: SearchModel
     @EnvironmentObject var ayaVM: AyaViewModel
-    init(for sura: Sura) {
+    var action: ()-> Void
+    init(for sura: Sura,  action: @escaping () -> Void = {}) {
         self.sura = sura
+        self.action = action
     }
     var body: some View {
         let isFavorite = sura.isElement(of: favorite)
@@ -46,6 +48,7 @@ struct SuraRow: View {
         .swipeActions(edge: .trailing){
             sura.menu(favorite: favorite, pinned: pinned)
         }
+        .onTapGesture(perform: action)
         .environment(\.layoutDirection, .leftToRight)
     }
 }

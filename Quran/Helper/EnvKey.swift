@@ -71,3 +71,13 @@ extension EnvironmentValues {
         set { self[ShowCoverEnvKey.self] = newValue }
     }
 }
+
+struct OnCoverViewHiddenEnvKey: EnvironmentKey {
+    static let defaultValue: ()->Void = {}
+}
+extension EnvironmentValues {
+    var onCoverViewHidden: ()->Void {
+        get { self[OnCoverViewHiddenEnvKey.self] }
+        set { self[OnCoverViewHiddenEnvKey.self] = newValue }
+    }
+}

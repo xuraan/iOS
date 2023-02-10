@@ -18,6 +18,7 @@ class QuranViewModel: ObservableObject {
     @Published var isShowIndex: Bool = false
     @Published var suraViewScrollTo: Int16 = 0
     @Published var cuurentAyaID: Aya.ID = 1
+    @Published var lastPage: Any?
     @Published var mode: Mode {
         didSet{
             UserDefaults.standard.set(mode.rawValue, forKey: "quranMode")
@@ -38,7 +39,6 @@ class QuranViewModel: ObservableObject {
     var ayaOpenAction: (Aya)->Void = {_ in}
     var suraOpenAction: (Sura)->Void = {_ in}
     var sofhaOpenAction: (Sofha)->Void = {_ in}
-    
         
     init() {
         self.selection = UserDefaults.standard.integer(forKey: "quranSelection")
@@ -55,11 +55,11 @@ class QuranViewModel: ObservableObject {
             suraOpenAction = openActionModeSofha
             sofhaOpenAction = openActionModeSofha
         }
+        
     }
 }
 
 extension QuranViewModel {
-    
     func openActionModeSura(sura: Sura)->Void{
         withAnimation{
             selection = Int(sura.id-1)
@@ -121,6 +121,14 @@ extension QuranViewModel {
         selection = Int(currentAya.sofha.id-1)
     }
     
+    func setLastPage(suras: FetchedResults<Sura>, sofhas: FetchedResults<Sofha>){
+        switch mode {
+        case .sura:
+            lastPage = suras.first{ $0.id == Int16(selection+1) }
+        case .sofha:
+            lastPage = sofhas.first{ $0.id == Int16(selection+1) }
+        }
+    }
 }
 
 

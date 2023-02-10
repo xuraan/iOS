@@ -23,6 +23,8 @@ struct MainView: View {
     @State var showFavorites = false
     @State var showSettings = false
     @State var stack: NavigationPath = .init()
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.id)]) var suras: FetchedResults<Sura>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.id)]) var sofhas: FetchedResults<Sofha>
     var body: some View {
         MainContainer{
             NavigationStack{
@@ -120,6 +122,8 @@ struct MainView: View {
             QuranView(isHideCloseButton: $isHideCloseButton)
                 .environment(\.favorite, favorite)
                 .environment(\.pinned, pinned)
+        } onHidden: {
+            quranVM.setLastPage(suras: suras, sofhas: sofhas)
         }
     }
 }

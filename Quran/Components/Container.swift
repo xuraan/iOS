@@ -10,15 +10,18 @@ import SwiftUI
 struct MainContainer<Content: View, Cover: View>: View {
     var content: Content
     var cover: Cover
+    var onHidden: ()->Void
     @State var isOverlayHide: Bool = true
     @State var offset: CGFloat = 0
     @State var progess: Double = 0
     init(
         @ViewBuilder content: @escaping ()->Content,
-        @ViewBuilder cover: @escaping ()->Cover
+        @ViewBuilder cover: @escaping ()->Cover,
+        onHidden: @escaping ()->Void
     ){
         self.content = content()
         self.cover = cover()
+        self.onHidden = onHidden
     }
     
     var body: some View {
@@ -37,6 +40,7 @@ struct MainContainer<Content: View, Cover: View>: View {
     func hide(){
         withAnimation{
             isOverlayHide = true
+            onHidden()
         }
     }
     func show(){
@@ -57,6 +61,8 @@ struct Custost_Previews: PreviewProvider {
             }
         }, cover: {
             Rectangle().ignoresSafeArea()
+        }, onHidden: {
+            
         })
     }
 }

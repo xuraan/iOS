@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct KollectionItemsSection: View {
+    @EnvironmentObject var quranVM: QuranViewModel
     @ObservedObject var kollection: Kollection
     var suraSectionTitle: String
     var ayaSectionTitle: String
@@ -27,21 +28,24 @@ struct KollectionItemsSection: View {
         if !kollection.ayas.ayas.isEmpty {
             Section(ayaSectionTitle){
                 ForEach(kollection.ayas.ayas){aya in
-                    AyaRow(for: aya)
+                    AyaRow(for: aya, action: {quranVM.ayaOpenAction(aya)})
+                        .padding(.vertical, -5)
                 }
             }
         }
         if !kollection.sofhas.sofhas.isEmpty {
             Section(sofhaSectionTitle){
                 ForEach(kollection.sofhas.sofhas){sofha in
-                    SofhaRow(for: sofha)
+                    SofhaRow(for: sofha, action: {quranVM.sofhaOpenAction(sofha)})
+                        .padding(.vertical, -5)
                 }
             }
         }
         if !kollection.suras.suras.isEmpty {
             Section(suraSectionTitle){
                 ForEach(kollection.suras.suras){sura in
-                    SuraRow(for: sura)
+                    SuraRow(for: sura, action: {quranVM.suraOpenAction(sura)})
+                        .padding(.vertical, -5)
                 }
             }
         }
