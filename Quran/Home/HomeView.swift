@@ -12,12 +12,11 @@ struct HomeView: View {
     @EnvironmentObject var quranVM: QuranViewModel
     @Environment(\.showCoverView) var showSlideView
     @Environment(\.isSearching) var isSearching
-    @ObservedObject var pinned: Kollection
+    @Environment(\.pinned) var pinned
     @Binding var text: String
     
-    init(text: Binding<String> = .constant(""), pinned: Kollection) {
+    init(text: Binding<String> = .constant("")) {
         self._text = text
-        self.pinned = pinned
     }
     
     var body: some View {
@@ -35,13 +34,14 @@ struct HomeView: View {
                     suraSectionTitle: "pinned suras",
                     ayaSectionTitle: "pinned ayas",
                     sofhaSectionTitle: "pinned sofhas")
-                .environment(\.pinned, pinned)
                 .environment(\.isPennedDestructive, true)
+                .environment(\.isDestructive, false)
             }
         }
-        .environment(\.isDestructive, false)
-        .animation(.easeInOut, value: pinned.ayas.count)
-        .listStyle(.insetGrouped)
+        .environment(\.pinned, pinned)
+        .animation(.easeInOut, value: pinned.ayas.ayas.isEmpty)
+        .animation(.easeInOut, value: pinned.suras.suras.isEmpty)
+        .animation(.easeInOut, value: pinned.sofhas.sofhas.isEmpty)
         .navigationTitle(isSearching ? "Search" : "The noble quran")
     }
     

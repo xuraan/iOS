@@ -12,13 +12,12 @@ extension Aya {
     func menu(favorite: Kollection, pinned: Kollection) -> some View {
         StarButton(isStared: favorite.contains(object: self), action: { [self] in
             withAnimation{
-                favorite.contains(object: self) ? favorite.removeFromAyas(self) : favorite.addToAyas(self)
+                isElement(of: favorite) ? removeFromKollections(favorite) : addToKollections(favorite)
             }
-            print("\(pinned.contains(object: self))")
         })
         PinnedButton(isPinned: pinned.contains(object: self), action: { [self] in
             withAnimation{
-                pinned.contains(object: self) ? pinned.removeFromAyas(self) : pinned.addToAyas(self)
+                isElement(of: pinned) ? removeFromKollections(pinned) : addToKollections(pinned)
             }
         })
     }

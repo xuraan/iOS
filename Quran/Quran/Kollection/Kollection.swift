@@ -30,4 +30,6 @@ extension Kollection  {
         }
         return false
     }
+    
+    var count: Int { suras.count + ayas.count + sofhas.count }
 }

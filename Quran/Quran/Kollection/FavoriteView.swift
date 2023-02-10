@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct FavoriteView: View {
-    @ObservedObject var favorite: Kollection
-    
+    @Environment(\.favorite) var favorite
+
     var body: some View {
         NavigationStack{
             List{

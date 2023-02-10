@@ -23,12 +23,13 @@ struct MainView: View {
     @State var showFavorites = false
     @State var showSettings = false
     @State var stack: NavigationPath = .init()
+    @State var id = UUID()
     @FetchRequest(sortDescriptors: [SortDescriptor(\.id)]) var suras: FetchedResults<Sura>
     @FetchRequest(sortDescriptors: [SortDescriptor(\.id)]) var sofhas: FetchedResults<Sofha>
     var body: some View {
         MainContainer{
             NavigationStack{
-                HomeView(text: $searchText, pinned: pinned)
+                HomeView(text: $searchText)
                     .toolbar{
                         ToolbarItem(placement: .navigationBarTrailing) {
                             Button("Settings"){
@@ -79,7 +80,7 @@ struct MainView: View {
                 .environmentObject(ayaVM)
             }
             .customDismissibleSheet(isPresented: $showFavorites){
-                FavoriteView(favorite: favorite)
+                FavoriteView()
             }
             .customSheet(isPresented: $showSettings){
                 NavigationStack(path: $stack){

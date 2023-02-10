@@ -25,31 +25,34 @@ struct KollectionItemsSection: View {
         self.sofhaSectionTitle = sofhaSectionTitle
     }
     var body: some View {
-        if !kollection.ayas.ayas.isEmpty {
-            Section(ayaSectionTitle){
-                ForEach(kollection.ayas.ayas){aya in
-                    AyaRow(for: aya, action: {quranVM.ayaOpenAction(aya)})
-                        .padding(.vertical, -5)
-                        .fullSeparatore2
-                }
+        Section{
+            ForEach(kollection.ayas.ayas){aya in
+                AyaRow(for: aya, action: {quranVM.ayaOpenAction(aya)})
+                    .fullSeparatore2
+            }
+        } header: {
+            if !kollection.ayas.ayas.isEmpty {
+                Text(ayaSectionTitle)
             }
         }
-        if !kollection.sofhas.sofhas.isEmpty {
-            Section(sofhaSectionTitle){
-                ForEach(kollection.sofhas.sofhas){sofha in
-                    SofhaRow(for: sofha, action: {quranVM.sofhaOpenAction(sofha)})
-                        .padding(.vertical, -5)
-                        .fullSeparatore2
-                }
+        Section{
+            ForEach(kollection.sofhas.sofhas){sofha in
+                SofhaRow(for: sofha, action: {quranVM.sofhaOpenAction(sofha)})
+                    .fullSeparatore2
+            }
+        } header: {
+            if !kollection.sofhas.sofhas.isEmpty {
+                Text(sofhaSectionTitle)
             }
         }
-        if !kollection.suras.suras.isEmpty {
-            Section(suraSectionTitle){
-                ForEach(kollection.suras.suras){sura in
-                    SuraRow(for: sura, action: {quranVM.suraOpenAction(sura)})
-                        .padding(.vertical, -5)
-                        .fullSeparatore2
-                }
+        Section{
+            ForEach(kollection.suras.suras){sura in
+                SuraRow(for: sura, action: {quranVM.suraOpenAction(sura)})
+                    .fullSeparatore2
+            }
+        } header: {
+            if !kollection.suras.suras.isEmpty {
+                Text(suraSectionTitle)
             }
         }
     }
