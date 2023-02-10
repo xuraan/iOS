@@ -23,7 +23,7 @@ struct SofhaList: View {
         List(searchResult, id: \.self, selection: $selection){ sofha in
             SofhaRow(for: sofha)
         }
-        .listStyle(.grouped)
+        .listStyle(.plain)
         .background(Color("bg"))
         .toolbarBackground(.hidden, for: .navigationBar)
         .navigationBarTitleDisplayMode(.inline)
