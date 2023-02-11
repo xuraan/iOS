@@ -28,6 +28,7 @@ struct KollectionItemsSection: View {
         Section{
             ForEach(kollection.ayas.ayas){aya in
                 AyaRow(for: aya, action: {quranVM.ayaOpenAction(aya)})
+                    .padding(.vertical, -5)
                     .fullSeparatore2
             }
         } header: {
@@ -38,6 +39,7 @@ struct KollectionItemsSection: View {
         Section{
             ForEach(kollection.sofhas.sofhas){sofha in
                 SofhaRow(for: sofha, action: {quranVM.sofhaOpenAction(sofha)})
+                    .padding(.vertical, -5)
                     .fullSeparatore2
             }
         } header: {
@@ -48,6 +50,7 @@ struct KollectionItemsSection: View {
         Section{
             ForEach(kollection.suras.suras){sura in
                 SuraRow(for: sura, action: {quranVM.suraOpenAction(sura)})
+                    .padding(.vertical, -5)
                     .fullSeparatore2
             }
         } header: {

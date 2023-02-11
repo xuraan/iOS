@@ -36,6 +36,9 @@ struct CloseButton: View{
 
 struct CloseButton_Previews: PreviewProvider {
     static var previews: some View {
-        CloseButton()
+        HStack{
+            CloseButton()
+            CloseButton(icon: Image(systemName: "checkmark"))
+        }
     }
 }

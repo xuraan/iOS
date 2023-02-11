@@ -11,7 +11,6 @@ struct AyaRow: View {
     @ObservedObject var aya: Aya
     @Environment(\.pinned) var pinned
     @Environment(\.favorite) var favorite
-
     var action: ()-> Void
     init(for aya: Aya, action: @escaping () -> Void = {}) {
         self.aya = aya
@@ -53,5 +52,3 @@ struct AyaRow: View {
         .environment(\.layoutDirection, .leftToRight)
     }
 }
-
-

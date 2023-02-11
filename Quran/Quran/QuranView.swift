@@ -27,13 +27,12 @@ struct QuranView: View {
         .overlay(alignment: .topTrailing, content: {
             CloseButton(action: hideCoverView)
                 .padding(.trailing)
+                .opacity(isHideCloseButton ? 0 : 1)
         })
         .environment(\.layoutDirection, .leftToRight)
         .onAppear{
             quranVM.show = showCoverView
-            print("Appear")
         }
-        
     }
 }
 
