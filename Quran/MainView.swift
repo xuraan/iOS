@@ -22,6 +22,8 @@ struct MainView: View {
     @State var isHideCloseButton = false
     @State var showFavorites = false
     @State var showSettings = false
+    @State var showAddCollection = false
+    @State var kollection: Kollection?
     @State var stack: NavigationPath = .init()
     @FetchRequest(sortDescriptors: [SortDescriptor(\.id)]) var suras: FetchedResults<Sura>
     @FetchRequest(sortDescriptors: [SortDescriptor(\.id)]) var sofhas: FetchedResults<Sofha>
@@ -30,20 +32,20 @@ struct MainView: View {
             NavigationStack{
                 HomeView(text: $searchText)
                     .toolbar{
-                        ToolbarItem(placement: .navigationBarTrailing) {
+                        ToolbarItem(placement: .navigationBarLeading) {
                             Button("Settings"){
                                 withAnimation{
                                     showSettings.toggle()
                                 }
                             }
                         }
-                        ToolbarItem(placement: .navigationBarLeading) {
+                        ToolbarItem(placement: .secondaryAction) {
                             Button{
                                 withAnimation{
-                                    showSettings.toggle()
+                                    showAddCollection.toggle()
                                 }
                             }label: {
-                                Image(systemName: "info.circle")
+                                Label("New collection", systemImage: "square.on.circle.fill")
                             }
                         }
                         ToolbarItemGroup(placement: .bottomBar){
@@ -116,6 +118,9 @@ struct MainView: View {
                         .scrollIndicators(.hidden)
                 }
                 .presentationDetents([.height(625)])
+            }
+            .customDismissibleSheet(isPresented: $showAddCollection){
+                AddKollectionView(kollection: $kollection)
             }
             .ignoresSafeArea(.keyboard)
         } cover: {

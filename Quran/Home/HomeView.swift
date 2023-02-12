@@ -36,6 +36,7 @@ struct HomeView: View {
                     sofhaSectionTitle: "pinned sofhas")
                 .environment(\.isPennedDestructive, true)
                 .environment(\.isDestructive, false)
+                KollectionsSection()
             }
         }
         .environment(\.pinned, pinned)

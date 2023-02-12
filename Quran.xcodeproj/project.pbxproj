@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F427D5DE29987F760004B15F /* KollectionsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F427D5DD29987F760004B15F /* KollectionsSection.swift */; };
+		F427D5E0299880E10004B15F /* AddKollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F427D5DF299880E10004B15F /* AddKollectionView.swift */; };
 		F43AE4F029955CAB004CAE05 /* EnvKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43AE4EF29955CAB004CAE05 /* EnvKey.swift */; };
 		F43AE4F22995636A004CAE05 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43AE4F12995636A004CAE05 /* Color.swift */; };
 		F43AE4F42995707B004CAE05 /* NSSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43AE4F32995707B004CAE05 /* NSSet.swift */; };
@@ -84,6 +86,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F427D5DD29987F760004B15F /* KollectionsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KollectionsSection.swift; sourceTree = "<group>"; };
+		F427D5DF299880E10004B15F /* AddKollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddKollectionView.swift; sourceTree = "<group>"; };
 		F43AE4EF29955CAB004CAE05 /* EnvKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvKey.swift; sourceTree = "<group>"; };
 		F43AE4F12995636A004CAE05 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		F43AE4F32995707B004CAE05 /* NSSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSSet.swift; sourceTree = "<group>"; };
@@ -195,6 +199,8 @@
 				F43AE4FE29957DD0004CAE05 /* Kollection.swift */,
 				F43AE51A29958997004CAE05 /* KollectionView.swift */,
 				F47EBA972995B53C00ABE945 /* FavoriteView.swift */,
+				F427D5DD29987F760004B15F /* KollectionsSection.swift */,
+				F427D5DF299880E10004B15F /* AddKollectionView.swift */,
 			);
 			path = Kollection;
 			sourceTree = "<group>";
@@ -517,11 +523,13 @@
 				F4A4B17529846661000ABB8D /* SettingsView.swift in Sources */,
 				F4A4B11C29844C0A000ABB8D /* RankView.swift in Sources */,
 				F43AE50A29957E0E004CAE05 /* Aya+CoreDataClass.swift in Sources */,
+				F427D5E0299880E10004B15F /* AddKollectionView.swift in Sources */,
 				F4A4B15329844C31000ABB8D /* SofhaView.swift in Sources */,
 				F43AE51529957EBB004CAE05 /* Sura+SwiftUI.swift in Sources */,
 				F43AE4F22995636A004CAE05 /* Color.swift in Sources */,
 				F4A4B11F29844C0A000ABB8D /* Container.swift in Sources */,
 				F4A4B14929844C31000ABB8D /* SearchModel.swift in Sources */,
+				F427D5DE29987F760004B15F /* KollectionsSection.swift in Sources */,
 				F460983329882A4600EDEAF7 /* Model.swift in Sources */,
 				F4A4B13F29844C31000ABB8D /* AyaView.swift in Sources */,
 				F4A4B14B29844C31000ABB8D /* QuranView.swift in Sources */,

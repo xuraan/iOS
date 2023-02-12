@@ -48,6 +48,22 @@ struct SuraRow: View {
         .swipeActions(edge: .trailing){
             sura.menu(favorite: favorite, pinned: pinned)
         }
+        .contextMenu(menuItems: {
+            sura.menu(favorite: favorite, pinned: pinned)
+        }, preview: {
+            Image("604")
+                .resizable()
+                .opacity(0)
+                .overlay{
+                    SuraView(for: sura)
+                }
+                .environmentObject(quranVM)
+                .environmentObject(ayaVM)
+                .environmentObject(searchVM)
+                .environmentObject(model)
+                .environment(\.pinned, pinned)
+                .environment(\.favorite, favorite)
+        })
         .onTapGesture(perform: action)
         .environment(\.layoutDirection, .leftToRight)
     }

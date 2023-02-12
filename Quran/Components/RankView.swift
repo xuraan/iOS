@@ -18,10 +18,9 @@ struct RankView: View {
     }
     var body: some View {
         ZStack{
-            Circle()
-                .frame(width: 40, height: 40)
+            Image(systemName: "circle.fill")
+                .font(.system(size: 40))
                 .foregroundColor(bgColor.opacity(0.7))
-            
             Text(text)
                 .font(.system(size: 17))
                 .minimumScaleFactor(0.1)
@@ -38,7 +37,7 @@ struct RankView_Previews: PreviewProvider {
         HStack{
             RankView()
             RankView(text: "90:1", color: .white, bgColor: .accentColor)
-            RankView(text: "90:90")
+            RankView(text: "9:90")
         }
     }
 }

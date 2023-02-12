@@ -11,6 +11,11 @@ struct AyaRow: View {
     @ObservedObject var aya: Aya
     @Environment(\.pinned) var pinned
     @Environment(\.favorite) var favorite
+    @EnvironmentObject var model: Model
+    @EnvironmentObject var quranVM: QuranViewModel
+    @EnvironmentObject var suraVM: SuraViewModel
+    @EnvironmentObject var searchVM: SearchModel
+    @EnvironmentObject var ayaVM: AyaViewModel
     var action: ()-> Void
     init(for aya: Aya, action: @escaping () -> Void = {}) {
         self.aya = aya
@@ -48,6 +53,22 @@ struct AyaRow: View {
         .swipeActions(edge: .trailing){
             aya.menu(favorite: favorite, pinned: pinned)
         }
+        .contextMenu(menuItems: {
+            aya.menu(favorite: favorite, pinned: pinned)
+        }, preview: {
+            Image("1")
+                .resizable()
+                .opacity(0)
+                .overlay{
+                    AyaView(for: aya)
+                }
+                .environmentObject(quranVM)
+                .environmentObject(ayaVM)
+                .environmentObject(searchVM)
+                .environmentObject(model)
+                .environment(\.pinned, pinned)
+                .environment(\.favorite, favorite)
+        })
         .onTapGesture(perform: action)
         .environment(\.layoutDirection, .leftToRight)
     }
