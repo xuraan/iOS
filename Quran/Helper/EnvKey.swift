@@ -42,12 +42,24 @@ extension EnvironmentValues {
 
 //MARK: - pinnedKey
 struct PinnedKey: EnvironmentKey {
-    static var defaultValue: Kollection = Kollection()
+    static var defaultValue: Binding<Any?> = .constant(nil)
 }
 extension EnvironmentValues {
-    var pinned: Kollection {
+    var pinned: Binding<Any?> {
         get{self[PinnedKey.self]}
-        set{self[PinnedKey.self] = newValue}
+        set{
+            store()
+            self[PinnedKey.self] = newValue
+            func store(){
+                if let sura = newValue.wrappedValue as? Sura {
+                    UserDefaults.standard.set("pinnedSura#\(sura.id)", forKey: "pinned")
+                } else if let aya = newValue.wrappedValue as? Aya {
+                    UserDefaults.standard.set("pinnedAya#\(aya.id)", forKey: "pinned")
+                } else if let sofha = newValue.wrappedValue as? Sofha{
+                    UserDefaults.standard.set("pinnedSofha#\(sofha.id)", forKey: "pinned")
+                }
+            }
+        }
     }
 }
 

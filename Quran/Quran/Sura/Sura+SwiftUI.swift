@@ -10,16 +10,16 @@ import SwiftUI
 extension Sura {
     
     @ViewBuilder
-    func menu(favorite: Kollection, pinned: Kollection) -> some View {
+    func menu(favorite: Kollection, pinned: Binding<Any?>) -> some View {
         
         StarButton(isStared: isElement(of: favorite), action: { [self] in
             withAnimation{
                 isElement(of: favorite) ? removeFromKollections(favorite) : addToKollections(favorite)
             }
         })
-        PinnedButton(isPinned: isElement(of: pinned), action: { [self] in
+        PinnedButton(isPinned: pinned.wrappedValue as? Sura == self, action: { [self] in
             withAnimation{
-                isElement(of: pinned) ? removeFromKollections(pinned) : addToKollections(pinned)
+                pinned.wrappedValue = (pinned.wrappedValue as? Sura == self) ? nil : self
             }
         })
     }

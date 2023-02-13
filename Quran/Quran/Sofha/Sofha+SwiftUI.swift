@@ -19,17 +19,18 @@ extension Sofha {
 extension Sofha {
     
     @ViewBuilder
-    func menu(favorite: Kollection, pinned: Kollection) -> some View {
+    func menu(favorite: Kollection, pinned: Binding<Any?>) -> some View {
         StarButton(isStared: favorite.contains(object: self), action: { [self] in
             withAnimation{
                 isElement(of: favorite) ? removeFromKollections(favorite) : addToKollections(favorite)
             }
         })
-        PinnedButton(isPinned: isElement(of: pinned), action: { [self] in
+        PinnedButton(isPinned: pinned.wrappedValue as? Sofha == self, action: { [self] in
             withAnimation{
-                isElement(of: pinned) ? removeFromKollections(pinned) : addToKollections(pinned)
+                pinned.wrappedValue = (pinned.wrappedValue as? Sofha == self) ? nil : self
             }
         })
+
     }
 
 }

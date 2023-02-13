@@ -16,8 +16,8 @@ struct AyaRow: View {
     @EnvironmentObject var suraVM: SuraViewModel
     @EnvironmentObject var searchVM: SearchModel
     @EnvironmentObject var ayaVM: AyaViewModel
-    var action: ()-> Void
-    init(for aya: Aya, action: @escaping () -> Void = {}) {
+    var action: (()-> Void)?
+    init(for aya: Aya, action: (() -> Void)? = nil) {
         self.aya = aya
         self.action = action
     }
@@ -53,6 +53,11 @@ struct AyaRow: View {
         .swipeActions(edge: .trailing){
             aya.menu(favorite: favorite, pinned: pinned)
         }
+        .swipeActions(edge: .leading){
+            Button("show in quran", action: {quranVM.ayaOpenAction(aya)})
+                .tint(.blue)
+        }
+        
         .contextMenu(menuItems: {
             aya.menu(favorite: favorite, pinned: pinned)
         }, preview: {
@@ -69,7 +74,7 @@ struct AyaRow: View {
                 .environment(\.pinned, pinned)
                 .environment(\.favorite, favorite)
         })
-        .onTapGesture(perform: action)
+        .onTapGesture(perform: (action.isNil ? {quranVM.ayaOpenAction(aya)} : action)!)
         .environment(\.layoutDirection, .leftToRight)
     }
 }

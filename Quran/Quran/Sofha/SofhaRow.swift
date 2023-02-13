@@ -13,8 +13,10 @@ struct SofhaRow: View {
     @Environment(\.pinned) var pinned
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.showCoverView) var showCoverView
-    var action: ()-> Void
-    init(for sofha: Sofha, action: @escaping () -> Void = {}) {
+    @EnvironmentObject var quranVM: QuranViewModel
+
+    var action: (()-> Void)?
+    init(for sofha: Sofha, action: (() -> Void)? = nil) {
         self.sofha = sofha
         self.action = action
     }
@@ -57,7 +59,7 @@ struct SofhaRow: View {
         .swipeActions(edge: .trailing){
             sofha.menu(favorite: favorite, pinned: pinned)
         }
-        .onTapGesture(perform: action)
+        .onTapGesture(perform: (action.isNil ? {quranVM.sofhaOpenAction(sofha)} : action)!)
         .environment(\.layoutDirection, .leftToRight)
     }
 }

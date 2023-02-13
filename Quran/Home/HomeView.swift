@@ -25,23 +25,26 @@ struct HomeView: View {
                 SearchView(text: $text)
                     .environment(\.isDestructive, false)
             } else {
+                pinnedView()
+                    .environment(\.isPennedDestructive, true)
                 KollectionsSection()
             }
         }
-        .environment(\.pinned, pinned)
         .navigationTitle(isSearching ? "Search" : "The noble quran")
     }
     
     @ViewBuilder
-    func lastPage(page: Any) -> some View {
+    func pinnedView() -> some View {
         Group{
-            if let sura = page as? Sura {
+            if let sura = pinned.wrappedValue as? Sura {
                 SuraRow(for: sura, action: { quranVM.suraOpenAction(sura) })
-            } else if let sofha = page as? Sofha {
-                SofhaRow(for: sofha, action: { quranVM.sofhaOpenAction(sofha) })
+            } else if let sofha = pinned.wrappedValue as? Sofha {
+                SofhaRow(for: sofha)
+            } else if let aya = pinned.wrappedValue as? Aya {
+                AyaRow(for: aya)
             }
         }
-        .padding(.vertical, -7)
+        .padding(.vertical, -6)
     }
 }
 

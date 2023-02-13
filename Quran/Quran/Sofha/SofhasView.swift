@@ -10,6 +10,7 @@ import SwiftUI
 struct SofhasView: View {
     @Environment(\.pinned) var pinned
     @Environment(\.favorite) var favorite
+    
     @Binding var selection: Int
     @State var isExtended: Bool = false
     @Binding var isHideCloseButton: Bool

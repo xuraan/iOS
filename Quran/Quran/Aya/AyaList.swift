@@ -10,19 +10,37 @@ import SwiftUI
 struct AyaList: View {
     var ayas: [Aya]
     @State var searchResult: [Aya]
-    @State var selection: Aya?
+    @Binding var selection: Set<Aya.ID>
     @State var text: String = ""
     @EnvironmentObject var searchVM: SearchModel
     @EnvironmentObject var quran: QuranViewModel
     @Environment(\.dismiss) var dismiss
+    @Environment(\.editMode) var editMode
 
     init(ayas: [Aya]) {
         self.ayas = ayas
         self._searchResult = State(initialValue: ayas)
+        _selection = .constant(.init())
+    }
+    init(ayas: [Aya], selection: Binding<Set<Aya.ID>>) {
+        self.ayas = ayas
+        self._searchResult = State(initialValue: ayas)
+        self._selection = selection
     }
     var body: some View {
-        List(searchResult, id: \.self, selection: $selection){ aya in
-            AyaRow(for: aya).fullSeparatore
+        Group{
+            if editMode?.wrappedValue == .active {
+                List(searchResult, selection: $selection){ aya in
+                    AyaRow(for: aya, action: { selection.toggle(aya.id) })
+                        .fullSeparatore
+                        .tag(aya.id)
+                }
+            } else {
+                List(searchResult){ aya in
+                    AyaRow(for: aya)
+                        .fullSeparatore
+                }
+            }
         }
         .listStyle(.grouped)
         .padding(.top, -10)
@@ -38,43 +56,7 @@ struct AyaList: View {
                 }
             }
         }
-        .safeAreaInset(edge: .top){
-            HStack{
-                Text("ID")
-                    .frame(width: 35, alignment: .leading)
-
-                HStack{
-                    
-                    Text("Phonetic")
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                    Text("Translation")
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                    Text("sura")
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-
-                }
-                .environment(\.layoutDirection, .leftToRight)
-
-                .frame(maxWidth: .infinity, alignment: .center)
-            }
-            .padding( .bottom, 5)
-            .frame(height: 20)
-            .font(.footnote)
-            .foregroundColor(.secondary)
-            .padding(.horizontal)
-            .background(.bar)
-            .overlay(alignment: .bottom){
-                Divider()
-            }
-            .environment(\.layoutDirection, .leftToRight)
-        }
-        .onChange(of: selection){ value in
-            if let value = value {
-                dismiss()
-                DispatchQueue.main.asyncAfter(deadline: .now()+0.3){
-                    quran.ayaOpenAction(value)
-                }
-            }
-        }
+        .safeAreaInset(edge: .top){ AyaListHeader() }
     }
+    
 }

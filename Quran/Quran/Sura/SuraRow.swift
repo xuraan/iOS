@@ -17,8 +17,8 @@ struct SuraRow: View {
     @EnvironmentObject var suraVM: SuraViewModel
     @EnvironmentObject var searchVM: SearchModel
     @EnvironmentObject var ayaVM: AyaViewModel
-    var action: ()-> Void
-    init(for sura: Sura,  action: @escaping () -> Void = {}) {
+    var action: (()-> Void)?
+    init(for sura: Sura,  action: (() -> Void)? = nil ) {
         self.sura = sura
         self.action = action
     }
@@ -64,8 +64,12 @@ struct SuraRow: View {
                 .environment(\.pinned, pinned)
                 .environment(\.favorite, favorite)
         })
-        .onTapGesture(perform: action)
+        .onTapGesture(perform: (action.isNil ? { quranVM.suraOpenAction(sura) } : action)! )
         .environment(\.layoutDirection, .leftToRight)
     }
 }
 
+extension Optional {
+    var isNil: Bool { self == nil }
+    var isNotNil: Bool { !isNil }
+}

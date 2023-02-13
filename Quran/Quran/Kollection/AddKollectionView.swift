@@ -24,6 +24,13 @@ struct AddKollectionView: View {
     ) var suras: FetchedResults<Sura>
     @FetchRequest(
         sortDescriptors: [SortDescriptor(\.id)]
+    ) var sofhas: FetchedResults<Sofha>
+    @FetchRequest(
+        sortDescriptors: [SortDescriptor(\.id)]
+    ) var ayas: FetchedResults<Aya>
+
+    @FetchRequest(
+        sortDescriptors: [SortDescriptor(\.id)]
     ) var kollections: FetchedResults<Kollection>
     
     init(kollection: Binding<Kollection?>){
@@ -79,15 +86,28 @@ struct AddKollectionView: View {
             }
             Section("Collection items"){
                 NavigationLink{
-                    SelectableSuraList(suras: Array(suras), selection: $surasIDs)
-                        .toolbar{
-                            EditButton()
-                        }
-                }label: {
+                    SuraList(suras: Array(suras), selection: $surasIDs)
+                        .environment(\.editMode, .constant(.active))
+                } label: {
                     Text("suras")
                         .badge(surasIDs.count)
                 }
+                NavigationLink{
+                    SofhaList(sofhas: Array(sofhas), selection: $sofhasIDs)
+                        .environment(\.editMode, .constant(.active))
+                } label: {
+                    Text("sofhas")
+                        .badge(sofhasIDs.count)
+                }
+                NavigationLink{
+                    AyaList(ayas: Array(ayas), selection: $ayasIDs)
+                        .environment(\.editMode, .constant(.active))
+                } label: {
+                    Text("ayas")
+                        .badge(ayasIDs.count)
+                }
             }
+            
         }
         .toolbar{
             ToolbarItem(placement: .cancellationAction, content: {

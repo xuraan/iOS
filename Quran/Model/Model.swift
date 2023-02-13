@@ -8,6 +8,11 @@
 import SwiftUI
 
 class Model: ObservableObject {
+    
+    //MARK: - DATA
+    @Published var pinned: Any?
+    
+    //MARK: - global
     @Published var preferredColorScheme: ColorScheme?
     
     //MARK: - Font

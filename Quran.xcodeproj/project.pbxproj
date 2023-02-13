@@ -31,6 +31,9 @@
 		F454C2D72999AD6D007C85BF /* Sofha+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454C2CD2999AD6D007C85BF /* Sofha+CoreDataProperties.swift */; };
 		F454C2D82999AD6D007C85BF /* Place+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454C2CE2999AD6D007C85BF /* Place+CoreDataClass.swift */; };
 		F454C2D92999AD6D007C85BF /* Place+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454C2CF2999AD6D007C85BF /* Place+CoreDataProperties.swift */; };
+		F454C2DB2999D23D007C85BF /* AyaListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454C2DA2999D23D007C85BF /* AyaListHeader.swift */; };
+		F454C2DD2999D9FE007C85BF /* SofhaListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454C2DC2999D9FE007C85BF /* SofhaListHeader.swift */; };
+		F454C2DF2999DAF6007C85BF /* SuraListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454C2DE2999DAF6007C85BF /* SuraListHeader.swift */; };
 		F460982D2987516F00EDEAF7 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F460982C2987516F00EDEAF7 /* MainView.swift */; };
 		F4609831298825F300EDEAF7 /* QuranSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4609830298825F300EDEAF7 /* QuranSettings.swift */; };
 		F460983329882A4600EDEAF7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = F460983229882A4600EDEAF7 /* Model.swift */; };
@@ -111,6 +114,9 @@
 		F454C2CD2999AD6D007C85BF /* Sofha+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sofha+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F454C2CE2999AD6D007C85BF /* Place+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Place+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F454C2CF2999AD6D007C85BF /* Place+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Place+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F454C2DA2999D23D007C85BF /* AyaListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AyaListHeader.swift; sourceTree = "<group>"; };
+		F454C2DC2999D9FE007C85BF /* SofhaListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SofhaListHeader.swift; sourceTree = "<group>"; };
+		F454C2DE2999DAF6007C85BF /* SuraListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuraListHeader.swift; sourceTree = "<group>"; };
 		F460982C2987516F00EDEAF7 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F4609830298825F300EDEAF7 /* QuranSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuranSettings.swift; sourceTree = "<group>"; };
 		F460983229882A4600EDEAF7 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -362,6 +368,7 @@
 				F4A4B13C29844C31000ABB8D /* SofhaView.swift */,
 				F4A4B13D29844C31000ABB8D /* SofhasView.swift */,
 				F460983629884F9A00EDEAF7 /* Sofha+SwiftUI.swift */,
+				F454C2DC2999D9FE007C85BF /* SofhaListHeader.swift */,
 			);
 			path = Sofha;
 			sourceTree = "<group>";
@@ -377,6 +384,7 @@
 				F4A4B12C29844C31000ABB8D /* SuraViewModel.swift */,
 				F4A4B1762984666F000ABB8D /* SuraSettings.swift */,
 				F43AE51429957EBB004CAE05 /* Sura+SwiftUI.swift */,
+				F454C2DE2999DAF6007C85BF /* SuraListHeader.swift */,
 			);
 			path = Sura;
 			sourceTree = "<group>";
@@ -391,6 +399,7 @@
 				F4A4B17A298466E6000ABB8D /* AyaSettings.swift */,
 				F4A4B17C298466F8000ABB8D /* AyaViewModel.swift */,
 				F43AE5162995800B004CAE05 /* Aya+SwifUI.swift */,
+				F454C2DA2999D23D007C85BF /* AyaListHeader.swift */,
 			);
 			path = Aya;
 			sourceTree = "<group>";
@@ -531,6 +540,7 @@
 				F4A4B17529846661000ABB8D /* SettingsView.swift in Sources */,
 				F4A4B11C29844C0A000ABB8D /* RankView.swift in Sources */,
 				F427D5E0299880E10004B15F /* AddKollectionView.swift in Sources */,
+				F454C2DD2999D9FE007C85BF /* SofhaListHeader.swift in Sources */,
 				F4A4B15329844C31000ABB8D /* SofhaView.swift in Sources */,
 				F43AE51529957EBB004CAE05 /* Sura+SwiftUI.swift in Sources */,
 				F43AE4F22995636A004CAE05 /* Color.swift in Sources */,
@@ -546,6 +556,7 @@
 				F454C2D52999AD6D007C85BF /* Sura+CoreDataProperties.swift in Sources */,
 				F4A4B17B298466E6000ABB8D /* AyaSettings.swift in Sources */,
 				F43AE5172995800B004CAE05 /* Aya+SwifUI.swift in Sources */,
+				F454C2DB2999D23D007C85BF /* AyaListHeader.swift in Sources */,
 				F43AE4F9299570F2004CAE05 /* View.swift in Sources */,
 				F4A4B14429844C31000ABB8D /* Sura.swift in Sources */,
 				F4A4B0ED298449FB000ABB8D /* QuranApp.swift in Sources */,
@@ -555,6 +566,7 @@
 				F4A4B14D29844C31000ABB8D /* PreferenceKey.swift in Sources */,
 				F454C2D42999AD6D007C85BF /* Sura+CoreDataClass.swift in Sources */,
 				F4A4B14329844C31000ABB8D /* SuraView.swift in Sources */,
+				F454C2DF2999DAF6007C85BF /* SuraListHeader.swift in Sources */,
 				F454C2D12999AD6D007C85BF /* Aya+CoreDataProperties.swift in Sources */,
 				F43AE4F42995707B004CAE05 /* NSSet.swift in Sources */,
 				F43AE4FF29957DD0004CAE05 /* Kollection.swift in Sources */,

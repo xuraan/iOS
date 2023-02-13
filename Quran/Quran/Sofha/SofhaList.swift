@@ -9,20 +9,41 @@ import SwiftUI
 
 struct SofhaList: View {
     @Environment(\.dismiss) var dismiss
+    @Environment(\.editMode) var editMode
+
     var sofhas: [Sofha]
     @State var searchResult: [Sofha]
-    @State var selection: Sofha?
+    @Binding var selection: Set<Sofha.ID>
     @State var text: String = ""
     @EnvironmentObject var searchVM: SearchModel
     @EnvironmentObject var quran: QuranViewModel
     init(sofhas: [Sofha]) {
         self.sofhas = sofhas
         self._searchResult = State(initialValue: sofhas)
+        _selection = .constant(.init())
     }
+    init(sofhas: [Sofha], selection: Binding<Set<Sofha.ID>>) {
+        self.sofhas = sofhas
+        self._searchResult = State(initialValue: sofhas)
+        self._selection = selection
+    }
+
     var body: some View {
-        List(searchResult, id: \.self, selection: $selection){ sofha in
-            SofhaRow(for: sofha).fullSeparatore
+        Group{
+            if editMode?.wrappedValue == .active {
+                List(searchResult, selection: $selection){ sofha in
+                    SofhaRow(for: sofha, action: { selection.toggle(sofha.id) })
+                        .fullSeparatore
+                        .tag(sofha.id)
+                }
+            } else {
+                List(searchResult){ sofha in
+                    SofhaRow(for: sofha)
+                        .fullSeparatore
+                }
+            }
         }
+        
         .listStyle(.plain)
         .padding(.top, -10)
         .background(Color("bg"))
@@ -39,41 +60,7 @@ struct SofhaList: View {
             }
         }
         .safeAreaInset(edge: .top){
-            HStack{
-                
-                Text("Page")
-                    .frame(width: 35, alignment: .leading)
-
-                HStack{
-                    
-                    Text("Last aya")
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                    Text("First aya")
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-
-                }
-                .environment(\.layoutDirection, .leftToRight)
-
-                .frame(maxWidth: .infinity, alignment: .center)
-            }
-            .padding( .bottom, 5)
-            .frame(height: 20)
-            .font(.footnote)
-            .foregroundColor(.secondary)
-            .padding(.horizontal)
-            .background(.bar)
-            .overlay(alignment: .bottom){
-                Divider()
-            }
-            .environment(\.layoutDirection, .leftToRight)
-        }
-        .onChange(of: selection){ value in
-            if let value = value {
-                dismiss()
-                DispatchQueue.main.asyncAfter(deadline: .now()+0.3){
-                    quran.sofhaOpenAction(value)
-                }
-            }
+            SofhaListHeader()
         }
     }
 }
