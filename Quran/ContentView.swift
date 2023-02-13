@@ -28,7 +28,7 @@ struct ContentView: View {
         .environmentObject(suraVM)
         .environmentObject(searchVM)
         .environmentObject(ayaVM)
-        .environment(\.favorite, favorite.first!)
+        .environment(\.favorite, favorite.first)
         .environment(\.pinned, $pinned)
         
         //MARK: -THEME

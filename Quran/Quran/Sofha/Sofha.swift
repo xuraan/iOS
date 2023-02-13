@@ -8,9 +8,13 @@
 import SwiftUI
 
 extension Sofha {
-    func isElement(of kollection: Kollection) -> Bool {
-        return self.kollections.contains(kollection)
+    func isElement(of kollection: Kollection?) -> Bool {
+        if let kollection = kollection {
+            return self.kollections.contains(kollection)
+        }
+        return false
     }
+
     var surasNames: [String] {
         suras.suras.map{ $0.name  }
     }

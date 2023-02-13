@@ -9,10 +9,10 @@ import SwiftUI
 
 //MARK: - Forvoritekey
 struct FavoriteKey: EnvironmentKey {
-    static var defaultValue: Kollection = Kollection()
+    static var defaultValue: Kollection?
 }
 extension EnvironmentValues {
-    var favorite: Kollection {
+    var favorite: Kollection? {
         get{self[FavoriteKey.self]}
         set{self[FavoriteKey.self] = newValue}
     }

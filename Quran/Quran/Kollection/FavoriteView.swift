@@ -13,7 +13,9 @@ struct FavoriteView: View {
     var body: some View {
         NavigationStack{
             List{
-                KollectionItemsSection(for: favorite)
+                if let favorite = favorite{
+                    KollectionItemsSection(for: favorite)
+                }
             }
             .navigationTitle("Favorites")
         }

@@ -13,7 +13,10 @@ import CoreData
 extension Sura {
     var translation : String { NSLocalizedString( "s\(self.id)", tableName: "suras", comment: "sura trans")}
     
-    func isElement(of kollection: Kollection) -> Bool {
-        return self.kollections.contains(kollection)
+    func isElement(of kollection: Kollection?) -> Bool {
+        if let kollection = kollection {
+            return self.kollections.contains(kollection)
+        }
+        return false
     }
 }

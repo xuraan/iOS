@@ -9,12 +9,15 @@ import SwiftUI
 
 extension Aya {
     @ViewBuilder
-    func menu(favorite: Kollection, pinned: Binding<Any?>) -> some View {
-        StarButton(isStared: favorite.contains(object: self), action: { [self] in
-            withAnimation{
-                isElement(of: favorite) ? removeFromKollections(favorite) : addToKollections(favorite)
-            }
-        })
+    func menu(favorite: Kollection?, pinned: Binding<Any?>) -> some View {
+        if let favorite = favorite {
+            StarButton(isStared: favorite.contains(object: self), action: { [self] in
+                withAnimation{
+                    isElement(of: favorite) ? removeFromKollections(favorite) : addToKollections(favorite)
+                }
+            })
+        }
+        
         PinnedButton(isPinned: pinned.wrappedValue as? Aya == self, action: { [self] in
             withAnimation{
                 pinned.wrappedValue = (pinned.wrappedValue as? Aya == self) ? nil : self
