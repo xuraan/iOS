@@ -11,6 +11,7 @@ struct AyaRow: View {
     @ObservedObject var aya: Aya
     @Environment(\.pinned) var pinned
     @Environment(\.favorite) var favorite
+    @Environment(\.dismiss) var dismiss
     @EnvironmentObject var model: Model
     @EnvironmentObject var quranVM: QuranViewModel
     @EnvironmentObject var suraVM: SuraViewModel
@@ -50,6 +51,8 @@ struct AyaRow: View {
             )
             .offset(y: 4)
         })
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background()
         .swipeActions(edge: .trailing){
             aya.menu(favorite: favorite, pinned: pinned)
         }
@@ -74,7 +77,10 @@ struct AyaRow: View {
                 .environment(\.pinned, pinned)
                 .environment(\.favorite, favorite)
         })
-        .onTapGesture(perform: (action.isNil ? {quranVM.ayaOpenAction(aya)} : action)!)
+        .onTapGesture(perform: (action.isNil ? {
+            dismiss()
+            quranVM.ayaOpenAction(aya)
+        } : action)!)
         .environment(\.layoutDirection, .leftToRight)
     }
 }

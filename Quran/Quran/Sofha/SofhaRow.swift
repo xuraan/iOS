@@ -14,14 +14,14 @@ struct SofhaRow: View {
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.showCoverView) var showCoverView
     @EnvironmentObject var quranVM: QuranViewModel
-
+    @Environment(\.dismiss) var dismiss
     var action: (()-> Void)?
     init(for sofha: Sofha, action: (() -> Void)? = nil) {
         self.sofha = sofha
         self.action = action
     }
     
-    var body: some View {
+    var body: some View {    
         let isFavorite = sofha.isElement(of: favorite)
         Label(title: {
             HStack{
@@ -42,6 +42,8 @@ struct SofhaRow: View {
             RankView(text: "\(sofha.id)", color: Color("bg"), bgColor: .favorite(isFavorite))
                 .offset(y: 4)
         })
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background()
         .contextMenu(menuItems: {
             sofha.menu(favorite: favorite, pinned: pinned)
             
@@ -59,7 +61,17 @@ struct SofhaRow: View {
         .swipeActions(edge: .trailing){
             sofha.menu(favorite: favorite, pinned: pinned)
         }
-        .onTapGesture(perform: (action.isNil ? {quranVM.sofhaOpenAction(sofha)} : action)!)
+        .swipeActions(edge: .leading){
+            Button("show in quran", action: {
+                dismiss()
+                quranVM.sofhaOpenAction(sofha)
+            })
+                .tint(.blue)
+        }
+        .onTapGesture(perform: (action.isNil ? {
+            dismiss()
+            quranVM.sofhaOpenAction(sofha)
+        } : action)!)
         .environment(\.layoutDirection, .leftToRight)
     }
 }

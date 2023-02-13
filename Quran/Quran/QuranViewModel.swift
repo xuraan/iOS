@@ -64,20 +64,17 @@ extension QuranViewModel {
         withAnimation{
             selection = Int(sura.id-1)
             show()
-            isShowIndex = false
         }
     }
     func openActionModeSofha(sura: Sura)->Void{
         selection = Int((sura.sofhas.sofhas.first?.id ?? 1)-1)
         show()
-        isShowIndex = false
     }
     
     func openActionModeSura(sofha: Sofha)->Void{
         withAnimation{
             selection = Int(sofha.suras.suras.first!.id-1)
             show()
-            isShowIndex = false
             DispatchQueue.main.asyncAfter(deadline:.now()+0.2, execute: { [self] in
                 suraViewScrollTo = sofha.ayas.ayas.first!.id
             })
@@ -87,7 +84,6 @@ extension QuranViewModel {
         withAnimation{
             selection = Int(sofha.id-1)
             show()
-            isShowIndex = false
         }
    
     }
@@ -96,7 +92,6 @@ extension QuranViewModel {
         withAnimation{
             selection = Int(aya.sura.id-1)
             show()
-            isShowIndex = false
             DispatchQueue.main.asyncAfter(deadline:.now()+0.2, execute: { [self] in
                 suraViewScrollTo = aya.id
             })
@@ -106,7 +101,6 @@ extension QuranViewModel {
         withAnimation{
             selection = Int(aya.sofha.id - 1)
             show()
-            isShowIndex = false
         }
 
     }

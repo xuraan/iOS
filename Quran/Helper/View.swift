@@ -57,12 +57,9 @@ extension View{
                         if let controller =  windows.windows.first?.rootViewController?
                             .presentedViewController, let sheet = controller.presentationController as? UISheetPresentationController{
                         // MARK: As Usual Set Properties What Ever Your Wish Here With Sheet
-                            //controller.presentingViewController?.view.tintAdjustmentMode = .normal
-                            //sheet.largestUndimmedDetentIdentifier = .large
                             sheet.preferredCornerRadius = 30
                         }
                     }
-
             }
     }
     
@@ -85,8 +82,6 @@ extension View{
                             if let controller =  windows.windows.first?.rootViewController?
                                 .presentedViewController, let sheet = controller.presentationController as? UISheetPresentationController{
                             // MARK: As Usual Set Properties What Ever Your Wish Here With Sheet
-                                //controller.presentingViewController?.view.tintAdjustmentMode = .normal
-                                //sheet.largestUndimmedDetentIdentifier = .large
                                 sheet.preferredCornerRadius = 30
                             }
                         }

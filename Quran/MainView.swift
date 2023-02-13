@@ -65,14 +65,14 @@ struct MainView: View {
                             }
                         }
                     }
+                    .searchable(text: $searchText, tokens: $searchVM.tokens, token: { token in
+                        switch token {
+                            case .sura: Text("sura")
+                            case .aya: Text("aya")
+                            case .sofha: Text("sofha")
+                        }
+                    })
             }
-            .searchable(text: $searchText, tokens: $searchVM.tokens, token: { token in
-                switch token {
-                    case .sura: Text("sura")
-                    case .aya: Text("aya")
-                    case .sofha: Text("sofha")
-                }
-            })
             .customSheet(isPresented: $quranVM.isShowIndex){
                 QuranIndexView()
                 .preferredColorScheme(model.preferredColorScheme)
@@ -122,7 +122,6 @@ struct MainView: View {
             .customDismissibleSheet(isPresented: $showAddCollection){
                 AddKollectionView(kollection: $kollection)
             }
-            .ignoresSafeArea(.keyboard)
         } cover: {
             QuranView(isHideCloseButton: $isHideCloseButton)
                 .environment(\.favorite, favorite)

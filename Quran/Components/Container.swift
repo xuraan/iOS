@@ -26,7 +26,7 @@ struct MainContainer<Content: View, Cover: View>: View {
     
     var body: some View {
         content
-            .scaleEffect( isOverlayHide ? 1 : 1.2 )
+            .scaleEffect( isOverlayHide ? 1 : 0.9 )
             .blur(radius: isOverlayHide ? 0 : 30)
             .overlay{
                 cover

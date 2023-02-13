@@ -11,7 +11,7 @@ struct SuraRow: View {
     @ObservedObject var sura: Sura
     @Environment(\.favorite) var favorite
     @Environment(\.pinned) var pinned
-
+    @Environment(\.dismiss) var dismiss
     @EnvironmentObject var model: Model
     @EnvironmentObject var quranVM: QuranViewModel
     @EnvironmentObject var suraVM: SuraViewModel
@@ -45,9 +45,19 @@ struct SuraRow: View {
             RankView(text: "\(sura.id)", color: Color("bg"), bgColor: .favorite(isFavorite))
                 .offset(y: 4)
         })
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background()
         .swipeActions(edge: .trailing){
             sura.menu(favorite: favorite, pinned: pinned)
         }
+        .swipeActions(edge: .leading){
+            Button("show in quran", action: {
+                dismiss()
+                quranVM.suraOpenAction(sura)
+                
+            }).tint(.blue)
+        }
+
         .contextMenu(menuItems: {
             sura.menu(favorite: favorite, pinned: pinned)
         }, preview: {
@@ -64,7 +74,10 @@ struct SuraRow: View {
                 .environment(\.pinned, pinned)
                 .environment(\.favorite, favorite)
         })
-        .onTapGesture(perform: (action.isNil ? { quranVM.suraOpenAction(sura) } : action)! )
+        .onTapGesture(perform: (action.isNil ? {
+            dismiss()
+            quranVM.suraOpenAction(sura)
+        } : action)! )
         .environment(\.layoutDirection, .leftToRight)
     }
 }
