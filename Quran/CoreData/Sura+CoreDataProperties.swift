@@ -2,7 +2,7 @@
 //  Sura+CoreDataProperties.swift
 //  Quran
 //
-//  Created by Samba Diawara on 2023-02-09.
+//  Created by Samba Diawara on 2023-02-12.
 //
 //
 
@@ -20,9 +20,9 @@ extension Sura {
     @NSManaged public var name: String
     @NSManaged public var phonetic: String
     @NSManaged public var ayas: NSOrderedSet
+    @NSManaged public var kollections: NSSet
     @NSManaged public var place: Place
     @NSManaged public var sofhas: NSOrderedSet
-    @NSManaged public var kollections: NSSet
 
 }
 
@@ -61,6 +61,23 @@ extension Sura {
 
 }
 
+// MARK: Generated accessors for kollections
+extension Sura {
+
+    @objc(addKollectionsObject:)
+    @NSManaged public func addToKollections(_ value: Kollection)
+
+    @objc(removeKollectionsObject:)
+    @NSManaged public func removeFromKollections(_ value: Kollection)
+
+    @objc(addKollections:)
+    @NSManaged public func addToKollections(_ values: NSSet)
+
+    @objc(removeKollections:)
+    @NSManaged public func removeFromKollections(_ values: NSSet)
+
+}
+
 // MARK: Generated accessors for sofhas
 extension Sura {
 
@@ -93,23 +110,6 @@ extension Sura {
 
     @objc(removeSofhas:)
     @NSManaged public func removeFromSofhas(_ values: NSOrderedSet)
-
-}
-
-// MARK: Generated accessors for kollections
-extension Sura {
-
-    @objc(addKollectionsObject:)
-    @NSManaged public func addToKollections(_ value: Kollection)
-
-    @objc(removeKollectionsObject:)
-    @NSManaged public func removeFromKollections(_ value: Kollection)
-
-    @objc(addKollections:)
-    @NSManaged public func addToKollections(_ values: NSSet)
-
-    @objc(removeKollections:)
-    @NSManaged public func removeFromKollections(_ values: NSSet)
 
 }
 

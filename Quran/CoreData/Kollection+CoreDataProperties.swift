@@ -2,7 +2,7 @@
 //  Kollection+CoreDataProperties.swift
 //  Quran
 //
-//  Created by Samba Diawara on 2023-02-09.
+//  Created by Samba Diawara on 2023-02-12.
 //
 //
 
@@ -17,9 +17,11 @@ extension Kollection {
     }
 
     @NSManaged public var id: String
+    @NSManaged public var colorHex: String
+    @NSManaged public var descript: String
     @NSManaged public var ayas: NSSet
-    @NSManaged public var suras: NSSet
     @NSManaged public var sofhas: NSSet
+    @NSManaged public var suras: NSSet
 
 }
 
@@ -40,23 +42,6 @@ extension Kollection {
 
 }
 
-// MARK: Generated accessors for suras
-extension Kollection {
-
-    @objc(addSurasObject:)
-    @NSManaged public func addToSuras(_ value: Sura)
-
-    @objc(removeSurasObject:)
-    @NSManaged public func removeFromSuras(_ value: Sura)
-
-    @objc(addSuras:)
-    @NSManaged public func addToSuras(_ values: NSSet)
-
-    @objc(removeSuras:)
-    @NSManaged public func removeFromSuras(_ values: NSSet)
-
-}
-
 // MARK: Generated accessors for sofhas
 extension Kollection {
 
@@ -71,6 +56,23 @@ extension Kollection {
 
     @objc(removeSofhas:)
     @NSManaged public func removeFromSofhas(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for suras
+extension Kollection {
+
+    @objc(addSurasObject:)
+    @NSManaged public func addToSuras(_ value: Sura)
+
+    @objc(removeSurasObject:)
+    @NSManaged public func removeFromSuras(_ value: Sura)
+
+    @objc(addSuras:)
+    @NSManaged public func addToSuras(_ values: NSSet)
+
+    @objc(removeSuras:)
+    @NSManaged public func removeFromSuras(_ values: NSSet)
 
 }
 

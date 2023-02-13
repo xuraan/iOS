@@ -95,7 +95,9 @@ struct AddKollectionView: View {
                     withAnimation{
                         self.dismiss()
                         let newKollection = Kollection(context: viewContext)
+                        newKollection.colorHex = color.hex
                         newKollection.id = name
+                        print(color.hex)
                     }
                 }, label: {
                     HStack{

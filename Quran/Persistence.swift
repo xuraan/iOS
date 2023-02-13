@@ -92,8 +92,11 @@ struct PersistenceController {
             //MARK: - App Kollection
             let favorite = Kollection(context: viewContext)
             favorite.id = "C6819E4A-9203-48CE-9EE4-AAF815B52D09"
+            favorite.colorHex = "FF0000"
             let pinned = Kollection(context: viewContext)
             pinned.id = "CF39FE0F-4FDE-494B-A628-7B842F87C3ED"
+            pinned.colorHex = "FF0000"
+
             //MARK: - Quran
             let newPlace = Place(context: viewContext)
             newPlace.id = "mk"
@@ -135,7 +138,7 @@ struct PersistenceController {
                     newSofha.kollections = .init()
                 }
             }
-            try? viewContext.save()
+            try! viewContext.save()
             UserDefaults.standard.set(true, forKey: "dataWasAdded")
         }
     }

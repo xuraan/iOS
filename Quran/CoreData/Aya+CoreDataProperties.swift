@@ -2,7 +2,7 @@
 //  Aya+CoreDataProperties.swift
 //  Quran
 //
-//  Created by Samba Diawara on 2023-02-09.
+//  Created by Samba Diawara on 2023-02-12.
 //
 //
 
@@ -19,9 +19,9 @@ extension Aya {
     @NSManaged public var id: Int16
     @NSManaged public var plain: String
     @NSManaged public var text: String
+    @NSManaged public var kollections: NSSet
     @NSManaged public var sofha: Sofha
     @NSManaged public var sura: Sura
-    @NSManaged public var kollections: NSSet
 
 }
 

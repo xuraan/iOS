@@ -8,13 +8,11 @@
 import SwiftUI
 
 class AyaViewModel: ObservableObject {
-    
     static var ayaFonts = [
         "me_quran",
         "AmiriQuran-Regular",
         "Al-Majeed-Quranic-Font"
     ]
-    
     @Published var ayaFontName: String {
         didSet{
             UserDefaults.standard.set(ayaFontName, forKey: "ayaFontName")
@@ -50,7 +48,6 @@ class AyaViewModel: ObservableObject {
             UserDefaults.standard.set(isPhoneticBold, forKey: "isPhoneticBold")
         }
     }    
-    
     init(){
         if !UserDefaults.standard.bool(forKey: "AyaViewModelIsBoarded"){
             UserDefaults.standard.set(true, forKey: "isUseSystemColorScheme")
@@ -69,6 +66,5 @@ class AyaViewModel: ObservableObject {
         isPhonticEnable = UserDefaults.standard.bool(forKey: "isPhonticEnable")
         isPhoneticBold = UserDefaults.standard.bool(forKey: "isPhoneticBold")
     }
-    
 }
 

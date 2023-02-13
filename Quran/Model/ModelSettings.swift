@@ -15,16 +15,15 @@ struct ModelSettings: View {
             Button{
                 let appSettings = URL(string: UIApplication.openSettingsURLString)!
                 UIApplication.shared.open(appSettings)
-                //MARK: To open language section in iOS Settings App
-//                UIApplication.shared.open(URL(string: "App-Prefs:root=General&path=INTERNATIONAL")!)
-
             } label: {
                 Label(title: {
                     Text("Language").foregroundColor(.primary)
                 }, icon: {
                     Image(systemName: "globe")
                 })
-                .badge(Model.Local.get(code: Locale.current.language.languageCode?.identifier ?? "")?.name)
+                .badge(
+                    Locale.current.localizedString(forIdentifier: Locale.current.identifier)
+                    )
             }
         }
         Section("colorscheme"){

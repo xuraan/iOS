@@ -8,6 +8,7 @@
 import SwiftUI
 
 extension Kollection  {
+    
     static func request(for id: String) -> FetchRequest<Kollection> {
         let request = fetchRequest()
         request.sortDescriptors = [
@@ -17,6 +18,12 @@ extension Kollection  {
         request.predicate = NSPredicate(format: "id = %@", id)
         return FetchRequest(fetchRequest: request)
     }
+    
+    ///return the ids of immutable Kollection like favorites ...
+    static var immutableIDs: [String] = [favoriteID]
+    static var favoriteID = "C6819E4A-9203-48CE-9EE4-AAF815B52D09"
+    static var predicate = NSPredicate(format: "NOT (id IN %@)", immutableIDs)
+    static var favoritePredicate = NSPredicate(format: "id = %@", favoriteID)
 }
 
 extension Kollection  {
@@ -32,4 +39,5 @@ extension Kollection  {
     }
     
     var count: Int { suras.count + ayas.count + sofhas.count }
+    var color: Color { Color(hex: colorHex) }
 }

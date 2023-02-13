@@ -25,17 +25,6 @@ struct HomeView: View {
                 SearchView(text: $text)
                     .environment(\.isDestructive, false)
             } else {
-                if let page = quranVM.lastPage {
-                    lastPage(page: page)
-                        .onTapGesture(perform:  showSlideView)
-                }
-                KollectionItemsSection(
-                    for: pinned,
-                    suraSectionTitle: "pinned suras",
-                    ayaSectionTitle: "pinned ayas",
-                    sofhaSectionTitle: "pinned sofhas")
-                .environment(\.isPennedDestructive, true)
-                .environment(\.isDestructive, false)
                 KollectionsSection()
             }
         }
