@@ -84,7 +84,6 @@
 		F4A4B1772984666F000ABB8D /* SuraSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B1762984666F000ABB8D /* SuraSettings.swift */; };
 		F4A4B17B298466E6000ABB8D /* AyaSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B17A298466E6000ABB8D /* AyaSettings.swift */; };
 		F4A4B17D298466F8000ABB8D /* AyaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B17C298466F8000ABB8D /* AyaViewModel.swift */; };
-		F4E38BC0298C3F8D0059C10C /* majeed.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4E38BBF298C3F8D0059C10C /* majeed.ttf */; };
 		F4F5DC5729885BA600FB1707 /* AmiriQuran-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4F5DC5629885BA600FB1707 /* AmiriQuran-Regular.ttf */; };
 /* End PBXBuildFile section */
 
@@ -172,7 +171,6 @@
 		F4A4B1762984666F000ABB8D /* SuraSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuraSettings.swift; sourceTree = "<group>"; };
 		F4A4B17A298466E6000ABB8D /* AyaSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AyaSettings.swift; sourceTree = "<group>"; };
 		F4A4B17C298466F8000ABB8D /* AyaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AyaViewModel.swift; sourceTree = "<group>"; };
-		F4E38BBF298C3F8D0059C10C /* majeed.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = majeed.ttf; sourceTree = "<group>"; };
 		F4F5DC5629885BA600FB1707 /* AmiriQuran-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AmiriQuran-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -283,7 +281,6 @@
 		F4A4B10A29844B37000ABB8D /* Font */ = {
 			isa = PBXGroup;
 			children = (
-				F4E38BBF298C3F8D0059C10C /* majeed.ttf */,
 				F4F5DC5629885BA600FB1707 /* AmiriQuran-Regular.ttf */,
 				F4A4B10B29844B37000ABB8D /* me_quran.ttf */,
 				F4A4B10C29844B37000ABB8D /* Waseem.ttc */,
@@ -483,7 +480,6 @@
 				F4A4B11329844B37000ABB8D /* quran.json in Resources */,
 				F4A4B10E29844B37000ABB8D /* Localizable.strings in Resources */,
 				F4A4B10F29844B37000ABB8D /* ayas.strings in Resources */,
-				F4E38BC0298C3F8D0059C10C /* majeed.ttf in Resources */,
 				F4A4B11229844B37000ABB8D /* Waseem.ttc in Resources */,
 				F4A4B11029844B37000ABB8D /* suras.strings in Resources */,
 				F4A4B11129844B37000ABB8D /* me_quran.ttf in Resources */,
@@ -730,6 +726,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Quran/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.books";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -760,6 +757,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Quran/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.books";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

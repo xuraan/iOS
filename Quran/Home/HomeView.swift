@@ -17,11 +17,9 @@ struct HomeView: View {
     @Environment(\.isSearching) var isSearching
     @Environment(\.pinned) var pinned
     @Binding var text: String
-    
     init(text: Binding<String> = .constant("")) {
         self._text = text
     }
-    
     var body: some View {
         List{
             if isSearching {
@@ -42,31 +40,29 @@ struct HomeView: View {
                     }
                     .buttonStyle(.borderless)
                     .listRowBackground(Color.clear)
-                    .listRowInsets(EdgeInsets(top: -5, leading: 0, bottom: -5, trailing: 0))
-                }.offset(y: -10)
-                
+                    .listRowInsets(EdgeInsets())
+                }
                 pinnedView()
                     .environment(\.isPennedDestructive, true)
-                
-                
                 KollectionsSection()
             }
         }
         .navigationTitle(isSearching ? "Search" : "The noble quran")
     }
-    
     @ViewBuilder
     func pinnedView() -> some View {
-        Group{
-            if let sura = pinned.wrappedValue as? Sura {
-                SuraRow(for: sura)
-            } else if let sofha = pinned.wrappedValue as? Sofha {
-                SofhaRow(for: sofha)
-            } else if let aya = pinned.wrappedValue as? Aya {
-                AyaRow(for: aya)
+        if pinned.wrappedValue.isNotNil {
+            Section{
+                if let sura = pinned.wrappedValue as? Sura {
+                    SuraRow(for: sura)
+                } else if let sofha = pinned.wrappedValue as? Sofha {
+                    SofhaRow(for: sofha)
+                } else if let aya = pinned.wrappedValue as? Aya {
+                    AyaRow(for: aya)
+                }
             }
+            .padding(.vertical, -7)
         }
-        .padding(.vertical, -5)
     }
 }
 

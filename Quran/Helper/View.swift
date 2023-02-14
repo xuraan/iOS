@@ -35,13 +35,6 @@ extension View{
                 }
             }
     }
-    
-    var contentBG: some View {
-        self
-        .scrollContentBackground(.hidden)
-        .background(Color("bg"))
-    }
-    
     @ViewBuilder
     func customSheet<Content: View>(
         isPresented: Binding<Bool>,
@@ -62,7 +55,6 @@ extension View{
                     }
             }
     }
-
     @ViewBuilder
     var fullSeparatore: some View {
         self.alignmentGuide(.listRowSeparatorLeading){ viewDimension in

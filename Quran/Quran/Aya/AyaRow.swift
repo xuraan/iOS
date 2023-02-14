@@ -49,7 +49,7 @@ struct AyaRow: View {
                 color: Color("bg"),
                 bgColor: .favorite(isFavorite)
             )
-            .offset(y: 4)
+            .offset(y: 2.2)
         })
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.blue.opacity(0.00001))
