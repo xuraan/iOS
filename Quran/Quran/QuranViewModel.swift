@@ -16,7 +16,13 @@ class QuranViewModel: ObservableObject {
         }
     }
     @Published var suraViewScrollTo: Int16 = 0
-    var currentAya: Aya?
+    var currentAya: Aya? {
+        didSet{
+            if let currentAya = currentAya {
+                UserDefaults.standard.set(currentAya.id, forKey: "quransuraViewScrollTo")
+            }
+        }
+    }
     var currentSura: Sura?
     var currentSofha: Sofha?
 
@@ -55,6 +61,9 @@ class QuranViewModel: ObservableObject {
             ayaOpenAction = openActionModeSofha
             suraOpenAction = openActionModeSofha
             sofhaOpenAction = openActionModeSofha
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now()+1){
+            self.suraViewScrollTo = Int16(UserDefaults.standard.integer(forKey: "quransuraViewScrollTo"))
         }
     }
 }
