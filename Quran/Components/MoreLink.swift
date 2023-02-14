@@ -79,7 +79,7 @@ struct NavigationSheet: View {
         
         Button(action: {show = true}){
             if let title = title {
-                Text(title)
+                Text(LocalizedStringKey(title))
             } else if let label = label {
                 label
             }
@@ -132,7 +132,7 @@ struct CustomSheet: View {
         
         Button(action: {show = true}){
             if let title = title {
-                Text(title)
+                Text(LocalizedStringKey(title))
             } else if let label = label {
                 label
             }

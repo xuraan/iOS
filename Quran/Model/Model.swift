@@ -12,12 +12,13 @@ class Model: ObservableObject {
     //MARK: - Kollection
     @Published var Kollection: Kollection?
     @Published var showAddCollection: Bool = false
-    
+
     //MARK: - global
     @Published var preferredColorScheme: ColorScheme?
     
     //MARK: - Font
     @Published var ayaArabicFont: CustomFont = .me_quran
+    
 }
 
 

@@ -10,13 +10,15 @@
 "sofha" = "page";
 "verse" = "verset";
 
-"close" = "Fermer";
-"search" = "Recherche";
-"rank" = "rang";
+"Close" = "Fermer";
+"Search" = "Recherche";
+"Rank" = "Rang";
+"Done" = "Terminer";
+"Open quran" = "Ouvrir le coran";
+"Quran index" = "Index du coran";
 "Translation and phonetic" = "Traduction et phonétique";
 "The first and the last verses" = "Le premier et le dernier versets";
 
-"home" = "Acceuil";
 "The noble quran" = "Le noble coran";
 "Quran display mode" = "Mode d'affichage du Coran";
 "Settings" = "Réglages";

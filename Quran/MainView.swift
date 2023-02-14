@@ -8,21 +8,11 @@
 import SwiftUI
 
 struct MainView: View {
-    @Environment(\.favorite) var favorite
-    @Environment(\.pinned) var pinned
-    @Environment(\.colorScheme) var colorScheme
-
     @EnvironmentObject var model: Model
-    @EnvironmentObject var quranVM: QuranViewModel
-    @EnvironmentObject var suraVM: SuraViewModel
     @EnvironmentObject var searchVM: SearchModel
-    @EnvironmentObject var ayaVM: AyaViewModel
-    
+    @EnvironmentObject var quranVM: QuranViewModel
     @State var searchText = ""
     @State var isHideCloseButton = false
-    @State var showFavorites = false
-    @State var showSettings = false
-    @State var kollection: Kollection?
     @State var stack: NavigationPath = .init()
     @FetchRequest(sortDescriptors: [SortDescriptor(\.id)]) var suras: FetchedResults<Sura>
     @FetchRequest(sortDescriptors: [SortDescriptor(\.id)]) var sofhas: FetchedResults<Sofha>
@@ -69,9 +59,6 @@ struct MainView: View {
                                 .presentationDetents(.init([.height(650)]))
                             }
                         }
-                        ToolbarItemGroup(placement: .secondaryAction) {
-                            
-                        }
                         ToolbarItemGroup(placement: .navigationBarTrailing){
                             NavigationSheet {
                                 FavoriteView()
@@ -81,7 +68,7 @@ struct MainView: View {
                             NavigationSheet(closeButtonSystemName: "xmark", presentationDetents: .init([.height(500)])) {
                                 AddKollectionView()
                             } label: {
-                                Label("New collection", systemImage: "rectangle.stack.badge.plus")
+                                Label("New collection", systemImage: "plus.rectangle.on.rectangle")
                             }
                         }
                     }
@@ -95,10 +82,6 @@ struct MainView: View {
             }
         } cover: {
             QuranView(isHideCloseButton: $isHideCloseButton)
-                .environment(\.favorite, favorite)
-                .environment(\.pinned, pinned)
-        } onHidden: {
-            
         }
     }
 }

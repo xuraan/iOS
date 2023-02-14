@@ -19,7 +19,7 @@ struct KollectionsSection: View {
     @EnvironmentObject var searchVM: SearchModel
     var body: some View {
         if !kollections.isEmpty {
-            Section("Collections"){
+            Section{
                 ForEach(kollections){ kollection in
                     NavigationLink{
                         KollectionView(for: kollection)
@@ -50,6 +50,8 @@ struct KollectionsSection: View {
                         }
                     })
                 }
+            } header: {
+                Label("Collections", systemImage: "rectangle.on.rectangle.angled.fill")
             }
         }
     }

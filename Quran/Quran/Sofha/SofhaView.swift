@@ -11,7 +11,8 @@ struct SofhaView: View {
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.favorite) var favorite
     @Environment(\.pinned) var pinned
-    
+    @EnvironmentObject var quranVM: QuranViewModel
+
     @ObservedObject var sofha: Sofha
     @Binding var isExtended: Bool
 
@@ -57,5 +58,11 @@ struct SofhaView: View {
             
         }
         .background(Color.yellow.opacity( sofha.isElement(of: favorite) ? 0.05 : 0 ).ignoresSafeArea())
+        .onReceive(quranVM.$selection) { value in
+            if value+1 == Int16(sofha.id){
+                quranVM.currentSofha = sofha
+            }
+        }
+
     }
 }

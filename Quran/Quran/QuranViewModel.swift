@@ -16,6 +16,10 @@ class QuranViewModel: ObservableObject {
         }
     }
     @Published var suraViewScrollTo: Int16 = 0
+    var currentAya: Aya?
+    var currentSura: Sura?
+    var currentSofha: Sofha?
+
     @Published var mode: Mode {
         didSet{
             UserDefaults.standard.set(mode.rawValue, forKey: "quranMode")
@@ -24,11 +28,12 @@ class QuranViewModel: ObservableObject {
                     ayaOpenAction = openActionModeSura
                     suraOpenAction = openActionModeSura
                     sofhaOpenAction = openActionModeSura
-                
+                    changeModeToSura()
                 case .sofha:
                     ayaOpenAction = openActionModeSofha
                     suraOpenAction = openActionModeSofha
                     sofhaOpenAction = openActionModeSofha
+                    changeModeToSofha()
             }
         }
     }
@@ -41,7 +46,6 @@ class QuranViewModel: ObservableObject {
         self.selection = UserDefaults.standard.integer(forKey: "quranSelection")
         let mode = Mode.allCases.first(where: { $0.rawValue == UserDefaults.standard.string(forKey: "quranMode") }) ?? .sura
         self.mode = mode
-        
         switch mode {
         case .sura:
             ayaOpenAction = openActionModeSura
@@ -52,7 +56,6 @@ class QuranViewModel: ObservableObject {
             suraOpenAction = openActionModeSofha
             sofhaOpenAction = openActionModeSofha
         }
-        
     }
 }
 
@@ -102,16 +105,17 @@ extension QuranViewModel {
 
     }
     
-    func changeModeToSura(currentSofha: Sofha)->Void{
+    func changeModeToSura()->Void{
         withAnimation{
-            selection = Int((currentSofha.suras.suras.first?.id ?? 1)-1)
-            DispatchQueue.main.asyncAfter(deadline: .now()+0.3){
-                self.suraViewScrollTo = currentSofha.ayas.ayas.first?.id ?? 0
-            }
+            selection = Int((currentSofha?.suras.suras.first?.id ?? 1)-1)
         }
+        DispatchQueue.main.asyncAfter(deadline: .now()+1){
+            self.suraViewScrollTo = self.currentSofha?.ayas.ayas.first?.id ?? 0
+        }
+
     }
-    func changeModeToSofha(currentAya: Aya){
-        selection = Int(currentAya.sofha.id-1)
+    func changeModeToSofha(){
+        selection = Int((currentAya?.sofha.id ?? 1)-1)
     }
 }
 

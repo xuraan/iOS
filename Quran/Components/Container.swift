@@ -17,7 +17,7 @@ struct MainContainer<Content: View, Cover: View>: View {
     init(
         @ViewBuilder content: @escaping ()->Content,
         @ViewBuilder cover: @escaping ()->Cover,
-        onHidden: @escaping ()->Void
+        onHidden: @escaping ()->Void = {}
     ){
         self.content = content()
         self.cover = cover()
@@ -26,7 +26,7 @@ struct MainContainer<Content: View, Cover: View>: View {
     
     var body: some View {
         content
-            .scaleEffect( isOverlayHide ? 1 : 0.9 )
+            .scaleEffect( isOverlayHide ? 1 : 1.2 )
             .blur(radius: isOverlayHide ? 0 : 30)
             .overlay{
                 cover

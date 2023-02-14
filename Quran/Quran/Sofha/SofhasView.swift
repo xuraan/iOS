@@ -44,6 +44,7 @@ struct SofhasView: View {
                        .ignoresSafeArea(.container, edges: isExtended ? [.horizontal, .bottom] : [.all])
                        .environment(\.favorite, favorite)
                        .environment(\.pinned, pinned)
+                       .environmentObject(quranVM)
                 }
             )
             .ignoresSafeArea()

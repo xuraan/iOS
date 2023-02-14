@@ -28,20 +28,22 @@ struct HomeView: View {
                 SearchView(text: $text)
                     .environment(\.isDestructive, false)
             } else {
-                HStack{
-                    CustomSheet("Quran Index") {
-                        QuranIndexView()
-                        .preferredColorScheme(model.preferredColorScheme)
-                        .environmentObject(quranVM)
-                        .environmentObject(suraVM)
-                        .environmentObject(ayaVM)
+                Section{
+                    HStack{
+                        CustomSheet("Quran index") {
+                            QuranIndexView()
+                            .preferredColorScheme(model.preferredColorScheme)
+                            .environmentObject(quranVM)
+                            .environmentObject(suraVM)
+                            .environmentObject(ayaVM)
+                        }
+                        Spacer()
+                        Button("Open quran", action: showCoverView)
                     }
-                    Spacer()
-                    Button("Open quran", action: showCoverView)
-                }
-                .buttonStyle(.borderless)
-                .listRowBackground(Color.clear)
-                .listRowInsets(EdgeInsets())
+                    .buttonStyle(.borderless)
+                    .listRowBackground(Color.clear)
+                    .listRowInsets(EdgeInsets(top: -5, leading: 0, bottom: -5, trailing: 0))
+                }.offset(y: -10)
                 
                 pinnedView()
                     .environment(\.isPennedDestructive, true)
@@ -57,20 +59,14 @@ struct HomeView: View {
     func pinnedView() -> some View {
         Group{
             if let sura = pinned.wrappedValue as? Sura {
-                Section{
-                    SuraRow(for: sura)
-                }
+                SuraRow(for: sura)
             } else if let sofha = pinned.wrappedValue as? Sofha {
-                Section{
-                    SofhaRow(for: sofha)
-                }
+                SofhaRow(for: sofha)
             } else if let aya = pinned.wrappedValue as? Aya {
-                Section{
-                    AyaRow(for: aya)
-                }
+                AyaRow(for: aya)
             }
         }
-        .padding(.vertical, -7)
+        .padding(.vertical, -5)
     }
 }
 

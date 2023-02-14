@@ -16,7 +16,6 @@ struct SurasView: View {
     @EnvironmentObject var quraVM: QuranViewModel
     @EnvironmentObject var ayaVM: AyaViewModel
     @FetchRequest(sortDescriptors: [SortDescriptor(\.id)]) var suras: FetchedResults<Sura>
-
     @Binding var selection: Int
     init(selection: Binding<Int>) {
         self._selection = selection

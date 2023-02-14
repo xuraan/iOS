@@ -19,10 +19,8 @@ struct SuraView: View {
     @State var lastOffsetY: CGFloat = .zero
     @State var isExpanded: Bool = false
     @State var scrollTo: Aya.ID?
-    var titleAction: ()->Void
-    init(for sura: Sura, _ titleAction: @escaping ()->Void = {}) {
+    init(for sura: Sura) {
         self.sura = sura
-        self.titleAction = titleAction
     }
     
     var body: some View {
@@ -39,11 +37,11 @@ struct SuraView: View {
                             Group{
                                 if aya == aya.sofha.ayas.ayas.first {
                                     AyaView(for: aya)
-//                                        .offset(coordinateSpace: .global){ value in
-//                                            if (100...150).contains(value.minY){
-//                                                
-//                                            }
-//                                        }
+                                        .offset(coordinateSpace: .global){ value in
+                                            if (100...150).contains(value.minY){
+                                                quranVM.currentAya = aya
+                                            }
+                                        }
                                 } else {
                                     AyaView(for: aya)
                                 }
@@ -148,6 +146,11 @@ struct SuraView: View {
             }
         }
         .background(Color.yellow.opacity( sura.isElement(of: favorite) ? 0.05 : 0 ).ignoresSafeArea())
+        .onReceive(quranVM.$selection) { value in
+            if value+1 == Int16(sura.id){
+                quranVM.currentSura = sura
+            }
+        }
     }
     
     @ViewBuilder
