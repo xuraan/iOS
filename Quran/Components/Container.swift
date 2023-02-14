@@ -8,27 +8,6 @@
 import SwiftUI
 
 struct MainContainer<Content: View, Cover: View>: View {
-    /**
-         # My Code
-
-         This is a brief description of my code.
-
-         ## Usage
-
-         To use this code, call the `myMethod` function like this:
-         ```
-         let result = myMethod(input)
-         ```
-
-         ## Parameters
-
-         - `input`: The input to the `myMethod` function.
-
-         ## Returns
-
-         The `myMethod` function returns a result of type `Int`.
-
-         */
     var content: Content
     var cover: Cover
     var onHidden: ()->Void
