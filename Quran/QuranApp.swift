@@ -17,11 +17,19 @@ struct QuranApp: App {
             ContentView()
                 .onChange(of: scenePhase){ phase in
                     if phase != .active {
-                        try? persistenceController.container.viewContext.save()
+                        do{
+                            try persistenceController.container.viewContext.save()
+                        } catch let error {
+                            ErrorHandler.shared.handle(error)
+                        }
                     }
                 }
                 .onDisappear{
-                    try? persistenceController.container.viewContext.save()
+                    do{
+                        try persistenceController.container.viewContext.save()
+                    } catch let error {
+                        ErrorHandler.shared.handle(error)
+                    }
                 }
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }

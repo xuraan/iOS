@@ -10,7 +10,7 @@ import SwiftUI
 class SearchModel: ObservableObject {
     @Published var tokens = [Token]()
 
-    enum Token: Identifiable {
+    enum Token: String, Identifiable, CaseIterable {
         case sura, aya, sofha
         var id: Self{self}
     }
@@ -19,16 +19,14 @@ class SearchModel: ObservableObject {
 extension SearchModel {
     func search(text: String, in suras: FetchedResults<Sura>) async -> [Sura] {
         if !text.isEmpty{
-            if text.isASCII {
-                return suras.filter{ $0.phonetic.lowercased().contains(text) || $0.translation.lowercased().contains(text) }
-            } else if text.isArabic{
+            if text.isArabic{
                 return suras.filter{ $0.name.contains(text)}
             } else if text.isNumeric{
                 return suras.filter{ "\($0.id)" == text }
             } else if text.isArabicNumeral{
                 return suras.filter{ "\($0.id)".toArabicNumeral == "\(text)" }
             } else {
-                return []
+                return suras.filter{ $0.phonetic.lowercased().contains(text) || $0.translation.lowercased().contains(text) }
             }
         } else {
             return []
@@ -36,16 +34,14 @@ extension SearchModel {
     }
     func search(text: String, in suras: [Sura]) async -> [Sura] {
         if !text.isEmpty{
-            if text.isASCII {
-                return suras.filter{ $0.phonetic.lowercased().contains(text) || $0.translation.lowercased().contains(text) }
-            } else if text.isArabic{
+            if text.isArabic{
                 return suras.filter{ $0.name.contains(text)}
             } else if text.isNumeric{
                 return suras.filter{ "\($0.id)" == text }
             } else if text.isArabicNumeral{
                 return suras.filter{ "\($0.id)".toArabicNumeral == "\(text)" }
             } else {
-                return []
+                return suras.filter{ $0.phonetic.lowercased().contains(text) || $0.translation.lowercased().contains(text) }
             }
         } else {
             return []
@@ -79,16 +75,14 @@ extension SearchModel {
     }
     func search(text: String, in ayas: FetchedResults<Aya>) async -> [Aya] {
         if !text.isEmpty{
-            if text.isASCII {
-                return ayas.filter{ $0.translation.lowercased().contains(text) }
-            } else if text.isArabic{
+            if text.isArabic{
                 return ayas.filter{ $0.plain.contains(text) }
             } else if text.isNumeric{
                 return ayas.filter{ "\($0.id)" == text }
             } else if text.isArabicNumeral{
                 return ayas.filter{ "\($0.id)".toArabicNumeral == "\(text)" }
             } else {
-                return []
+                return ayas.filter{ $0.translation.lowercased().contains(text) }
             }
         } else {
             return []
@@ -96,16 +90,14 @@ extension SearchModel {
     }
     func search(text: String, in ayas: [Aya]) async -> [Aya] {
         if !text.isEmpty{
-            if text.isASCII {
-                return ayas.filter{ $0.translation.lowercased().contains(text) }
-            } else if text.isArabic{
+            if text.isArabic{
                 return ayas.filter{ $0.plain.contains(text) }
             } else if text.isNumeric{
                 return ayas.filter{ "\($0.id)" == text }
             } else if text.isArabicNumeral{
                 return ayas.filter{ "\($0.id)".toArabicNumeral == "\(text)" }
             } else {
-                return []
+                return ayas.filter{ $0.translation.lowercased().contains(text) }
             }
         } else {
             return []

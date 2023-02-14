@@ -33,6 +33,8 @@
 		F454C2DB2999D23D007C85BF /* AyaListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454C2DA2999D23D007C85BF /* AyaListHeader.swift */; };
 		F454C2DD2999D9FE007C85BF /* SofhaListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454C2DC2999D9FE007C85BF /* SofhaListHeader.swift */; };
 		F454C2DF2999DAF6007C85BF /* SuraListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454C2DE2999DAF6007C85BF /* SuraListHeader.swift */; };
+		F454C2FF299C056C007C85BF /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454C2FE299C056C007C85BF /* Error.swift */; };
+		F454C307299C442F007C85BF /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454C306299C442F007C85BF /* CustomFont.swift */; };
 		F460982D2987516F00EDEAF7 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F460982C2987516F00EDEAF7 /* MainView.swift */; };
 		F4609831298825F300EDEAF7 /* QuranSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4609830298825F300EDEAF7 /* QuranSettings.swift */; };
 		F460983329882A4600EDEAF7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = F460983229882A4600EDEAF7 /* Model.swift */; };
@@ -114,6 +116,8 @@
 		F454C2DA2999D23D007C85BF /* AyaListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AyaListHeader.swift; sourceTree = "<group>"; };
 		F454C2DC2999D9FE007C85BF /* SofhaListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SofhaListHeader.swift; sourceTree = "<group>"; };
 		F454C2DE2999DAF6007C85BF /* SuraListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuraListHeader.swift; sourceTree = "<group>"; };
+		F454C2FE299C056C007C85BF /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		F454C306299C442F007C85BF /* CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
 		F460982C2987516F00EDEAF7 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F4609830298825F300EDEAF7 /* QuranSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuranSettings.swift; sourceTree = "<group>"; };
 		F460983229882A4600EDEAF7 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -248,7 +252,6 @@
 				F4A4B0FF29844B37000ABB8D /* Resource */,
 				F4A4B0EC298449FB000ABB8D /* QuranApp.swift */,
 				F4A4B0EE298449FB000ABB8D /* ContentView.swift */,
-				F460982C2987516F00EDEAF7 /* MainView.swift */,
 				F4A4B0F0298449FE000ABB8D /* Assets.xcassets */,
 				F4A4B0F5298449FE000ABB8D /* Persistence.swift */,
 				F4A4B0F7298449FE000ABB8D /* Quran.xcdatamodeld */,
@@ -298,6 +301,7 @@
 				F4A4B11B29844C0A000ABB8D /* PageView.swift */,
 				F4A4B16929845A37000ABB8D /* StarButton.swift */,
 				F43AE51C29958D0C004CAE05 /* PinnedButton.swift */,
+				F454C306299C442F007C85BF /* CustomFont.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -306,6 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				F4A4B12229844C31000ABB8D /* HomeView.swift */,
+				F460982C2987516F00EDEAF7 /* MainView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -315,6 +320,7 @@
 			children = (
 				F460983229882A4600EDEAF7 /* Model.swift */,
 				F460983429882ABA00EDEAF7 /* ModelSettings.swift */,
+				F454C2FE299C056C007C85BF /* Error.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -510,6 +516,7 @@
 				F43AE4FB29957111004CAE05 /* String.swift in Sources */,
 				F4A4B14729844C31000ABB8D /* SuraViewModel.swift in Sources */,
 				F4A4B14629844C31000ABB8D /* Aya.swift in Sources */,
+				F454C307299C442F007C85BF /* CustomFont.swift in Sources */,
 				F4A4B0F9298449FE000ABB8D /* Quran.xcdatamodeld in Sources */,
 				F4A4B1772984666F000ABB8D /* SuraSettings.swift in Sources */,
 				F4A4B0EF298449FB000ABB8D /* ContentView.swift in Sources */,
@@ -562,6 +569,7 @@
 				F454C2D12999AD6D007C85BF /* Aya+CoreDataProperties.swift in Sources */,
 				F43AE4F42995707B004CAE05 /* NSSet.swift in Sources */,
 				F43AE4FF29957DD0004CAE05 /* Kollection.swift in Sources */,
+				F454C2FF299C056C007C85BF /* Error.swift in Sources */,
 				F43AE51B29958997004CAE05 /* KollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

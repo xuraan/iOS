@@ -14,11 +14,6 @@ extension String {
             of: "^[٠-٩]*$",
             options: .regularExpression) != nil
     }
-    var isASCII: Bool {
-        return self.range(
-            of: "^[a-zA-Z \"\'èéêëēėęàáâäæãåāôöòóœøōõçć,č:.-]*$", // 1
-            options: .regularExpression) != nil
-    }
     var isArabic: Bool {
             return self.range(
                 of: "^[.:\" ء-ي]+$", // 1

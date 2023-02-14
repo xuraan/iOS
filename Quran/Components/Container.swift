@@ -23,7 +23,6 @@ struct MainContainer<Content: View, Cover: View>: View {
         self.cover = cover()
         self.onHidden = onHidden
     }
-    
     var body: some View {
         content
             .scaleEffect( isOverlayHide ? 1 : 1.2 )
@@ -36,7 +35,6 @@ struct MainContainer<Content: View, Cover: View>: View {
             .environment(\.hideCoverView, hide)
             .environment(\.showCoverView, show)
     }
-    
     func hide(){
         withAnimation{
             isOverlayHide = true

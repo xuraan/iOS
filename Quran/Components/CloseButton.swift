@@ -10,14 +10,11 @@ import SwiftUI
 struct CloseButton: View{
     @Environment(\.dismiss) var dismiss
     var action: (()->Void)?
-    
     var image: Image
-    
     init(action: (()->Void)? = nil, icon: Image = Image(systemName: "xmark")) {
         self.action = action
         self.image = icon
     }
-    
     var body: some View {
         Button(action: action ?? {dismiss()}, label: {
             image

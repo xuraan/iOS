@@ -11,11 +11,13 @@ import SwiftUI
 extension Bundle {
     func decodeQuran(_ file: String) -> [SuraUtils] {
         guard let url = self.url(forResource: file, withExtension: nil) else {
-            fatalError("Failed to locate \(file) in bundle.")
+            ErrorHandler.shared.errorMessage = "Failed to locate \(file) in bundle."
+            return []
         }
 
         guard let data = try? Data(contentsOf: url) else {
-            fatalError("Failed to load \(file) from bundle.")
+            ErrorHandler.shared.errorMessage = "Failed to load \(file) from bundle."
+            return []
         }
 
         let decoder = JSONDecoder()
@@ -27,7 +29,9 @@ extension Bundle {
             // Replace this implementation with code to handle the error appropriately.
             // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+//            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            ErrorHandler.shared.handle(nsError)
+            return []
         }
         
 

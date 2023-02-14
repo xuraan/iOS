@@ -16,14 +16,20 @@ struct ModelSettings: View {
                 let appSettings = URL(string: UIApplication.openSettingsURLString)!
                 UIApplication.shared.open(appSettings)
             } label: {
-                Label(title: {
-                    Text("Language").foregroundColor(.primary)
-                }, icon: {
-                    Image(systemName: "globe")
-                })
-                .badge(
-                    Locale.current.localizedString(forIdentifier: Locale.current.identifier)
-                    )
+                HStack{
+                    Label(title: {
+                        Text("Language").foregroundColor(.primary)
+                    }, icon: {
+                        Image(systemName: "globe")
+                    })
+                    .badge(
+                        Locale.current.localizedString(forIdentifier: Locale.current.identifier)
+                        )
+                    Image(systemName: "chevron.forward")
+                        .foregroundColor(.secondary)
+                        .font(.caption)
+                }
+                .foregroundColor(.primary)
             }
         }
         Section("colorscheme"){

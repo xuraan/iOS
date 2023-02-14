@@ -21,38 +21,27 @@ struct SearchView: View {
         self._text = text
     }
     var body: some View {
-        Section{}
-            .opacity(0)
-            .listRowBackground(Color.clear)
-            .onChange(of: text){ value in
-                search()
-            }
-        if text.isEmpty && searchVM.tokens.isEmpty {
-            Section{
-                    Button(action: {searchVM.tokens=[SearchModel.Token.sura]}){
-                        Label("sura", systemImage: "link")
+        Section(isTokenListPresented ? "Search in" : ""){
+            if isTokenListPresented {
+                ForEach(SearchModel.Token.allCases){ token in
+                    Button {
+                        searchVM.tokens=[token]
+                    } label: {
+                        Label(LocalizedStringKey(token.rawValue), systemImage: "link")
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }.fullSeparatore2
-                    
-                    Button(action: {searchVM.tokens = [SearchModel.Token.sofha]}){
-                        Label("sofha", systemImage: "link")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                    }.fullSeparatore2
-                    
-                    Button(action: {searchVM.tokens = [SearchModel.Token.aya]}){
-                        Label("aya", systemImage: "link")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                    }.fullSeparatore2
-            } header: {
-                if text.isEmpty && searchVM.tokens.isEmpty {
-                    Text("Search in")
                 }
             }
+        }
+        .onChange(of: text){ value in
+            search()
         }
         suraSection()
         ayaSection()
         sofhaSection()
     }
+    
+    var isTokenListPresented: Bool {text.isEmpty && searchVM.tokens.isEmpty}
 }
 
 //MARK: - Search logic
@@ -61,11 +50,9 @@ extension SearchView {
         Task{
             if let token = searchVM.tokens.first {
                 switch token {
-                    
-                case .sura: surasResult = await searchVM.search(text: text.lowercased(), in: suras)
-                case .aya:  ayasResult = await searchVM.search(text: text.lowercased(), in: ayas)
-                case .sofha: sofhasResult = await searchVM.search(text: text, in: sofhas)
-
+                    case .sura: surasResult = await searchVM.search(text: text.lowercased(), in: suras)
+                    case .aya:  ayasResult = await searchVM.search(text: text.lowercased(), in: ayas)
+                    case .sofha: sofhasResult = await searchVM.search(text: text, in: sofhas)
                 }
             } else {
                 surasResult = await searchVM.search(text: text.lowercased(), in: suras).shuffled()
@@ -75,7 +62,6 @@ extension SearchView {
         }
     }
 }
-
 
 //MARK: - SwiftUI
 extension SearchView {
@@ -168,12 +154,5 @@ extension SearchView {
                 }
             }
         }
-    }
-}
-
-struct SearchView_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchView(text: .constant("text"))
-            .environmentObject(SearchModel())
     }
 }

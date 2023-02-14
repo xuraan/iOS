@@ -30,9 +30,14 @@ struct ContentView: View {
         .environmentObject(ayaVM)
         .environment(\.favorite, favorite.first)
         .environment(\.pinned, $pinned)
-        
+        .alert("Error", isPresented: .constant(!ErrorHandler.shared.errorMessage.isEmpty), actions: {
+            Button(role: .cancel, action: {ErrorHandler.shared.errorMessage = ""}, label:{Text("OK")})
+        }, message: {
+            Text(ErrorHandler.shared.errorMessage)
+        })
         //MARK: -THEME
         .preferredColorScheme(model.preferredColorScheme)
+        
     }
 }
 

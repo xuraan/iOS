@@ -30,7 +30,7 @@ struct SuraView: View {
                     LazyVStack{
                         if sura.id != 9 {
                             Text("﷽")
-                                .mequran(40)
+                                .font(CustomFont.mequran(40))
                                 .frame(maxWidth: .infinity)
                         }
                         ForEach(sura.ayas.ayas){ aya in
@@ -81,7 +81,7 @@ struct SuraView: View {
                             .environmentObject(ayaVM)
                         } label: {
                             Text(sura.name)
-                                .waseem(35, weight: .regular)
+                                .font(CustomFont.waseem(35))
                                 .contextMenu(menuItems: {
                                     sura.menu(favorite: favorite, pinned: pinned)
                                 })

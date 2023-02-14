@@ -18,8 +18,7 @@ struct AyaView: View {
     var body: some View {
         VStack{
             aya.arabicTextView()
-                .font(.custom(ayaVM.ayaFontName, size: ayaVM.ayaFontSize))
-                
+                .font(ayaVM.arabicFont.size(ayaVM.arabicFontSize))
             
             if ayaVM.isTransEnable {
                 aya.transTextView()

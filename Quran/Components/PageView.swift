@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct PageView<Page: View>: UIViewControllerRepresentable {
-    
     @Binding var selection: Int
     var isReversed: Bool = false
     var pages: [Page]
-
+    
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }

@@ -128,11 +128,9 @@ extension QuranViewModel {
     }
 }
 
-
 extension QuranViewModel {
     enum Mode: String, CaseIterable, Hashable, Identifiable {
         case sura, sofha
         var id: Self{self}
     }
-
 }

@@ -28,11 +28,11 @@ struct SofhaRow: View {
                 if let first = sofha.ayas.ayas.first, let last = sofha.ayas.ayas.last  {
                     
                     last.arabicTextView(lineLimit: 1)
-                        .mequran(20)
+                        .font(CustomFont.mequran(20))
                         .frame(maxWidth: .infinity, alignment: .leading)
 
                     first.arabicTextView(lineLimit: 1)
-                        .mequran(20)
+                        .font(CustomFont.mequran(20))
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
                 }

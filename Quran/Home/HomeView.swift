@@ -9,13 +9,13 @@ import SwiftUI
 import CoreData
 
 struct HomeView: View {
-    @EnvironmentObject var quranVM: QuranViewModel
+    @Environment(\.pinned) var pinned
+    @Environment(\.isSearching) var isSearching
+    @Environment(\.showCoverView) var showCoverView
     @EnvironmentObject var model: Model
+    @EnvironmentObject var quranVM: QuranViewModel
     @EnvironmentObject var suraVM: SuraViewModel
     @EnvironmentObject var ayaVM: AyaViewModel
-    @Environment(\.showCoverView) var showCoverView
-    @Environment(\.isSearching) var isSearching
-    @Environment(\.pinned) var pinned
     @Binding var text: String
     init(text: Binding<String> = .constant("")) {
         self._text = text
@@ -26,29 +26,42 @@ struct HomeView: View {
                 SearchView(text: $text)
                     .environment(\.isDestructive, false)
             } else {
-                Section{
-                    HStack{
-                        CustomSheet("Quran index") {
-                            QuranIndexView()
-                            .preferredColorScheme(model.preferredColorScheme)
-                            .environmentObject(quranVM)
-                            .environmentObject(suraVM)
-                            .environmentObject(ayaVM)
-                        }
-                        Spacer()
-                        Button("Open quran", action: showCoverView)
-                    }
-                    .buttonStyle(.borderless)
-                    .listRowBackground(Color.clear)
-                    .listRowInsets(EdgeInsets())
-                }
-                pinnedView()
-                    .environment(\.isPennedDestructive, true)
-                KollectionsSection()
+               content
             }
         }
-        .navigationTitle(isSearching ? "Search" : "The noble quran")
+        .navigationTitle(title)
     }
+    var title: String { isSearching ? "Search" : "The noble quran" }
+}
+
+//MARK: - content
+extension HomeView {
+    @ViewBuilder
+    var content: some View {
+        Section{
+            HStack{
+                CustomSheet("Quran index") {
+                    QuranIndexView()
+                    .preferredColorScheme(model.preferredColorScheme)
+                    .environmentObject(quranVM)
+                    .environmentObject(suraVM)
+                    .environmentObject(ayaVM)
+                }
+                Spacer()
+                Button("Open quran", action: showCoverView)
+            }
+            .buttonStyle(.borderless)
+            .listRowBackground(Color.clear)
+            .listRowInsets(EdgeInsets())
+        }
+        pinnedView()
+            .environment(\.isPennedDestructive, true)
+        KollectionsSection()
+    }
+}
+
+//MARK: - PinnedView
+extension HomeView {
     @ViewBuilder
     func pinnedView() -> some View {
         if pinned.wrappedValue.isNotNil {
@@ -63,11 +76,5 @@ struct HomeView: View {
             }
             .padding(.vertical, -7)
         }
-    }
-}
-
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

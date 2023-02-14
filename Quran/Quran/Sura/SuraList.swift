@@ -10,14 +10,12 @@ import SwiftUI
 struct SuraList: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.editMode) var editMode
-    var suras: [Sura]
-    @State var searchResult: [Sura]
+    @EnvironmentObject var quran: QuranViewModel
+    @EnvironmentObject var searchVM: SearchModel
     @Binding var selection: Set<Sura.ID>
     @State var text: String = ""
-
-    @EnvironmentObject var searchVM: SearchModel
-    @EnvironmentObject var quran: QuranViewModel
-    
+    @State var searchResult: [Sura]
+    var suras: [Sura]
     init(suras: [Sura]) {
         self.suras = suras
         self._searchResult = State(initialValue: suras)

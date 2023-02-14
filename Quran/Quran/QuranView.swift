@@ -35,13 +35,3 @@ struct QuranView: View {
         }
     }
 }
-
-struct QuranView_Previews: PreviewProvider {
-    static var previews: some View {
-        QuranView(isHideCloseButton: .constant(false))
-        .environmentObject(QuranViewModel())
-        .environmentObject(SuraViewModel())
-        .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-
-    }
-}

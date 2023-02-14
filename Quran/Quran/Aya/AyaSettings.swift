@@ -10,7 +10,7 @@ import SwiftUI
 struct AyaSettings: View {
     @EnvironmentObject var ayaVM: AyaViewModel
     @EnvironmentObject var quranVM: QuranViewModel
-    @State var ayaFontSize: Double = 0
+    @State var arabicFontSize: Double = 0
     @State var transFontSize: Double = 0
     @State var isTransEnable: Bool = false
     @State var isTransBold: Bool = false
@@ -20,14 +20,14 @@ struct AyaSettings: View {
     }
     var body: some View {
         Section{
-            Slider(value: $ayaFontSize, in: 20...50, label: {
+            Slider(value: $arabicFontSize, in: 20...50, label: {
                 
             }, minimumValueLabel: {
                 Image(systemName: "character.cursor.ibeam")
                     .font(.caption)
                     .onTapGesture {
                         withAnimation{
-                            ayaFontSize = 20
+                            arabicFontSize = 20
                         }
                     }
             }, maximumValueLabel: {
@@ -35,7 +35,7 @@ struct AyaSettings: View {
                     .font(.title3)
                     .onTapGesture {
                         withAnimation{
-                            ayaFontSize = 50
+                            arabicFontSize = 50
                         }
                     }
             })
@@ -44,9 +44,13 @@ struct AyaSettings: View {
             }){
                 HStack{
                     Text("Font")
-                        .badge(ayaVM.ayaFontName)
-                    Image(systemName: "chevron.forward").foregroundColor(.gray)
+                        .badge(ayaVM.arabicFont.name)
+                    Image(systemName: "chevron.forward")
+                        .foregroundColor(.secondary)
+                        .font(.caption)
                 }
+                .foregroundColor(.primary)
+
             }
         } header: {
             HStack{
@@ -64,7 +68,7 @@ struct AyaSettings: View {
         }
         .onAppear{
             withAnimation{
-                ayaFontSize = ayaVM.ayaFontSize
+                arabicFontSize = ayaVM.arabicFontSize
                 transFontSize = ayaVM.transFontSize
                 isTransEnable = ayaVM.isTransEnable
                 isTransBold = ayaVM.isTransBold
@@ -72,7 +76,7 @@ struct AyaSettings: View {
         }
         .onDisappear{
             withAnimation{
-                ayaVM.ayaFontSize = ayaFontSize
+                ayaVM.arabicFontSize = arabicFontSize
                 ayaVM.transFontSize = transFontSize
                 ayaVM.isTransEnable = isTransEnable
                 ayaVM.isTransBold = isTransBold
@@ -117,7 +121,7 @@ struct AyaSettings: View {
     }
     
     func setDefaultAyaArabicSettings(){
-        self.ayaFontSize = 30.0
+        self.arabicFontSize = 30.0
         ///More things to add here in soon
     }
     

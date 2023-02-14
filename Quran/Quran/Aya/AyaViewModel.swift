@@ -13,14 +13,14 @@ class AyaViewModel: ObservableObject {
         "AmiriQuran-Regular",
         "Al-Majeed-Quranic-Font"
     ]
-    @Published var ayaFontName: String {
+    @Published var arabicFont: CustomFont {
         didSet{
-            UserDefaults.standard.set(ayaFontName, forKey: "ayaFontName")
+            UserDefaults.standard.set(arabicFont.rawValue, forKey: "arabicFont")
         }
     }
-    @Published var ayaFontSize: Double {
+    @Published var arabicFontSize: Double {
         didSet{
-            UserDefaults.standard.set(ayaFontSize, forKey: "ayaFontSize")
+            UserDefaults.standard.set(arabicFontSize, forKey: "arabicFontSize")
         }
     }
     @Published var transFontSize: Double {
@@ -51,15 +51,15 @@ class AyaViewModel: ObservableObject {
     init(){
         if !UserDefaults.standard.bool(forKey: "AyaViewModelIsBoarded"){
             UserDefaults.standard.set(true, forKey: "isUseSystemColorScheme")
-            UserDefaults.standard.set("me_quran", forKey: "ayaFontName")
-            UserDefaults.standard.set(30.0, forKey: "ayaFontSize")
+            UserDefaults.standard.set("me_quran", forKey: "arabicFont")
+            UserDefaults.standard.set(30.0, forKey: "arabicFontSize")
             UserDefaults.standard.set(17.0, forKey: "transFontSize")
             UserDefaults.standard.set(false, forKey: "isTransBold")
             UserDefaults.standard.set(true, forKey: "isTransEnable")
             UserDefaults.standard.set(true, forKey: "AyaViewModelIsBoarded")
         }
-        ayaFontName = UserDefaults.standard.string(forKey: "ayaFontName") ?? "me_quran"
-        ayaFontSize = UserDefaults.standard.double(forKey: "ayaFontSize")
+        arabicFont = CustomFont.availableForAyaArabicText.first{ $0.rawValue == UserDefaults.standard.string(forKey: "arabicFont")} ?? .mequran
+        arabicFontSize = UserDefaults.standard.double(forKey: "arabicFontSize")
         transFontSize = UserDefaults.standard.double(forKey: "transFontSize")
         isTransEnable = UserDefaults.standard.bool(forKey: "isTransEnable")
         isTransBold = UserDefaults.standard.bool(forKey: "isTransBold")

@@ -38,7 +38,7 @@ struct AyaRow: View {
                     Spacer()
                     Text(sura.name)
                         .frame(maxWidth: .infinity, alignment: .trailing)
-                        .mequran(20)
+                        .font(CustomFont.mequran(20))
                         .offset(y: -2)
                 }
             }

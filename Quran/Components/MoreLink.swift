@@ -14,10 +14,7 @@ struct NavigationSheet: View {
     var closeButtonSystemName: String?
     var title: String?
     var presentationDetents: Set<PresentationDetent>?
-
     @State var show = false
-    
-    
     init<Content: View, Label: View>(
         @ViewBuilder content: @escaping ()-> Content,
         @ViewBuilder label: @escaping ()-> Label
@@ -37,7 +34,6 @@ struct NavigationSheet: View {
         self.closeButtonTitle = closeButtonTitle
         self.presentationDetents = presentationDetents
     }
-    
     init<Content: View, Label: View>(
         closeButtonSystemName: String = "xmark",
         presentationDetents: Set<PresentationDetent> = .init([.large]),
@@ -49,13 +45,12 @@ struct NavigationSheet: View {
         self.closeButtonSystemName = closeButtonSystemName
         self.presentationDetents = presentationDetents
     }
-    
     init<Content: View>(
         _ title: String,
         closeButtonTitle: String = "Done",
         presentationDetents: Set<PresentationDetent> = .init([.large]),
         @ViewBuilder content: @escaping ()-> Content
-    ){
+    ) {
         self.title = title
         self.content = AnyView(content())
         self.closeButtonTitle = closeButtonTitle
@@ -66,17 +61,13 @@ struct NavigationSheet: View {
         closeButtonSystemName: String = "xmark",
         presentationDetents: Set<PresentationDetent> = .init([.large]),
         @ViewBuilder content: @escaping ()-> Content
-    ){
+    ) {
         self.title = title
         self.content = AnyView(content())
         self.closeButtonSystemName = closeButtonSystemName
         self.presentationDetents = presentationDetents
     }
-    
-    
-    
     var body: some View {
-        
         Button(action: {show = true}){
             if let title = title {
                 Text(LocalizedStringKey(title))
@@ -124,12 +115,11 @@ struct CustomSheet: View {
     init<Content: View>(
         _ title: String,
         @ViewBuilder content: @escaping ()-> Content
-    ){
+    ) {
         self.title = title
         self.content = AnyView(content())
     }
     var body: some View {
-        
         Button(action: {show = true}){
             if let title = title {
                 Text(LocalizedStringKey(title))

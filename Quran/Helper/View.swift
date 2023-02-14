@@ -9,19 +9,6 @@ import SwiftUI
 
 extension View{
     @ViewBuilder
-    func mequran(_ size: CGFloat)->some View{
-        self.font(.custom("me_quran", size: size))
-    }
-    @ViewBuilder
-    func amiri(_ size: CGFloat)->some View{
-        self.font(.custom("AmiriQuran-Regular", size: size))
-    }
-    @ViewBuilder
-    func waseem(_ size: CGFloat, weight: Font.Weight = .regular)->some View{
-        self.font(.custom("Waseem", size: size))
-            .fontWeight(weight)
-    }
-    @ViewBuilder
     func offset(coordinateSpace: CoordinateSpace, completion: @escaping(CGRect)->()) -> some View {
         self
             .overlay{
