@@ -91,7 +91,7 @@ extension SearchView {
                     Text("sura")
                     Spacer()
                     if surasResult.count > 3 {
-                        MoreLinkSheet {
+                        MoreLinkSheet(badge: surasResult.count){
                             SuraList(suras: surasResult)
                             .navigationTitle("Sura result")
                             .toolbar{
@@ -121,7 +121,7 @@ extension SearchView {
                     Text("aya")
                     Spacer()
                     if ayasResult.count > 3 {
-                        MoreLinkSheet{
+                        MoreLinkSheet(badge: ayasResult.count){
                             AyaList(ayas: ayasResult)
                             .navigationTitle("Aya results")
                             .listStyle(.plain)
@@ -153,7 +153,7 @@ extension SearchView {
                     Text("sofha")
                     Spacer()
                     if sofhasResult.count > 3 {
-                        MoreLinkSheet{
+                        MoreLinkSheet(badge: sofhasResult.count){
                             SofhaList(sofhas: sofhasResult)
                             .toolbar{
                                 ToolbarItem(placement: .status, content: {

@@ -46,7 +46,7 @@ struct SuraRow: View {
                 .offset(y: 4)
         })
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background()
+        .background(.blue.opacity(0.00001))
         .swipeActions(edge: .trailing){
             sura.menu(favorite: favorite, pinned: pinned)
         }

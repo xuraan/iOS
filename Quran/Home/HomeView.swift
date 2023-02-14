@@ -10,7 +10,10 @@ import CoreData
 
 struct HomeView: View {
     @EnvironmentObject var quranVM: QuranViewModel
-    @Environment(\.showCoverView) var showSlideView
+    @EnvironmentObject var model: Model
+    @EnvironmentObject var suraVM: SuraViewModel
+    @EnvironmentObject var ayaVM: AyaViewModel
+    @Environment(\.showCoverView) var showCoverView
     @Environment(\.isSearching) var isSearching
     @Environment(\.pinned) var pinned
     @Binding var text: String
@@ -25,8 +28,25 @@ struct HomeView: View {
                 SearchView(text: $text)
                     .environment(\.isDestructive, false)
             } else {
+                HStack{
+                    CustomSheet("Quran Index") {
+                        QuranIndexView()
+                        .preferredColorScheme(model.preferredColorScheme)
+                        .environmentObject(quranVM)
+                        .environmentObject(suraVM)
+                        .environmentObject(ayaVM)
+                    }
+                    Spacer()
+                    Button("Open quran", action: showCoverView)
+                }
+                .buttonStyle(.borderless)
+                .listRowBackground(Color.clear)
+                .listRowInsets(EdgeInsets())
+                
                 pinnedView()
                     .environment(\.isPennedDestructive, true)
+                
+                
                 KollectionsSection()
             }
         }
@@ -37,14 +57,20 @@ struct HomeView: View {
     func pinnedView() -> some View {
         Group{
             if let sura = pinned.wrappedValue as? Sura {
-                SuraRow(for: sura, action: { quranVM.suraOpenAction(sura) })
+                Section{
+                    SuraRow(for: sura)
+                }
             } else if let sofha = pinned.wrappedValue as? Sofha {
-                SofhaRow(for: sofha)
+                Section{
+                    SofhaRow(for: sofha)
+                }
             } else if let aya = pinned.wrappedValue as? Aya {
-                AyaRow(for: aya)
+                Section{
+                    AyaRow(for: aya)
+                }
             }
         }
-        .padding(.vertical, -6)
+        .padding(.vertical, -7)
     }
 }
 

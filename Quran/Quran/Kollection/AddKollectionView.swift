@@ -28,12 +28,11 @@ struct AddKollectionView: View {
     @FetchRequest(
         sortDescriptors: [SortDescriptor(\.id)]
     ) var ayas: FetchedResults<Aya>
-
     @FetchRequest(
         sortDescriptors: [SortDescriptor(\.id)]
     ) var kollections: FetchedResults<Kollection>
     
-    init(kollection: Binding<Kollection?>){
+    init(kollection: Binding<Kollection?> = .constant(nil)){
         _kollection = kollection
     }
     
@@ -71,66 +70,86 @@ struct AddKollectionView: View {
                 Text("Collection name")
             } footer: {
                 Text("Une collection existe avec ce nom (\(name))")
-                    .foregroundColor(.red.opacity((kollections.first{ $0.id == name } != nil) ? 1 : 0))
+                    .foregroundColor(.red.opacity(!(kollections.first{ $0.id == name && name != kollection?.id } == nil) ? 1 : 0))
             }
             Section("Description"){
-                TextField("Description", text: $description, axis: .vertical)
+                TextField("Description", text: $description)
                     .lineLimit(5...)
-                    .focused($isDescptionFocused)
-                    .onSubmit{
-                        isDescptionFocused = true
-                        withAnimation{
-                            description += "\n"
-                        }
-                    }
             }
             Section("Collection items"){
-                NavigationLink{
-                    SuraList(suras: Array(suras), selection: $surasIDs)
-                        .environment(\.editMode, .constant(.active))
-                } label: {
-                    Text("suras")
-                        .badge(surasIDs.count)
+                Group{
+                    NavigationSheet(closeButtonTitle: "Done"){
+                        AyaList(ayas: Array(ayas), selection: $ayasIDs)
+                            .environment(\.editMode, .constant(.active))
+                    } label: {
+                        Text("ayas")
+                            .badge(ayasIDs.count)
+                    }
+                    NavigationSheet(closeButtonTitle: "Done"){
+                        SofhaList(sofhas: Array(sofhas), selection: $sofhasIDs)
+                            .environment(\.editMode, .constant(.active))
+                    } label: {
+                        Text("sofhas")
+                            .badge(sofhasIDs.count)
+                    }
+                    NavigationSheet(closeButtonTitle: "Done"){
+                        SuraList(suras: Array(suras), selection: $surasIDs)
+                            .environment(\.editMode, .constant(.active))
+                    } label: {
+                        Text("suras")
+                            .badge(surasIDs.count)
+                    }
                 }
-                NavigationLink{
-                    SofhaList(sofhas: Array(sofhas), selection: $sofhasIDs)
-                        .environment(\.editMode, .constant(.active))
-                } label: {
-                    Text("sofhas")
-                        .badge(sofhasIDs.count)
-                }
-                NavigationLink{
-                    AyaList(ayas: Array(ayas), selection: $ayasIDs)
-                        .environment(\.editMode, .constant(.active))
-                } label: {
-                    Text("ayas")
-                        .badge(ayasIDs.count)
-                }
+                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                .buttonStyle(.bordered)
+                .listRowBackground(Color.clear)
+                .listRowSeparator(.hidden)
+                .font(.title3)
             }
-            
         }
         .toolbar{
-            ToolbarItem(placement: .cancellationAction, content: {
+            ToolbarItem(placement: .navigationBarTrailing, content: {
                 Button(action: {
-                    withAnimation{
-                        self.dismiss()
-                        let newKollection = Kollection(context: viewContext)
-                        newKollection.colorHex = color.hex
-                        newKollection.id = name
-                        print(color.hex)
-                    }
+                    save()
                 }, label: {
                     HStack{
                         Text("Done")
                     }
                     .frame(maxWidth: .infinity, alignment: .center)
                 })
-                .disabled(name.isEmpty || kollections.first{ $0.id == name } != nil)
+                .disabled(!canSave)
             })
         }
         .onAppear{
-            
+            if let kollection = kollection {
+                name = kollection.id
+                description = kollection.descript
+                ayasIDs = Set(kollection.ayas.ayas.map{ $0.id })
+                surasIDs = Set(kollection.suras.suras.map{ $0.id })
+                sofhasIDs = Set(kollection.sofhas.sofhas.map{ $0.id })
+            }
         }
+    }
+    
+    private var saveKollection: Kollection {
+        guard let kollection = kollection else {
+            return Kollection(context: viewContext)
+        }
+        return kollection
+    }
+    private func save(){
+        withAnimation{
+            dismiss()
+            let kollection = saveKollection
+            kollection.colorHex = color.hex
+            kollection.id = name
+            kollection.suras = NSSet(array: suras.filter{ surasIDs.contains($0.id) })
+            kollection.sofhas = NSSet(array: sofhas.filter{ sofhasIDs.contains($0.id) })
+            kollection.ayas = NSSet(array: ayas.filter{ ayasIDs.contains($0.id) })
+        }
+    }
+    private var canSave: Bool{
+        !(name.isEmpty || (kollections.first{ $0.id == name && name != kollection?.id } != nil))
     }
 }
 

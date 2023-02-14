@@ -22,7 +22,6 @@ struct MainView: View {
     @State var isHideCloseButton = false
     @State var showFavorites = false
     @State var showSettings = false
-    @State var showAddCollection = false
     @State var kollection: Kollection?
     @State var stack: NavigationPath = .init()
     @FetchRequest(sortDescriptors: [SortDescriptor(\.id)]) var suras: FetchedResults<Sura>
@@ -33,35 +32,56 @@ struct MainView: View {
                 HomeView(text: $searchText)
                     .toolbar{
                         ToolbarItem(placement: .navigationBarLeading) {
-                            Button("Settings"){
-                                withAnimation{
-                                    showSettings.toggle()
+                            CustomSheet("Settings") {
+                                NavigationStack(path: $stack){
+                                    SettingsView(stack: $stack)
+                                        .toolbar(content: {
+                                            CloseButton()
+                                        })
+                                        .navigationTitle("Settings")
+                                        .navigationDestination(for: String.self){ value in
+                                            if value == "ayaFontNames" {
+                                                List{
+                                                    Section{
+                                                        ForEach(CustomFont.allCases){ font in
+                                                            Button{
+                                                                withAnimation{
+                                                                    model.ayaArabicFont = font
+                                                                }
+                                                            } label: {
+                                                                Label(title: {
+                                                                    Text(font.rawValue).foregroundColor(.primary)
+                                                                }, icon: {
+                                                                    Image(systemName: "checkmark").opacity(model.ayaArabicFont == font ? 1 : 0)
+                                                                })
+                                                            }
+                                                        }
+                                                    }
+                                                    
+                                                    model.ayaArabicFont.text
+                                                }
+                                                .navigationTitle("Font")
+                                            }
+                                        }
+                                        .navigationBarTitleDisplayMode(.inline)
+                                        .scrollIndicators(.hidden)
                                 }
+                                .presentationDetents(.init([.height(650)]))
                             }
                         }
-                        ToolbarItem(placement: .secondaryAction) {
-                            Button{
-                                withAnimation{
-                                    showAddCollection.toggle()
-                                }
-                            }label: {
-                                Label("New collection", systemImage: "square.on.circle.fill")
-                            }
+                        ToolbarItemGroup(placement: .secondaryAction) {
+                            
                         }
-                        ToolbarItemGroup(placement: .bottomBar){
-                            Button{
-                                withAnimation{
-                                    quranVM.isShowIndex = true
-                                }
+                        ToolbarItemGroup(placement: .navigationBarTrailing){
+                            NavigationSheet {
+                                FavoriteView()
                             } label: {
-                                Image(systemName: "list.dash.header.rectangle")
+                                Label("Favorite", systemImage: "star")
                             }
-                            Button{
-                                withAnimation{
-                                    showFavorites.toggle()
-                                }
+                            NavigationSheet(closeButtonSystemName: "xmark", presentationDetents: .init([.height(500)])) {
+                                AddKollectionView()
                             } label: {
-                                Image(systemName: "bolt.heart.fill")
+                                Label("New collection", systemImage: "rectangle.stack.badge.plus")
                             }
                         }
                     }
@@ -73,61 +93,12 @@ struct MainView: View {
                         }
                     })
             }
-            .customSheet(isPresented: $quranVM.isShowIndex){
-                QuranIndexView()
-                .preferredColorScheme(model.preferredColorScheme)
-                .environmentObject(quranVM)
-                .environmentObject(suraVM)
-                .environmentObject(ayaVM)
-            }
-            .customDismissibleSheet(isPresented: $showFavorites){
-                FavoriteView()
-            }
-            .customSheet(isPresented: $showSettings){
-                NavigationStack(path: $stack){
-                    SettingsView(stack: $stack)
-                        .toolbar{
-                            CloseButton()
-                        }
-                        .navigationTitle("Settings")
-                        .navigationDestination(for: String.self){ value in
-                            if value == "ayaFontNames" {
-                                List{
-                                    Section{
-                                        ForEach(CustomFont.allCases){ font in
-                                            Button{
-                                                withAnimation{
-                                                    model.ayaArabicFont = font
-                                                }
-                                            } label: {
-                                                Label(title: {
-                                                    Text(font.rawValue).foregroundColor(.primary)
-                                                }, icon: {
-                                                    Image(systemName: "checkmark").opacity(model.ayaArabicFont == font ? 1 : 0)
-                                                })
-                                            }
-                                        }
-                                    }
-                                    
-                                    model.ayaArabicFont.text
-                                }
-                                .navigationTitle("Font")
-                            }
-                        }
-                        .navigationBarTitleDisplayMode(.inline)
-                        .scrollIndicators(.hidden)
-                }
-                .presentationDetents([.height(625)])
-            }
-            .customDismissibleSheet(isPresented: $showAddCollection){
-                AddKollectionView(kollection: $kollection)
-            }
         } cover: {
             QuranView(isHideCloseButton: $isHideCloseButton)
                 .environment(\.favorite, favorite)
                 .environment(\.pinned, pinned)
         } onHidden: {
-            quranVM.setLastPage(suras: suras, sofhas: sofhas)
+            
         }
     }
 }

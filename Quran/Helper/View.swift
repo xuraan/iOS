@@ -62,33 +62,6 @@ extension View{
                     }
             }
     }
-    
-    @ViewBuilder
-    func customDismissibleSheet<Content: View>(
-        isPresented: Binding<Bool>,
-        @ViewBuilder content: @escaping () -> Content
-    ) -> some View{
-        self
-            .sheet(isPresented: isPresented){
-                NavigationStack{
-                    content()
-                        .toolbar{
-                            CloseButton()
-                        }
-                        .onAppear{
-                            guard let windows = UIApplication.shared.connectedScenes.first as? UIWindowScene else{
-                                return
-                            }
-                            if let controller =  windows.windows.first?.rootViewController?
-                                .presentedViewController, let sheet = controller.presentationController as? UISheetPresentationController{
-                            // MARK: As Usual Set Properties What Ever Your Wish Here With Sheet
-                                sheet.preferredCornerRadius = 30
-                            }
-                        }
-                }
-                
-            }
-    }
 
     @ViewBuilder
     var fullSeparatore: some View {

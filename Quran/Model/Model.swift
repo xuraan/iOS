@@ -9,8 +9,9 @@ import SwiftUI
 
 class Model: ObservableObject {
     
-    //MARK: - DATA
-    @Published var pinned: Any?
+    //MARK: - Kollection
+    @Published var Kollection: Kollection?
+    @Published var showAddCollection: Bool = false
     
     //MARK: - global
     @Published var preferredColorScheme: ColorScheme?

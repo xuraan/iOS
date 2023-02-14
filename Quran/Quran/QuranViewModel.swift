@@ -15,10 +15,7 @@ class QuranViewModel: ObservableObject {
             UserDefaults.standard.set(selection, forKey: "quranSelection")
         }
     }
-    @Published var isShowIndex: Bool = false
     @Published var suraViewScrollTo: Int16 = 0
-    @Published var cuurentAyaID: Aya.ID = 1
-    @Published var lastPage: Any?
     @Published var mode: Mode {
         didSet{
             UserDefaults.standard.set(mode.rawValue, forKey: "quranMode")
@@ -115,15 +112,6 @@ extension QuranViewModel {
     }
     func changeModeToSofha(currentAya: Aya){
         selection = Int(currentAya.sofha.id-1)
-    }
-    
-    func setLastPage(suras: FetchedResults<Sura>, sofhas: FetchedResults<Sofha>){
-        switch mode {
-        case .sura:
-            lastPage = suras.first{ $0.id == Int16(selection+1) }
-        case .sofha:
-            lastPage = sofhas.first{ $0.id == Int16(selection+1) }
-        }
     }
 }
 

@@ -23,26 +23,17 @@ struct QuranIndexView: View {
                     SuraList(suras: Array(suras))
                     .toolbar{
                         ToolbarItem(placement: .confirmationAction){
-                            CloseButton(action: {
-                                withAnimation{
-                                    quranMV.isShowIndex = false
-                                }
-                            })
+                            CloseButton()
                         }
                     }
                     .navigationTitle("Index")
                 }
                 .tag(1)
-                
                 NavigationStack{
                     SofhaList(sofhas: Array(sofhas))
                         .toolbar{
                             ToolbarItem(placement: .primaryAction){
-                                CloseButton(action: {
-                                    withAnimation{
-                                        quranMV.isShowIndex = false
-                                    }
-                                })
+                                CloseButton()
                             }
                             
                         }
@@ -50,7 +41,6 @@ struct QuranIndexView: View {
 
                 }
                 .tag(2)
-
             }
             .overlay(alignment: .bottom){
                 Picker(selection: $selection, label: Text("Picker")) {

@@ -10,22 +10,22 @@ import SwiftUI
 struct SofhasView: View {
     @Environment(\.pinned) var pinned
     @Environment(\.favorite) var favorite
-    
+    @EnvironmentObject var suraVM: SuraViewModel
+    @EnvironmentObject var quranVM: QuranViewModel
+    @EnvironmentObject var model: Model
+    @EnvironmentObject var ayaVM: AyaViewModel
     @Binding var selection: Int
     @State var isExtended: Bool = false
     @Binding var isHideCloseButton: Bool
-    var secondaryAction: ()->Void
     @FetchRequest(sortDescriptors: [SortDescriptor(\.id)]) var sofhas: FetchedResults<Sofha>
 
     // MARK: - INITIALE FINCTION.
     
     init(
         selection: Binding<Int>,
-        SecondaryAction: @escaping ()->Void = {},
         isHideCloseButton: Binding<Bool>
     ){
         self._selection = selection
-        self.secondaryAction = SecondaryAction
         self._isHideCloseButton = isHideCloseButton
     }
     var body: some View {
@@ -48,13 +48,19 @@ struct SofhasView: View {
             )
             .ignoresSafeArea()
             .overlay(alignment: .topLeading, content: {
-                Button(action: secondaryAction){
+                CustomSheet{
+                    QuranIndexView()
+                    .preferredColorScheme(model.preferredColorScheme)
+                    .environmentObject(quranVM)
+                    .environmentObject(suraVM)
+                    .environmentObject(ayaVM)
+                } label: {
                     Image(systemName: "list.bullet.rectangle.portrait")
                         .foregroundColor(.secondary)
                         .font(.title)
+                        .padding(.horizontal)
+                        .opacity(isExtended ? 0 : 1)
                 }
-                .padding(.horizontal)
-                .opacity(isExtended ? 0 : 1)
             })
             .overlay(alignment: .top){
                 Picker("", selection: $selection, content: {

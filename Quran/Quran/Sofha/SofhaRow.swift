@@ -43,7 +43,7 @@ struct SofhaRow: View {
                 .offset(y: 4)
         })
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background()
+        .background(.blue.opacity(0.00001))
         .contextMenu(menuItems: {
             sofha.menu(favorite: favorite, pinned: pinned)
             

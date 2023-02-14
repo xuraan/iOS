@@ -19,9 +19,9 @@ struct QuranView: View {
         Group{
             switch quranVM.mode {
             case .sura:
-                SurasView(selection: $quranVM.selection, titleAction: {quranVM.isShowIndex=true})
+                SurasView(selection: $quranVM.selection)
             case .sofha:
-                SofhasView(selection: $quranVM.selection, SecondaryAction: {quranVM.isShowIndex=true}, isHideCloseButton: $isHideCloseButton)
+                SofhasView(selection: $quranVM.selection, isHideCloseButton: $isHideCloseButton)
             }
         }
         .overlay(alignment: .topTrailing, content: {

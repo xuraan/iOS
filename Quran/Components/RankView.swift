@@ -20,7 +20,7 @@ struct RankView: View {
         ZStack{
             Image(systemName: "circle.fill")
                 .font(.system(size: 40))
-                .foregroundColor(bgColor.opacity(0.7))
+                .foregroundColor(bgColor)
             Text(text)
                 .font(.system(size: 17))
                 .minimumScaleFactor(0.1)

@@ -13,6 +13,8 @@ struct SuraView: View {
     @Environment(\.pinned) var pinned
     @EnvironmentObject var suraVM: SuraViewModel
     @EnvironmentObject var quranVM: QuranViewModel
+    @EnvironmentObject var model: Model
+    @EnvironmentObject var ayaVM: AyaViewModel
     @State var rect: CGRect = .zero
     @State var lastOffsetY: CGFloat = .zero
     @State var isExpanded: Bool = false
@@ -73,9 +75,13 @@ struct SuraView: View {
                 .coordinateSpace(name: "sura\(sura.id)")
                 .safeAreaInset(edge: .top){
                     VStack{
-                        Button(action: {
-                            quranVM.isShowIndex = true
-                        }){
+                        CustomSheet{
+                            QuranIndexView()
+                            .preferredColorScheme(model.preferredColorScheme)
+                            .environmentObject(quranVM)
+                            .environmentObject(suraVM)
+                            .environmentObject(ayaVM)
+                        } label: {
                             Text(sura.name)
                                 .waseem(35, weight: .regular)
                                 .contextMenu(menuItems: {
