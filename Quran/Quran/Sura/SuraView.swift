@@ -77,7 +77,6 @@ struct SuraView: View {
                             QuranIndexView()
                             .preferredColorScheme(model.preferredColorScheme)
                             .environmentObject(quranVM)
-                            .environmentObject(suraVM)
                             .environmentObject(ayaVM)
                         } label: {
                             Text(sura.name)

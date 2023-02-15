@@ -73,7 +73,7 @@ struct AddKollectionView: View {
                     .foregroundColor(.red.opacity(!(kollections.first{ $0.id == name && name != kollection?.id } == nil) ? 1 : 0))
             }
             Section("Description"){
-                TextField("Description", text: $description)
+                TextField("Description", text: $description, axis: .vertical)
                     .lineLimit(5...)
             }
             Section("Collection items"){

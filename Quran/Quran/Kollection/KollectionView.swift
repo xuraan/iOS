@@ -27,6 +27,11 @@ struct KollectionView: View {
     }
     var body: some View {
         List{
+            if !kollection.descript.isEmpty {
+                Section("Detail"){
+                    Text(kollection.descript)
+                }
+            }
             Section{
                 ForEach(kollection.ayas.ayas){aya in
                     AyaRow(for: aya, action: {quranVM.ayaOpenAction(aya)})
