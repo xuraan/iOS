@@ -28,48 +28,92 @@ struct KollectionView: View {
     var body: some View {
         List{
             if !kollection.descript.isEmpty {
-                Section("Detail"){
-                    Text(kollection.descript)
+                Section{
+                    Group{
+                        if Kollection.immutableIDs.contains(kollection.id){
+                            Text(NSLocalizedString( "\(kollection.descript)", tableName: "quran+info", comment: "details"))
+                        } else {
+                            Text(kollection.descript)
+                        }
+                    }
+                    .listRowInsets(EdgeInsets())
+                    .listRowBackground(Color.clear)
                 }
             }
             Section{
-                ForEach(kollection.ayas.ayas){aya in
+                ForEach(kollection.ayas.ayas.shuffled().prefix(10)){aya in
                     AyaRow(for: aya, action: {quranVM.ayaOpenAction(aya)})
                         .padding(.vertical, -5)
                         .fullSeparatore2
                 }
             } header: {
                 if !kollection.ayas.ayas.isEmpty {
-                    Text(ayaSectionTitle)
+                    HStack{
+                        Text(ayaSectionTitle)
+                        Spacer()
+                        if kollection.ayas.count > 10 {
+                            NavigationSheet {
+                                AyaList(ayas: kollection.ayas.ayas)
+                            } label: {
+                                Label("aya \(kollection.ayas.count)", systemImage: "link")
+                                    .font(.footnote)
+                            }
+                        }
+                    }
+                    
                 }
             }
             Section{
-                ForEach(kollection.sofhas.sofhas){sofha in
+                ForEach(kollection.sofhas.sofhas.shuffled().prefix(10)){sofha in
                     SofhaRow(for: sofha, action: {quranVM.sofhaOpenAction(sofha)})
                         .padding(.vertical, -5)
                         .fullSeparatore2
                 }
             } header: {
                 if !kollection.sofhas.sofhas.isEmpty {
-                    Text(sofhaSectionTitle)
+                    HStack{
+                        Text(sofhaSectionTitle)
+                        Spacer()
+                        if kollection.sofhas.count > 10 {
+                            NavigationSheet {
+                                SofhaList(sofhas: kollection.sofhas.sofhas)
+                            } label: {
+                                Label("sofhas \(kollection.sofhas.count)", systemImage: "link")
+                                    .font(.footnote)
+                            }
+                        }
+                    }
                 }
             }
             Section{
-                ForEach(kollection.suras.suras){sura in
+                ForEach(kollection.suras.suras.shuffled().prefix(10)){sura in
                     SuraRow(for: sura, action: {quranVM.suraOpenAction(sura)})
                         .padding(.vertical, -5)
                         .fullSeparatore2
                 }
             } header: {
                 if !kollection.suras.suras.isEmpty {
-                    Text(suraSectionTitle)
+                    HStack{
+                        Text(suraSectionTitle)
+                        Spacer()
+                        if kollection.suras.count > 10 {
+                            NavigationSheet {
+                                SuraList(suras: kollection.suras.suras)
+                            } label: {
+                                Label("suras \(kollection.suras.count)", systemImage: "link")
+                                    .font(.footnote)
+                            }
+                        }
+                    }
                 }
             }
         }
-        .navigationTitle(kollection.id)
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar{
-            NavigationSheet(title: "Edit", presentationDetents: .init([.height(600)])) {
-                AddKollectionView(kollection: .constant(kollection))
+            if !kollection.isImmutable {
+                NavigationSheet(title: "Edit", presentationDetents: .init([.height(600)])) {
+                    AddKollectionView(kollection: .constant(kollection))
+                }
             }
         }
     }

@@ -35,6 +35,7 @@
 		F454C2DF2999DAF6007C85BF /* SuraListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454C2DE2999DAF6007C85BF /* SuraListHeader.swift */; };
 		F454C2FF299C056C007C85BF /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454C2FE299C056C007C85BF /* Error.swift */; };
 		F454C307299C442F007C85BF /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454C306299C442F007C85BF /* CustomFont.swift */; };
+		F454C30C299D3015007C85BF /* quran+info.strings in Resources */ = {isa = PBXBuildFile; fileRef = F454C30E299D3015007C85BF /* quran+info.strings */; };
 		F460982D2987516F00EDEAF7 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F460982C2987516F00EDEAF7 /* MainView.swift */; };
 		F4609831298825F300EDEAF7 /* QuranSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4609830298825F300EDEAF7 /* QuranSettings.swift */; };
 		F460983329882A4600EDEAF7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = F460983229882A4600EDEAF7 /* Model.swift */; };
@@ -118,6 +119,9 @@
 		F454C2DE2999DAF6007C85BF /* SuraListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuraListHeader.swift; sourceTree = "<group>"; };
 		F454C2FE299C056C007C85BF /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		F454C306299C442F007C85BF /* CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
+		F454C30D299D3015007C85BF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/quran+info.strings"; sourceTree = "<group>"; };
+		F454C30F299D301A007C85BF /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = "ar.lproj/quran+info.strings"; sourceTree = "<group>"; };
+		F454C310299D301B007C85BF /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = "fr.lproj/quran+info.strings"; sourceTree = "<group>"; };
 		F460982C2987516F00EDEAF7 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F4609830298825F300EDEAF7 /* QuranSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuranSettings.swift; sourceTree = "<group>"; };
 		F460983229882A4600EDEAF7 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -277,6 +281,7 @@
 				F4A4B10529844B37000ABB8D /* suras.strings */,
 				F4A4B10D29844B37000ABB8D /* quran.json */,
 				F4A4B11429844BE2000ABB8D /* LoadData.swift */,
+				F454C30E299D3015007C85BF /* quran+info.strings */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -485,6 +490,7 @@
 				F4F5DC5729885BA600FB1707 /* AmiriQuran-Regular.ttf in Resources */,
 				F4A4B11329844B37000ABB8D /* quran.json in Resources */,
 				F4A4B10E29844B37000ABB8D /* Localizable.strings in Resources */,
+				F454C30C299D3015007C85BF /* quran+info.strings in Resources */,
 				F4A4B10F29844B37000ABB8D /* ayas.strings in Resources */,
 				F4A4B11229844B37000ABB8D /* Waseem.ttc in Resources */,
 				F4A4B11029844B37000ABB8D /* suras.strings in Resources */,
@@ -577,6 +583,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		F454C30E299D3015007C85BF /* quran+info.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F454C30D299D3015007C85BF /* en */,
+				F454C30F299D301A007C85BF /* ar */,
+				F454C310299D301B007C85BF /* fr */,
+			);
+			name = "quran+info.strings";
+			sourceTree = "<group>";
+		};
 		F4A4B10029844B37000ABB8D /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -83,6 +83,11 @@ struct PersistenceController {
                 let favorite = Kollection(context: viewContext)
                 favorite.id = "C6819E4A-9203-48CE-9EE4-AAF815B52D09"
                 favorite.colorHex = "FF0000"
+                
+                let quran = Kollection(context: viewContext)
+                quran.id = "The noble quran"
+                quran.colorHex = "2B602F"
+                quran.descript = "QURANDESCRIPTION" //green
 
                 //MARK: - Quran
                 let newPlace = Place(context: viewContext)
@@ -99,7 +104,7 @@ struct PersistenceController {
                     newSura.name = sura.name
                     newSura.phonetic = sura.phonetic
                     newSura.place = sura.place == "mk" ? newPlace : newPlace1
-                    newSofha.kollections = .init()
+                    quran.addToSuras(newSura)
                     var surasSofha = Set<Sofha>()
                     for aya in sura.ayas{
                         let newAya = Aya(context: viewContext)
@@ -107,7 +112,7 @@ struct PersistenceController {
                         newAya.text = aya.text
                         newAya.plain = aya.plain
                         newAya.sura = newSura
-                        newAya.kollections = .init()
+                        quran.addToAyas(newAya)
                         if aya.sofha == sofhaId {
                             newAya.sofha = newSofha
                             surasSofha.insert(newSofha)
@@ -122,7 +127,7 @@ struct PersistenceController {
                     }
                     for sofha in surasSofha.sorted(by: { $0.id < $1.id }) {
                         newSura.addToSofhas(sofha)
-                        newSofha.kollections = .init()
+                        quran.addToSofhas(newSofha)
                     }
                 }
                 try viewContext.save()

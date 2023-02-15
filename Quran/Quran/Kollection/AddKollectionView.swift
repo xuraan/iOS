@@ -67,16 +67,16 @@ struct AddKollectionView: View {
                         .frame(width: 40)
                     }
             } header: {
-                Text("Collection name")
+                Text("collection name")
             } footer: {
-                Text("Une collection existe avec ce nom (\(name))")
-                    .foregroundColor(.red.opacity(!(kollections.first{ $0.id == name && name != kollection?.id } == nil) ? 1 : 0))
+                Text(inValideText)
+                    .foregroundColor(.red)
             }
-            Section("Description"){
+            Section("description"){
                 TextField("Description", text: $description, axis: .vertical)
                     .lineLimit(5...)
             }
-            Section("Collection items"){
+            Section("collection items"){
                 Group{
                     NavigationSheet(closeButtonTitle: "Done"){
                         AyaList(ayas: Array(ayas), selection: $ayasIDs)
@@ -144,13 +144,25 @@ struct AddKollectionView: View {
             let kollection = saveKollection
             kollection.colorHex = color.hex
             kollection.id = name
+            kollection.descript = description
             kollection.suras = NSSet(array: suras.filter{ surasIDs.contains($0.id) })
             kollection.sofhas = NSSet(array: sofhas.filter{ sofhasIDs.contains($0.id) })
             kollection.ayas = NSSet(array: ayas.filter{ ayasIDs.contains($0.id) })
         }
     }
+    private var inValideNames: [String] {
+        kollections.map{ $0.id }+Kollection.immutableIDs
+    }
     private var canSave: Bool{
-        !(name.isEmpty || (kollections.first{ $0.id == name && name != kollection?.id } != nil))
+        !(name.isEmpty || self.inValideNames.contains(name) && name != kollection?.id )
+    }
+    private var inValideText: String {
+        if Kollection.immutableIDs.contains(name) {
+            return "Ce mot (\(name)) est reservé "
+        }else if inValideNames.contains(name) {
+            return "Une collection existe avec ce nom (\(name))"
+        } 
+        return ""
     }
 }
 

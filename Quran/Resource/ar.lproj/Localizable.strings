@@ -8,7 +8,6 @@
 "sura" = "سورة";
 "aya" = "آية";
 "sofha" = "صفحة";
-
 "Page" = "صفحة";
 "Verse" = "آية";
 "Close" = "أغلق";
@@ -35,8 +34,11 @@
 "Favorites aya" = "آيات المفضلة";
 "Favorites sofha" = "الصفحات المفضلة";
 "More" = "الكل";
-
 "quran" = "القرآن";
 "Index" = "فهرس";
 "mk" = "مكية";
 "md" = "مدنية";
+"New collection" = "مجموعة جديدة";
+"collections" = "المجموعات";
+"collection name" = "اسم المجموعة";
+"collection items" = "عناصر المجموعة";

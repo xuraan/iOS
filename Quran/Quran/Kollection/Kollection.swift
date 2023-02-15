@@ -18,10 +18,11 @@ extension Kollection  {
         return FetchRequest(fetchRequest: request)
     }
     ///return the ids of immutable Kollection like favorites ...
-    static var immutableIDs: [String] = [favoriteID]
+    static var immutableIDs: [String] = [favoriteID, "The noble quran", "suras", "sura", "ayas", "aya", "sofha", "sofhas"]
     static var favoriteID = "C6819E4A-9203-48CE-9EE4-AAF815B52D09"
     static var predicate = NSPredicate(format: "NOT (id IN %@)", immutableIDs)
     static var favoritePredicate = NSPredicate(format: "id = %@", favoriteID)
+    static var immutablePredicate = NSPredicate(format: "id IN %@", immutableIDs.filter{ $0 != favoriteID })
 }
 
 extension Kollection {
@@ -37,4 +38,5 @@ extension Kollection {
     }
     var count: Int { suras.count + ayas.count + sofhas.count }
     var color: Color { Color(hex: colorHex) ?? .black }
+    var isImmutable: Bool { Self.immutableIDs.contains(id) }
 }
