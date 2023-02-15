@@ -35,7 +35,7 @@ struct AddKollectionView: View {
     init(kollection: Binding<Kollection?> = .constant(nil)){
         _kollection = kollection
     }
-    
+    var title: LocalizedStringKey { .init(kollection.isNil ? "New collection" : kollection!.id) }
     var body: some View {
         List{
             Section{
@@ -129,6 +129,7 @@ struct AddKollectionView: View {
                 sofhasIDs = Set(kollection.sofhas.sofhas.map{ $0.id })
             }
         }
+        .navigationTitle(title)
     }
     
     private var saveKollection: Kollection {

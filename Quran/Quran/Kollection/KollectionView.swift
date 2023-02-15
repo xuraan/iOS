@@ -68,7 +68,7 @@ struct KollectionView: View {
         }
         .navigationTitle(kollection.id)
         .toolbar{
-            NavigationSheet(title: "Edit", presentationDetents: .init([.height(500)])) {
+            NavigationSheet(title: "Edit", presentationDetents: .init([.height(600)])) {
                 AddKollectionView(kollection: .constant(kollection))
             }
         }

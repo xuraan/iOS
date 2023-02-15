@@ -29,7 +29,7 @@ struct HomeView: View {
                content
             }
         }
-        .navigationTitle(title)
+        .navigationTitle(LocalizedStringKey(title))
     }
     var title: String { isSearching ? "Search" : "The noble quran" }
 }

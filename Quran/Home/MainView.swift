@@ -56,7 +56,7 @@ extension MainView {
             } label: {
                 Label("Favorite", systemImage: "star")
             }
-            NavigationSheet(closeButtonSystemName: "xmark", presentationDetents: .init([.height(500)])) {
+            NavigationSheet(closeButtonSystemName: "xmark", presentationDetents: .init([.height(600)])) {
                 AddKollectionView()
             } label: {
                 Label("New collection", systemImage: "plus.rectangle.on.rectangle")
