@@ -159,9 +159,9 @@ struct AddKollectionView: View {
     private var inValideText: String {
         if Kollection.immutableIDs.contains(name) {
             return "Ce mot (\(name)) est reservé "
-        }else if inValideNames.contains(name) {
+        }else if inValideNames.contains(name) && name != kollection?.id {
             return "Une collection existe avec ce nom (\(name))"
-        } 
+        }
         return ""
     }
 }

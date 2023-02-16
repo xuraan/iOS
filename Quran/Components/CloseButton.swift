@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CloseButton: View{
+struct CloseButton: View {
     @Environment(\.dismiss) var dismiss
     var action: (()->Void)?
     var image: Image
@@ -18,12 +18,12 @@ struct CloseButton: View{
     var body: some View {
         Button(action: action ?? {dismiss()}, label: {
             image
-                .font(.headline)
-                .foregroundColor(.secondary)
+                .font(.headline.weight(.bold))
+                .foregroundColor(.accentColor)
                 .frame(width: 40, height: 40)
                 .background{
                     Circle()
-                        .fill(.ultraThinMaterial.shadow(.inner(color: .primary.opacity(0.1), radius: 5)))
+                        .fill(.ultraThinMaterial.shadow(.inner(color: .accentColor.opacity(0.3), radius: 7)))
                 }
                 .padding(-1)
                 .clipShape(Circle())
