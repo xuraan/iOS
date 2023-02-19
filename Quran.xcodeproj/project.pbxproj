@@ -7,179 +7,45 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F427D5DE29987F760004B15F /* KollectionsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F427D5DD29987F760004B15F /* KollectionsSection.swift */; };
-		F427D5E0299880E10004B15F /* AddKollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F427D5DF299880E10004B15F /* AddKollectionView.swift */; };
-		F43AE4F029955CAB004CAE05 /* EnvKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43AE4EF29955CAB004CAE05 /* EnvKey.swift */; };
-		F43AE4F22995636A004CAE05 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43AE4F12995636A004CAE05 /* Color.swift */; };
-		F43AE4F42995707B004CAE05 /* NSSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43AE4F32995707B004CAE05 /* NSSet.swift */; };
-		F43AE4F6299570AF004CAE05 /* NSOrderedSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43AE4F5299570AF004CAE05 /* NSOrderedSet.swift */; };
-		F43AE4F9299570F2004CAE05 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43AE4F8299570F2004CAE05 /* View.swift */; };
-		F43AE4FB29957111004CAE05 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43AE4FA29957111004CAE05 /* String.swift */; };
-		F43AE4FF29957DD0004CAE05 /* Kollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43AE4FE29957DD0004CAE05 /* Kollection.swift */; };
-		F43AE51529957EBB004CAE05 /* Sura+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43AE51429957EBB004CAE05 /* Sura+SwiftUI.swift */; };
-		F43AE5172995800B004CAE05 /* Aya+SwifUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43AE5162995800B004CAE05 /* Aya+SwifUI.swift */; };
-		F43AE51B29958997004CAE05 /* KollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43AE51A29958997004CAE05 /* KollectionView.swift */; };
-		F43AE51D29958D0C004CAE05 /* PinnedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43AE51C29958D0C004CAE05 /* PinnedButton.swift */; };
-		F454C2D02999AD6D007C85BF /* Aya+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454C2C62999AD6D007C85BF /* Aya+CoreDataClass.swift */; };
-		F454C2D12999AD6D007C85BF /* Aya+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454C2C72999AD6D007C85BF /* Aya+CoreDataProperties.swift */; };
-		F454C2D22999AD6D007C85BF /* Kollection+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454C2C82999AD6D007C85BF /* Kollection+CoreDataClass.swift */; };
-		F454C2D32999AD6D007C85BF /* Kollection+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454C2C92999AD6D007C85BF /* Kollection+CoreDataProperties.swift */; };
-		F454C2D42999AD6D007C85BF /* Sura+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454C2CA2999AD6D007C85BF /* Sura+CoreDataClass.swift */; };
-		F454C2D52999AD6D007C85BF /* Sura+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454C2CB2999AD6D007C85BF /* Sura+CoreDataProperties.swift */; };
-		F454C2D62999AD6D007C85BF /* Sofha+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454C2CC2999AD6D007C85BF /* Sofha+CoreDataClass.swift */; };
-		F454C2D72999AD6D007C85BF /* Sofha+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454C2CD2999AD6D007C85BF /* Sofha+CoreDataProperties.swift */; };
-		F454C2D82999AD6D007C85BF /* Place+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454C2CE2999AD6D007C85BF /* Place+CoreDataClass.swift */; };
-		F454C2D92999AD6D007C85BF /* Place+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454C2CF2999AD6D007C85BF /* Place+CoreDataProperties.swift */; };
-		F454C2DB2999D23D007C85BF /* AyaListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454C2DA2999D23D007C85BF /* AyaListHeader.swift */; };
-		F454C2DD2999D9FE007C85BF /* SofhaListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454C2DC2999D9FE007C85BF /* SofhaListHeader.swift */; };
-		F454C2DF2999DAF6007C85BF /* SuraListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454C2DE2999DAF6007C85BF /* SuraListHeader.swift */; };
-		F454C2FF299C056C007C85BF /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454C2FE299C056C007C85BF /* Error.swift */; };
-		F454C307299C442F007C85BF /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454C306299C442F007C85BF /* CustomFont.swift */; };
-		F454C30C299D3015007C85BF /* quran+info.strings in Resources */ = {isa = PBXBuildFile; fileRef = F454C30E299D3015007C85BF /* quran+info.strings */; };
-		F460982D2987516F00EDEAF7 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F460982C2987516F00EDEAF7 /* MainView.swift */; };
-		F4609831298825F300EDEAF7 /* QuranSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4609830298825F300EDEAF7 /* QuranSettings.swift */; };
-		F460983329882A4600EDEAF7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = F460983229882A4600EDEAF7 /* Model.swift */; };
-		F460983529882ABA00EDEAF7 /* ModelSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F460983429882ABA00EDEAF7 /* ModelSettings.swift */; };
-		F460983729884F9A00EDEAF7 /* Sofha+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F460983629884F9A00EDEAF7 /* Sofha+SwiftUI.swift */; };
-		F47EBA982995B53C00ABE945 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47EBA972995B53C00ABE945 /* FavoriteView.swift */; };
+		F48AC06029A2086700FC7AED /* suras.json in Resources */ = {isa = PBXBuildFile; fileRef = F48AC05B29A2086700FC7AED /* suras.json */; };
+		F48AC06129A2086700FC7AED /* me_quran.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F48AC05D29A2086700FC7AED /* me_quran.ttf */; };
+		F48AC06229A2086700FC7AED /* Waseem.ttc in Resources */ = {isa = PBXBuildFile; fileRef = F48AC05E29A2086700FC7AED /* Waseem.ttc */; };
+		F48AC06329A2086700FC7AED /* ayas.json in Resources */ = {isa = PBXBuildFile; fileRef = F48AC05F29A2086700FC7AED /* ayas.json */; };
+		F48AC09E29A2091A00FC7AED /* Sofha.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48AC09229A2091A00FC7AED /* Sofha.swift */; };
+		F48AC09F29A2091A00FC7AED /* Hizb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48AC09429A2091A00FC7AED /* Hizb.swift */; };
+		F48AC0A029A2091A00FC7AED /* QuranProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48AC09529A2091A00FC7AED /* QuranProvider.swift */; };
+		F48AC0A129A2091A00FC7AED /* Sura.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48AC09729A2091A00FC7AED /* Sura.swift */; };
+		F48AC0A229A2091A00FC7AED /* Aya+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48AC09929A2091A00FC7AED /* Aya+SwiftUI.swift */; };
+		F48AC0A329A2091A00FC7AED /* AyaRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48AC09A29A2091A00FC7AED /* AyaRow.swift */; };
+		F48AC0A429A2091A00FC7AED /* Aya.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48AC09B29A2091A00FC7AED /* Aya.swift */; };
+		F48AC0A529A2091A00FC7AED /* Kolllection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48AC09D29A2091A00FC7AED /* Kolllection.swift */; };
+		F48AC0A829A2098C00FC7AED /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48AC0A729A2098C00FC7AED /* String.swift */; };
 		F4A4B0ED298449FB000ABB8D /* QuranApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B0EC298449FB000ABB8D /* QuranApp.swift */; };
 		F4A4B0EF298449FB000ABB8D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B0EE298449FB000ABB8D /* ContentView.swift */; };
 		F4A4B0F1298449FE000ABB8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4A4B0F0298449FE000ABB8D /* Assets.xcassets */; };
 		F4A4B0F4298449FE000ABB8D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4A4B0F3298449FE000ABB8D /* Preview Assets.xcassets */; };
-		F4A4B0F6298449FE000ABB8D /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B0F5298449FE000ABB8D /* Persistence.swift */; };
-		F4A4B0F9298449FE000ABB8D /* Quran.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B0F7298449FE000ABB8D /* Quran.xcdatamodeld */; };
-		F4A4B10E29844B37000ABB8D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F4A4B10029844B37000ABB8D /* Localizable.strings */; };
-		F4A4B10F29844B37000ABB8D /* ayas.strings in Resources */ = {isa = PBXBuildFile; fileRef = F4A4B10229844B37000ABB8D /* ayas.strings */; };
-		F4A4B11029844B37000ABB8D /* suras.strings in Resources */ = {isa = PBXBuildFile; fileRef = F4A4B10529844B37000ABB8D /* suras.strings */; };
-		F4A4B11129844B37000ABB8D /* me_quran.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4A4B10B29844B37000ABB8D /* me_quran.ttf */; };
-		F4A4B11229844B37000ABB8D /* Waseem.ttc in Resources */ = {isa = PBXBuildFile; fileRef = F4A4B10C29844B37000ABB8D /* Waseem.ttc */; };
-		F4A4B11329844B37000ABB8D /* quran.json in Resources */ = {isa = PBXBuildFile; fileRef = F4A4B10D29844B37000ABB8D /* quran.json */; };
-		F4A4B11529844BE2000ABB8D /* LoadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B11429844BE2000ABB8D /* LoadData.swift */; };
-		F4A4B11C29844C0A000ABB8D /* RankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B11729844C0A000ABB8D /* RankView.swift */; };
-		F4A4B11D29844C0A000ABB8D /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B11829844C0A000ABB8D /* CloseButton.swift */; };
-		F4A4B11E29844C0A000ABB8D /* MoreLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B11929844C0A000ABB8D /* MoreLink.swift */; };
-		F4A4B11F29844C0A000ABB8D /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B11A29844C0A000ABB8D /* Container.swift */; };
-		F4A4B12029844C0A000ABB8D /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B11B29844C0A000ABB8D /* PageView.swift */; };
-		F4A4B13E29844C31000ABB8D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B12229844C31000ABB8D /* HomeView.swift */; };
-		F4A4B13F29844C31000ABB8D /* AyaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B12429844C31000ABB8D /* AyaView.swift */; };
-		F4A4B14029844C31000ABB8D /* SuraList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B12529844C31000ABB8D /* SuraList.swift */; };
-		F4A4B14129844C31000ABB8D /* SuraRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B12629844C31000ABB8D /* SuraRow.swift */; };
-		F4A4B14229844C31000ABB8D /* SurasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B12729844C31000ABB8D /* SurasView.swift */; };
-		F4A4B14329844C31000ABB8D /* SuraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B12829844C31000ABB8D /* SuraView.swift */; };
-		F4A4B14429844C31000ABB8D /* Sura.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B12929844C31000ABB8D /* Sura.swift */; };
-		F4A4B14529844C31000ABB8D /* AyaRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B12A29844C31000ABB8D /* AyaRow.swift */; };
-		F4A4B14629844C31000ABB8D /* Aya.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B12B29844C31000ABB8D /* Aya.swift */; };
-		F4A4B14729844C31000ABB8D /* SuraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B12C29844C31000ABB8D /* SuraViewModel.swift */; };
-		F4A4B14829844C31000ABB8D /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B12E29844C31000ABB8D /* SearchView.swift */; };
-		F4A4B14929844C31000ABB8D /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B12F29844C31000ABB8D /* SearchModel.swift */; };
-		F4A4B14A29844C31000ABB8D /* QuranIndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B13129844C31000ABB8D /* QuranIndexView.swift */; };
-		F4A4B14B29844C31000ABB8D /* QuranView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B13229844C31000ABB8D /* QuranView.swift */; };
-		F4A4B14C29844C31000ABB8D /* QuranViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B13329844C31000ABB8D /* QuranViewModel.swift */; };
-		F4A4B14D29844C31000ABB8D /* PreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B13529844C31000ABB8D /* PreferenceKey.swift */; };
-		F4A4B15029844C31000ABB8D /* SofhaRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B13929844C31000ABB8D /* SofhaRow.swift */; };
-		F4A4B15129844C31000ABB8D /* SofhaList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B13A29844C31000ABB8D /* SofhaList.swift */; };
-		F4A4B15229844C31000ABB8D /* Sofha.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B13B29844C31000ABB8D /* Sofha.swift */; };
-		F4A4B15329844C31000ABB8D /* SofhaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B13C29844C31000ABB8D /* SofhaView.swift */; };
-		F4A4B15429844C31000ABB8D /* SofhasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B13D29844C31000ABB8D /* SofhasView.swift */; };
-		F4A4B16A29845A37000ABB8D /* StarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B16929845A37000ABB8D /* StarButton.swift */; };
-		F4A4B1732984627B000ABB8D /* AyaList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B1722984627B000ABB8D /* AyaList.swift */; };
-		F4A4B17529846661000ABB8D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B17429846661000ABB8D /* SettingsView.swift */; };
-		F4A4B1772984666F000ABB8D /* SuraSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B1762984666F000ABB8D /* SuraSettings.swift */; };
-		F4A4B17B298466E6000ABB8D /* AyaSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B17A298466E6000ABB8D /* AyaSettings.swift */; };
-		F4A4B17D298466F8000ABB8D /* AyaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B17C298466F8000ABB8D /* AyaViewModel.swift */; };
-		F4F5DC5729885BA600FB1707 /* AmiriQuran-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4F5DC5629885BA600FB1707 /* AmiriQuran-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F427D5DD29987F760004B15F /* KollectionsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KollectionsSection.swift; sourceTree = "<group>"; };
-		F427D5DF299880E10004B15F /* AddKollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddKollectionView.swift; sourceTree = "<group>"; };
-		F43AE4EF29955CAB004CAE05 /* EnvKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvKey.swift; sourceTree = "<group>"; };
-		F43AE4F12995636A004CAE05 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		F43AE4F32995707B004CAE05 /* NSSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSSet.swift; sourceTree = "<group>"; };
-		F43AE4F5299570AF004CAE05 /* NSOrderedSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSOrderedSet.swift; sourceTree = "<group>"; };
-		F43AE4F8299570F2004CAE05 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
-		F43AE4FA29957111004CAE05 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
-		F43AE4FE29957DD0004CAE05 /* Kollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kollection.swift; sourceTree = "<group>"; };
-		F43AE51429957EBB004CAE05 /* Sura+SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sura+SwiftUI.swift"; sourceTree = "<group>"; };
-		F43AE5162995800B004CAE05 /* Aya+SwifUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Aya+SwifUI.swift"; sourceTree = "<group>"; };
-		F43AE51A29958997004CAE05 /* KollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KollectionView.swift; sourceTree = "<group>"; };
-		F43AE51C29958D0C004CAE05 /* PinnedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnedButton.swift; sourceTree = "<group>"; };
-		F454C2C62999AD6D007C85BF /* Aya+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Aya+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F454C2C72999AD6D007C85BF /* Aya+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Aya+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		F454C2C82999AD6D007C85BF /* Kollection+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Kollection+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F454C2C92999AD6D007C85BF /* Kollection+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Kollection+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		F454C2CA2999AD6D007C85BF /* Sura+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sura+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F454C2CB2999AD6D007C85BF /* Sura+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sura+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		F454C2CC2999AD6D007C85BF /* Sofha+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sofha+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F454C2CD2999AD6D007C85BF /* Sofha+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sofha+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		F454C2CE2999AD6D007C85BF /* Place+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Place+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F454C2CF2999AD6D007C85BF /* Place+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Place+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		F454C2DA2999D23D007C85BF /* AyaListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AyaListHeader.swift; sourceTree = "<group>"; };
-		F454C2DC2999D9FE007C85BF /* SofhaListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SofhaListHeader.swift; sourceTree = "<group>"; };
-		F454C2DE2999DAF6007C85BF /* SuraListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuraListHeader.swift; sourceTree = "<group>"; };
-		F454C2FE299C056C007C85BF /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
-		F454C306299C442F007C85BF /* CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
-		F454C30D299D3015007C85BF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/quran+info.strings"; sourceTree = "<group>"; };
-		F454C30F299D301A007C85BF /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = "ar.lproj/quran+info.strings"; sourceTree = "<group>"; };
-		F454C310299D301B007C85BF /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = "fr.lproj/quran+info.strings"; sourceTree = "<group>"; };
-		F460982C2987516F00EDEAF7 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		F4609830298825F300EDEAF7 /* QuranSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuranSettings.swift; sourceTree = "<group>"; };
-		F460983229882A4600EDEAF7 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		F460983429882ABA00EDEAF7 /* ModelSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSettings.swift; sourceTree = "<group>"; };
-		F460983629884F9A00EDEAF7 /* Sofha+SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sofha+SwiftUI.swift"; sourceTree = "<group>"; };
-		F47EBA972995B53C00ABE945 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
+		F48AC05B29A2086700FC7AED /* suras.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = suras.json; sourceTree = "<group>"; };
+		F48AC05D29A2086700FC7AED /* me_quran.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = me_quran.ttf; sourceTree = "<group>"; };
+		F48AC05E29A2086700FC7AED /* Waseem.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Waseem.ttc; sourceTree = "<group>"; };
+		F48AC05F29A2086700FC7AED /* ayas.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ayas.json; sourceTree = "<group>"; };
+		F48AC09229A2091A00FC7AED /* Sofha.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sofha.swift; sourceTree = "<group>"; };
+		F48AC09429A2091A00FC7AED /* Hizb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hizb.swift; sourceTree = "<group>"; };
+		F48AC09529A2091A00FC7AED /* QuranProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuranProvider.swift; sourceTree = "<group>"; };
+		F48AC09729A2091A00FC7AED /* Sura.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sura.swift; sourceTree = "<group>"; };
+		F48AC09929A2091A00FC7AED /* Aya+SwiftUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Aya+SwiftUI.swift"; sourceTree = "<group>"; };
+		F48AC09A29A2091A00FC7AED /* AyaRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AyaRow.swift; sourceTree = "<group>"; };
+		F48AC09B29A2091A00FC7AED /* Aya.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aya.swift; sourceTree = "<group>"; };
+		F48AC09D29A2091A00FC7AED /* Kolllection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kolllection.swift; sourceTree = "<group>"; };
+		F48AC0A729A2098C00FC7AED /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		F4A4B0E9298449FB000ABB8D /* Quran.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quran.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4A4B0EC298449FB000ABB8D /* QuranApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuranApp.swift; sourceTree = "<group>"; };
 		F4A4B0EE298449FB000ABB8D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F4A4B0F0298449FE000ABB8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F4A4B0F3298449FE000ABB8D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		F4A4B0F5298449FE000ABB8D /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		F4A4B0F8298449FE000ABB8D /* Quran.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Quran.xcdatamodel; sourceTree = "<group>"; };
-		F4A4B10129844B37000ABB8D /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
-		F4A4B10329844B37000ABB8D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ayas.strings; sourceTree = "<group>"; };
-		F4A4B10429844B37000ABB8D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		F4A4B10629844B37000ABB8D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/suras.strings; sourceTree = "<group>"; };
-		F4A4B10729844B37000ABB8D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ayas.strings; sourceTree = "<group>"; };
-		F4A4B10829844B37000ABB8D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		F4A4B10929844B37000ABB8D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/suras.strings; sourceTree = "<group>"; };
-		F4A4B10B29844B37000ABB8D /* me_quran.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = me_quran.ttf; sourceTree = "<group>"; };
-		F4A4B10C29844B37000ABB8D /* Waseem.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Waseem.ttc; sourceTree = "<group>"; };
-		F4A4B10D29844B37000ABB8D /* quran.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = quran.json; sourceTree = "<group>"; };
-		F4A4B11429844BE2000ABB8D /* LoadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadData.swift; sourceTree = "<group>"; };
-		F4A4B11729844C0A000ABB8D /* RankView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankView.swift; sourceTree = "<group>"; };
-		F4A4B11829844C0A000ABB8D /* CloseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
-		F4A4B11929844C0A000ABB8D /* MoreLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreLink.swift; sourceTree = "<group>"; };
-		F4A4B11A29844C0A000ABB8D /* Container.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
-		F4A4B11B29844C0A000ABB8D /* PageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
-		F4A4B12229844C31000ABB8D /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		F4A4B12429844C31000ABB8D /* AyaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AyaView.swift; sourceTree = "<group>"; };
-		F4A4B12529844C31000ABB8D /* SuraList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuraList.swift; sourceTree = "<group>"; };
-		F4A4B12629844C31000ABB8D /* SuraRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuraRow.swift; sourceTree = "<group>"; };
-		F4A4B12729844C31000ABB8D /* SurasView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurasView.swift; sourceTree = "<group>"; };
-		F4A4B12829844C31000ABB8D /* SuraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuraView.swift; sourceTree = "<group>"; };
-		F4A4B12929844C31000ABB8D /* Sura.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sura.swift; sourceTree = "<group>"; };
-		F4A4B12A29844C31000ABB8D /* AyaRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AyaRow.swift; sourceTree = "<group>"; };
-		F4A4B12B29844C31000ABB8D /* Aya.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aya.swift; sourceTree = "<group>"; };
-		F4A4B12C29844C31000ABB8D /* SuraViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuraViewModel.swift; sourceTree = "<group>"; };
-		F4A4B12E29844C31000ABB8D /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
-		F4A4B12F29844C31000ABB8D /* SearchModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
-		F4A4B13129844C31000ABB8D /* QuranIndexView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuranIndexView.swift; sourceTree = "<group>"; };
-		F4A4B13229844C31000ABB8D /* QuranView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuranView.swift; sourceTree = "<group>"; };
-		F4A4B13329844C31000ABB8D /* QuranViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuranViewModel.swift; sourceTree = "<group>"; };
-		F4A4B13529844C31000ABB8D /* PreferenceKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceKey.swift; sourceTree = "<group>"; };
-		F4A4B13929844C31000ABB8D /* SofhaRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SofhaRow.swift; sourceTree = "<group>"; };
-		F4A4B13A29844C31000ABB8D /* SofhaList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SofhaList.swift; sourceTree = "<group>"; };
-		F4A4B13B29844C31000ABB8D /* Sofha.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sofha.swift; sourceTree = "<group>"; };
-		F4A4B13C29844C31000ABB8D /* SofhaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SofhaView.swift; sourceTree = "<group>"; };
-		F4A4B13D29844C31000ABB8D /* SofhasView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SofhasView.swift; sourceTree = "<group>"; };
 		F4A4B1682984563A000ABB8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		F4A4B16929845A37000ABB8D /* StarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarButton.swift; sourceTree = "<group>"; };
-		F4A4B1722984627B000ABB8D /* AyaList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AyaList.swift; sourceTree = "<group>"; };
-		F4A4B17429846661000ABB8D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		F4A4B1762984666F000ABB8D /* SuraSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuraSettings.swift; sourceTree = "<group>"; };
-		F4A4B17A298466E6000ABB8D /* AyaSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AyaSettings.swift; sourceTree = "<group>"; };
-		F4A4B17C298466F8000ABB8D /* AyaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AyaViewModel.swift; sourceTree = "<group>"; };
-		F4F5DC5629885BA600FB1707 /* AmiriQuran-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AmiriQuran-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,36 +59,86 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F427B16C2999A3AC00BFEC9D /* Settings */ = {
+		F48AC05A29A2086700FC7AED /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				F4A4B17429846661000ABB8D /* SettingsView.swift */,
+				F48AC05C29A2086700FC7AED /* Font */,
+				F48AC05B29A2086700FC7AED /* suras.json */,
+				F48AC05F29A2086700FC7AED /* ayas.json */,
 			);
-			path = Settings;
+			name = Resource;
+			path = ../../applications/ios/Quran/Quran/Resource;
 			sourceTree = "<group>";
 		};
-		F43AE4FC2995713C004CAE05 /* Extension */ = {
+		F48AC05C29A2086700FC7AED /* Font */ = {
 			isa = PBXGroup;
 			children = (
-				F43AE4F12995636A004CAE05 /* Color.swift */,
-				F43AE4F32995707B004CAE05 /* NSSet.swift */,
-				F43AE4F5299570AF004CAE05 /* NSOrderedSet.swift */,
-				F43AE4F8299570F2004CAE05 /* View.swift */,
-				F43AE4FA29957111004CAE05 /* String.swift */,
+				F48AC05D29A2086700FC7AED /* me_quran.ttf */,
+				F48AC05E29A2086700FC7AED /* Waseem.ttc */,
 			);
-			name = Extension;
+			path = Font;
 			sourceTree = "<group>";
 		};
-		F43AE4FD29957DC3004CAE05 /* Kollection */ = {
+		F48AC09029A2091A00FC7AED /* Quran */ = {
 			isa = PBXGroup;
 			children = (
-				F43AE4FE29957DD0004CAE05 /* Kollection.swift */,
-				F43AE51A29958997004CAE05 /* KollectionView.swift */,
-				F47EBA972995B53C00ABE945 /* FavoriteView.swift */,
-				F427D5DD29987F760004B15F /* KollectionsSection.swift */,
-				F427D5DF299880E10004B15F /* AddKollectionView.swift */,
+				F48AC09829A2091A00FC7AED /* Aya */,
+				F48AC09629A2091A00FC7AED /* Sura */,
+				F48AC09129A2091A00FC7AED /* Sofha */,
+				F48AC09329A2091A00FC7AED /* Hizb */,
+				F48AC09529A2091A00FC7AED /* QuranProvider.swift */,
+			);
+			path = Quran;
+			sourceTree = "<group>";
+		};
+		F48AC09129A2091A00FC7AED /* Sofha */ = {
+			isa = PBXGroup;
+			children = (
+				F48AC09229A2091A00FC7AED /* Sofha.swift */,
+			);
+			path = Sofha;
+			sourceTree = "<group>";
+		};
+		F48AC09329A2091A00FC7AED /* Hizb */ = {
+			isa = PBXGroup;
+			children = (
+				F48AC09429A2091A00FC7AED /* Hizb.swift */,
+			);
+			path = Hizb;
+			sourceTree = "<group>";
+		};
+		F48AC09629A2091A00FC7AED /* Sura */ = {
+			isa = PBXGroup;
+			children = (
+				F48AC09729A2091A00FC7AED /* Sura.swift */,
+			);
+			path = Sura;
+			sourceTree = "<group>";
+		};
+		F48AC09829A2091A00FC7AED /* Aya */ = {
+			isa = PBXGroup;
+			children = (
+				F48AC09929A2091A00FC7AED /* Aya+SwiftUI.swift */,
+				F48AC09A29A2091A00FC7AED /* AyaRow.swift */,
+				F48AC09B29A2091A00FC7AED /* Aya.swift */,
+			);
+			path = Aya;
+			sourceTree = "<group>";
+		};
+		F48AC09C29A2091A00FC7AED /* Kollection */ = {
+			isa = PBXGroup;
+			children = (
+				F48AC09D29A2091A00FC7AED /* Kolllection.swift */,
 			);
 			path = Kollection;
+			sourceTree = "<group>";
+		};
+		F48AC0A629A2098300FC7AED /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				F48AC0A729A2098C00FC7AED /* String.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		F4A4B0E0298449FB000ABB8D = {
@@ -245,20 +161,13 @@
 			isa = PBXGroup;
 			children = (
 				F4A4B1682984563A000ABB8D /* Info.plist */,
-				F4A4B16729845337000ABB8D /* CoreData */,
-				F4A4B13429844C31000ABB8D /* Helper */,
-				F4A4B12129844C31000ABB8D /* Home */,
-				F4A4B12329844C31000ABB8D /* Model */,
-				F4A4B13029844C31000ABB8D /* Quran */,
-				F4A4B12D29844C31000ABB8D /* Search */,
-				F427B16C2999A3AC00BFEC9D /* Settings */,
-				F4A4B11629844C0A000ABB8D /* Components */,
-				F4A4B0FF29844B37000ABB8D /* Resource */,
+				F48AC0A629A2098300FC7AED /* Helper */,
+				F48AC09C29A2091A00FC7AED /* Kollection */,
+				F48AC09029A2091A00FC7AED /* Quran */,
+				F48AC05A29A2086700FC7AED /* Resource */,
 				F4A4B0EC298449FB000ABB8D /* QuranApp.swift */,
 				F4A4B0EE298449FB000ABB8D /* ContentView.swift */,
 				F4A4B0F0298449FE000ABB8D /* Assets.xcassets */,
-				F4A4B0F5298449FE000ABB8D /* Persistence.swift */,
-				F4A4B0F7298449FE000ABB8D /* Quran.xcdatamodeld */,
 				F4A4B0F2298449FE000ABB8D /* Preview Content */,
 			);
 			path = Quran;
@@ -270,160 +179,6 @@
 				F4A4B0F3298449FE000ABB8D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		F4A4B0FF29844B37000ABB8D /* Resource */ = {
-			isa = PBXGroup;
-			children = (
-				F4A4B10A29844B37000ABB8D /* Font */,
-				F4A4B10029844B37000ABB8D /* Localizable.strings */,
-				F4A4B10229844B37000ABB8D /* ayas.strings */,
-				F4A4B10529844B37000ABB8D /* suras.strings */,
-				F4A4B10D29844B37000ABB8D /* quran.json */,
-				F4A4B11429844BE2000ABB8D /* LoadData.swift */,
-				F454C30E299D3015007C85BF /* quran+info.strings */,
-			);
-			path = Resource;
-			sourceTree = "<group>";
-		};
-		F4A4B10A29844B37000ABB8D /* Font */ = {
-			isa = PBXGroup;
-			children = (
-				F4F5DC5629885BA600FB1707 /* AmiriQuran-Regular.ttf */,
-				F4A4B10B29844B37000ABB8D /* me_quran.ttf */,
-				F4A4B10C29844B37000ABB8D /* Waseem.ttc */,
-			);
-			path = Font;
-			sourceTree = "<group>";
-		};
-		F4A4B11629844C0A000ABB8D /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				F4A4B11729844C0A000ABB8D /* RankView.swift */,
-				F4A4B11829844C0A000ABB8D /* CloseButton.swift */,
-				F4A4B11929844C0A000ABB8D /* MoreLink.swift */,
-				F4A4B11A29844C0A000ABB8D /* Container.swift */,
-				F4A4B11B29844C0A000ABB8D /* PageView.swift */,
-				F4A4B16929845A37000ABB8D /* StarButton.swift */,
-				F43AE51C29958D0C004CAE05 /* PinnedButton.swift */,
-				F454C306299C442F007C85BF /* CustomFont.swift */,
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
-		F4A4B12129844C31000ABB8D /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				F4A4B12229844C31000ABB8D /* HomeView.swift */,
-				F460982C2987516F00EDEAF7 /* MainView.swift */,
-			);
-			path = Home;
-			sourceTree = "<group>";
-		};
-		F4A4B12329844C31000ABB8D /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				F460983229882A4600EDEAF7 /* Model.swift */,
-				F460983429882ABA00EDEAF7 /* ModelSettings.swift */,
-				F454C2FE299C056C007C85BF /* Error.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		F4A4B12D29844C31000ABB8D /* Search */ = {
-			isa = PBXGroup;
-			children = (
-				F4A4B12E29844C31000ABB8D /* SearchView.swift */,
-				F4A4B12F29844C31000ABB8D /* SearchModel.swift */,
-			);
-			path = Search;
-			sourceTree = "<group>";
-		};
-		F4A4B13029844C31000ABB8D /* Quran */ = {
-			isa = PBXGroup;
-			children = (
-				F43AE4FD29957DC3004CAE05 /* Kollection */,
-				F4A4B15629844CF3000ABB8D /* Aya */,
-				F4A4B13829844C31000ABB8D /* Sofha */,
-				F4A4B15529844CDF000ABB8D /* Sura */,
-				F4A4B13129844C31000ABB8D /* QuranIndexView.swift */,
-				F4A4B13229844C31000ABB8D /* QuranView.swift */,
-				F4A4B13329844C31000ABB8D /* QuranViewModel.swift */,
-				F4609830298825F300EDEAF7 /* QuranSettings.swift */,
-			);
-			path = Quran;
-			sourceTree = "<group>";
-		};
-		F4A4B13429844C31000ABB8D /* Helper */ = {
-			isa = PBXGroup;
-			children = (
-				F43AE4FC2995713C004CAE05 /* Extension */,
-				F43AE4EF29955CAB004CAE05 /* EnvKey.swift */,
-				F4A4B13529844C31000ABB8D /* PreferenceKey.swift */,
-			);
-			path = Helper;
-			sourceTree = "<group>";
-		};
-		F4A4B13829844C31000ABB8D /* Sofha */ = {
-			isa = PBXGroup;
-			children = (
-				F4A4B13929844C31000ABB8D /* SofhaRow.swift */,
-				F4A4B13A29844C31000ABB8D /* SofhaList.swift */,
-				F4A4B13B29844C31000ABB8D /* Sofha.swift */,
-				F4A4B13C29844C31000ABB8D /* SofhaView.swift */,
-				F4A4B13D29844C31000ABB8D /* SofhasView.swift */,
-				F460983629884F9A00EDEAF7 /* Sofha+SwiftUI.swift */,
-				F454C2DC2999D9FE007C85BF /* SofhaListHeader.swift */,
-			);
-			path = Sofha;
-			sourceTree = "<group>";
-		};
-		F4A4B15529844CDF000ABB8D /* Sura */ = {
-			isa = PBXGroup;
-			children = (
-				F4A4B12529844C31000ABB8D /* SuraList.swift */,
-				F4A4B12629844C31000ABB8D /* SuraRow.swift */,
-				F4A4B12729844C31000ABB8D /* SurasView.swift */,
-				F4A4B12829844C31000ABB8D /* SuraView.swift */,
-				F4A4B12929844C31000ABB8D /* Sura.swift */,
-				F4A4B12C29844C31000ABB8D /* SuraViewModel.swift */,
-				F4A4B1762984666F000ABB8D /* SuraSettings.swift */,
-				F43AE51429957EBB004CAE05 /* Sura+SwiftUI.swift */,
-				F454C2DE2999DAF6007C85BF /* SuraListHeader.swift */,
-			);
-			path = Sura;
-			sourceTree = "<group>";
-		};
-		F4A4B15629844CF3000ABB8D /* Aya */ = {
-			isa = PBXGroup;
-			children = (
-				F4A4B12429844C31000ABB8D /* AyaView.swift */,
-				F4A4B12A29844C31000ABB8D /* AyaRow.swift */,
-				F4A4B12B29844C31000ABB8D /* Aya.swift */,
-				F4A4B1722984627B000ABB8D /* AyaList.swift */,
-				F4A4B17A298466E6000ABB8D /* AyaSettings.swift */,
-				F4A4B17C298466F8000ABB8D /* AyaViewModel.swift */,
-				F43AE5162995800B004CAE05 /* Aya+SwifUI.swift */,
-				F454C2DA2999D23D007C85BF /* AyaListHeader.swift */,
-			);
-			path = Aya;
-			sourceTree = "<group>";
-		};
-		F4A4B16729845337000ABB8D /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				F454C2C62999AD6D007C85BF /* Aya+CoreDataClass.swift */,
-				F454C2C72999AD6D007C85BF /* Aya+CoreDataProperties.swift */,
-				F454C2C82999AD6D007C85BF /* Kollection+CoreDataClass.swift */,
-				F454C2C92999AD6D007C85BF /* Kollection+CoreDataProperties.swift */,
-				F454C2CA2999AD6D007C85BF /* Sura+CoreDataClass.swift */,
-				F454C2CB2999AD6D007C85BF /* Sura+CoreDataProperties.swift */,
-				F454C2CC2999AD6D007C85BF /* Sofha+CoreDataClass.swift */,
-				F454C2CD2999AD6D007C85BF /* Sofha+CoreDataProperties.swift */,
-				F454C2CE2999AD6D007C85BF /* Place+CoreDataClass.swift */,
-				F454C2CF2999AD6D007C85BF /* Place+CoreDataProperties.swift */,
-			);
-			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -486,15 +241,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F48AC06129A2086700FC7AED /* me_quran.ttf in Resources */,
+				F48AC06329A2086700FC7AED /* ayas.json in Resources */,
+				F48AC06229A2086700FC7AED /* Waseem.ttc in Resources */,
 				F4A4B0F4298449FE000ABB8D /* Preview Assets.xcassets in Resources */,
-				F4F5DC5729885BA600FB1707 /* AmiriQuran-Regular.ttf in Resources */,
-				F4A4B11329844B37000ABB8D /* quran.json in Resources */,
-				F4A4B10E29844B37000ABB8D /* Localizable.strings in Resources */,
-				F454C30C299D3015007C85BF /* quran+info.strings in Resources */,
-				F4A4B10F29844B37000ABB8D /* ayas.strings in Resources */,
-				F4A4B11229844B37000ABB8D /* Waseem.ttc in Resources */,
-				F4A4B11029844B37000ABB8D /* suras.strings in Resources */,
-				F4A4B11129844B37000ABB8D /* me_quran.ttf in Resources */,
+				F48AC06029A2086700FC7AED /* suras.json in Resources */,
 				F4A4B0F1298449FE000ABB8D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -506,122 +257,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4A4B14029844C31000ABB8D /* SuraList.swift in Sources */,
-				F4A4B14229844C31000ABB8D /* SurasView.swift in Sources */,
-				F4A4B0F6298449FE000ABB8D /* Persistence.swift in Sources */,
-				F4A4B14A29844C31000ABB8D /* QuranIndexView.swift in Sources */,
-				F4A4B14C29844C31000ABB8D /* QuranViewModel.swift in Sources */,
-				F4A4B1732984627B000ABB8D /* AyaList.swift in Sources */,
-				F4A4B11529844BE2000ABB8D /* LoadData.swift in Sources */,
-				F43AE51D29958D0C004CAE05 /* PinnedButton.swift in Sources */,
-				F47EBA982995B53C00ABE945 /* FavoriteView.swift in Sources */,
-				F454C2D92999AD6D007C85BF /* Place+CoreDataProperties.swift in Sources */,
-				F454C2D62999AD6D007C85BF /* Sofha+CoreDataClass.swift in Sources */,
-				F4A4B11E29844C0A000ABB8D /* MoreLink.swift in Sources */,
-				F460982D2987516F00EDEAF7 /* MainView.swift in Sources */,
-				F43AE4FB29957111004CAE05 /* String.swift in Sources */,
-				F4A4B14729844C31000ABB8D /* SuraViewModel.swift in Sources */,
-				F4A4B14629844C31000ABB8D /* Aya.swift in Sources */,
-				F454C307299C442F007C85BF /* CustomFont.swift in Sources */,
-				F4A4B0F9298449FE000ABB8D /* Quran.xcdatamodeld in Sources */,
-				F4A4B1772984666F000ABB8D /* SuraSettings.swift in Sources */,
+				F48AC0A429A2091A00FC7AED /* Aya.swift in Sources */,
+				F48AC0A829A2098C00FC7AED /* String.swift in Sources */,
+				F48AC09F29A2091A00FC7AED /* Hizb.swift in Sources */,
+				F48AC0A529A2091A00FC7AED /* Kolllection.swift in Sources */,
+				F48AC0A029A2091A00FC7AED /* QuranProvider.swift in Sources */,
 				F4A4B0EF298449FB000ABB8D /* ContentView.swift in Sources */,
-				F4A4B15029844C31000ABB8D /* SofhaRow.swift in Sources */,
-				F4A4B17D298466F8000ABB8D /* AyaViewModel.swift in Sources */,
-				F4609831298825F300EDEAF7 /* QuranSettings.swift in Sources */,
-				F4A4B15129844C31000ABB8D /* SofhaList.swift in Sources */,
-				F4A4B13E29844C31000ABB8D /* HomeView.swift in Sources */,
-				F4A4B15229844C31000ABB8D /* Sofha.swift in Sources */,
-				F4A4B14829844C31000ABB8D /* SearchView.swift in Sources */,
-				F4A4B14529844C31000ABB8D /* AyaRow.swift in Sources */,
-				F454C2D22999AD6D007C85BF /* Kollection+CoreDataClass.swift in Sources */,
-				F460983529882ABA00EDEAF7 /* ModelSettings.swift in Sources */,
-				F4A4B14129844C31000ABB8D /* SuraRow.swift in Sources */,
-				F454C2D82999AD6D007C85BF /* Place+CoreDataClass.swift in Sources */,
-				F454C2D02999AD6D007C85BF /* Aya+CoreDataClass.swift in Sources */,
-				F4A4B12029844C0A000ABB8D /* PageView.swift in Sources */,
-				F4A4B16A29845A37000ABB8D /* StarButton.swift in Sources */,
-				F460983729884F9A00EDEAF7 /* Sofha+SwiftUI.swift in Sources */,
-				F4A4B11D29844C0A000ABB8D /* CloseButton.swift in Sources */,
-				F4A4B17529846661000ABB8D /* SettingsView.swift in Sources */,
-				F4A4B11C29844C0A000ABB8D /* RankView.swift in Sources */,
-				F427D5E0299880E10004B15F /* AddKollectionView.swift in Sources */,
-				F454C2DD2999D9FE007C85BF /* SofhaListHeader.swift in Sources */,
-				F4A4B15329844C31000ABB8D /* SofhaView.swift in Sources */,
-				F43AE51529957EBB004CAE05 /* Sura+SwiftUI.swift in Sources */,
-				F43AE4F22995636A004CAE05 /* Color.swift in Sources */,
-				F4A4B11F29844C0A000ABB8D /* Container.swift in Sources */,
-				F4A4B14929844C31000ABB8D /* SearchModel.swift in Sources */,
-				F427D5DE29987F760004B15F /* KollectionsSection.swift in Sources */,
-				F460983329882A4600EDEAF7 /* Model.swift in Sources */,
-				F454C2D72999AD6D007C85BF /* Sofha+CoreDataProperties.swift in Sources */,
-				F4A4B13F29844C31000ABB8D /* AyaView.swift in Sources */,
-				F4A4B14B29844C31000ABB8D /* QuranView.swift in Sources */,
-				F4A4B15429844C31000ABB8D /* SofhasView.swift in Sources */,
-				F454C2D52999AD6D007C85BF /* Sura+CoreDataProperties.swift in Sources */,
-				F4A4B17B298466E6000ABB8D /* AyaSettings.swift in Sources */,
-				F43AE5172995800B004CAE05 /* Aya+SwifUI.swift in Sources */,
-				F454C2DB2999D23D007C85BF /* AyaListHeader.swift in Sources */,
-				F43AE4F9299570F2004CAE05 /* View.swift in Sources */,
-				F4A4B14429844C31000ABB8D /* Sura.swift in Sources */,
+				F48AC0A229A2091A00FC7AED /* Aya+SwiftUI.swift in Sources */,
+				F48AC09E29A2091A00FC7AED /* Sofha.swift in Sources */,
+				F48AC0A329A2091A00FC7AED /* AyaRow.swift in Sources */,
+				F48AC0A129A2091A00FC7AED /* Sura.swift in Sources */,
 				F4A4B0ED298449FB000ABB8D /* QuranApp.swift in Sources */,
-				F43AE4F029955CAB004CAE05 /* EnvKey.swift in Sources */,
-				F43AE4F6299570AF004CAE05 /* NSOrderedSet.swift in Sources */,
-				F454C2D32999AD6D007C85BF /* Kollection+CoreDataProperties.swift in Sources */,
-				F4A4B14D29844C31000ABB8D /* PreferenceKey.swift in Sources */,
-				F454C2D42999AD6D007C85BF /* Sura+CoreDataClass.swift in Sources */,
-				F4A4B14329844C31000ABB8D /* SuraView.swift in Sources */,
-				F454C2DF2999DAF6007C85BF /* SuraListHeader.swift in Sources */,
-				F454C2D12999AD6D007C85BF /* Aya+CoreDataProperties.swift in Sources */,
-				F43AE4F42995707B004CAE05 /* NSSet.swift in Sources */,
-				F43AE4FF29957DD0004CAE05 /* Kollection.swift in Sources */,
-				F454C2FF299C056C007C85BF /* Error.swift in Sources */,
-				F43AE51B29958997004CAE05 /* KollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		F454C30E299D3015007C85BF /* quran+info.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F454C30D299D3015007C85BF /* en */,
-				F454C30F299D301A007C85BF /* ar */,
-				F454C310299D301B007C85BF /* fr */,
-			);
-			name = "quran+info.strings";
-			sourceTree = "<group>";
-		};
-		F4A4B10029844B37000ABB8D /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F4A4B10129844B37000ABB8D /* ar */,
-				F4A4B10429844B37000ABB8D /* en */,
-				F4A4B10829844B37000ABB8D /* fr */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		F4A4B10229844B37000ABB8D /* ayas.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F4A4B10329844B37000ABB8D /* en */,
-				F4A4B10729844B37000ABB8D /* fr */,
-			);
-			name = ayas.strings;
-			sourceTree = "<group>";
-		};
-		F4A4B10529844B37000ABB8D /* suras.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F4A4B10629844B37000ABB8D /* en */,
-				F4A4B10929844B37000ABB8D /* fr */,
-			);
-			name = suras.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F4A4B0FA298449FE000ABB8D /* Debug */ = {
@@ -824,19 +474,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		F4A4B0F7298449FE000ABB8D /* Quran.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				F4A4B0F8298449FE000ABB8D /* Quran.xcdatamodel */,
-			);
-			currentVersion = F4A4B0F8298449FE000ABB8D /* Quran.xcdatamodel */;
-			path = Quran.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = F4A4B0E1298449FB000ABB8D /* Project object */;
 }

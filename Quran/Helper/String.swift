@@ -2,7 +2,7 @@
 //  String.swift
 //  Quran
 //
-//  Created by Samba Diawara on 2023-02-09.
+//  Created by Samba Diawara on 2023-02-19.
 //
 
 import SwiftUI
@@ -52,8 +52,3 @@ extension String {
         return ayaFormat
     }
 }
-
-extension String? {
-    var notNull: String {self ?? ""}
-}
-

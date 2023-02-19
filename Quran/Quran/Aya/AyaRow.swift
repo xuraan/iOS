@@ -2,85 +2,98 @@
 //  AyaRow.swift
 //  Quran
 //
-//  Created by Samba Diawara on 2023-01-26.
+//  Created by Samba Diawara on 2023-02-18.
 //
 
 import SwiftUI
 
 struct AyaRow: View {
-    @ObservedObject var aya: Aya
-    @Environment(\.pinned) var pinned
-    @Environment(\.favorite) var favorite
-    @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var model: Model
-    @EnvironmentObject var quranVM: QuranViewModel
-    @EnvironmentObject var suraVM: SuraViewModel
-    @EnvironmentObject var searchVM: SearchModel
-    @EnvironmentObject var ayaVM: AyaViewModel
-    var action: (()-> Void)?
-    init(for aya: Aya, action: (() -> Void)? = nil) {
+    var aya: Aya
+    init(for aya: Aya) {
         self.aya = aya
-        self.action = action
     }
     var body: some View {
-        let isFavorite = aya.isElement(of: favorite)
-        Label(title: {
-            HStack(spacing:0){
-                if let sura = aya.sura {
-                    Text(sura.phonetic)
-                        .lineLimit(1)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        
-                    Text(sura.translation)
-                        .lineLimit(1)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(.subheadline)
-                    Spacer()
-                    Text(sura.name)
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                        .font(CustomFont.mequran(20))
-                        .offset(y: -2)
-                }
-            }
-            .offset(y: -4)
-        }, icon: {
-            RankView(
-                text: "\(aya.sura.id):\(aya.number)",
-                color: Color("bg"),
-                bgColor: .favorite(isFavorite)
-            )
-            .offset(y: 2.2)
-        })
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(.blue.opacity(0.00001))
-        .swipeActions(edge: .trailing){
-            aya.menu(favorite: favorite, pinned: pinned)
+        VStack{
+            aya.arabicTextView(lineLimit: 2)
+                .font(CustomFont.mequran(20))
+            aya.transTextView(lineLimit: 2)
+                .font(.footnote.weight(.medium).italic())
         }
-        .swipeActions(edge: .leading){
-            Button("show in quran", action: {quranVM.ayaOpenAction(aya)})
-                .tint(.blue)
-        }
-        
-        .contextMenu(menuItems: {
-            aya.menu(favorite: favorite, pinned: pinned)
-        }, preview: {
-            Image("1")
-                .resizable()
-                .opacity(0)
-                .overlay{
-                    AyaView(for: aya)
-                }
-                .environmentObject(quranVM)
-                .environmentObject(ayaVM)
-                .environmentObject(searchVM)
-                .environmentObject(model)
-                .environment(\.pinned, pinned)
-                .environment(\.favorite, favorite)
-        })
-        .onTapGesture(perform: (action.isNil ? {
-            dismiss()
-            quranVM.ayaOpenAction(aya)
-        } : action)!)
-        .environment(\.layoutDirection, .leftToRight)
     }
 }
+
+struct AyaRow_Previews: PreviewProvider {
+    static var previews: some View {
+        AyaRow(for: QuranProvider.shared.ayas.first!)
+    }
+}
+
+enum CustomFont: String, Identifiable, CaseIterable, Hashable {
+    case mequran = "me_quran"
+    case amiri = "AmiriQuran-Regular"
+    case waseem = "Waseem"
+    var id: Self{self}
+    
+    var name: String {
+        switch self {
+        case .mequran:
+            return "me quran"
+        case .amiri:
+            return "amiri"
+        case .waseem:
+            return "waseem"
+        }
+    }
+    
+    var detail: some View {
+        Group{
+            switch self {
+            case .amiri:
+                 VStack {
+                    Text("""
+                    Designed by [Khaled Hosny](https://github.com/khaledhosny), Sebastian Kosch.
+
+                    Amiri is a classical Arabic typeface in Naskh style for typesetting books and other running text. Its design is a revival of the beautiful typeface pioneered in early 20th century by Bulaq Press in Cairo, also known as Amiria Press, after which the font is named.
+                    [More](https://amirifont.org).
+                    
+                    License: amiri are licensed under the [Open Font License](https://https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL).
+                    """)
+                }
+            case .mequran:
+                 VStack {
+                    Text("""
+                    The me_quran font is a rich Arabic font specially designed for rendering Quran texts like Medina Mushaf.
+                    
+                    License: me_quran is open source.
+
+                    """)
+                }
+            case .waseem:
+                VStack{
+                    Text("detail coming soon")
+                }
+            }
+        }
+        .font(.footnote)
+        .foregroundColor(.secondary)
+        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+        .listRowBackground(Color.clear)
+    }
+    
+    func size(_ size: Double) -> Font {
+        Font.custom(self.rawValue, size: size)
+    }
+    
+    public static func mequran(_ size: Double) -> Font {
+        Font.custom( "me_quran" , size: size)
+    }
+    
+    public static func waseem(_ size: Double, weight: Font.Weight = .regular) -> Font {
+        Font.custom( "Waseem" , size: size).weight(weight)
+    }
+    
+    static var availableForAyaArabicText: [CustomFont] {
+        [.amiri, .mequran]
+    }
+}
+
