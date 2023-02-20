@@ -40,6 +40,7 @@ extension Aya {
 
 //MARK: - Helper
 extension Aya {
+    var secondaryID: String {"\(sura.id):\(number)"}
     var textWithEndAya: String {self.text + "\u{FD3F}"+"\(self.number)".toArabicNumeral+"\u{FD3E}"}
 }
 
