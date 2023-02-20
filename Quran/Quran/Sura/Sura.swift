@@ -12,6 +12,7 @@ struct Sura: Hashable, Identifiable {
     let name: String
     let phonetic: String
     let translation: String
+    let place: String
 }
 
 //MARK: - Proprieties
@@ -31,6 +32,7 @@ extension Sura: Codable {
         name = try container.decode(String.self, forKey: .name)
         phonetic = try container.decode(String.self, forKey: .phonetic)
        
-        self.translation = NSLocalizedString( "a\(id)", tableName: "suraNameLocalized", comment: "sura name trans")
+        self.translation = NSLocalizedString( "s\(id)", tableName: "suraNameTranslation", comment: "sura name trans")
+        self.place = NSLocalizedString( QuranProvider.madaniyaSuraIDs.contains(id) ? "md" : "mk" , comment: "sura place")
     }
 }
