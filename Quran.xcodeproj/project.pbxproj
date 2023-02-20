@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F42A21F929A38D5E0041DC97 /* ayasTranslation.strings in Resources */ = {isa = PBXBuildFile; fileRef = F42A21FB29A38D5E0041DC97 /* ayasTranslation.strings */; };
 		F48AC06029A2086700FC7AED /* suras.json in Resources */ = {isa = PBXBuildFile; fileRef = F48AC05B29A2086700FC7AED /* suras.json */; };
 		F48AC06129A2086700FC7AED /* me_quran.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F48AC05D29A2086700FC7AED /* me_quran.ttf */; };
 		F48AC06229A2086700FC7AED /* Waseem.ttc in Resources */ = {isa = PBXBuildFile; fileRef = F48AC05E29A2086700FC7AED /* Waseem.ttc */; };
@@ -24,9 +25,15 @@
 		F4A4B0EF298449FB000ABB8D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4B0EE298449FB000ABB8D /* ContentView.swift */; };
 		F4A4B0F1298449FE000ABB8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4A4B0F0298449FE000ABB8D /* Assets.xcassets */; };
 		F4A4B0F4298449FE000ABB8D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4A4B0F3298449FE000ABB8D /* Preview Assets.xcassets */; };
+		F4BEF90B29A38EEF0012F483 /* AyaCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BEF90A29A38EEF0012F483 /* AyaCard.swift */; };
+		F4BEF90D29A396FB0012F483 /* SuraCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BEF90C29A396FB0012F483 /* SuraCard.swift */; };
+		F4BEF91029A39B7B0012F483 /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BEF90F29A39B7B0012F483 /* CustomFont.swift */; };
+		F4BEF91329A39E870012F483 /* suraNameTranslation.strings in Resources */ = {isa = PBXBuildFile; fileRef = F4BEF91529A39E870012F483 /* suraNameTranslation.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F42A21FA29A38D5E0041DC97 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ayasTranslation.strings; sourceTree = "<group>"; };
+		F42A21FC29A38D650041DC97 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ayasTranslation.strings; sourceTree = "<group>"; };
 		F48AC05B29A2086700FC7AED /* suras.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = suras.json; sourceTree = "<group>"; };
 		F48AC05D29A2086700FC7AED /* me_quran.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = me_quran.ttf; sourceTree = "<group>"; };
 		F48AC05E29A2086700FC7AED /* Waseem.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Waseem.ttc; sourceTree = "<group>"; };
@@ -46,6 +53,11 @@
 		F4A4B0F0298449FE000ABB8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F4A4B0F3298449FE000ABB8D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F4A4B1682984563A000ABB8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F4BEF90A29A38EEF0012F483 /* AyaCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AyaCard.swift; sourceTree = "<group>"; };
+		F4BEF90C29A396FB0012F483 /* SuraCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuraCard.swift; sourceTree = "<group>"; };
+		F4BEF90F29A39B7B0012F483 /* CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
+		F4BEF91429A39E870012F483 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/suraNameTranslation.strings; sourceTree = "<group>"; };
+		F4BEF91629A39E890012F483 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/suraNameTranslation.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +77,8 @@
 				F48AC05C29A2086700FC7AED /* Font */,
 				F48AC05B29A2086700FC7AED /* suras.json */,
 				F48AC05F29A2086700FC7AED /* ayas.json */,
+				F4BEF91529A39E870012F483 /* suraNameTranslation.strings */,
+				F42A21FB29A38D5E0041DC97 /* ayasTranslation.strings */,
 			);
 			name = Resource;
 			path = ../../applications/ios/Quran/Quran/Resource;
@@ -111,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				F48AC09729A2091A00FC7AED /* Sura.swift */,
+				F4BEF90C29A396FB0012F483 /* SuraCard.swift */,
 			);
 			path = Sura;
 			sourceTree = "<group>";
@@ -121,6 +136,7 @@
 				F48AC09929A2091A00FC7AED /* Aya+SwiftUI.swift */,
 				F48AC09A29A2091A00FC7AED /* AyaRow.swift */,
 				F48AC09B29A2091A00FC7AED /* Aya.swift */,
+				F4BEF90A29A38EEF0012F483 /* AyaCard.swift */,
 			);
 			path = Aya;
 			sourceTree = "<group>";
@@ -160,6 +176,7 @@
 		F4A4B0EB298449FB000ABB8D /* Quran */ = {
 			isa = PBXGroup;
 			children = (
+				F4BEF90E29A39B6D0012F483 /* Components */,
 				F4A4B1682984563A000ABB8D /* Info.plist */,
 				F48AC0A629A2098300FC7AED /* Helper */,
 				F48AC09C29A2091A00FC7AED /* Kollection */,
@@ -179,6 +196,14 @@
 				F4A4B0F3298449FE000ABB8D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F4BEF90E29A39B6D0012F483 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				F4BEF90F29A39B7B0012F483 /* CustomFont.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,6 +270,8 @@
 				F48AC06329A2086700FC7AED /* ayas.json in Resources */,
 				F48AC06229A2086700FC7AED /* Waseem.ttc in Resources */,
 				F4A4B0F4298449FE000ABB8D /* Preview Assets.xcassets in Resources */,
+				F4BEF91329A39E870012F483 /* suraNameTranslation.strings in Resources */,
+				F42A21F929A38D5E0041DC97 /* ayasTranslation.strings in Resources */,
 				F48AC06029A2086700FC7AED /* suras.json in Resources */,
 				F4A4B0F1298449FE000ABB8D /* Assets.xcassets in Resources */,
 			);
@@ -257,21 +284,45 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4BEF90D29A396FB0012F483 /* SuraCard.swift in Sources */,
 				F48AC0A429A2091A00FC7AED /* Aya.swift in Sources */,
 				F48AC0A829A2098C00FC7AED /* String.swift in Sources */,
 				F48AC09F29A2091A00FC7AED /* Hizb.swift in Sources */,
 				F48AC0A529A2091A00FC7AED /* Kolllection.swift in Sources */,
 				F48AC0A029A2091A00FC7AED /* QuranProvider.swift in Sources */,
 				F4A4B0EF298449FB000ABB8D /* ContentView.swift in Sources */,
+				F4BEF91029A39B7B0012F483 /* CustomFont.swift in Sources */,
 				F48AC0A229A2091A00FC7AED /* Aya+SwiftUI.swift in Sources */,
 				F48AC09E29A2091A00FC7AED /* Sofha.swift in Sources */,
 				F48AC0A329A2091A00FC7AED /* AyaRow.swift in Sources */,
+				F4BEF90B29A38EEF0012F483 /* AyaCard.swift in Sources */,
 				F48AC0A129A2091A00FC7AED /* Sura.swift in Sources */,
 				F4A4B0ED298449FB000ABB8D /* QuranApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F42A21FB29A38D5E0041DC97 /* ayasTranslation.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F42A21FA29A38D5E0041DC97 /* en */,
+				F42A21FC29A38D650041DC97 /* fr */,
+			);
+			name = ayasTranslation.strings;
+			sourceTree = "<group>";
+		};
+		F4BEF91529A39E870012F483 /* suraNameTranslation.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F4BEF91429A39E870012F483 /* en */,
+				F4BEF91629A39E890012F483 /* fr */,
+			);
+			name = suraNameTranslation.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F4A4B0FA298449FE000ABB8D /* Debug */ = {
