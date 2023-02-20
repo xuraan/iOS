@@ -29,6 +29,9 @@
 		F4BEF90D29A396FB0012F483 /* SuraCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BEF90C29A396FB0012F483 /* SuraCard.swift */; };
 		F4BEF91029A39B7B0012F483 /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BEF90F29A39B7B0012F483 /* CustomFont.swift */; };
 		F4BEF91329A39E870012F483 /* suraNameTranslation.strings in Resources */ = {isa = PBXBuildFile; fileRef = F4BEF91529A39E870012F483 /* suraNameTranslation.strings */; };
+		F4BEF91829A3C8660012F483 /* SofhaCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BEF91729A3C8650012F483 /* SofhaCard.swift */; };
+		F4BEF91C29A3CFC40012F483 /* AyasCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BEF91B29A3CFC40012F483 /* AyasCard.swift */; };
+		F4BEF91E29A3D1990012F483 /* HizbCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BEF91D29A3D1990012F483 /* HizbCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +61,9 @@
 		F4BEF90F29A39B7B0012F483 /* CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
 		F4BEF91429A39E870012F483 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/suraNameTranslation.strings; sourceTree = "<group>"; };
 		F4BEF91629A39E890012F483 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/suraNameTranslation.strings; sourceTree = "<group>"; };
+		F4BEF91729A3C8650012F483 /* SofhaCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SofhaCard.swift; sourceTree = "<group>"; };
+		F4BEF91B29A3CFC40012F483 /* AyasCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AyasCard.swift; sourceTree = "<group>"; };
+		F4BEF91D29A3D1990012F483 /* HizbCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HizbCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				F48AC09229A2091A00FC7AED /* Sofha.swift */,
+				F4BEF91729A3C8650012F483 /* SofhaCard.swift */,
 			);
 			path = Sofha;
 			sourceTree = "<group>";
@@ -117,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				F48AC09429A2091A00FC7AED /* Hizb.swift */,
+				F4BEF91D29A3D1990012F483 /* HizbCard.swift */,
 			);
 			path = Hizb;
 			sourceTree = "<group>";
@@ -137,6 +145,7 @@
 				F48AC09A29A2091A00FC7AED /* AyaRow.swift */,
 				F48AC09B29A2091A00FC7AED /* Aya.swift */,
 				F4BEF90A29A38EEF0012F483 /* AyaCard.swift */,
+				F4BEF91B29A3CFC40012F483 /* AyasCard.swift */,
 			);
 			path = Aya;
 			sourceTree = "<group>";
@@ -176,8 +185,8 @@
 		F4A4B0EB298449FB000ABB8D /* Quran */ = {
 			isa = PBXGroup;
 			children = (
-				F4BEF90E29A39B6D0012F483 /* Components */,
 				F4A4B1682984563A000ABB8D /* Info.plist */,
+				F4BEF90E29A39B6D0012F483 /* Components */,
 				F48AC0A629A2098300FC7AED /* Helper */,
 				F48AC09C29A2091A00FC7AED /* Kollection */,
 				F48AC09029A2091A00FC7AED /* Quran */,
@@ -284,6 +293,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4BEF91829A3C8660012F483 /* SofhaCard.swift in Sources */,
+				F4BEF91E29A3D1990012F483 /* HizbCard.swift in Sources */,
+				F4BEF91C29A3CFC40012F483 /* AyasCard.swift in Sources */,
 				F4BEF90D29A396FB0012F483 /* SuraCard.swift in Sources */,
 				F48AC0A429A2091A00FC7AED /* Aya.swift in Sources */,
 				F48AC0A829A2098C00FC7AED /* String.swift in Sources */,

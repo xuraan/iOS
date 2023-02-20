@@ -15,7 +15,7 @@ struct AyaCard: View {
     }
     
     var body: some View {
-        VStack{
+        AyasCard([aya]) {
             HStack{
                 Group{
                     Text(aya.secondaryID)
@@ -30,23 +30,14 @@ struct AyaCard: View {
                 .font(.footnote.bold())
                 
             }
-            .foregroundColor(.secondary)
-            aya.arabicTextView(lineLimit: 5)
-                .font(CustomFont.mequran(22))
-            aya.transTextView(lineLimit: 4)
-                .font(.title3.weight(.light).italic())
         }
-        .environment(\.colorScheme, .dark)
-        .padding()
-        .listRowInsets(EdgeInsets())
-        .background(Color.accentColor)
     }
 }
 
 struct AyaCard_Previews: PreviewProvider {
     static var previews: some View {
         List{
-            AyaCard(for: QuranProvider.shared.ayas[291])
+            AyaCard(for: QuranProvider.shared.aya(290))
         }
     }
 }

@@ -33,9 +33,9 @@ struct Aya: Hashable, Identifiable  {
 
 //MARK: - Make Aya computed properties
 extension Aya {
-    var sura: Sura { QuranProvider.shared.suras[suraID-1] }
-    var hizb: Hizb { QuranProvider.shared.hizbs[hizbID-1] }
-    var sofha: Sofha { QuranProvider.shared.sofhas[sofhaID-1] }
+    var sura: Sura { QuranProvider.shared.sura(suraID) }
+    var hizb: Hizb { QuranProvider.shared.hizb(hizbID) }
+    var sofha: Sofha { QuranProvider.shared.sofha(sofhaID) }
 }
 
 //MARK: - Helper

@@ -9,42 +9,18 @@ import SwiftUI
 
 class QuranProvider {
     static let shared = QuranProvider()
-    
-    private let ayaData: Data
-    private let suraData: Data
-    private let decoder = JSONDecoder()
-    
-    lazy var ayas: [Aya] = {
-        do {
-            return try decoder.decode([Aya].self, from: ayaData)
-        } catch {
-            fatalError(QuranDataErrors.failedToDecodeAyasData(message: error.localizedDescription).message)
-        }
-    }()
-    lazy var suras: [Sura] = {
-        do {
-            return try decoder.decode([Sura].self, from: suraData)
-        } catch {
-            fatalError(QuranDataErrors.failedToDecodeSurasData(message: error.localizedDescription).message)
-        }
-    }()
-    lazy var sofhas: [Sofha] = {(1...604).map{ Sofha(id: $0) }}()
-    lazy var hizbs: [Hizb] = {(1...60).map{ Hizb(id: $0) }}()
+        
+    private let ayas: [Aya]
+    private let suras: [Sura]
+    private let sofhas: [Sofha] = (1...604).map{ Sofha(id: $0) }
+    private let hizbs: [Hizb] = (1...60).map{ Hizb(id: $0) }
     
     var ayasBySura: [Int: [Aya]] = [:]
     var ayasBySofha: [Int: [Aya]] = [:]
     var ayasByHizb: [Int: [Aya]] = [:]
     
-    init(ayaData: Data, suraData: Data) {
-        self.ayaData = ayaData
-        self.suraData = suraData
-        
-        ayasBySura = ayasBySura(ayas: ayas, suras: suras)
-        ayasBySofha = ayasBySofha(ayas: ayas, sofhas: sofhas)
-        ayasByHizb = ayasByHizb(ayas: ayas, hizbs: hizbs)
-    }
-    
-    convenience init() {
+    init() {
+        let decoder = JSONDecoder()
         guard let ayaPath = Bundle.main.path(forResource: QuranDataConstants.ayasFilename, ofType: QuranDataConstants.fileExtension),
               let ayaData = try? Data(contentsOf: URL(fileURLWithPath: ayaPath)),
               let suraPath = Bundle.main.path(forResource: QuranDataConstants.surasFilename, ofType: QuranDataConstants.fileExtension),
@@ -52,10 +28,20 @@ class QuranProvider {
         else {
             fatalError(QuranDataErrors.failedToLoadData.message)
         }
-        
-        self.init(ayaData: ayaData, suraData: suraData)
+        do {
+            suras = try decoder.decode([Sura].self, from: suraData)
+        } catch {
+            fatalError(QuranDataErrors.failedToDecodeSurasData(message: error.localizedDescription).message)
+        }
+        do {
+            ayas = try decoder.decode([Aya].self, from: ayaData)
+        } catch {
+            fatalError(QuranDataErrors.failedToDecodeAyasData(message: error.localizedDescription).message)
+        }
+        ayasBySura = ayasBySura(ayas: ayas, suras: suras)
+        ayasBySofha = ayasBySofha(ayas: ayas, sofhas: sofhas)
+        ayasByHizb = ayasByHizb(ayas: ayas, hizbs: hizbs)
     }
-    
 }
 
 extension QuranProvider {
@@ -88,7 +74,10 @@ extension QuranProvider {
 }
 
 extension QuranProvider {
-    func sura(id: Int) -> Sura { suras[id-1] }
+    func sura(_ id: Int) -> Sura { suras[id-1] }
+    func aya(_ id: Int) -> Aya { ayas[id-1] }
+    func sofha(_ id: Int) -> Sofha { sofhas[id-1] }
+    func hizb(_ id: Int) -> Hizb { hizbs[id-1] }
 }
 
 extension QuranProvider {

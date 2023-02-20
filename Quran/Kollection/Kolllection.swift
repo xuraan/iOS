@@ -39,10 +39,10 @@ class Kollection: ObservableObject, Identifiable, Codable {
         id = try container.decode(UUID.self, forKey: .id)
         name = try container.decode(String.self, forKey: .name)
         description = try container.decode(String.self, forKey: .description)
-        ayas = try container.decode([Int].self, forKey: .ayas).map{ QuranProvider.shared.ayas[$0-1] }
-        suras = try container.decode([Int].self, forKey: .suras).map{ QuranProvider.shared.suras[$0-1] }
-        hizbs = try container.decode([Int].self, forKey: .hizbs).map{ QuranProvider.shared.hizbs[$0-1] }
-        sofhas = try container.decode([Int].self, forKey: .sofhas).map{ QuranProvider.shared.sofhas[$0-1] }
+        ayas = try container.decode([Int].self, forKey: .ayas).map{ QuranProvider.shared.aya($0) }
+        suras = try container.decode([Int].self, forKey: .suras).map{ QuranProvider.shared.sura($0) }
+        hizbs = try container.decode([Int].self, forKey: .hizbs).map{ QuranProvider.shared.hizb($0) }
+        sofhas = try container.decode([Int].self, forKey: .sofhas).map{ QuranProvider.shared.sofha($0) }
         
     }
     
