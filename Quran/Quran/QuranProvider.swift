@@ -78,22 +78,64 @@ extension QuranProvider {
     func aya(_ id: Int) -> Aya { ayas[id-1] }
     func sofha(_ id: Int) -> Sofha { sofhas[id-1] }
     func hizb(_ id: Int) -> Hizb { hizbs[id-1] }
-}
-
-extension QuranProvider {
-    public static func searchSuras(text: String) async -> [Sura] {
-        if text.isArabic{
-            return shared.suras.filter{ $0.name.contains(text)}
-        } else if text.isNumeric{
-            return shared.suras.filter{ "\($0.id)" == text }
-        } else if text.isArabicNumeral{
-            return shared.suras.filter{ "\($0.id)".toArabicNumeral == "\(text)" }
-        } else {
-            return shared.suras.filter{ $0.phonetic.lowercased().contains(text) || $0.translation.lowercased().contains(text) }
-        }
+    
+    func ayas(from: Int, to: Int) -> [Aya] {
+        Array(ayas[from...to])
+    }
+    func suras(from: Int, to: Int) -> [Sura] {
+        Array(suras[from...to])
+    }
+    func hizbs(from: Int, to: Int) -> [Hizb] {
+        Array(hizbs[from...to])
+    }
+    func sofhas(from: Int, to: Int) -> [Sofha] {
+        Array(sofhas[from...to])
     }
 }
 
+// MARK: - Search
+extension QuranProvider {
+    func searchSuras(text: String) async -> [Sura] {
+        if text.isArabic{
+            return suras.filter{ $0.name.contains(text)}
+        } else if text.isNumeric{
+            return suras.filter{ "\($0.id)" == text }
+        } else if text.isArabicNumeral{
+            return suras.filter{ "\($0.id)".toArabicNumeral == "\(text)" }
+        } else {
+            return suras.filter{ $0.phonetic.lowercased().contains(text) || $0.translation.lowercased().contains(text) }
+        }
+    }
+    func searchAyas(text: String) async -> [Aya] {
+        if text.isArabic{
+            return ayas.filter{ $0.simple.contains(text)}
+        } else if text.isNumeric{
+            return ayas.filter{ $0.secondaryID.contains(text) }
+        } else if text.isArabicNumeral{
+            return ayas.filter{ $0.secondaryID.toArabicNumeral.contains(text)}
+        } else {
+            return ayas.filter{ $0.text.lowercased().contains(text) || $0.translation.lowercased().contains(text) }
+        }
+    }
+    func searchSofhas(text: String) async -> [Sofha] {
+        if text.isNumeric{
+            return sofhas.filter{ "\($0.id)".contains(text) }
+        } else if text.isArabicNumeral{
+            return sofhas.filter{ "\($0.id)".toArabicNumeral.contains(text) }
+        }
+        return []
+    }
+    func searchHizb(text: String) async -> [Hizb] {
+        if text.isNumeric{
+            return hizbs.filter{ "\($0.id)".contains(text) }
+        } else if text.isArabicNumeral{
+            return hizbs.filter{ "\($0.id)".toArabicNumeral.contains(text) }
+        }
+        return []
+    }
+}
+
+// MARK: - Place
 extension QuranProvider {
     static let makiyaSuraIDs: [Int] = { [1, 6, 7, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20, 21, 23, 25, 26,
                                          27, 28, 29, 30, 31, 32, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44,
@@ -101,9 +143,9 @@ extension QuranProvider {
                                          77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93,
                                          94, 95, 96, 97, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 111,
                                          112, 113, 114] }()
-    static let madaniyaSuraIDs: [Int] = {[2, 3, 4, 5, 8, 9, 13, 22, 24, 33, 47, 48,
+    static let madaniyaSuraIDs: [Int] = { [2, 3, 4, 5, 8, 9, 13, 22, 24, 33, 47, 48,
                                           49, 55, 57, 58, 59, 60, 61, 62, 63, 64, 65,
-                                          66, 76, 98, 99, 110]}()
+                                          66, 76, 98, 99, 110] }()
 }
 
 enum QuranDataConstants {

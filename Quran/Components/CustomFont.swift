@@ -81,4 +81,8 @@ extension Font {
     static func waseem(_ size: Double, weight: Font.Weight = .regular) -> Font {
         CustomFont.waseem(size, weight: weight)
     }
+    
+    static func mequran(_ size: Double) -> Font {
+        CustomFont.mequran(size)
+    }
 }

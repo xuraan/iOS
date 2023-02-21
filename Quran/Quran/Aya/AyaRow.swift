@@ -8,22 +8,49 @@
 import SwiftUI
 
 struct AyaRow: View {
+    @ObservedObject var favorite: Kollection = KollectionProvider.favorite
     var aya: Aya
     init(for aya: Aya) {
         self.aya = aya
     }
     var body: some View {
-        VStack(spacing: 5){
-            aya.arabicTextView(lineLimit: 2)
-                .font(CustomFont.mequran(20))
-            aya.transTextView(lineLimit: 2)
-                .font(.footnote.weight(.medium).italic())
+        Label(title: {
+            HStack(spacing:0){
+                if let sura = aya.sura {
+                    Text(sura.phonetic)
+                        .lineLimit(1)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                    Text(sura.translation)
+                        .lineLimit(1)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .font(.subheadline)
+                    Spacer()
+                    Text(sura.name)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .font(.mequran(20))
+                        .offset(y: -3)
+                }
+            }
+        }, icon: {
+            RankView(
+                text: "\(aya.sura.id):\(aya.number)",
+                color: Color("bg"),
+                bgColor: .favorite(favorite.contains(aya))
+            )
+            .offset(y: 5)
+        })
+        .environment(\.layoutDirection, .leftToRight)
+        .swipeActions(edge: .trailing, allowsFullSwipe: true){
+            StarButton(aya)
         }
     }
 }
 
 struct AyaRow_Previews: PreviewProvider {
     static var previews: some View {
-        AyaRow(for: QuranProvider.shared.aya(1))
+        List{
+            AyaRow(for: QuranProvider.shared.aya(1))
+        }
     }
 }

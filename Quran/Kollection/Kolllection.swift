@@ -32,8 +32,6 @@ class Kollection: ObservableObject, Identifiable, Codable {
         self.sofhas = sofhas
     }
     
-    
-
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(UUID.self, forKey: .id)
@@ -112,4 +110,44 @@ class KollectionProvider: ObservableObject {
     enum Constant: String {
         case favUUIDString = "C6819E4A-9203-48CE-9EE4-AAF815B52D09"
     }
+}
+
+extension Kollection {
+    
+    func toggle<T>(_ object: T){
+        if let sura = object as? Sura{
+            if suras.contains(sura), let index = suras.firstIndex(of: sura) {
+                suras.remove(at: index)
+            } else {
+                suras.append(sura)
+            }
+        } else if let sofha = object as? Sofha {
+            if sofhas.contains(sofha), let index = sofhas.firstIndex(of: sofha) {
+                sofhas.remove(at: index)
+            } else {
+                sofhas.append(sofha)
+            }
+        } else if let aya = object as? Aya {
+            if ayas.contains(aya), let index = ayas.firstIndex(of: aya) {
+                ayas.remove(at: index)
+            } else {
+                ayas.append(aya)
+            }
+        } else if let hizb = object as? Hizb {
+            if hizbs.contains(hizb), let index = hizbs.firstIndex(of: hizb) {
+                hizbs.remove(at: index)
+            } else {
+                hizbs.append(hizb)
+            }
+        }
+    }
+    
+    func contains<T>(_ object: T) -> Bool {
+        if let sura = object as? Sura { return suras.contains(sura) }
+        if let aya = object as? Aya { return ayas.contains(aya) }
+        if let sofha = object as? Sofha { return sofhas.contains(sofha) }
+        if let hizb = object as? Hizb { return hizbs.contains(hizb) }
+        return false
+    }
+    
 }
