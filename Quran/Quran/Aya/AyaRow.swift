@@ -8,10 +8,16 @@
 import SwiftUI
 
 struct AyaRow: View {
+    @Environment(\.dismiss) var dismiss
+    @Environment(\.showCoverView) var showCoverView
+    @EnvironmentObject var qModel: QuranViewModel
     @ObservedObject var favorite: Kollection = KollectionProvider.favorite
     var aya: Aya
-    init(for aya: Aya) {
+    var action: (() -> Void)?
+    
+    init(for aya: Aya, action: (() -> Void)? = nil) {
         self.aya = aya
+        self.action = action
     }
     var body: some View {
         Label(title: {
@@ -40,11 +46,26 @@ struct AyaRow: View {
             )
             .offset(y: 5)
         })
+        .onTapGesture {
+            if let action = action {
+                action()
+            } else {
+                dismiss()
+                showCoverView()
+                qModel.openButtonAction(aya)
+            }
+        }
         .environment(\.layoutDirection, .leftToRight)
         .swipeActions(edge: .trailing, allowsFullSwipe: true){
             StarButton(aya)
+            PinButton(aya)
+        }
+        .contextMenu {
+            StarButton(aya)
         }
     }
+    
+    
 }
 
 struct AyaRow_Previews: PreviewProvider {

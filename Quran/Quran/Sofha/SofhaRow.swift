@@ -9,10 +9,19 @@ import SwiftUI
 
 struct SofhaRow: View {
     let sofha: Sofha
+    var action: (() -> Void)?
+
+    @Environment(\.dismiss) var dismiss
+    @Environment(\.showCoverView) var showCoverView
+    @EnvironmentObject var qModel: QuranViewModel
+    
     @ObservedObject var favorite: Kollection = KollectionProvider.favorite
-    init(for sofha: Sofha) {
+    
+    init(for sofha: Sofha, action: (() -> Void)? = nil) {
         self.sofha = sofha
+        self.action = action
     }
+    
     var body: some View {
         Label(title: {
             HStack{
@@ -30,9 +39,20 @@ struct SofhaRow: View {
             RankView(text: "\(sofha.id)", color: Color("bg"), bgColor: .favorite(favorite.contains(sofha)))
                 .offset(y: 5)
         })
+        .onTapGesture {
+            if let action = action {
+                action()
+            } else {
+                showCoverView()
+                qModel.openButtonAction(sofha.ayas.first!)
+                dismiss()
+            }
+        }
         .environment(\.layoutDirection, .leftToRight)
         .swipeActions {
             StarButton(sofha)
+            PinButton(sofha)
+
         }
     }
 }

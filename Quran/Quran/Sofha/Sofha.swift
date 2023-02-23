@@ -15,3 +15,16 @@ struct Sofha: Codable, Hashable, Identifiable {
 extension Sofha {
     var ayas: [Aya] { QuranProvider.shared.ayasBySofha[id] ?? [] }
 }
+
+extension Sofha {
+    static let all: [Sofha] = QuranProvider.shared.sofhas
+}
+
+//MARK: - Image
+extension Sofha {
+    var image: Image {
+        Image("\(self.id)")
+//        Image("test")
+            .resizable()
+    }
+}

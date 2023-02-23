@@ -15,3 +15,7 @@ struct Hizb: Codable, Hashable, Identifiable {
 extension Hizb {
     var ayas: [Aya] { QuranProvider.shared.ayasByHizb[id] ?? [] }
 }
+
+extension Hizb {
+    static let all: [Hizb] = QuranProvider.shared.hizbs
+}

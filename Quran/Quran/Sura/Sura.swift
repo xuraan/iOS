@@ -21,6 +21,10 @@ extension Sura {
     var sofhas: [Aya] { QuranProvider.shared.ayasBySura[id] ?? [] }
 }
 
+extension Sura {
+    static let all: [Sura] = QuranProvider.shared.suras
+}
+
 //MARK: - Make Aya codable
 extension Sura: Codable {
     enum CodingKeys: String, CodingKey {

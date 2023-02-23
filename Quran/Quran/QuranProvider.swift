@@ -10,10 +10,10 @@ import SwiftUI
 class QuranProvider {
     static let shared = QuranProvider()
         
-    private let ayas: [Aya]
-    private let suras: [Sura]
-    private let sofhas: [Sofha] = (1...604).map{ Sofha(id: $0) }
-    private let hizbs: [Hizb] = (1...60).map{ Hizb(id: $0) }
+    let ayas: [Aya]
+    let suras: [Sura]
+    let sofhas: [Sofha] = (1...604).map{ Sofha(id: $0) }
+    let hizbs: [Hizb] = (1...60).map{ Hizb(id: $0) }
     
     var ayasBySura: [Int: [Aya]] = [:]
     var ayasBySofha: [Int: [Aya]] = [:]
@@ -80,16 +80,16 @@ extension QuranProvider {
     func hizb(_ id: Int) -> Hizb { hizbs[id-1] }
     
     func ayas(from: Int, to: Int) -> [Aya] {
-        Array(ayas[from...to])
+        Array(ayas[(from-1)...(to-1)])
     }
     func suras(from: Int, to: Int) -> [Sura] {
-        Array(suras[from...to])
+        Array(suras[(from-1)...(to-1)])
     }
     func hizbs(from: Int, to: Int) -> [Hizb] {
-        Array(hizbs[from...to])
+        Array(hizbs[(from-1)...(to-1)])
     }
     func sofhas(from: Int, to: Int) -> [Sofha] {
-        Array(sofhas[from...to])
+        Array(sofhas[(from-1)...(to-1)])
     }
 }
 
@@ -103,7 +103,7 @@ extension QuranProvider {
         } else if text.isArabicNumeral{
             return suras.filter{ "\($0.id)".toArabicNumeral == "\(text)" }
         } else {
-            return suras.filter{ $0.phonetic.lowercased().contains(text) || $0.translation.lowercased().contains(text) }
+            return suras.filter{ $0.phonetic.lowercased().contains(text.lowercased()) || $0.translation.lowercased().contains(text.lowercased()) }
         }
     }
     func searchAyas(text: String) async -> [Aya] {
@@ -114,7 +114,7 @@ extension QuranProvider {
         } else if text.isArabicNumeral{
             return ayas.filter{ $0.secondaryID.toArabicNumeral.contains(text)}
         } else {
-            return ayas.filter{ $0.text.lowercased().contains(text) || $0.translation.lowercased().contains(text) }
+            return ayas.filter{ $0.text.lowercased().contains(text.lowercased()) || $0.translation.lowercased().contains(text.lowercased()) }
         }
     }
     func searchSofhas(text: String) async -> [Sofha] {

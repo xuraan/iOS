@@ -8,10 +8,16 @@
 import SwiftUI
 
 struct SuraRow: View {
+    @Environment(\.showCoverView) var showCoverView
+    @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var qModel: QuranViewModel
     @ObservedObject var favorite: Kollection = KollectionProvider.favorite
     let sura: Sura
-    init(for sura: Sura) {
+    var action: (() -> Void)?
+
+    init(for sura: Sura, action: (() -> Void)? = nil) {
         self.sura = sura
+        self.action = action
     }
     var body: some View {
         Label(title: {
@@ -35,9 +41,20 @@ struct SuraRow: View {
             RankView(text: "\(sura.id)", color: Color("bg"), bgColor: .favorite(favorite.contains(sura)))
                 .offset(y: 2.2)
         })
+        .onTapGesture {
+            if let action = action {
+                action()
+            } else {
+                showCoverView()
+                qModel.openButtonAction(sura.ayas.first!)
+                dismiss()
+            }
+        }
+        
         .environment(\.layoutDirection, .leftToRight)
         .swipeActions(edge: .trailing, allowsFullSwipe: true){
             StarButton(sura)
+            PinButton(sura)
         }
     }
 }

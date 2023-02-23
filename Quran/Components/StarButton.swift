@@ -15,7 +15,9 @@ struct StarButton<T>: View {
         self.object = object
     }
     var body: some View {
-        Button{
+        
+        
+        Button(role: isDestructive ? .destructive : .cancel) {
             favorite.toggle(object)
         } label: {
             Label(title: {

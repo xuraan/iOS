@@ -8,32 +8,22 @@
 import SwiftUI
 
 struct SearchView: View {
+    @EnvironmentObject var model: Model
     
-    @Binding var ayas: [Aya]
-    @Binding var suras: [Sura]
-    @Binding var hizbs: [Hizb]
-    @Binding var sofhas: [Sofha]
-    
-    init(
-        ayas: Binding<[Aya]>,
-        suras: Binding<[Sura]>,
-        hizbs: Binding<[Hizb]>,
-        sofhas: Binding<[Sofha]>
-    ) {
-        self._ayas = ayas
-        self._suras = suras
-        self._hizbs = hizbs
-        self._sofhas = sofhas
-    }
+    @State var ayas: [Aya] = []
+    @State var suras: [Sura] = []
+    @State var hizbs: [Hizb] = []
+    @State var sofhas: [Sofha] = []
     
     var body: some View {
-        List{
-            ayaSection()
-            hizbSection()
-            sofhaSection()
-            suraSection()
-        }
-        .scrollIndicators(.hidden)
+        ayaSection()
+        hizbSection()
+        sofhaSection()
+        suraSection()
+        
+            .onReceive(model.$text){ text in
+                search(text: text)
+            }
     }
     
     @ViewBuilder
@@ -47,7 +37,7 @@ struct SearchView: View {
                     Spacer()
                     if suras.count > 2 {
                         NavigationButtomSheet {
-                            List{}
+                            SuraList(suras: suras)
                         } label: {
                             Label("More", systemImage: "link")
                                 .font(.footnote)
@@ -70,7 +60,7 @@ struct SearchView: View {
                     Spacer()
                     if ayas.count > 2 {
                         NavigationButtomSheet {
-                            List{}
+                            AyaList(ayas: ayas)
                         } label: {
                             Label("More", systemImage: "link")
                                 .font(.footnote)
@@ -93,7 +83,7 @@ struct SearchView: View {
                     Spacer()
                     if sofhas.count > 2 {
                         NavigationButtomSheet {
-                            List{}
+                            SofhaList(sofhas: sofhas)
                         } label: {
                             Label("More", systemImage: "link")
                                 .font(.footnote)
@@ -116,7 +106,7 @@ struct SearchView: View {
                     Spacer()
                     if hizbs.count > 2 {
                         NavigationButtomSheet {
-                            List{}
+                            HizbList(hizbs: hizbs)
                         } label: {
                             Label("More", systemImage: "link")
                                 .font(.footnote)
@@ -128,15 +118,18 @@ struct SearchView: View {
         }
     }
 
+    func search(text: String){
+        Task{
+            suras = await QuranProvider.shared.searchSuras(text: text)
+            sofhas = await QuranProvider.shared.searchSofhas(text: text)
+            hizbs = await QuranProvider.shared.searchHizb(text: text)
+            ayas = await QuranProvider.shared.searchAyas(text: text)
+        }
+    }
 }
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-       SearchView(
-        ayas: .constant(QuranProvider.shared.ayas(from: 3, to: 30)),
-        suras: .constant(QuranProvider.shared.suras(from: 5, to: 80)),
-        hizbs: .constant(QuranProvider.shared.hizbs(from: 2, to: 40)),
-        sofhas: .constant(QuranProvider.shared.sofhas(from: 4, to: 50))
-       )
+       SearchView()
     }
 }

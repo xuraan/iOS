@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct AyasCard: View {
+    @Environment(\.dismiss) var dismiss
+    @Environment(\.showCoverView) var showCoverView
+    @EnvironmentObject var qModel: QuranViewModel
+    
     var header: AnyView
     var footer: AnyView
     let ayas: [Aya]
@@ -35,33 +39,42 @@ struct AyasCard: View {
     }
     
     var body: some View {
-        VStack{
-            header
-                .lineLimit(1)
-                .font(.footnote.bold())
-                .foregroundColor(.secondary)
+        
+        Button {
+            dismiss()
+            showCoverView()
+            qModel.openButtonAction(ayas.first!)
+        } label: {
+            VStack{
+                header
+                    .lineLimit(1)
+                    .font(.footnote.bold())
+                    .foregroundColor(.secondary)
 
-            Text(ayas.map{ $0.textWithEndAya }.joined(separator: " "))
-                .environment(\.layoutDirection, .rightToLeft)
-                .font(CustomFont.mequran(22))
-                .lineLimit(3)
-            
-            Text(ayas.map{ $0.translation }.joined(separator: " "))
-                .environment(\.layoutDirection, .leftToRight)
-                .foregroundColor(.secondary)
-                .italic()
-                .lineLimit(3)
-            
-            footer
-                .lineLimit(1)
-                .font(.footnote.bold())
-                .foregroundColor(.secondary)
-                .offset(y: 10)
+                Text(ayas.map{ $0.textWithEndAya }.joined(separator: " "))
+                    .environment(\.layoutDirection, .rightToLeft)
+                    .font(CustomFont.mequran(22))
+                    .lineLimit(3)
+                    .foregroundColor(.primary)
+                
+                Text(ayas.map{ $0.translation }.joined(separator: " "))
+                    .environment(\.layoutDirection, .leftToRight)
+                    .foregroundColor(.secondary)
+                    .italic()
+                    .lineLimit(3)
+                
+                footer
+                    .lineLimit(1)
+                    .font(.footnote.bold())
+                    .foregroundColor(.secondary)
+                    .offset(y: 10)
+            }
+            .environment(\.colorScheme, .dark)
         }
-        .environment(\.colorScheme, .dark)
+
         .padding()
         .listRowInsets(EdgeInsets())
-        .listRowBackground(Color.accentColor)
+//        .listRowBackground(Color.accentColor)
         .background(Color.accentColor)
     }
 }

@@ -44,6 +44,10 @@ extension Aya {
     var textWithEndAya: String {self.text + "\u{FD3F}"+"\(self.number)".toArabicNumeral+"\u{FD3E}"}
 }
 
+extension Aya {
+    static let all: [Aya] = QuranProvider.shared.ayas
+}
+
 //MARK: - Make Aya codable
 extension Aya: Codable {
     enum CodingKeys: String, CodingKey {

@@ -13,16 +13,17 @@ class Kollection: ObservableObject, Identifiable, Codable {
     @Published var name: String
     @Published var description: String
     
+    @Published var color: Color
     @Published var ayas: [Aya]
     @Published var suras: [Sura]
     @Published var hizbs: [Hizb]
     @Published var sofhas: [Sofha]
     
     enum CodingKeys: String, CodingKey {
-        case id, name, description, ayas, suras, hizbs, sofhas
+        case id, name, description, ayas, suras, hizbs, sofhas, color
     }
     
-    init(id: UUID = .init(), name: String = "", description: String = "", ayas: [Aya] = [] , suras: [Sura] = [], hizbs: [Hizb] = [], sofhas: [Sofha] = []) {
+    init(id: UUID = .init(), name: String = "", description: String = "", ayas: [Aya] = [] , suras: [Sura] = [], hizbs: [Hizb] = [], sofhas: [Sofha] = [], color: Color) {
         self.id = id
         self.name = name
         self.description = description
@@ -30,6 +31,7 @@ class Kollection: ObservableObject, Identifiable, Codable {
         self.suras = suras
         self.hizbs = hizbs
         self.sofhas = sofhas
+        self.color = color
     }
     
     required init(from decoder: Decoder) throws {
@@ -41,7 +43,7 @@ class Kollection: ObservableObject, Identifiable, Codable {
         suras = try container.decode([Int].self, forKey: .suras).map{ QuranProvider.shared.sura($0) }
         hizbs = try container.decode([Int].self, forKey: .hizbs).map{ QuranProvider.shared.hizb($0) }
         sofhas = try container.decode([Int].self, forKey: .sofhas).map{ QuranProvider.shared.sofha($0) }
-        
+        color = try Color(hex: container.decode(String.self, forKey: .color)) ?? .black
     }
     
     func encode(to encoder: Encoder) throws {
@@ -53,7 +55,9 @@ class Kollection: ObservableObject, Identifiable, Codable {
         try container.encode(suras.map{ $0.id }, forKey: .suras)
         try container.encode(hizbs.map{ $0.id }, forKey: .hizbs)
         try container.encode(sofhas.map{ $0.id }, forKey: .sofhas)
+        try container.encode(color.toHex() ?? "000", forKey: .color)
     }
+    
 }
 
 
@@ -62,49 +66,65 @@ class KollectionProvider: ObservableObject {
     
     // Initialize the manager and load the list of people from a JSON file
     init() {
-        kollections = KollectionProvider.load().filter{ $0.id.uuidString != Constant.favUUIDString.rawValue }
+        if let data = KollectionProvider.load(as: [Kollection].self) {
+            kollections = data
+        }
     }
     
     // Load the list of people from a JSON file
-    static func load() -> [Kollection] {
-        let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("kollections.json")
+    static func load<T: Codable>(from filename: String = "kollections.json", as type: T.Type) -> T? {
+        let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(filename)
         if let data = try? Data(contentsOf: fileURL) {
             let decoder = JSONDecoder()
-            if let decoded = try? decoder.decode([Kollection].self, from: data) {
+            if let decoded = try? decoder.decode(type.self , from: data) {
                 return decoded
             }
         }
-        return []
+        return nil
     }
     
     // Save the list of people to a JSON file
-    func save() {
+    static func save<T: Codable>(data: T, in filename: String = "kollections.json") {
         let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode([KollectionProvider.favorite]+kollections) {
-            let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("kollections.json")
+        if let encoded = try? encoder.encode(data) {
+            let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(filename)
             try? encoded.write(to: fileURL)
         }
     }
     
     // Add a new person to the list
-    func add(name: String, description: String, ayas: [Aya], suras: [Sura], hizbs: [Hizb], sofhas: [Sofha]) {
-        let kollection = Kollection(id: .init(), name: name, description: description, ayas: ayas, suras: suras, hizbs: hizbs, sofhas: sofhas)
+    func add(name: String, description: String, ayas: any Sequence<Aya>, suras: any Sequence<Sura>, hizbs: any Sequence<Hizb>, sofhas: any Sequence<Sofha>, color: Color) {
+        let kollection = Kollection(
+            id: .init(),
+            name: name,
+            description: description,
+            ayas: Array(ayas),
+            suras: Array(suras),
+            hizbs: Array(hizbs),
+            sofhas: Array(sofhas),
+            color: color
+        )
         kollections.append(kollection)
-        save()
+        Self.save(data: self.kollections)
     }
     
     // Remove a person from the list
     func remove(id: UUID) {
         if let index = kollections.firstIndex(where: { $0.id == id }) {
             kollections.remove(at: index)
-            save()
+            Self.save(data: self.kollections)
         }
     }
     
     // Favorite
     static var favorite: Kollection = {
-        load().first(where: { $0.id == UUID(uuidString: Constant.favUUIDString.rawValue) }) ??
-        Kollection(id: UUID(uuidString: Constant.favUUIDString.rawValue)! , name: "favorite", description: "", ayas: [], suras: [], hizbs: [], sofhas: [])
+        if let favorite = load(from: "favorite.data", as: Kollection.self) {
+            return favorite
+        } else {
+            let favorite = Kollection(id: UUID(uuidString: Constant.favUUIDString.rawValue)! , name: "favorite", description: "", ayas: [], suras: [], hizbs: [], sofhas: [], color: .red)
+            KollectionProvider.save(data: favorite, in: "favorite.data")
+            return favorite
+        }
     }()
     
     enum Constant: String {
