@@ -37,7 +37,7 @@ struct AyaCard: View {
 struct AyaCard_Previews: PreviewProvider {
     static var previews: some View {
         List{
-            AyaCard(for: QuranProvider.shared.aya(290))
+            AyaCard(for: QuranProvider.shared.aya(290)!)
         }
     }
 }

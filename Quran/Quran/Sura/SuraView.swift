@@ -100,7 +100,7 @@ struct SuraView: View {
 
 struct SuraView_Previews: PreviewProvider {
     static var previews: some View {
-        SuraView(for: QuranProvider.shared.sura(3))
+        SuraView(for: QuranProvider.shared.sura(3)!)
             .environmentObject(QuranViewModel())
     }
 }

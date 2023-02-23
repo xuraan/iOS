@@ -11,33 +11,18 @@ struct HomeView: View {
     @Environment(\.pin) var pin
     @Environment(\.showCoverView) var showCoverView
     @Environment(\.isSearching) var isSearching
-    @EnvironmentObject var kModel: KollectionProvider
     var body: some View {
         List{
             if isSearching {
                 SearchView()
             } else {
-                pinView()
-                ForEach(kModel.kollections){ kollection in
-                    NavigationLink{
-                        KollectionView(for: kollection)
-                    } label: {
-                        Label {
-                            Text(kollection.name)
-                        } icon: {
-                            Image(systemName: "circle.fill")
-                                .foregroundColor(kollection.color)
-                        }
-                    }
-                    .swipeActions {
-                        Button(role: .destructive) {
-                            kModel.remove(id: kollection.id)
-                        } label: {
-                            Label("delete", systemImage: "trash")
-                        }
-
-                    }
+                if let item = pin.wrappedValue {
+                    QuranItemRow(for: item)
+                    .padding(.vertical, -6)
+                    .environment(\.isDestructivePinButton, true)
                 }
+                KollectionSection(kollections: KollectionProvider.immutables)
+                KollectionSection()
             }
         }
         .toolbar {
@@ -95,25 +80,3 @@ struct HomeView_Previews: PreviewProvider {
         }
     }
 }
-
-
-//MARK: - PinnedView
-extension HomeView {
-    @ViewBuilder
-    func pinView() -> some View {
-        if pin.wrappedValue != nil {
-            Section{
-                if let sura = pin.wrappedValue as? Sura {
-                    SuraRow(for: sura)
-                } else if let sofha = pin.wrappedValue as? Sofha {
-                    SofhaRow(for: sofha)
-                } else if let aya = pin.wrappedValue as? Aya {
-                    AyaRow(for: aya)
-                }
-            }
-            .padding(.vertical, -7)
-        }
-    }
-}
-
-

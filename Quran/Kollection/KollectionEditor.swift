@@ -102,7 +102,7 @@ struct KollectionEditor: View {
                         dismiss()
                         if kollection != nil {
                             kollection!.name = name
-//                            kollection!.colorHex = color.toHex() ?? kollection!.colorHex
+                            kollection!.color = color
                             kollection!.suras = Array(suras)
                             kollection!.ayas = Array(ayas)
                             kollection!.sofhas = Array(sofhas)

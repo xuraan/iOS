@@ -137,3 +137,6 @@ extension QuranViewModel {
         }
     }
 }
+
+
+

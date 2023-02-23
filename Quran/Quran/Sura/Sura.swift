@@ -25,7 +25,7 @@ extension Sura {
     static let all: [Sura] = QuranProvider.shared.suras
 }
 
-//MARK: - Make Aya codable
+//MARK: - Make Sura codable
 extension Sura: Codable {
     enum CodingKeys: String, CodingKey {
         case id, name, phonetic
@@ -39,4 +39,9 @@ extension Sura: Codable {
         self.translation = NSLocalizedString( "s\(id)", tableName: "suraNameTranslation", comment: "sura name trans")
         self.place = NSLocalizedString( QuranProvider.madaniyaSuraIDs.contains(id) ? "md" : "mk" , comment: "sura place")
     }
+}
+
+//MARK: - Conform to QuranItem
+extension Sura: QuranItem {
+    
 }

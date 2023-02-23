@@ -28,10 +28,9 @@ struct HizbList: View {
         Group{
             if let selection = selection {
                 List(searchResult, selection: selection){ hizb in
-                    HizbRow(for: hizb){
-                        selection.wrappedValue.toggle(hizb)
-                    }
-                    .tag(hizb)
+                    HizbRow(for: hizb)
+                        .disabled(true)
+                        .tag(hizb)
                 }
                 .environment(\.editMode, .constant(.active))
             } else {

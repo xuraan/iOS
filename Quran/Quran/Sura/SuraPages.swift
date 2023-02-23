@@ -47,7 +47,7 @@ struct SuraPages: View {
             }
         }
         .tabViewStyle(.page(indexDisplayMode: .never))
-        .ignoresSafeArea()
+        .ignoresSafeArea(.container, edges: [.vertical])
 //        .animation(.easeInOut, value: selection)
     }
     

@@ -22,6 +22,6 @@ struct HizbCard: View {
 
 struct HizbCard_Previews: PreviewProvider {
     static var previews: some View {
-        HizbCard(for: QuranProvider.shared.hizb(60))
+        HizbCard(for: QuranProvider.shared.hizb(60)!)
     }
 }

@@ -9,15 +9,15 @@ import SwiftUI
 
 struct HizbRow: View {
     let hizb: Hizb
-    var action: (() -> Void)?
+    var isDismissible: Bool
 
     @Environment(\.dismiss) var dismiss
     @Environment(\.showCoverView) var showCoverView
     @EnvironmentObject var qModel: QuranViewModel
     @ObservedObject var favorite: Kollection = KollectionProvider.favorite
-    init(for hizb: Hizb, action: (() -> Void)? = nil) {
+    init(for hizb: Hizb, isDismissible:Bool = true) {
         self.hizb = hizb
-        self.action = action
+        self.isDismissible = isDismissible
     }
     var body: some View {
         Label(title: {
@@ -32,14 +32,14 @@ struct HizbRow: View {
             RankView(text: "\(hizb.id)", color: Color("bg"), bgColor: .favorite(favorite.contains(hizb)))
                 .offset(y: 5)
         })
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.primary.opacity(0.00001))
         .onTapGesture {
-            if let action = action {
-                action()
-            } else {
+            if isDismissible {
                 dismiss()
-                showCoverView()
-                qModel.openButtonAction(hizb.ayas.first!)
             }
+            showCoverView()
+            qModel.openButtonAction(hizb.ayas.first!)
         }
         .environment(\.layoutDirection, .leftToRight)
         .swipeActions {
@@ -52,7 +52,7 @@ struct HizbRow: View {
 struct HizbRow_Previews: PreviewProvider {
     static var previews: some View {
         List{
-            HizbRow(for: QuranProvider.shared.hizb(4))
+            HizbRow(for: QuranProvider.shared.hizb(4)!)
         }
     }
 }

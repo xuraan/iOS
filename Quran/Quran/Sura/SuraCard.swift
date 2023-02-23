@@ -35,7 +35,7 @@ struct SuraCard: View {
 struct SuraCard_Previews: PreviewProvider {
     static var previews: some View {
         List{
-            SuraCard(for: QuranProvider.shared.sura(1))
+            SuraCard(for: QuranProvider.shared.sura(1)!)
         }
     }
 }

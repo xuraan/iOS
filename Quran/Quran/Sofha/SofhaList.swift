@@ -26,9 +26,9 @@ struct SofhaList: View {
         Group{
             if let selection = selection {
                 List(searchResult, selection: selection) { sofha in
-                    SofhaRow(for: sofha){
-                        selection.wrappedValue.toggle(sofha)
-                    }.tag(sofha)
+                    SofhaRow(for: sofha)
+                        .disabled(true)
+                        .tag(sofha)
                 }
                 .environment(\.editMode, .constant(.active))
             } else {

@@ -13,30 +13,29 @@ struct AyaRow: View {
     @EnvironmentObject var qModel: QuranViewModel
     @ObservedObject var favorite: Kollection = KollectionProvider.favorite
     var aya: Aya
-    var action: (() -> Void)?
+    var isDismissible: Bool
     
-    init(for aya: Aya, action: (() -> Void)? = nil) {
+    init(for aya: Aya, isDismissible: Bool = true) {
         self.aya = aya
-        self.action = action
+        self.isDismissible = isDismissible
     }
     var body: some View {
         Label(title: {
             HStack(spacing:0){
-                if let sura = aya.sura {
-                    Text(sura.phonetic)
-                        .lineLimit(1)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        
-                    Text(sura.translation)
-                        .lineLimit(1)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(.subheadline)
-                    Spacer()
-                    Text(sura.name)
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                        .font(.mequran(20))
-                        .offset(y: -3)
-                }
+                let sura = aya.sura
+                Text(sura.phonetic)
+                    .lineLimit(1)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                Text(sura.translation)
+                    .lineLimit(1)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .font(.subheadline)
+                Spacer()
+                Text(sura.name)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .font(.mequran(20))
+                    .offset(y: -3)
             }
         }, icon: {
             RankView(
@@ -46,14 +45,14 @@ struct AyaRow: View {
             )
             .offset(y: 5)
         })
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.primary.opacity(0.00001))
         .onTapGesture {
-            if let action = action {
-                action()
-            } else {
+            if isDismissible {
                 dismiss()
-                showCoverView()
-                qModel.openButtonAction(aya)
             }
+            showCoverView()
+            qModel.openButtonAction(aya)
         }
         .environment(\.layoutDirection, .leftToRight)
         .swipeActions(edge: .trailing, allowsFullSwipe: true){
@@ -71,7 +70,7 @@ struct AyaRow: View {
 struct AyaRow_Previews: PreviewProvider {
     static var previews: some View {
         List{
-            AyaRow(for: QuranProvider.shared.aya(1))
+            AyaRow(for: QuranProvider.shared.aya(1)!)
         }
     }
 }

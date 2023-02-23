@@ -19,3 +19,9 @@ extension Hizb {
 extension Hizb {
     static let all: [Hizb] = QuranProvider.shared.hizbs
 }
+
+
+//MARK: - Conform to QuranItem
+extension Hizb: QuranItem {
+    
+}

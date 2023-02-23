@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F40CE3AE29A7C65B004C05F1 /* QuranItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40CE3AD29A7C65B004C05F1 /* QuranItem.swift */; };
+		F40CE3B029A80120004C05F1 /* KollectionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40CE3AF29A80120004C05F1 /* KollectionSection.swift */; };
 		F42A21F929A38D5E0041DC97 /* ayasTranslation.strings in Resources */ = {isa = PBXBuildFile; fileRef = F42A21FB29A38D5E0041DC97 /* ayasTranslation.strings */; };
 		F440441329A6E0CD0017DDCE /* PinButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F440441229A6E0CD0017DDCE /* PinButton.swift */; };
 		F440441529A6EC600017DDCE /* QuranItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F440441429A6EC600017DDCE /* QuranItemRow.swift */; };
@@ -70,6 +72,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F40CE3AD29A7C65B004C05F1 /* QuranItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuranItem.swift; sourceTree = "<group>"; };
+		F40CE3AF29A80120004C05F1 /* KollectionSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KollectionSection.swift; sourceTree = "<group>"; };
 		F42A21FA29A38D5E0041DC97 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ayasTranslation.strings; sourceTree = "<group>"; };
 		F42A21FC29A38D650041DC97 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ayasTranslation.strings; sourceTree = "<group>"; };
 		F440441229A6E0CD0017DDCE /* PinButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinButton.swift; sourceTree = "<group>"; };
@@ -184,6 +188,7 @@
 				F4D6749329A66776006366D3 /* QuranSettings.swift */,
 				F440441429A6EC600017DDCE /* QuranItemRow.swift */,
 				F440441629A6EDE40017DDCE /* QuranItemsSection.swift */,
+				F40CE3AD29A7C65B004C05F1 /* QuranItem.swift */,
 			);
 			path = Quran;
 			sourceTree = "<group>";
@@ -246,6 +251,7 @@
 				F4D6749929A68755006366D3 /* FavoriteView.swift */,
 				F4D6749B29A69BD7006366D3 /* KollectionEditor.swift */,
 				F4D6749D29A6B172006366D3 /* KollectionView.swift */,
+				F40CE3AF29A80120004C05F1 /* KollectionSection.swift */,
 			);
 			path = Kollection;
 			sourceTree = "<group>";
@@ -348,7 +354,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
-				LastUpgradeCheck = 1420;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					F4A4B0E8298449FB000ABB8D = {
 						CreatedOnToolsVersion = 14.2;
@@ -415,6 +421,7 @@
 				F4BEF96429A57BD10012F483 /* QuranView.swift in Sources */,
 				F4BEF95E29A554630012F483 /* SuraView.swift in Sources */,
 				F48AC0A529A2091A00FC7AED /* Kolllection.swift in Sources */,
+				F40CE3B029A80120004C05F1 /* KollectionSection.swift in Sources */,
 				F4BEF96629A57DA00012F483 /* HomeView.swift in Sources */,
 				F4D6749429A66776006366D3 /* QuranSettings.swift in Sources */,
 				F48AC0A029A2091A00FC7AED /* QuranProvider.swift in Sources */,
@@ -439,6 +446,7 @@
 				F4D6749E29A6B172006366D3 /* KollectionView.swift in Sources */,
 				F4BEF96829A59FCC0012F483 /* SofhaView.swift in Sources */,
 				F4BEF94829A513CC0012F483 /* StarButton.swift in Sources */,
+				F40CE3AE29A7C65B004C05F1 /* QuranItem.swift in Sources */,
 				F48AC0A329A2091A00FC7AED /* AyaRow.swift in Sources */,
 				F440441729A6EDE40017DDCE /* QuranItemsSection.swift in Sources */,
 				F440441529A6EC600017DDCE /* QuranItemRow.swift in Sources */,
@@ -481,6 +489,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -541,6 +550,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

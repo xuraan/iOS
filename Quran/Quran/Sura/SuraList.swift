@@ -27,10 +27,9 @@ struct SuraList: View {
         Group{
             if let selection = selection {
                 List(searchResult, selection: selection){ sura in
-                    SuraRow(for: sura) {
-                        selection.wrappedValue.toggle(sura)
-                    }
-                    .tag(sura)
+                    SuraRow(for: sura)
+                        .disabled(true)
+                        .tag(sura)
                 }
                 .environment(\.editMode, .constant(.active))
             } else {

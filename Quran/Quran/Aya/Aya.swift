@@ -33,9 +33,9 @@ struct Aya: Hashable, Identifiable  {
 
 //MARK: - Make Aya computed properties
 extension Aya {
-    var sura: Sura { QuranProvider.shared.sura(suraID) }
-    var hizb: Hizb { QuranProvider.shared.hizb(hizbID) }
-    var sofha: Sofha { QuranProvider.shared.sofha(sofhaID) }
+    var sura: Sura { QuranProvider.shared.sura(suraID)! }
+    var hizb: Hizb { QuranProvider.shared.hizb(hizbID)! }
+    var sofha: Sofha { QuranProvider.shared.sofha(sofhaID)! }
 }
 
 //MARK: - Helper
@@ -53,4 +53,9 @@ extension Aya: Codable {
     enum CodingKeys: String, CodingKey {
         case id, number, text, simple, suraID, sofhaID, hizbID
     }
+}
+
+//MARK: - Conform to QuranItem
+extension Aya: QuranItem {
+    
 }

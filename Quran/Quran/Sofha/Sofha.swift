@@ -28,3 +28,9 @@ extension Sofha {
             .resizable()
     }
 }
+
+//MARK: - Conform to QuranItem
+extension Sofha: QuranItem {
+    
+}
+

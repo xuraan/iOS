@@ -13,11 +13,11 @@ struct SuraRow: View {
     @EnvironmentObject var qModel: QuranViewModel
     @ObservedObject var favorite: Kollection = KollectionProvider.favorite
     let sura: Sura
-    var action: (() -> Void)?
+    var isDismissible: Bool
 
-    init(for sura: Sura, action: (() -> Void)? = nil) {
+    init(for sura: Sura, isDismissible: Bool = true) {
         self.sura = sura
-        self.action = action
+        self.isDismissible = isDismissible
     }
     var body: some View {
         Label(title: {
@@ -41,14 +41,14 @@ struct SuraRow: View {
             RankView(text: "\(sura.id)", color: Color("bg"), bgColor: .favorite(favorite.contains(sura)))
                 .offset(y: 2.2)
         })
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.primary.opacity(0.00001))
         .onTapGesture {
-            if let action = action {
-                action()
-            } else {
-                showCoverView()
-                qModel.openButtonAction(sura.ayas.first!)
+            if isDismissible {
                 dismiss()
             }
+            showCoverView()
+            qModel.openButtonAction(sura.ayas.first!)
         }
         
         .environment(\.layoutDirection, .leftToRight)
@@ -62,7 +62,7 @@ struct SuraRow: View {
 struct SuraRow_Previews: PreviewProvider {
     static var previews: some View {
         List{
-            SuraRow(for: QuranProvider.shared.sura(1))
+            SuraRow(for: QuranProvider.shared.sura(1)!)
         }
     }
 }

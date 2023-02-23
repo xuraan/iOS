@@ -39,10 +39,10 @@ class Kollection: ObservableObject, Identifiable, Codable {
         id = try container.decode(UUID.self, forKey: .id)
         name = try container.decode(String.self, forKey: .name)
         description = try container.decode(String.self, forKey: .description)
-        ayas = try container.decode([Int].self, forKey: .ayas).map{ QuranProvider.shared.aya($0) }
-        suras = try container.decode([Int].self, forKey: .suras).map{ QuranProvider.shared.sura($0) }
-        hizbs = try container.decode([Int].self, forKey: .hizbs).map{ QuranProvider.shared.hizb($0) }
-        sofhas = try container.decode([Int].self, forKey: .sofhas).map{ QuranProvider.shared.sofha($0) }
+        ayas = try container.decode([Int].self, forKey: .ayas).compactMap{ QuranProvider.shared.aya($0) }
+        suras = try container.decode([Int].self, forKey: .suras).compactMap{ QuranProvider.shared.sura($0) }
+        hizbs = try container.decode([Int].self, forKey: .hizbs).compactMap{ QuranProvider.shared.hizb($0) }
+        sofhas = try container.decode([Int].self, forKey: .sofhas).compactMap{ QuranProvider.shared.sofha($0) }
         color = try Color(hex: container.decode(String.self, forKey: .color)) ?? .black
     }
     
@@ -130,6 +130,18 @@ class KollectionProvider: ObservableObject {
     enum Constant: String {
         case favUUIDString = "C6819E4A-9203-48CE-9EE4-AAF815B52D09"
     }
+    
+    static let immutables: [Kollection] = [
+        Kollection(
+            name: "The noble quran",
+            description: "Descipt",
+            ayas: QuranProvider.shared.ayas,
+            suras: QuranProvider.shared.suras,
+            hizbs: QuranProvider.shared.hizbs,
+            sofhas: QuranProvider.shared.sofhas, color: .green
+        ),
+        Kollection(name: "suras", description: "surasDescrip", suras: QuranProvider.shared.suras, color: .blue)
+    ]
 }
 
 extension Kollection {

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SofhaRow: View {
     let sofha: Sofha
-    var action: (() -> Void)?
+    var isDismissible: Bool
 
     @Environment(\.dismiss) var dismiss
     @Environment(\.showCoverView) var showCoverView
@@ -17,9 +17,9 @@ struct SofhaRow: View {
     
     @ObservedObject var favorite: Kollection = KollectionProvider.favorite
     
-    init(for sofha: Sofha, action: (() -> Void)? = nil) {
+    init(for sofha: Sofha, isDismissible: Bool = true) {
         self.sofha = sofha
-        self.action = action
+        self.isDismissible = isDismissible
     }
     
     var body: some View {
@@ -39,14 +39,14 @@ struct SofhaRow: View {
             RankView(text: "\(sofha.id)", color: Color("bg"), bgColor: .favorite(favorite.contains(sofha)))
                 .offset(y: 5)
         })
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.primary.opacity(0.00001))
         .onTapGesture {
-            if let action = action {
-                action()
-            } else {
-                showCoverView()
-                qModel.openButtonAction(sofha.ayas.first!)
+            if isDismissible {
                 dismiss()
             }
+            showCoverView()
+            qModel.openButtonAction(sofha.ayas.first!)
         }
         .environment(\.layoutDirection, .leftToRight)
         .swipeActions {
@@ -60,7 +60,7 @@ struct SofhaRow: View {
 struct SofhaRow_Previews: PreviewProvider {
     static var previews: some View {
         List{
-            SofhaRow(for: QuranProvider.shared.sofha(2))
+            SofhaRow(for: QuranProvider.shared.sofha(2)!)
         }
     }
 }

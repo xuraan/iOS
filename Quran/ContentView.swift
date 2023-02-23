@@ -11,7 +11,7 @@ import CoreData
 struct ContentView: View {
     @State var isShow: Bool = false
     @EnvironmentObject var model: Model
-    @State var pin: Any?
+    @State var pin: (any QuranItem)?
 
     var body: some View {
         Container {
@@ -27,15 +27,14 @@ struct ContentView: View {
     }
     
     func setInitialPin() {
-        if let pinnedValue = UserDefaults.standard.string(forKey: "pin"), let id = Int(pinnedValue.dropFirst(5)) {
-            
-            if pinnedValue.starts(with: "pin1#")  {
+        if let pinValue = UserDefaults.standard.string(forKey: "pin"), let id = Int(pinValue.dropFirst(5)) {
+            if pinValue.starts(with: "pin1#")  {
                 pin = QuranProvider.shared.sura(id)
-            } else if pinnedValue.starts(with: "pin2#") {
+            } else if pinValue.starts(with: "pin2#") {
                 pin = QuranProvider.shared.aya(id)
-            } else if pinnedValue.starts(with: "pin3#")  {
+            } else if pinValue.starts(with: "pin3#")  {
                 pin = QuranProvider.shared.sofha(id)
-            } else if pinnedValue.starts(with: "pin4#")  {
+            } else if pinValue.starts(with: "pin4#")  {
                 pin = QuranProvider.shared.hizb(id)
             }
         }
@@ -50,4 +49,9 @@ struct ContentView_Previews: PreviewProvider {
             .environmentObject(QuranViewModel())
             .environmentObject(KollectionProvider())
     }
+}
+
+
+protocol AnyQuranItem: QuranItem {
+    
 }

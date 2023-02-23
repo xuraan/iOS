@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct StarButton<T>: View {
+struct StarButton<T: QuranItem>: View {
     @Environment(\.isDestructiveStarButton) var isDestructive
     @ObservedObject var favorite: Kollection = KollectionProvider.favorite
     var object: T
@@ -44,7 +44,7 @@ extension EnvironmentValues {
 struct StarButton_Previews: PreviewProvider {
     static var previews: some View {
         VStack{
-            StarButton(QuranProvider.shared.aya(2))
+            StarButton(QuranProvider.shared.aya(2)!)
         }
     }
 }

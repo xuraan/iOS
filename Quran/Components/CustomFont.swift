@@ -49,7 +49,12 @@ enum CustomFont: String, Identifiable, CaseIterable, Hashable {
                 }
             case .waseem:
                 VStack{
-                    Text("detail coming soon")
+                    Text("""
+                    Waseem Arabic is a calligraphic Arabic font developed by Waseem Imtiaz in 2014.
+                    It is widely used for writing Arabic texts and has fine strokes and elegant curves.
+                    The font includes a wide range of Arabic characters and was released under a free license
+                    for unlimited and free usage for personal and commercial projects.
+                    """)
                 }
             }
         }
@@ -75,7 +80,6 @@ enum CustomFont: String, Identifiable, CaseIterable, Hashable {
         [.amiri, .mequran]
     }
 }
-
 
 extension Font {
     static func waseem(_ size: Double, weight: Font.Weight = .regular) -> Font {

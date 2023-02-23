@@ -28,10 +28,9 @@ struct AyaList: View {
         Group{
             if let selection = selection {
                 List(searchResult, selection: selection){ aya in
-                    AyaRow(for: aya){
-                        selection.wrappedValue.toggle(aya)
-                    }
-                    .tag(aya)
+                    AyaRow(for: aya)
+                        .disabled(true)
+                        .tag(aya)
                 }
                 .environment(\.editMode, .constant(.active))
             } else {

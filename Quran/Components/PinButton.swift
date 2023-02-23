@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PinButton<T: Equatable>: View {
+struct PinButton<T: QuranItem>: View {
     @Environment(\.isDestructivePinButton) var isDestructive
     @Environment(\.pin) var pin
     var object: T
@@ -17,15 +17,20 @@ struct PinButton<T: Equatable>: View {
     }
     
     var body: some View {
-        Button(action: action) {
+        Button(role: isDestructive ? .destructive : .cancel , action: action) {
             Label( isPinned ? "Unpin" : "Pin", systemImage: "pin\(isPinned ? ".slash" : "")")
         }
-        .buttonStyle(.bordered)
+        .tint(.gray)
     }
     var isPinned: Bool { pin.wrappedValue as? T == object }
     func action() {
         withAnimation {
-            pin.wrappedValue = isPinned ? nil : object as Any?
+            if isPinned {
+                UserDefaults.standard.set("pin5#nil", forKey: "pin")
+                pin.wrappedValue = nil
+            } else {
+                pin.wrappedValue = object as (any QuranItem)?
+            }
         }
     }
 }
@@ -33,10 +38,10 @@ struct PinButton<T: Equatable>: View {
 
 //MARK: - pinnedKey
 struct PinKey: EnvironmentKey {
-    static var defaultValue: Binding<Any?> = .constant(nil)
+    static var defaultValue: Binding<(any QuranItem)?> = .constant(nil)
 }
 extension EnvironmentValues {
-    var pin: Binding<Any?> {
+    var pin: Binding<(any QuranItem)?> {
         get{self[PinKey.self]}
         set{
             self[PinKey.self] = newValue
