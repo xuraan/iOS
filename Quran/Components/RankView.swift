@@ -2,7 +2,7 @@
 //  RankView.swift
 //  Quran
 //
-//  Created by Samba Diawara on 2023-01-26.
+//  Created by Samba Diawara on 2023-02-21.
 //
 
 import SwiftUI
@@ -19,26 +19,23 @@ struct RankView: View {
     var body: some View {
         ZStack{
             Image(systemName: "circle.fill")
-                .font(.system(size: 40))
+                .font(.largeTitle)
                 .foregroundColor(bgColor)
+            
             Text(text)
                 .font(.system(size: 17))
                 .minimumScaleFactor(0.1)
                 .foregroundColor(color)
-                .frame(width: 37)
+                .frame(width: 45)
                 .lineLimit(1)
                 .bold()
         }
     }
 }
 
+
 struct RankView_Previews: PreviewProvider {
     static var previews: some View {
-        HStack{
-            RankView()
-            RankView(text: "90:1", color: .white, bgColor: .accentColor)
-            RankView(text: "9:90")
-        }
+        RankView(text: "45")
     }
 }
-

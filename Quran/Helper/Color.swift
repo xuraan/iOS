@@ -2,26 +2,23 @@
 //  Color.swift
 //  Quran
 //
-//  Created by Samba Diawara on 2023-02-09.
+//  Created by Samba Diawara on 2023-02-20.
 //
 
 import SwiftUI
-import UIKit
-
 
 extension Color {
-    static func favorite(_ condition: Bool) -> Color {
+    static let keyboard: Color = Color("keyboard")
+    static func favorite(_ condition: Bool) -> Color{
         condition ? .yellow : Color("BGI")
     }
 }
 
-
-
 extension Color {
-    var hex: String {
+    func toHex() -> String? {
         let uic = UIColor(self)
         guard let components = uic.cgColor.components, components.count >= 3 else {
-            return "000"
+            return nil
         }
         let r = Float(components[0])
         let g = Float(components[1])
@@ -38,7 +35,9 @@ extension Color {
             return String(format: "%02lX%02lX%02lX", lroundf(r * 255), lroundf(g * 255), lroundf(b * 255))
         }
     }
+}
 
+extension Color {
     init?(hex: String) {
         var hexSanitized = hex.trimmingCharacters(in: .whitespacesAndNewlines)
         hexSanitized = hexSanitized.replacingOccurrences(of: "#", with: "")

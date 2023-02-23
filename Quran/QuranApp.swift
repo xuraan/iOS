@@ -9,29 +9,24 @@ import SwiftUI
 
 @main
 struct QuranApp: App {
+    @StateObject var model: Model = .init()
+    @StateObject var qModel: QuranViewModel = .init()
+    @StateObject var kModel: KollectionProvider = .init()
     @Environment(\.scenePhase) var scenePhase
-    let persistenceController = PersistenceController.shared
-    
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .onChange(of: scenePhase){ phase in
+                .onChange(of: scenePhase, perform: { phase in
                     if phase != .active {
-                        do{
-                            try persistenceController.container.viewContext.save()
-                        } catch let error {
-                            ErrorHandler.shared.handle(error)
-                        }
+                        KollectionProvider.save(data: kModel.kollections)
+                        KollectionProvider.save(data: KollectionProvider.favorite, in: "favorite.data")
                     }
-                }
-                .onDisappear{
-                    do{
-                        try persistenceController.container.viewContext.save()
-                    } catch let error {
-                        ErrorHandler.shared.handle(error)
-                    }
-                }
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                })
+
+                .environmentObject(model)
+                .environmentObject(qModel)
+                .environmentObject(kModel)
+                .preferredColorScheme(model.preferredColorScheme)
         }
     }
 }

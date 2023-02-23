@@ -2,75 +2,108 @@
 //  SuraList.swift
 //  Quran
 //
-//  Created by Samba Diawara on 2023-01-26.
+//  Created by Samba Diawara on 2023-02-21.
 //
 
 import SwiftUI
 
 struct SuraList: View {
-    @Environment(\.dismiss) var dismiss
-    @Environment(\.editMode) var editMode
-    @EnvironmentObject var quran: QuranViewModel
-    @EnvironmentObject var searchVM: SearchModel
-    @Binding var selection: Set<Sura.ID>
-    @State var text: String = ""
+    let suras: [Sura]
     @State var searchResult: [Sura]
-    var suras: [Sura]
-    init(suras: [Sura]) {
+    @State var text: String = ""
+    var selection: Binding<Set<Sura>>?
+    init(suras: [Sura] = Sura.all) {
         self.suras = suras
         self._searchResult = State(initialValue: suras)
-        self._selection = .constant(.init())
     }
-        
-    init(suras: [Sura], selection: Binding<Set<Sura.ID>>) {
+    
+    init(suras: [Sura] = Sura.all, selection: Binding<Set<Sura>>) {
         self.suras = suras
         self._searchResult = State(initialValue: suras)
-        self._selection = selection
+        self.selection = selection
     }
     
     var body: some View {
         Group{
-            if editMode?.wrappedValue == .active {
-                List(searchResult, selection: $selection){ sura in
-                    SuraRow(for: sura, action: {selection.toggle(sura.id)})
-                        .fullSeparatore
-                        .tag(sura.id)
-                }
-            } else {
-                List(searchResult){ sura in
+            if let selection = selection {
+                List(searchResult, selection: selection){ sura in
                     SuraRow(for: sura)
-                        .fullSeparatore
+                        .disabled(true)
+                        .tag(sura)
+                }
+                .environment(\.editMode, .constant(.active))
+            } else {
+                List {
+                    Section{
+                        ForEach(searchResult){ sura in
+                            SuraRow(for: sura)
+                        }
+                        .fullSeparatoreListPlain
+                    }
+                    .listSectionSeparator(.hidden)
                 }
             }
         }
+        
         .listStyle(.plain)
-        .padding(.top, -10)
         .toolbarBackground(.hidden, for: .navigationBar)
+        .padding(.top, -10)
         .navigationBarTitleDisplayMode(.inline)
-        .searchable(text: $text, prompt: "Search a sura in this list")
+        .searchable(text: $text, prompt: "Search a sura in this list" )
         .onChange(of: text){ value in
             if value.isEmpty {
                 searchResult = suras
             } else {
                 Task{
-                    searchResult = await searchVM.search(text: text.lowercased(), in: suras)
+                    searchResult = await QuranProvider.shared.searchSuras(text: text)
                 }
             }
         }
         .safeAreaInset(edge: .top){
-            SuraListHeader()
+            HStack{
+                if selection != nil {
+                    HStack{}.frame(width: 35, alignment: .leading)
+                }
+                Text("Rank")
+                    .frame(width: 35, alignment: .leading)
+                
+                HStack{
+                    Text("Phonetic")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    Text("Translation")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    Text("sura")
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                    
+                }
+                .environment(\.layoutDirection, .leftToRight)
+                
+                .frame(maxWidth: .infinity, alignment: .center)
+            }
+            .padding( .bottom, 5)
+            .frame(height: 20)
+            .font(.footnote)
+            .foregroundColor(.secondary)
+            .padding(.horizontal)
+            .background(.bar)
+            .overlay(alignment: .bottom){
+                Divider()
+            }
+            .environment(\.layoutDirection, .leftToRight)
+            
         }
     }
 }
 
-
-
-extension Set {
-    mutating func toggle(_ element: Element) {
-        if contains(element) {
-            remove(element)
-        } else {
-            insert(element)
+struct SuraList_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationStack{
+            SuraList()
         }
+        
+        SuraList()
+            .environment(\.editMode, .constant(.active))
     }
 }

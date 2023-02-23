@@ -2,27 +2,50 @@
 //  StarButton.swift
 //  Quran
 //
-//  Created by Samba Diawara on 2023-01-27.
+//  Created by Samba Diawara on 2023-02-21.
 //
 
 import SwiftUI
 
-struct StarButton: View {
-    @Environment(\.isDestructive) var isDestructive
-    var isStared: Bool
-    var action: ()->Void
-    init(isStared: Bool, action: @escaping () -> Void) {
-        self.isStared = isStared
-        self.action = action
+struct StarButton<T: QuranItem>: View {
+    @Environment(\.isDestructiveStarButton) var isDestructive
+    @ObservedObject var favorite: Kollection = KollectionProvider.favorite
+    var object: T
+    init(_ object: T){
+        self.object = object
     }
     var body: some View {
-        Button( role: isDestructive ? .destructive : .cancel , action: action){
-            if isStared {
-                Label("Unstar", systemImage: "star.slash")
-            } else {
-                Label("Star", systemImage: "star")
-            }
-        }
-        .tint(.yellow)
+        
+        
+        Button(role: isDestructive ? .destructive : .cancel) {
+            favorite.toggle(object)
+        } label: {
+            Label(title: {
+                Text(favorite.contains(object) ? "Unstar" : "Star")
+            }, icon: {
+                Image(systemName: favorite.contains(object) ? "star.slash" : "star")
+            })
+        }.tint(.yellow)
     }
 }
+
+//MARK: - Destructive EnvKey
+struct IsDestructiveStarButtonKey: EnvironmentKey {
+    static var defaultValue: Bool = false
+}
+
+extension EnvironmentValues {
+    var isDestructiveStarButton: Bool {
+        get{self[IsDestructiveStarButtonKey.self]}
+        set{self[IsDestructiveStarButtonKey.self] = newValue }
+    }
+}
+
+struct StarButton_Previews: PreviewProvider {
+    static var previews: some View {
+        VStack{
+            StarButton(QuranProvider.shared.aya(2)!)
+        }
+    }
+}
+

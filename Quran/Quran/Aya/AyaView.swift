@@ -2,42 +2,36 @@
 //  AyaView.swift
 //  Quran
 //
-//  Created by Samba Diawara on 2023-01-26.
+//  Created by Samba Diawara on 2023-02-21.
 //
 
 import SwiftUI
 
 struct AyaView: View {
-    @ObservedObject var aya: Aya
-    @Environment(\.favorite) var favorite
-    @Environment(\.pinned) var pinned
-    @EnvironmentObject var ayaVM: AyaViewModel
+    @EnvironmentObject var qModel: QuranViewModel
+    let aya: Aya
     init(for aya: Aya) {
         self.aya = aya
     }
     var body: some View {
         VStack{
             aya.arabicTextView()
-                .font(ayaVM.arabicFont.size(ayaVM.arabicFontSize))
+                .font(qModel.arabicFont.size(qModel.arabicFontSize))
             
-            if ayaVM.isTransEnable {
+            if qModel.isTransEnable {
                 aya.transTextView()
-                    .font(.system(size: ayaVM.transFontSize).italic())
-                    .fontWeight(ayaVM.isTransBold ? .bold : .regular)
+                    .font(.system(size: qModel.transFontSize).weight(qModel.isTransBold ? .bold : .regular).italic())
             }
         }
-        .padding(.horizontal, 7)
-        .background{
-            Color.yellow
-                .blur(radius: 10)
-                .opacity(aya.isElement(of: favorite) ? 0.3 : 0.00001)
-                .ignoresSafeArea()
+        .contextMenu {
+            StarButton(aya)
         }
-        .contextMenu(menuItems: {
-            aya.menu(favorite: favorite, pinned: pinned)
-        })
         .id(aya.id)
     }
 }
 
-
+struct AyaView_Previews: PreviewProvider {
+    static var previews: some View {
+        AyaView(for: Aya.all[291])
+    }
+}

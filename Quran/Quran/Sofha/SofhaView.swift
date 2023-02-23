@@ -2,18 +2,14 @@
 //  SofhaView.swift
 //  Quran
 //
-//  Created by Samba Diawara on 2023-01-26.
+//  Created by Samba Diawara on 2023-02-21.
 //
 
 import SwiftUI
 
 struct SofhaView: View {
+    var sofha: Sofha
     @Environment(\.colorScheme) var colorScheme
-    @Environment(\.favorite) var favorite
-    @Environment(\.pinned) var pinned
-    @EnvironmentObject var quranVM: QuranViewModel
-
-    @ObservedObject var sofha: Sofha
     @Binding var isExtended: Bool
 
     init(isExtended: Binding<Bool> = .constant(false) ,for sofha: Sofha) {
@@ -24,12 +20,10 @@ struct SofhaView: View {
         GeometryReader{ proxy in
             if proxy.size.height > proxy.size.width {
                 VStack{
-                    let size = UIImage(named: "\(sofha.id)")!.size
-                    sofha.image(colorScheme: colorScheme)
-                        .previewMenu{
-                            sofha.menu(favorite: favorite, pinned: pinned)
-                        }
-                        .aspectRatio( isExtended ? proxy.size :  size, contentMode: .fit)
+                    let size = UIImage(named: "\(sofha.id)")?.size
+                    sofha.image
+                        .renderingMode(colorScheme == .dark ? .template : .original)
+                        .aspectRatio( isExtended ? proxy.size :  size! , contentMode: .fit)
                         .scaleEffect(x: isExtended ? 1.07 : 1)
                         .onTapGesture {
                             withAnimation(.easeInOut){
@@ -42,10 +36,8 @@ struct SofhaView: View {
                 ScrollView{
                     VStack{
                         let size = UIImage(named: "\(sofha.id)")?.size
-                        sofha.image(colorScheme: colorScheme)
-                            .previewMenu{
-                                sofha.menu(favorite: favorite, pinned: pinned)
-                            }
+
+                        sofha.image
                             .aspectRatio( size! , contentMode: .fit)
                             .onTapGesture {
                                 withAnimation(.easeInOut){
@@ -57,12 +49,22 @@ struct SofhaView: View {
             }
             
         }
-        .background(Color.yellow.opacity( sofha.isElement(of: favorite) ? 0.05 : 0 ).ignoresSafeArea())
-        .onReceive(quranVM.$selection) { value in
-            if value+1 == Int16(sofha.id){
-                quranVM.currentSofha = sofha
+        .overlay(alignment: .top) {
+            NavigationButtomSheet {
+                QuranIndeView()
+            } label: {
+                if let name = sofha.ayas.first?.sura.name {
+                    Text(name)
+                        .font(.waseem(25))
+                }
             }
+            .opacity(isExtended ? 0 : 1)
+            .offset(y: -5)
         }
-
+    }
+}
+struct SofhaView_Previews: PreviewProvider {
+    static var previews: some View {
+        SofhaView(for: Sofha.all[603])
     }
 }

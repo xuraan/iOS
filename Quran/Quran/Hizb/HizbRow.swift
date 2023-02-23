@@ -1,5 +1,5 @@
 //
-//  SofhaRow.swift
+//  HizbRow.swift
 //  Quran
 //
 //  Created by Samba Diawara on 2023-02-21.
@@ -7,36 +7,29 @@
 
 import SwiftUI
 
-struct SofhaRow: View {
-    let sofha: Sofha
+struct HizbRow: View {
+    let hizb: Hizb
     var isDismissible: Bool
 
     @Environment(\.dismiss) var dismiss
     @Environment(\.showCoverView) var showCoverView
     @EnvironmentObject var qModel: QuranViewModel
-    
     @ObservedObject var favorite: Kollection = KollectionProvider.favorite
-    
-    init(for sofha: Sofha, isDismissible: Bool = true) {
-        self.sofha = sofha
+    init(for hizb: Hizb, isDismissible:Bool = true) {
+        self.hizb = hizb
         self.isDismissible = isDismissible
     }
-    
     var body: some View {
         Label(title: {
             HStack{
-                if let first = sofha.ayas.first, let last = sofha.ayas.last  {
-                    last.arabicTextView(lineLimit: 1)
-                        .font(.mequran(20))
-                        .frame(maxWidth: .infinity, alignment: .leading)
-
+                if let first = hizb.ayas.first  {
                     first.arabicTextView(lineLimit: 1)
                         .font(.mequran(20))
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
         }, icon: {
-            RankView(text: "\(sofha.id)", color: Color("bg"), bgColor: .favorite(favorite.contains(sofha)))
+            RankView(text: "\(hizb.id)", color: Color("bg"), bgColor: .favorite(favorite.contains(hizb)))
                 .offset(y: 5)
         })
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -46,21 +39,20 @@ struct SofhaRow: View {
                 dismiss()
             }
             showCoverView()
-            qModel.openButtonAction(sofha.ayas.first!)
+            qModel.openButtonAction(hizb.ayas.first!)
         }
         .environment(\.layoutDirection, .leftToRight)
         .swipeActions {
-            StarButton(sofha)
-            PinButton(sofha)
-
+            StarButton(hizb)
+            PinButton(hizb)
         }
     }
 }
 
-struct SofhaRow_Previews: PreviewProvider {
+struct HizbRow_Previews: PreviewProvider {
     static var previews: some View {
         List{
-            SofhaRow(for: QuranProvider.shared.sofha(2)!)
+            HizbRow(for: QuranProvider.shared.hizb(4)!)
         }
     }
 }

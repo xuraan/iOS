@@ -9,35 +9,35 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) var viewContext
-    @FetchRequest var favorite: FetchedResults<Kollection>
-    @StateObject var model: Model = .init()
-    @StateObject var quranVM: QuranViewModel = .init()
-    @StateObject var suraVM: SuraViewModel = .init()
-    @StateObject var searchVM: SearchModel = .init()
-    @StateObject var ayaVM: AyaViewModel = .init()
-    @State var pinned: Any? = nil
-    init(){
-        _favorite = Kollection.request(for: "C6819E4A-9203-48CE-9EE4-AAF815B52D09")
-    }
+    @State var isShow: Bool = false
+    @EnvironmentObject var model: Model
+    @State var pin: (any QuranItem)?
+
     var body: some View {
-        MainView()
-        //MARK: - ENVIRONMENTS OBJECT
-        .environmentObject(model)
-        .environmentObject(quranVM)
-        .environmentObject(suraVM)
-        .environmentObject(searchVM)
-        .environmentObject(ayaVM)
-        .environment(\.favorite, favorite.first)
-        .environment(\.pinned, $pinned)
-        .alert("Error", isPresented: .constant(!ErrorHandler.shared.errorMessage.isEmpty), actions: {
-            Button(role: .cancel, action: {ErrorHandler.shared.errorMessage = ""}, label:{Text("OK")})
-        }, message: {
-            Text(ErrorHandler.shared.errorMessage)
-        })
-        //MARK: -THEME
-        .preferredColorScheme(model.preferredColorScheme)
-        
+        Container {
+            HomeView()
+        } cover: {
+            QuranView()
+        }
+        .searchable(text: $model.text)
+        .onAppear{
+            setInitialPin()
+        }
+        .environment(\.pin, $pin)
+    }
+    
+    func setInitialPin() {
+        if let pinValue = UserDefaults.standard.string(forKey: "pin"), let id = Int(pinValue.dropFirst(5)) {
+            if pinValue.starts(with: "pin1#")  {
+                pin = QuranProvider.shared.sura(id)
+            } else if pinValue.starts(with: "pin2#") {
+                pin = QuranProvider.shared.aya(id)
+            } else if pinValue.starts(with: "pin3#")  {
+                pin = QuranProvider.shared.sofha(id)
+            } else if pinValue.starts(with: "pin4#")  {
+                pin = QuranProvider.shared.hizb(id)
+            }
+        }
     }
 }
 
@@ -45,6 +45,13 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            .environmentObject(Model())
+            .environmentObject(QuranViewModel())
+            .environmentObject(KollectionProvider())
     }
+}
+
+
+protocol AnyQuranItem: QuranItem {
+    
 }

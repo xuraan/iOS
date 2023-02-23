@@ -2,65 +2,100 @@
 //  SofhaList.swift
 //  Quran
 //
-//  Created by Samba Diawara on 2023-01-26.
+//  Created by Samba Diawara on 2023-02-21.
 //
 
 import SwiftUI
 
 struct SofhaList: View {
-    @Environment(\.dismiss) var dismiss
-    @Environment(\.editMode) var editMode
-
-    var sofhas: [Sofha]
+    let sofhas: [Sofha]
     @State var searchResult: [Sofha]
-    @Binding var selection: Set<Sofha.ID>
     @State var text: String = ""
-    @EnvironmentObject var searchVM: SearchModel
-    @EnvironmentObject var quran: QuranViewModel
-    init(sofhas: [Sofha]) {
+    var selection: Binding<Set<Sofha>>?
+    init(sofhas: [Sofha] = Sofha.all) {
         self.sofhas = sofhas
-        self._searchResult = State(initialValue: sofhas)
-        _selection = .constant(.init())
+        self.searchResult = sofhas
     }
-    init(sofhas: [Sofha], selection: Binding<Set<Sofha.ID>>) {
+    
+    init(sofhas: [Sofha] = Sofha.all, selection: Binding<Set<Sofha>>) {
         self.sofhas = sofhas
-        self._searchResult = State(initialValue: sofhas)
-        self._selection = selection
+        self.searchResult = sofhas
+        self.selection = selection
     }
-
     var body: some View {
         Group{
-            if editMode?.wrappedValue == .active {
-                List(searchResult, selection: $selection){ sofha in
-                    SofhaRow(for: sofha, action: { selection.toggle(sofha.id) })
-                        .fullSeparatore
-                        .tag(sofha.id)
-                }
-            } else {
-                List(searchResult){ sofha in
+            if let selection = selection {
+                List(searchResult, selection: selection) { sofha in
                     SofhaRow(for: sofha)
-                        .fullSeparatore
+                        .disabled(true)
+                        .tag(sofha)
+                }
+                .environment(\.editMode, .constant(.active))
+            } else {
+                List{
+                    Section{
+                        ForEach(searchResult){ sofha in
+                            SofhaRow(for: sofha)
+                        }
+                        .fullSeparatoreListPlain
+                    }
+                    .listSectionSeparator(.hidden)
                 }
             }
         }
         
-        .listStyle(.plain)
-        .padding(.top, -10)
-        .background(Color("bg"))
         .toolbarBackground(.hidden, for: .navigationBar)
+        .padding(.top, -10)
+        .safeAreaInset(edge: .top){
+            HStack{
+                if selection != nil {
+                    HStack{}.frame(width: 35, alignment: .leading)
+                }
+            
+                Text("Page")
+                    .frame(width: 35, alignment: .leading)
+
+                HStack{
+                    
+                    Text("Last aya")
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                    Text("First aya")
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+
+                }
+                .environment(\.layoutDirection, .leftToRight)
+
+                .frame(maxWidth: .infinity, alignment: .center)
+            }
+            .padding( .bottom, 5)
+            .frame(height: 20)
+            .font(.footnote)
+            .foregroundColor(.secondary)
+            .padding(.horizontal)
+            .background(.bar)
+            .overlay(alignment: .bottom){
+                Divider()
+            }
+            .environment(\.layoutDirection, .leftToRight)
+        }
+        .listStyle(.plain)
+        .animation(.easeInOut, value: sofhas)
         .navigationBarTitleDisplayMode(.inline)
-        .searchable(text: $text, prompt: "Search a sura in this list" )
+        .searchable(text: $text, prompt: "Search a sofha in this list" )
         .onChange(of: text){ value in
             if value.isEmpty {
                 searchResult = sofhas
             } else {
                 Task{
-                    searchResult = await searchVM.search(text: text.lowercased(), in: sofhas)
+                    searchResult = await QuranProvider.shared.searchSofhas(text:text)
                 }
             }
         }
-        .safeAreaInset(edge: .top){
-            SofhaListHeader()
-        }
+    }
+}
+
+struct SofhaList_Previews: PreviewProvider {
+    static var previews: some View {
+        SofhaList()
     }
 }

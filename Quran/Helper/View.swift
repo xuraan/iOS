@@ -2,12 +2,26 @@
 //  View.swift
 //  Quran
 //
-//  Created by Samba Diawara on 2023-02-09.
+//  Created by Samba Diawara on 2023-02-21.
 //
 
 import SwiftUI
 
-extension View{
+extension View {
+    @ViewBuilder
+    var fullSeparatoreListPlain: some View {
+        self.alignmentGuide(.listRowSeparatorLeading){ viewDimension in
+            return -(viewDimension[.leading]+17)
+        }
+    }
+    
+    @ViewBuilder
+    var fullSeparatoreWhenEdgeInset0: some View {
+        self.alignmentGuide(.listRowSeparatorLeading){ viewDimension in
+            return -viewDimension[.leading]
+        }
+    }
+    
     @ViewBuilder
     func offset(coordinateSpace: CoordinateSpace, completion: @escaping(CGRect)->()) -> some View {
         self
@@ -22,36 +36,11 @@ extension View{
                 }
             }
     }
-    @ViewBuilder
-    func customSheet<Content: View>(
-        isPresented: Binding<Bool>,
-        @ViewBuilder content: @escaping () -> Content
-    ) -> some View{
-        self
-            .sheet(isPresented: isPresented){
-                content()
-                    .onAppear{
-                        guard let windows = UIApplication.shared.connectedScenes.first as? UIWindowScene else{
-                            return
-                        }
-                        if let controller =  windows.windows.first?.rootViewController?
-                            .presentedViewController, let sheet = controller.presentationController as? UISheetPresentationController{
-                        // MARK: As Usual Set Properties What Ever Your Wish Here With Sheet
-                            sheet.preferredCornerRadius = 30
-                        }
-                    }
-            }
-    }
-    @ViewBuilder
-    var fullSeparatore: some View {
-        self.alignmentGuide(.listRowSeparatorLeading){ viewDimension in
-            return -viewDimension[.listRowSeparatorLeading]
-        }
-    }
-    @ViewBuilder
-    var fullSeparatore2: some View {
-        self.alignmentGuide(.listRowSeparatorLeading){ viewDimension in
-            return -(viewDimension[.leading]+17)
-        }
+}
+
+struct OffsetKey: PreferenceKey {
+    static var defaultValue: CGFloat = .zero
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = nextValue()
     }
 }

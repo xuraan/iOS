@@ -2,85 +2,75 @@
 //  AyaRow.swift
 //  Quran
 //
-//  Created by Samba Diawara on 2023-01-26.
+//  Created by Samba Diawara on 2023-02-18.
 //
 
 import SwiftUI
 
 struct AyaRow: View {
-    @ObservedObject var aya: Aya
-    @Environment(\.pinned) var pinned
-    @Environment(\.favorite) var favorite
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var model: Model
-    @EnvironmentObject var quranVM: QuranViewModel
-    @EnvironmentObject var suraVM: SuraViewModel
-    @EnvironmentObject var searchVM: SearchModel
-    @EnvironmentObject var ayaVM: AyaViewModel
-    var action: (()-> Void)?
-    init(for aya: Aya, action: (() -> Void)? = nil) {
+    @Environment(\.showCoverView) var showCoverView
+    @EnvironmentObject var qModel: QuranViewModel
+    @ObservedObject var favorite: Kollection = KollectionProvider.favorite
+    var aya: Aya
+    var isDismissible: Bool
+    
+    init(for aya: Aya, isDismissible: Bool = true) {
         self.aya = aya
-        self.action = action
+        self.isDismissible = isDismissible
     }
     var body: some View {
-        let isFavorite = aya.isElement(of: favorite)
         Label(title: {
             HStack(spacing:0){
-                if let sura = aya.sura {
-                    Text(sura.phonetic)
-                        .lineLimit(1)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        
-                    Text(sura.translation)
-                        .lineLimit(1)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(.subheadline)
-                    Spacer()
-                    Text(sura.name)
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                        .font(CustomFont.mequran(20))
-                        .offset(y: -2)
-                }
+                let sura = aya.sura
+                Text(sura.phonetic)
+                    .lineLimit(1)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                Text(sura.translation)
+                    .lineLimit(1)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .font(.subheadline)
+                Spacer()
+                Text(sura.name)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .font(.mequran(20))
+                    .offset(y: -3)
             }
-            .offset(y: -4)
         }, icon: {
             RankView(
                 text: "\(aya.sura.id):\(aya.number)",
                 color: Color("bg"),
-                bgColor: .favorite(isFavorite)
+                bgColor: .favorite(favorite.contains(aya))
             )
-            .offset(y: 2.2)
+            .offset(y: 5)
         })
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(.blue.opacity(0.00001))
-        .swipeActions(edge: .trailing){
-            aya.menu(favorite: favorite, pinned: pinned)
+        .background(Color.primary.opacity(0.00001))
+        .onTapGesture {
+            if isDismissible {
+                dismiss()
+            }
+            showCoverView()
+            qModel.openButtonAction(aya)
         }
-        .swipeActions(edge: .leading){
-            Button("show in quran", action: {quranVM.ayaOpenAction(aya)})
-                .tint(.blue)
-        }
-        
-        .contextMenu(menuItems: {
-            aya.menu(favorite: favorite, pinned: pinned)
-        }, preview: {
-            Image("1")
-                .resizable()
-                .opacity(0)
-                .overlay{
-                    AyaView(for: aya)
-                }
-                .environmentObject(quranVM)
-                .environmentObject(ayaVM)
-                .environmentObject(searchVM)
-                .environmentObject(model)
-                .environment(\.pinned, pinned)
-                .environment(\.favorite, favorite)
-        })
-        .onTapGesture(perform: (action.isNil ? {
-            dismiss()
-            quranVM.ayaOpenAction(aya)
-        } : action)!)
         .environment(\.layoutDirection, .leftToRight)
+        .swipeActions(edge: .trailing, allowsFullSwipe: true){
+            StarButton(aya)
+            PinButton(aya)
+        }
+        .contextMenu {
+            StarButton(aya)
+        }
+    }
+    
+    
+}
+
+struct AyaRow_Previews: PreviewProvider {
+    static var previews: some View {
+        List{
+            AyaRow(for: QuranProvider.shared.aya(1)!)
+        }
     }
 }

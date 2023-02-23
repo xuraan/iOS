@@ -2,23 +2,35 @@
 //  Sofha.swift
 //  Quran
 //
-//  Created by Samba Diawara on 2023-01-26.
+//  Created by Samba Diawara on 2023-02-17.
 //
 
 import SwiftUI
 
-extension Sofha {
-    func isElement(of kollection: Kollection?) -> Bool {
-        if let kollection = kollection {
-            return self.kollections.contains(kollection)
-        }
-        return false
-    }
+struct Sofha: Codable, Hashable, Identifiable {
+    let id: Int
+}
 
-    var surasNames: [String] {
-        suras.suras.map{ $0.name  }
-    }
-    var surasFullNames: [String] {
-        suras.suras.map{ "\($0.translation) - \($0.phonetic) - \($0.name)" }
+//MARK: - Proprieties
+extension Sofha {
+    var ayas: [Aya] { QuranProvider.shared.ayasBySofha[id] ?? [] }
+}
+
+extension Sofha {
+    static let all: [Sofha] = QuranProvider.shared.sofhas
+}
+
+//MARK: - Image
+extension Sofha {
+    var image: Image {
+        Image("\(self.id)")
+//        Image("test")
+            .resizable()
     }
 }
+
+//MARK: - Conform to QuranItem
+extension Sofha: QuranItem {
+    
+}
+
