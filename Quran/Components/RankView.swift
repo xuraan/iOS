@@ -21,14 +21,13 @@ struct RankView: View {
             Image(systemName: "circle.fill")
                 .font(.largeTitle)
                 .foregroundColor(bgColor)
-            
-            Text(text)
-                .font(.system(size: 17))
-                .minimumScaleFactor(0.1)
-                .foregroundColor(color)
-                .frame(width: 45)
-                .lineLimit(1)
-                .bold()
+                .overlay {
+                    Text(text)
+                        .font(.system(size: 17).bold())
+                        .foregroundColor(color)
+                        .minimumScaleFactor(0.3)
+                        .frame(width: 30)
+                }
         }
     }
 }
@@ -36,6 +35,6 @@ struct RankView: View {
 
 struct RankView_Previews: PreviewProvider {
     static var previews: some View {
-        RankView(text: "45")
+        RankView(text: "45:78")
     }
 }

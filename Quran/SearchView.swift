@@ -16,10 +16,10 @@ struct SearchView: View {
     @State var sofhas: [Sofha] = []
     
     var body: some View {
-        QuranItemSection(for: ayas, title: "ayas", limit: 2)
-        QuranItemSection(for: hizbs, title: "hizbs", limit: 2)
-        QuranItemSection(for: sofhas, title: "sofhas", limit: 2)
-        QuranItemSection(for: suras, title: "suras", limit: 2)
+        QuranItemSection(for: ayas, title: "ayas", limit: 4)
+        QuranItemSection(for: hizbs, title: "hizbs")
+        QuranItemSection(for: sofhas, title: "sofhas")
+        QuranItemSection(for: suras, title: "suras")
             
             .onReceive(model.$text){ text in
                 search(text: text)
@@ -28,10 +28,10 @@ struct SearchView: View {
 
     func search(text: String){
         Task{
-            suras = await QuranProvider.shared.searchSuras(text: text)
-            sofhas = await QuranProvider.shared.searchSofhas(text: text)
-            hizbs = await QuranProvider.shared.searchHizb(text: text)
-            ayas = await QuranProvider.shared.searchAyas(text: text)
+            suras = await QuranProvider.shared.searchSuras(text: text).shuffled()
+            sofhas = await QuranProvider.shared.searchSofhas(text: text).shuffled()
+            hizbs = await QuranProvider.shared.searchHizb(text: text).shuffled()
+            ayas = await QuranProvider.shared.searchAyas(text: text).shuffled()
         }
     }
 }

@@ -18,7 +18,6 @@ struct HomeView: View {
             } else {
                 if let item = pin.wrappedValue {
                     QuranItemRow(for: item)
-                    .padding(.vertical, -6)
                     .environment(\.isDestructivePinButton, true)
                 }
                 KollectionSection(kollections: KollectionProvider.immutables)

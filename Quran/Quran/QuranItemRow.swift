@@ -17,15 +17,18 @@ struct QuranItemRow: View {
     }
     
     var body: some View {
-        if let sura = item as? Sura {
-            SuraRow(for: sura, isDismissible: isDismissible)
-        } else if let sofha = item as? Sofha {
-            SofhaRow(for: sofha, isDismissible: isDismissible)
-        } else if let aya = item as? Aya {
-            AyaRow(for: aya, isDismissible: isDismissible)
-        } else if let hizb = item as? Hizb {
-            HizbRow(for: hizb, isDismissible: isDismissible)
+        Group{
+            if let sura = item as? Sura {
+                SuraRow(for: sura, isDismissible: isDismissible)
+            } else if let sofha = item as? Sofha {
+                SofhaRow(for: sofha, isDismissible: isDismissible)
+            } else if let aya = item as? Aya {
+                AyaRow(for: aya, isDismissible: isDismissible)
+            } else if let hizb = item as? Hizb {
+                HizbRow(for: hizb, isDismissible: isDismissible)
+            }
         }
+        .padding(.vertical, -6)
     }
 }
 

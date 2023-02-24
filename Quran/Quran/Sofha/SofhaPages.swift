@@ -16,42 +16,9 @@ struct SofhaPages: View {
         self._hideToolbar = hideToolbar
     }
     var body: some View {
-        
-        TabView(selection: $selection) {
-            Group{
-                SofhaView(isExtended: $isExtended,for: Sofha.all.first!)
-                    .tag(605)
-                
-                ForEach(Sofha.all.reversed()){ sofha in
-                    SofhaView(isExtended: $isExtended, for: sofha)
-                            .tag(sofha.id)
-                    }
-                
-                    SofhaView(isExtended: $isExtended, for: Sofha.all.last!)
-                        .tag(0)
-                
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .overlay{
-                GeometryReader{ proxy in
-                    let minX = proxy.frame(in: .global).minX
-                    Color.clear
-                        .preference(key: OffsetKey.self, value: minX)
-                        .onPreferenceChange(OffsetKey.self){ value in
-//                                    self.offsetX = value
-                            if selection == 0 && value == 0 {
-                                selection = 604
-                            }
-
-                            if selection == 605 && value == 0 {
-                                selection = 1
-                            }
-                        }
-                }
-            }
-        }
-        .tabViewStyle(.page(indexDisplayMode: .never))
-        .ignoresSafeArea()
+        PageViewController(pages: ( [Sofha.all.last!]+Sofha.all+[Sofha.all.first!]).map{
+            SofhaView(isExtended: $isExtended, for: $0)
+        }, currentPage: $selection, isReversed: true)
         .onChange(of: isExtended) { value in
             withAnimation{
                 hideToolbar = value

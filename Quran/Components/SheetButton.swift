@@ -75,7 +75,7 @@ struct NavigationButtomSheet: View {
                 label
             }
         }
-        .sheet(isPresented: $show) {
+        .roundedSheet(isPresented: $show){
             NavigationStack{
                 content
                     .toolbar{
@@ -94,8 +94,7 @@ struct NavigationButtomSheet: View {
                         })
                     }
             }
-            .presentationDetents(presentationDetents != nil ? presentationDetents! : .init([.large]))
-        }
+            .presentationDetents(presentationDetents != nil ? presentationDetents! : .init([.large]))        }
     }
 }
 
@@ -127,8 +126,9 @@ struct SheetButton: View {
                 label
             }
         }
-        .sheet(isPresented: $show){
+        .roundedSheet(isPresented: $show){
             content
         }
+        
     }
 }
