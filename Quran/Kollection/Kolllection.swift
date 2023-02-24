@@ -12,7 +12,6 @@ class Kollection: ObservableObject, Identifiable, Codable {
     let id: UUID
     @Published var name: String
     @Published var description: String
-    
     @Published var color: Color
     @Published var ayas: [Aya]
     @Published var suras: [Sura]
@@ -134,7 +133,7 @@ class KollectionProvider: ObservableObject {
     static let immutables: [Kollection] = [
         Kollection(
             name: "The noble quran",
-            description: "Descipt",
+            description: NSLocalizedString( "QURANDESCRIPTION", comment: "QURANDESCRIPTION"),
             ayas: QuranProvider.shared.ayas,
             suras: QuranProvider.shared.suras,
             hizbs: QuranProvider.shared.hizbs,

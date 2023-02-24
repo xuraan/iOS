@@ -19,7 +19,7 @@ struct KollectionSection: View {
         if let kollections = kollections, !kollections.isEmpty  {
             Section{
                 ForEach(kollections){ kollection in
-                    kollectionRow(for: kollection, isEditable: false)
+                    KollectionRow(for: kollection, isEditable: false)
                 }
             } header: {
                 Label("Collections", systemImage: "square.on.circle.fill")
@@ -28,7 +28,7 @@ struct KollectionSection: View {
             if !kModel.kollections.isEmpty {
                 Section{
                     ForEach(kModel.kollections){ kollection in
-                        kollectionRow(for: kollection, isEditable: true)
+                        KollectionRow(for: kollection, isEditable: true)
                             .swipeActions {
                                 Button(role: .destructive) {
                                     kModel.remove(id: kollection.id)
@@ -45,8 +45,18 @@ struct KollectionSection: View {
         }
     }
     
-    @ViewBuilder
-    func kollectionRow(for kollection: Kollection, isEditable: Bool) -> some View {
+}
+
+struct KollectionRow: View {
+    @ObservedObject var kollection: Kollection
+    var isEditable: Bool
+    
+    init(for kollection: Kollection, isEditable: Bool = true) {
+        self.kollection = kollection
+        self.isEditable = isEditable
+    }
+
+    var body: some View {
         NavigationLink{
             KollectionView(for: kollection, isEditable: isEditable)
         } label: {

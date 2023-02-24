@@ -10,6 +10,7 @@
 		F40CE3AE29A7C65B004C05F1 /* QuranItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40CE3AD29A7C65B004C05F1 /* QuranItem.swift */; };
 		F40CE3B029A80120004C05F1 /* KollectionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40CE3AF29A80120004C05F1 /* KollectionSection.swift */; };
 		F40CE3D929A81E2D004C05F1 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40CE3D829A81E2D004C05F1 /* PageView.swift */; };
+		F40CE3DC29A8521F004C05F1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F40CE3DE29A8521F004C05F1 /* Localizable.strings */; };
 		F42A21F929A38D5E0041DC97 /* ayasTranslation.strings in Resources */ = {isa = PBXBuildFile; fileRef = F42A21FB29A38D5E0041DC97 /* ayasTranslation.strings */; };
 		F440441329A6E0CD0017DDCE /* PinButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F440441229A6E0CD0017DDCE /* PinButton.swift */; };
 		F440441529A6EC600017DDCE /* QuranItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F440441429A6EC600017DDCE /* QuranItemRow.swift */; };
@@ -76,6 +77,9 @@
 		F40CE3AD29A7C65B004C05F1 /* QuranItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuranItem.swift; sourceTree = "<group>"; };
 		F40CE3AF29A80120004C05F1 /* KollectionSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KollectionSection.swift; sourceTree = "<group>"; };
 		F40CE3D829A81E2D004C05F1 /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
+		F40CE3DD29A8521F004C05F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F40CE3DF29A85221004C05F1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F40CE3E029A85221004C05F1 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F42A21FA29A38D5E0041DC97 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ayasTranslation.strings; sourceTree = "<group>"; };
 		F42A21FC29A38D650041DC97 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ayasTranslation.strings; sourceTree = "<group>"; };
 		F440441229A6E0CD0017DDCE /* PinButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinButton.swift; sourceTree = "<group>"; };
@@ -161,6 +165,7 @@
 				F48AC05F29A2086700FC7AED /* ayas.json */,
 				F4BEF91529A39E870012F483 /* suraNameTranslation.strings */,
 				F42A21FB29A38D5E0041DC97 /* ayasTranslation.strings */,
+				F40CE3DE29A8521F004C05F1 /* Localizable.strings */,
 			);
 			name = Resource;
 			path = ../../applications/ios/Quran/Quran/Resource;
@@ -394,6 +399,7 @@
 				F48AC06329A2086700FC7AED /* ayas.json in Resources */,
 				F48AC06229A2086700FC7AED /* Waseem.ttc in Resources */,
 				F4A4B0F4298449FE000ABB8D /* Preview Assets.xcassets in Resources */,
+				F40CE3DC29A8521F004C05F1 /* Localizable.strings in Resources */,
 				F4BEF91329A39E870012F483 /* suraNameTranslation.strings in Resources */,
 				F42A21F929A38D5E0041DC97 /* ayasTranslation.strings in Resources */,
 				F48AC06029A2086700FC7AED /* suras.json in Resources */,
@@ -468,6 +474,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		F40CE3DE29A8521F004C05F1 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F40CE3DD29A8521F004C05F1 /* en */,
+				F40CE3DF29A85221004C05F1 /* ar */,
+				F40CE3E029A85221004C05F1 /* fr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		F42A21FB29A38D5E0041DC97 /* ayasTranslation.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

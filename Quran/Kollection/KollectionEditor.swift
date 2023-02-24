@@ -98,19 +98,7 @@ struct KollectionEditor: View {
         .toolbar{
             ToolbarItem(placement: .confirmationAction, content: {
                 Button(action: {
-                    withAnimation{
-                        dismiss()
-                        if kollection != nil {
-                            kollection!.name = name
-                            kollection!.color = color
-                            kollection!.suras = Array(suras)
-                            kollection!.ayas = Array(ayas)
-                            kollection!.sofhas = Array(sofhas)
-                            kollection!.hizbs = Array(hizbs)
-                        } else {
-                            kModel.add(name: name, description: description, ayas: ayas, suras: suras, hizbs: hizbs, sofhas: sofhas, color: color)
-                        }
-                    }
+                    save()
                 }, label: {
                     HStack{
                         Text("Done")
@@ -134,7 +122,8 @@ struct KollectionEditor: View {
         .onAppear{
             if let kollection = kollection {
                 name = kollection.name
-//                color = Color(hex: kollection.colorHex) ?? .clear
+                description = kollection.description
+                color = kollection.color
                 suras = Set(kollection.suras)
                 ayas = Set(kollection.ayas)
                 sofhas = Set(kollection.sofhas)
@@ -143,6 +132,22 @@ struct KollectionEditor: View {
         
         .navigationTitle( kollection?.name ?? "New collection")
         .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    func save(){
+        withAnimation{
+            dismiss()
+            if kollection != nil {
+                kollection!.name = name
+                kollection!.color = color
+                kollection!.suras = Array(suras)
+                kollection!.ayas = Array(ayas)
+                kollection!.sofhas = Array(sofhas)
+                kollection!.hizbs = Array(hizbs)
+            } else {
+                kModel.add(name: name, description: description, ayas: ayas, suras: suras, hizbs: hizbs, sofhas: sofhas, color: color)
+            }
+        }
     }
 }
 
