@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import CoreData
 
 struct ContentView: View {
     @State var isShow: Bool = false

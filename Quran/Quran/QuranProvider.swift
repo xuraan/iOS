@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-import CoreSpotlight
-import MobileCoreServices
 
 extension Bundle {
     func load<T: Decodable>(_ filename: String, extention: String, as: T.Type) -> T {
