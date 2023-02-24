@@ -24,9 +24,12 @@ struct Container<Content:View, Cover: View>: View {
             content
             .navigationTitle("Quran")
             .overlay(alignment: .bottomTrailing) {
-                CloseButton(action: show, icon: Image(systemName: "book.fill"), font: .title)
-                    .padding(.trailing)
-                    .opacity(isSearching ? 0 : 1)
+                Button(action: show) {
+                    Image(systemName: "book.fill")
+                }
+                .glassBackground(font: .title3)
+                .padding(.trailing)
+                .opacity(isSearching ? 0 : 1)
             }
         }
         .scaleEffect( isOverlayPresended ? 1.2 : 1)

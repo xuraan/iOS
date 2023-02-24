@@ -57,12 +57,12 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
                 return nil
             }
             if parent.isReversed {
-                if index + 2 == controllers.count {
+                if index + 2 == controllers.count || index + 1 == controllers.count {
                     return controllers[1]
                 }
                 return controllers[index + 1]
             } else {
-                if index == 1 {
+                if index == 1 || index == 0 {
                     return controllers[controllers.count-2]
                 }
                 return controllers[index - 1]
@@ -78,12 +78,12 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
                 return nil
             }
             if parent.isReversed{
-                if index == 1 {
+                if index == 1 || index == 0 {
                     return controllers[controllers.count-2]
                 }
                 return controllers[index - 1]
             } else {
-                if index + 2 == controllers.count {
+                if index + 2 == controllers.count || index + 1 == controllers.count {
                     return controllers[1]
                 }
                 return controllers[index + 1]

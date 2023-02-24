@@ -25,7 +25,6 @@ struct SuraPages: View {
                 .environmentObject(kModel)
                 .environmentObject(model)
         }, currentPage: $selection, isReversed: true)
-        .ignoresSafeArea(.container)
     }
     
 }

@@ -29,7 +29,7 @@ struct HizbRow: View {
                 }
             }
         }, icon: {
-            RankView(text: "\(hizb.id)", color: Color("bg"), bgColor: .favorite(favorite.contains(hizb)))
+            RankView(text: "\(hizb.id)", color: .init(uiColor: UIColor.systemBackground), bgColor: .favorite(favorite.contains(hizb)))
                 .offset(y: 5)
         })
         .frame(maxWidth: .infinity, maxHeight: .infinity)

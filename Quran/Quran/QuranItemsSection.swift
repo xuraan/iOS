@@ -48,7 +48,6 @@ struct QuranItemSection<T: QuranItem>: View {
     }
 }
 
-
 struct QuranItemList<T: QuranItem>: View {
     var items: [T]
     

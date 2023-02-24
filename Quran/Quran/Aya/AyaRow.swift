@@ -40,7 +40,7 @@ struct AyaRow: View {
         }, icon: {
             RankView(
                 text: "\(aya.sura.id):\(aya.number)",
-                color: Color("bg"),
+                color: .init(uiColor: UIColor.systemBackground),
                 bgColor: .favorite(favorite.contains(aya))
             )
             .offset(y: 5)

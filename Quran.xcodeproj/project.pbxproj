@@ -11,6 +11,7 @@
 		F40CE3B029A80120004C05F1 /* KollectionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40CE3AF29A80120004C05F1 /* KollectionSection.swift */; };
 		F40CE3D929A81E2D004C05F1 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40CE3D829A81E2D004C05F1 /* PageView.swift */; };
 		F40CE3DC29A8521F004C05F1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F40CE3DE29A8521F004C05F1 /* Localizable.strings */; };
+		F40CE3E229A8BD79004C05F1 /* Sofhas.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F40CE3E129A8BD79004C05F1 /* Sofhas.xcassets */; };
 		F42A21F929A38D5E0041DC97 /* ayasTranslation.strings in Resources */ = {isa = PBXBuildFile; fileRef = F42A21FB29A38D5E0041DC97 /* ayasTranslation.strings */; };
 		F440441329A6E0CD0017DDCE /* PinButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F440441229A6E0CD0017DDCE /* PinButton.swift */; };
 		F440441529A6EC600017DDCE /* QuranItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F440441429A6EC600017DDCE /* QuranItemRow.swift */; };
@@ -73,6 +74,19 @@
 		F4D674A029A6BE9C006366D3 /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D6749F29A6BE9C006366D3 /* Set.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		F40CE3F229A8CD79004C05F1 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		F40CE3AD29A7C65B004C05F1 /* QuranItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuranItem.swift; sourceTree = "<group>"; };
 		F40CE3AF29A80120004C05F1 /* KollectionSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KollectionSection.swift; sourceTree = "<group>"; };
@@ -80,6 +94,7 @@
 		F40CE3DD29A8521F004C05F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F40CE3DF29A85221004C05F1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F40CE3E029A85221004C05F1 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F40CE3E129A8BD79004C05F1 /* Sofhas.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Sofhas.xcassets; sourceTree = "<group>"; };
 		F42A21FA29A38D5E0041DC97 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ayasTranslation.strings; sourceTree = "<group>"; };
 		F42A21FC29A38D650041DC97 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ayasTranslation.strings; sourceTree = "<group>"; };
 		F440441229A6E0CD0017DDCE /* PinButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinButton.swift; sourceTree = "<group>"; };
@@ -306,6 +321,7 @@
 				F4BEF96529A57DA00012F483 /* HomeView.swift */,
 				F4D6749529A668F9006366D3 /* SettingsView.swift */,
 				F4A4B0F0298449FE000ABB8D /* Assets.xcassets */,
+				F40CE3E129A8BD79004C05F1 /* Sofhas.xcassets */,
 				F4A4B0F2298449FE000ABB8D /* Preview Content */,
 			);
 			path = Quran;
@@ -344,6 +360,7 @@
 				F4A4B0E5298449FB000ABB8D /* Sources */,
 				F4A4B0E6298449FB000ABB8D /* Frameworks */,
 				F4A4B0E7298449FB000ABB8D /* Resources */,
+				F40CE3F229A8CD79004C05F1 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -361,7 +378,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1420;
+				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					F4A4B0E8298449FB000ABB8D = {
@@ -395,6 +412,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F48AC06129A2086700FC7AED /* me_quran.ttf in Resources */,
+				F40CE3E229A8BD79004C05F1 /* Sofhas.xcassets in Resources */,
 				F4D6749829A678F5006366D3 /* AmiriQuran-Regular.ttf in Resources */,
 				F48AC06329A2086700FC7AED /* ayas.json in Resources */,
 				F48AC06229A2086700FC7AED /* Waseem.ttc in Resources */,
@@ -624,6 +642,7 @@
 		F4A4B0FD298449FE000ABB8D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_USE_OPTIMIZATION_PROFILE = YES;
@@ -656,6 +675,7 @@
 		F4A4B0FE298449FE000ABB8D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_USE_OPTIMIZATION_PROFILE = YES;

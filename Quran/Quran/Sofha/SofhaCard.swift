@@ -19,11 +19,3 @@ struct SofhaCard: View {
         }
     }
 }
-
-struct SofhaCard_Previews: PreviewProvider {
-    static var previews: some View {
-        List{
-            SofhaCard(for: QuranProvider.shared.sofha(5)!)
-        }
-    }
-}

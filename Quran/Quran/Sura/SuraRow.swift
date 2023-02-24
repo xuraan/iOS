@@ -38,7 +38,7 @@ struct SuraRow: View {
 
             }
         }, icon: {
-            RankView(text: "\(sura.id)", color: Color("bg"), bgColor: .favorite(favorite.contains(sura)))
+            RankView(text: "\(sura.id)", color: .init(uiColor: UIColor.systemBackground), bgColor: .favorite(favorite.contains(sura)))
                 .offset(y: 2.2)
         })
         .frame(maxWidth: .infinity, maxHeight: .infinity)

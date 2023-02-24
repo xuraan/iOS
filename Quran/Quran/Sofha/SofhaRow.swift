@@ -36,7 +36,7 @@ struct SofhaRow: View {
                 }
             }
         }, icon: {
-            RankView(text: "\(sofha.id)", color: Color("bg"), bgColor: .favorite(favorite.contains(sofha)))
+            RankView(text: "\(sofha.id)", color: .init(uiColor: UIColor.systemBackground), bgColor: .favorite(favorite.contains(sofha)))
                 .offset(y: 5)
         })
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -53,14 +53,6 @@ struct SofhaRow: View {
             StarButton(sofha)
             PinButton(sofha)
 
-        }
-    }
-}
-
-struct SofhaRow_Previews: PreviewProvider {
-    static var previews: some View {
-        List{
-            SofhaRow(for: QuranProvider.shared.sofha(2)!)
         }
     }
 }

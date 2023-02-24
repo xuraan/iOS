@@ -11,10 +11,23 @@ struct QuranSettings: View {
     @EnvironmentObject var qModel: QuranViewModel
     @State var arabicFontSize: Double = 0
     @State var transFontSize: Double = 0
-    @State var isTransEnable: Bool = false
-    @State var isTransBold: Bool = false
     
     var body: some View {
+        
+        HStack{
+            Text("Display").font(.footnote).textCase(.uppercase)
+            Spacer()
+            Picker("", selection: $qModel.tab) {
+                ForEach(QuranViewModel.Tab.allCases){ tab in
+                    Text(tab.rawValue.capitalized)
+                        .tag(tab)
+                }
+            }
+            .pickerStyle(.segmented)
+        }
+        .listRowInsets(EdgeInsets())
+        .listRowBackground(Color.clear)
+        
         Section{
             Slider(value: $arabicFontSize, in: 20...50, label: {
                 
@@ -62,7 +75,7 @@ struct QuranSettings: View {
             }
         }
         Section{
-            Toggle("Enable", isOn: $isTransEnable)
+            Toggle("Enable", isOn: $qModel.isTransEnable)
             Slider(value: $transFontSize, in: 10...30, label: {
                 
             }, minimumValueLabel: {
@@ -82,7 +95,7 @@ struct QuranSettings: View {
                         }
                     }
             })
-            Toggle("Bold text", isOn: $isTransBold)
+            Toggle("Bold text", isOn: $qModel.isTransBold)
         } header : {
             HStack{
                 Text("Translation")
@@ -101,16 +114,12 @@ struct QuranSettings: View {
             withAnimation{
                 arabicFontSize = qModel.arabicFontSize
                 transFontSize = qModel.transFontSize
-                isTransEnable = qModel.isTransEnable
-                isTransBold = qModel.isTransBold
             }
         }
         .onDisappear{
             withAnimation{
                 qModel.arabicFontSize = arabicFontSize
                 qModel.transFontSize = transFontSize
-                qModel.isTransEnable = isTransEnable
-                qModel.isTransBold = isTransBold
             }
         }
     }
@@ -121,8 +130,8 @@ struct QuranSettings: View {
     }
     
     func setDefaultAyaTransSettings(){
-        self.isTransEnable = true
-        self.isTransBold = false
+        qModel.isTransEnable = true
+        qModel.isTransBold = false
         self.transFontSize = 17.0
         ///More things to add here in soon
     }

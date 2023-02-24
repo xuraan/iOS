@@ -18,6 +18,19 @@ class QuranViewModel: ObservableObject {
     @Published var tab: Tab = .sofha {
         didSet {
             UserDefaults.standard.set(tab.rawValue, forKey: Self.tabKey)
+            switch tab {
+            case .sofha:
+                if let aya = currentAya {
+                    selection = aya.sofhaID
+                }
+            case .sura:
+                if let aya = currentAya {
+                    selection = aya.suraID
+                    DispatchQueue.main.asyncAfter(deadline: .now()+0.2){
+                        self.suraViewScrollTo = aya.id
+                    }
+                }
+            }
         }
         willSet {
             switch newValue {

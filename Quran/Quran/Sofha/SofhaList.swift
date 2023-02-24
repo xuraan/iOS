@@ -93,9 +93,3 @@ struct SofhaList: View {
         }
     }
 }
-
-struct SofhaList_Previews: PreviewProvider {
-    static var previews: some View {
-        SofhaList()
-    }
-}

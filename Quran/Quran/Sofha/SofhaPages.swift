@@ -33,12 +33,7 @@ struct SofhaPages: View {
             }
             .menuIndicator(.hidden)
             .opacity(hideToolbar ? 0 : 1)
+//            .offset(y: -30)
         }
-    }
-}
-
-struct SofhaPages_Previews: PreviewProvider {
-    static var previews: some View {
-        SofhaPages(selection: .constant(1))
     }
 }

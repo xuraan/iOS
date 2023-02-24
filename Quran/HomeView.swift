@@ -28,7 +28,7 @@ struct HomeView: View {
             ToolbarItem(placement: .navigationBarLeading) {
                 SheetButton("Settings") {
                     SettingsView()
-                    .presentationDetents(.init([.height(550)]))
+                    .presentationDetents(.init([.height(650)]))
                 }
             }
             ToolbarItemGroup(placement: .primaryAction) {
@@ -54,28 +54,10 @@ struct HomeView: View {
                 FavoriteView()
             } label: {
                 Image(systemName: "star.fill")
-                    .font(.title)
-                    .foregroundColor(.accentColor)
-                    .padding(12)
-                    .background {
-                        Circle()
-                            .fill(.ultraThinMaterial.shadow(.inner(color: .accentColor.opacity(0.1), radius: 5)))
-                    }
-                    .padding(-1)
-                    .clipShape(Circle())
-                    
+                    .glassBackground(font: .title3, color: .yellow)
             }
             .padding(.leading)
             .opacity(isSearching ? 0 : 1)
-        }
-    }
-}
-
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack{
-            HomeView()
-                .environmentObject(KollectionProvider())
         }
     }
 }

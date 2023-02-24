@@ -13,11 +13,12 @@ struct QuranView: View {
     @Environment(\.hideCoverView) var hideCoverView
     @EnvironmentObject var qModel: QuranViewModel
     var body: some View {
-        Group {
+        Group{
             if qModel.tab == .sofha {
-                SofhaPages( selection:  qModel.tab == .sofha ? $qModel.selection : .constant(1), hideToolbar: $hideToolbar)
+                SofhaPages(selection: $qModel.selection, hideToolbar: $hideToolbar)
             } else if qModel.tab == .sura {
-                SuraPages(selection: qModel.tab == .sura ? $qModel.selection : .constant(1))
+                SuraPages(selection: $qModel.selection)
+                    .ignoresSafeArea()
             }
         }
         .overlay(alignment: .topTrailing) {
@@ -27,9 +28,13 @@ struct QuranView: View {
                 .opacity(hideToolbar ? 0 : 1)
         }
         .overlay(alignment: .topLeading) {
-            CloseButton(action: {
-                qModel.switchTab()
-            }, icon: Image(systemName: "switch.2"))
+            SheetButton {
+                SettingsView()
+                .presentationDetents(.init([.height(650)]))
+            } label: {
+                Image(systemName: "gear")
+                    .glassBackground(size: 10)
+            }
             .padding(.leading)
             .offset(y: -10)
             .opacity(hideToolbar ? 0 : 1)

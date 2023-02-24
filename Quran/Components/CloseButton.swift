@@ -22,17 +22,7 @@ struct CloseButton: View {
     var body: some View {
         Button(action: action ?? {dismiss()}, label: {
             image
-                .font(font)
-                .foregroundColor(.accentColor)
-//                .frame(width: 40, height: 40)
-            
-                .padding(12)
-                .background {
-                    Circle()
-                        .fill(.ultraThinMaterial.shadow(.inner(color: .accentColor.opacity(0.1), radius: 5)))
-                }
-                .padding(-1)
-                .clipShape(Circle())
+                .glassBackground()
         })
     }
 }

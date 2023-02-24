@@ -60,6 +60,20 @@ extension View {
 
                  }
          }
+    
+    @ViewBuilder
+    func glassBackground(font: Font = .headline.bold(), color: Color = .accentColor, size: Double = 12, in shape: any Shape = Circle()) -> some View {
+        self
+            .font(font)
+            .foregroundColor(color)
+            .padding(size)
+            .background {
+                AnyShape(shape)
+                    .fill(.ultraThinMaterial.shadow(.inner(color: color.opacity(0.3), radius: 5)))
+            }
+            .padding(-1)
+            .clipShape(AnyShape(shape))
+    }
 }
 
 struct OffsetKey: PreferenceKey {
