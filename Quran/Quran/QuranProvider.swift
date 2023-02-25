@@ -7,22 +7,6 @@
 
 import SwiftUI
 
-extension Bundle {
-    func load<T: Decodable>(_ filename: String, extention: String, as: T.Type) -> T {
-        guard let path = Bundle.main.path(forResource: filename, ofType: extention),
-              let data = try? Data(contentsOf: URL(fileURLWithPath: path)) else {
-            fatalError(QuranDataErrors.failedToLoadData.message)
-        }
-        do {
-            let decoder = JSONDecoder()
-            print("samba")
-            return try decoder.decode(T.self, from: data)
-        } catch let error {
-            fatalError(error.localizedDescription)
-        }
-    }
-}
-
 class QuranProvider {
     static let shared = QuranProvider()
         
@@ -36,9 +20,9 @@ class QuranProvider {
     let ayasByHizb: [Int: [Aya]] 
     
     init(){
-        self.ayasBySura = Self.ayasBySura(ayas: ayas, suras: suras)
-        self.ayasBySofha = Self.ayasBySofha(ayas: ayas, sofhas: sofhas)
-        self.ayasByHizb = Self.ayasByHizb(ayas: ayas, hizbs: hizbs)
+        self.ayasBySura = Dictionary(grouping: ayas, by: { $0.suraID })
+        self.ayasBySofha = Dictionary(grouping: ayas, by: { $0.sofhaID })
+        self.ayasByHizb = Dictionary(grouping: ayas, by: { $0.hizbID })
     }
 
 }
@@ -55,38 +39,6 @@ extension QuranProvider {
     static let madaniyaSuraIDs: [Int] = { [2, 3, 4, 5, 8, 9, 13, 22, 24, 33, 47, 48,
                                           49, 55, 57, 58, 59, 60, 61, 62, 63, 64, 65,
                                           66, 76, 98, 99, 110] }()
-}
-
-//MARK: - Perform access data by using Dictionnary
-extension QuranProvider {
-    
-    static private func ayasBySura(ayas: [Aya], suras: [Sura]) -> [Int: [Aya]] {
-        var ayasBySura = [Int: [Aya]]()
-        for sura in suras {
-            let suraAyas = ayas.filter { $0.suraID == sura.id }
-            ayasBySura[sura.id] = suraAyas
-        }
-        return ayasBySura
-    }
-    
-    static private func ayasBySofha(ayas: [Aya], sofhas: [Sofha]) -> [Int: [Aya]] {
-        var ayasBySofha = [Int: [Aya]]()
-        for sofha in sofhas {
-            let sofhaAyas = ayas.filter { $0.sofhaID == sofha.id }
-            ayasBySofha[sofha.id] = sofhaAyas
-        }
-        return ayasBySofha
-    }
-    
-    static private func ayasByHizb(ayas: [Aya], hizbs: [Hizb]) -> [Int: [Aya]] {
-        var ayasByHizb = [Int: [Aya]]()
-        for hizb in hizbs {
-            let hizbAyas = ayas.filter { $0.hizbID == hizb.id }
-            ayasByHizb[hizb.id] = hizbAyas
-        }
-        return ayasByHizb
-    }
-    
 }
 
 //MARK: - Access items by ID
@@ -166,5 +118,21 @@ extension QuranProvider {
             return hizbs.filter{ "\($0.id)".toArabicNumeral.contains(text) }
         }
         return []
+    }
+}
+
+extension Bundle {
+    func load<T: Decodable>(_ filename: String, extention: String, as: T.Type) -> T {
+        guard let path = Bundle.main.path(forResource: filename, ofType: extention),
+              let data = try? Data(contentsOf: URL(fileURLWithPath: path)) else {
+            fatalError(QuranDataErrors.failedToLoadData.message)
+        }
+        do {
+            let decoder = JSONDecoder()
+            print("samba")
+            return try decoder.decode(T.self, from: data)
+        } catch let error {
+            fatalError(error.localizedDescription)
+        }
     }
 }

@@ -135,17 +135,20 @@ struct KollectionEditor: View {
     }
     
     func save(){
-        withAnimation{
-            dismiss()
-            if kollection != nil {
-                kollection!.name = name
-                kollection!.color = color
-                kollection!.suras = Array(suras)
-                kollection!.ayas = Array(ayas)
-                kollection!.sofhas = Array(sofhas)
-                kollection!.hizbs = Array(hizbs)
-            } else {
-                kModel.add(name: name, description: description, ayas: ayas, suras: suras, hizbs: hizbs, sofhas: sofhas, color: color)
+        Task {
+            withAnimation{
+                dismiss()
+                if kollection != nil {
+                    kollection!.name = name
+                    kollection!.color = color
+                    kollection!.description = description
+                    kollection!.suras = Array(suras)
+                    kollection!.ayas = Array(ayas)
+                    kollection!.sofhas = Array(sofhas)
+                    kollection!.hizbs = Array(hizbs)
+                } else {
+                    kModel.add(name: name, description: description, ayas: ayas, suras: suras, hizbs: hizbs, sofhas: sofhas, color: color)
+                }
             }
         }
     }

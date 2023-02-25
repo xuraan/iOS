@@ -22,10 +22,10 @@ struct KollectionView: View {
                     .listRowInsets(EdgeInsets())
                     .listRowBackground(Color.clear)
             }
-            QuranItemSection(for: kollection.ayas, title: "ayas", isDismissible: false)
-            QuranItemSection(for: kollection.hizbs, title: "hizbs", isDismissible: false)
-            QuranItemSection(for: kollection.suras, title: "suras", isDismissible: false)
-            QuranItemSection(for: kollection.sofhas, title: "sofhas", isDismissible: false)
+            QuranItemSection(for: kollection.ayas, title: "ayas", limit: 5, isDismissible: false)
+            QuranItemSection(for: kollection.hizbs, title: "hizbs", limit: 5, isDismissible: false)
+            QuranItemSection(for: kollection.suras, title: "suras", limit: 5, isDismissible: false)
+            QuranItemSection(for: kollection.sofhas, title: "sofhas", limit: 5, isDismissible: false)
         }
         .navigationTitle(kollection.name)
         .toolbar {
