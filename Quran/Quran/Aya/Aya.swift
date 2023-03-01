@@ -46,6 +46,7 @@ extension Aya {
 
 extension Aya {
     static let all: [Aya] = QuranProvider.shared.ayas
+    static let sajda: [Aya] = QuranProvider.shared.ayas.filter{ QuranProvider.sajdaIDs.contains($0.id) }
 }
 
 //MARK: - Make Aya codable

@@ -9,11 +9,9 @@ import SwiftUI
 
 struct KollectionView: View {
     @Environment(\.showCoverView) var showCoverView
-    var isEditable: Bool
     @ObservedObject var kollection: Kollection
     init(for kollection: Kollection, isEditable: Bool = true) {
         self.kollection = kollection
-        self.isEditable = isEditable
     }
     var body: some View {
         List{
@@ -35,14 +33,12 @@ struct KollectionView: View {
     
     @ViewBuilder
     var editButton: some View {
-        if isEditable {
-            SheetButton("Edit") {
-                NavigationStack{
-                    KollectionEditor(kollection: kollection)
-                        .navigationTitle(kollection.name)
-                }
-                .presentationDetents([.height(470)])
+        SheetButton("Edit") {
+            NavigationStack{
+                KollectionEditor(kollection: kollection)
+                    .navigationTitle(kollection.name)
             }
+            .presentationDetents([.height(470)])
         }
     }
 }

@@ -16,11 +16,15 @@ struct HomeView: View {
             if isSearching {
                 SearchView()
             } else {
+                QuranInfoView()
                 if let item = pin.wrappedValue {
-                    QuranItemRow(for: item)
-                    .environment(\.isDestructivePinButton, true)
+                    Section{
+                        QuranItemRow(for: item)
+                        .environment(\.isDestructivePinButton, true)
+                    } header: {
+                        Label("Pinned item", systemImage: "pin.fill")
+                    }
                 }
-                KollectionSection(kollections: KollectionProvider.immutables)
                 KollectionSection()
             }
         }

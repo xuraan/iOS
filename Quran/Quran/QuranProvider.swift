@@ -39,6 +39,8 @@ extension QuranProvider {
     static let madaniyaSuraIDs: [Int] = { [2, 3, 4, 5, 8, 9, 13, 22, 24, 33, 47, 48,
                                           49, 55, 57, 58, 59, 60, 61, 62, 63, 64, 65,
                                           66, 76, 98, 99, 110] }()
+    
+    static let sajdaIDs: [Int] = [1160, 1722, 1951, 2138, 2308, 2613, 2672, 2915, 3185, 3518, 3994, 4256, 4846, 5905, 6125]
 }
 
 //MARK: - Access items by ID
@@ -98,7 +100,7 @@ extension QuranProvider {
         } else if text.isArabicNumeral{
             return ayas.filter{ $0.secondaryID.toArabicNumeral.contains(text)}
         } else {
-            return ayas.filter{ $0.text.lowercased().contains(text.lowercased()) || $0.translation.lowercased().contains(text.lowercased()) }
+            return ayas.filter{ $0.text.lowercased().contains(text.lowercased()) || $0.translation.lowercased().contains(text.lowercased()) || $0.secondaryID.contains(text) }
         }
     }
     

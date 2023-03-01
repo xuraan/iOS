@@ -65,6 +65,7 @@
 		F4BEF96829A59FCC0012F483 /* SofhaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BEF96729A59FCC0012F483 /* SofhaView.swift */; };
 		F4BEF96A29A5A1210012F483 /* SofhaPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BEF96929A5A1200012F483 /* SofhaPages.swift */; };
 		F4BEF96C29A5A3010012F483 /* QuranViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BEF96B29A5A3010012F483 /* QuranViewModel.swift */; };
+		F4CBB12129AEDB8000B2CB3F /* QuranInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CBB12029AEDB8000B2CB3F /* QuranInfoView.swift */; };
 		F4D6749429A66776006366D3 /* QuranSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D6749329A66776006366D3 /* QuranSettings.swift */; };
 		F4D6749629A668F9006366D3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D6749529A668F9006366D3 /* SettingsView.swift */; };
 		F4D6749829A678F5006366D3 /* AmiriQuran-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4D6749729A678F5006366D3 /* AmiriQuran-Regular.ttf */; };
@@ -152,6 +153,7 @@
 		F4BEF96729A59FCC0012F483 /* SofhaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SofhaView.swift; sourceTree = "<group>"; };
 		F4BEF96929A5A1200012F483 /* SofhaPages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SofhaPages.swift; sourceTree = "<group>"; };
 		F4BEF96B29A5A3010012F483 /* QuranViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuranViewModel.swift; sourceTree = "<group>"; };
+		F4CBB12029AEDB8000B2CB3F /* QuranInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuranInfoView.swift; sourceTree = "<group>"; };
 		F4D6749329A66776006366D3 /* QuranSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuranSettings.swift; sourceTree = "<group>"; };
 		F4D6749529A668F9006366D3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		F4D6749729A678F5006366D3 /* AmiriQuran-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AmiriQuran-Regular.ttf"; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				F440441429A6EC600017DDCE /* QuranItemRow.swift */,
 				F440441629A6EDE40017DDCE /* QuranItemsSection.swift */,
 				F40CE3AD29A7C65B004C05F1 /* QuranItem.swift */,
+				F4CBB12029AEDB8000B2CB3F /* QuranInfoView.swift */,
 			);
 			path = Quran;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 				F48AC0A029A2091A00FC7AED /* QuranProvider.swift in Sources */,
 				F4BEF94429A46A100012F483 /* CloseButton.swift in Sources */,
 				F4BEF94029A464EE0012F483 /* SearchView.swift in Sources */,
+				F4CBB12129AEDB8000B2CB3F /* QuranInfoView.swift in Sources */,
 				F4D6749629A668F9006366D3 /* SettingsView.swift in Sources */,
 				F4BEF92029A3DE180012F483 /* Model.swift in Sources */,
 				F4BEF94C29A51DA40012F483 /* SofhaRow.swift in Sources */,

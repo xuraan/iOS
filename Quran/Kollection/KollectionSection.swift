@@ -9,42 +9,24 @@ import SwiftUI
 
 struct KollectionSection: View {
     @EnvironmentObject var kModel: KollectionProvider
-    var kollections: [Kollection]?
-    
-    init(kollections: [Kollection]? = nil) {
-        self.kollections = kollections
-    }
-    
     var body: some View {
-        if let kollections = kollections, !kollections.isEmpty  {
+        if !kModel.kollections.isEmpty {
             Section{
-                ForEach(kollections){ kollection in
-                    KollectionRow(for: kollection, isEditable: false)
+                ForEach(kModel.kollections){ kollection in
+                    KollectionRow(for: kollection, isEditable: true)
+                        .swipeActions {
+                            Button(role: .destructive) {
+                                kModel.remove(id: kollection.id)
+                            } label: {
+                                Label("delete", systemImage: "trash")
+                            }
+                        }
                 }
             } header: {
-                Label("Collections", systemImage: "square.on.circle.fill")
-            }
-        } else {
-            if !kModel.kollections.isEmpty {
-                Section{
-                    ForEach(kModel.kollections){ kollection in
-                        KollectionRow(for: kollection, isEditable: true)
-                            .swipeActions {
-                                Button(role: .destructive) {
-                                    kModel.remove(id: kollection.id)
-                                } label: {
-                                    Label("delete", systemImage: "trash")
-                                }
-
-                            }
-                    }
-                } header: {
-                    Label("My collections", systemImage: "square.on.circle.fill")
-                }
+                Label("My collections", systemImage: "square.on.circle.fill")
             }
         }
     }
-    
 }
 
 struct KollectionRow: View {

@@ -129,26 +129,6 @@ class KollectionProvider: ObservableObject {
     enum Constant: String {
         case favUUIDString = "C6819E4A-9203-48CE-9EE4-AAF815B52D09"
     }
-    
-    static let immutables: [Kollection] = [
-        Kollection(
-            name: "The noble quran",
-            description: NSLocalizedString( "QURANDESCRIPTION", comment: "QURANDESCRIPTION"),
-            ayas: QuranProvider.shared.ayas,
-            suras: QuranProvider.shared.suras,
-            hizbs: QuranProvider.shared.hizbs,
-            sofhas: QuranProvider.shared.sofhas, color: .green
-        ),
-        Kollection(
-            name: "sura",
-            description: NSLocalizedString( "SURADESCRIPTION", comment: "QURANDESCRIPTION"),
-            suras: QuranProvider.shared.suras, color: .blue
-        ),
-        Kollection(name: "aya", description: "AYADESCRIPTION", ayas: QuranProvider.shared.ayas, color: .blue),
-        Kollection(name: "sofha", description: "SOFHADESCRIPTION", sofhas: QuranProvider.shared.sofhas, color: .blue),
-        Kollection(name: "hizb", description: "HZIBDESCRIPTION", hizbs: QuranProvider.shared.hizbs, color: .blue),
-        Kollection(name: "juz'", description: "JUZDESCRIPTION", hizbs: QuranProvider.shared.hizbs.filter{ $0.id%2 != 0 }, color: .blue)
-    ]
 }
 
 extension Kollection {
