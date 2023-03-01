@@ -43,7 +43,7 @@ struct AyaList: View {
         
         .listStyle(.plain)
         .navigationBarTitleDisplayMode(.inline)
-        .searchable(text: $text, prompt: "Search a sura in this list" )
+        .searchable(text: $text, prompt: "Search an ayat in this list" )
         .onChange(of: text){ value in
             if value.isEmpty {
                 searchResult = ayas

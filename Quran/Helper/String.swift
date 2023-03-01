@@ -31,24 +31,25 @@ extension String {
         }
         return result
     }
-    func format(stringList: [String] = []) -> AttributedString {
-        var ayaFormat = AttributedString(self)
-        let ayaFormat1 = AttributedString(self.lowercased())
-        for str in stringList {
-            if let range = ayaFormat1.range(of: str.lowercased()) {
-                ayaFormat[range].foregroundColor = .red.opacity(0.8)
-            }
-        }
-        return ayaFormat
-    }
-    func format(form string: String, stringList: [String] = []) -> AttributedString {
-        var ayaFormat = AttributedString(self)
-        let ayaFormat1 = AttributedString(string.lowercased())
-        for str in stringList {
-            if let range = ayaFormat1.range(of: str.lowercased()) {
-                ayaFormat[range].foregroundColor = .red
-            }
-        }
-        return ayaFormat
-    }
 }
+
+//func format(stringList: [String] = []) -> AttributedString {
+//    var ayaFormat = AttributedString(self)
+//    let ayaFormat1 = AttributedString(self.lowercased())
+//    for str in stringList {
+//        if let range = ayaFormat1.range(of: str.lowercased()) {
+//            ayaFormat[range].foregroundColor = .red.opacity(0.8)
+//        }
+//    }
+//    return ayaFormat
+//}
+//func format(form string: String, stringList: [String] = []) -> AttributedString {
+//    var ayaFormat = AttributedString(self)
+//    let ayaFormat1 = AttributedString(string.lowercased())
+//    for str in stringList {
+//        if let range = ayaFormat1.range(of: str.lowercased()) {
+//            ayaFormat[range].foregroundColor = .red
+//        }
+//    }
+//    return ayaFormat
+//}

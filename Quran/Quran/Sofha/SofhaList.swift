@@ -52,14 +52,14 @@ struct SofhaList: View {
                     HStack{}.frame(width: 35, alignment: .leading)
                 }
             
-                Text("Page")
+                Text("sofha")
                     .frame(width: 35, alignment: .leading)
 
                 HStack{
                     
-                    Text("Last aya")
+                    Text("Last ayat")
                         .frame(maxWidth: .infinity, alignment: .trailing)
-                    Text("First aya")
+                    Text("First ayat")
                         .frame(maxWidth: .infinity, alignment: .trailing)
 
                 }
@@ -81,7 +81,7 @@ struct SofhaList: View {
         .listStyle(.plain)
         .animation(.easeInOut, value: sofhas)
         .navigationBarTitleDisplayMode(.inline)
-        .searchable(text: $text, prompt: "Search a sofha in this list" )
+        .searchable(text: $text, prompt: "Search a page in this list" )
         .onChange(of: text){ value in
             if value.isEmpty {
                 searchResult = sofhas

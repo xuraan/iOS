@@ -68,9 +68,9 @@ struct HizbList: View {
                     }
                     .frame(width: 35, alignment: .leading)
                 }
-                Text("NO")
+                Text("Hizb")
                     .frame(width: 35, alignment: .leading)
-                Text("Firt aya")
+                Text("Firt ayat")
                     .frame(maxWidth: .infinity, alignment: .center)
                     .offset(x: -25)
             }

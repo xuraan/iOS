@@ -27,10 +27,10 @@ struct KollectionView: View {
             QuranItemSection(for: kollection.suras, title: "suras", limit: 5, isDismissible: false)
             QuranItemSection(for: kollection.sofhas, title: "sofhas", limit: 5, isDismissible: false)
         }
-        .navigationTitle(kollection.name)
         .toolbar {
             editButton
         }
+        .navigationTitle(kollection.name)
     }
     
     @ViewBuilder
@@ -39,9 +39,11 @@ struct KollectionView: View {
             SheetButton("Edit") {
                 NavigationStack{
                     KollectionEditor(kollection: kollection)
+                        .navigationTitle(kollection.name)
                 }
                 .presentationDetents([.height(470)])
-            }        }
+            }
+        }
     }
 }
 

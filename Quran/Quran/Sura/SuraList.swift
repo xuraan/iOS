@@ -49,7 +49,7 @@ struct SuraList: View {
         .toolbarBackground(.hidden, for: .navigationBar)
         .padding(.top, -10)
         .navigationBarTitleDisplayMode(.inline)
-        .searchable(text: $text, prompt: "Search a sura in this list" )
+        .searchable(text: $text, prompt: "Search a surah in this list" )
         .onChange(of: text){ value in
             if value.isEmpty {
                 searchResult = suras

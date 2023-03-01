@@ -24,7 +24,6 @@ extension Sofha {
 extension Sofha {
     var image: Image {
         Image("\(self.id)")
-//        Image("test")
             .resizable()
     }
 }

@@ -48,3 +48,5 @@ struct QuranView_Previews: PreviewProvider {
             .environmentObject(QuranViewModel())
     }
 }
+
+

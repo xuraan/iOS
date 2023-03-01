@@ -24,6 +24,7 @@ struct HomeView: View {
                 KollectionSection()
             }
         }
+        .navigationTitle("The noble quran")
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 SheetButton("Settings") {
@@ -35,6 +36,7 @@ struct HomeView: View {
                 SheetButton {
                     NavigationStack{
                         KollectionEditor()
+                            .navigationTitle("New collection")
                     }
                     .presentationDetents([.height(470)])
                 } label: {

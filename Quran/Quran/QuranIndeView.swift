@@ -22,7 +22,7 @@ struct QuranIndeView: View {
             ToolbarItem(placement: .status) {
                 Picker("", selection: $tab) {
                     ForEach(Tab.allCases){ tab in
-                        Text(tab.rawValue)
+                        Text(LocalizedStringKey(tab.rawValue))
                             .tag(tab)
                     }
                 }.pickerStyle(.segmented)

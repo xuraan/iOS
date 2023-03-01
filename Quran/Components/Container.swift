@@ -22,7 +22,6 @@ struct Container<Content:View, Cover: View>: View {
     var body: some View {
         NavigationStack{
             content
-            .navigationTitle("Quran")
             .overlay(alignment: .bottomTrailing) {
                 Button(action: show) {
                     Image(systemName: "book.fill")

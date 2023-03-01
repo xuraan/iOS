@@ -54,3 +54,5 @@ struct ContentView_Previews: PreviewProvider {
 protocol AnyQuranItem: QuranItem {
     
 }
+
+

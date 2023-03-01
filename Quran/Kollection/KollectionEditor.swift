@@ -107,7 +107,7 @@ struct KollectionEditor: View {
                 })
                 .disabled(name.isEmpty)
             })
-            ToolbarItem(placement: .destructiveAction, content: {
+            ToolbarItem(placement: .navigationBarLeading, content: {
                 CloseButton()
             })
             ToolbarItemGroup(placement: .keyboard, content: {
@@ -129,8 +129,6 @@ struct KollectionEditor: View {
                 sofhas = Set(kollection.sofhas)
             }
         }
-        
-        .navigationTitle( kollection?.name ?? "New collection")
         .navigationBarTitleDisplayMode(.inline)
     }
     
