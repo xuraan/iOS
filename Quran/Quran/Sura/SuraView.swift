@@ -64,8 +64,7 @@ struct SuraView: View {
                         QuranIndeView()
                     } label: {
                         Text(sura.name)
-                            .font(.waseem(25))
-                            .padding(.top, -5)
+                            .font(.waseem(28))
                     }
                     .frame(maxWidth: .infinity)
                     .background {

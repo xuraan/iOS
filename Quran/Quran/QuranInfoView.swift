@@ -32,7 +32,7 @@ struct QuranInfoView: View {
             QuranItemSection(for: Sura.all, title: "suras",isDismissible: false)
         }
         .padding(.top, -20)
-        .navigationTitle("Info")
+        .navigationTitle("What is the noble quran")
         .navigationBarTitleDisplayMode(.inline)
     }
 }

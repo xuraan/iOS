@@ -56,11 +56,10 @@ struct SofhaView: View {
                 } label: {
                     if let name = sofha.ayas.first?.sura.name {
                         Text(name)
-                            .font(.waseem(25))
+                            .font(.waseem(28))
                     }
                 }
                 .opacity(isExtended ? 0 : 1)
-                .offset(y: -5)
             }
         }
     }

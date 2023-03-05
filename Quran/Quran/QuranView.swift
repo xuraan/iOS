@@ -24,7 +24,7 @@ struct QuranView: View {
         .overlay(alignment: .topTrailing) {
             CloseButton(action: hideCoverView)
                 .padding(.trailing)
-                .offset(y: -10)
+                .offset(y: -2)
                 .opacity(hideToolbar ? 0 : 1)
         }
         .overlay(alignment: .topLeading) {
@@ -36,7 +36,7 @@ struct QuranView: View {
                     .glassBackground(size: 10)
             }
             .padding(.leading)
-            .offset(y: -10)
+            .offset(y: -2)
             .opacity(hideToolbar ? 0 : 1)
         }
     }

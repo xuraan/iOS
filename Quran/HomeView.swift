@@ -16,7 +16,6 @@ struct HomeView: View {
             if isSearching {
                 SearchView()
             } else {
-                QuranInfoView()
                 if let item = pin.wrappedValue {
                     Section{
                         QuranItemRow(for: item)
@@ -30,7 +29,18 @@ struct HomeView: View {
         }
         .navigationTitle("The noble quran")
         .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
+            ToolbarItemGroup(placement: .navigationBarLeading) {
+                NavigationLink(destination: {
+                    List{
+                        QuranInfoView()
+                    }
+                    .navigationTitle("General")
+                    .navigationBarTitleDisplayMode(.inline)
+                    
+                }, label: {
+                    Image(systemName: "questionmark.circle.ar")
+                })
+
                 SheetButton("Settings") {
                     SettingsView()
                     .presentationDetents(.init([.height(650)]))
