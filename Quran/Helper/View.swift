@@ -69,7 +69,7 @@ extension View {
             .padding(size)
             .background {
                 AnyShape(shape)
-                    .fill(.ultraThinMaterial.shadow(.inner(color: color.opacity(0.3), radius: 5)))
+                    .fill(.ultraThinMaterial.shadow(.inner(color: color.opacity(0.2), radius: 5)))
             }
             .padding(-1)
             .clipShape(AnyShape(shape))
