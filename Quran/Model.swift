@@ -38,9 +38,7 @@ struct ModelSettings: View {
                     }, icon: {
                         Image(systemName: "globe")
                     })
-                    .badge(
-                        Locale.current.localizedString(forIdentifier: Locale.current.identifier)
-                        )
+                    .badge(Locale.current.localizedString(forIdentifier: Locale.current.identifier)?.prefix(20))
                     Image(systemName: "chevron.forward")
                         .foregroundColor(.secondary)
                         .font(.caption)

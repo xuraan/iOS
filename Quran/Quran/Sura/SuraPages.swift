@@ -25,6 +25,7 @@ struct SuraPages: View {
                 .environmentObject(kModel)
                 .environmentObject(model)
         }, currentPage: $selection, isReversed: true)
+        .environment(\.layoutDirection, .leftToRight)
     }
     
 }

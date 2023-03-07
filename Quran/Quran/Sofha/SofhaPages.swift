@@ -34,5 +34,6 @@ struct SofhaPages: View {
             .menuIndicator(.hidden)
             .opacity(hideToolbar ? 0 : 1)
         }
+        .environment(\.layoutDirection, .leftToRight)
     }
 }
